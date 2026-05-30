@@ -1,11 +1,19 @@
 {
   "brand_name": "Scalevertise",
   "website": "https://scalevertise.app",
+  "last_updated": "2026-05-30",
+
+  "positioning": {
+    "category": "Premium Done-For-You Growth Agency",
+    "core_offer": "We fully build your website and completely run your Meta Ads — straight from our elite business portfolio. Not a tool. Not a freelancer. A full-stack growth team.",
+    "differentiator": "End-to-end execution. You hand us the brand, we handle everything — strategy, creative, targeting, and conversion infrastructure.",
+    "tone": "Ultra-premium, authoritative, systems-first. Built for founders who want results without managing the process."
+  },
 
   "aesthetic": {
     "style": "Ultra-premium, high-end, dark mode, sleek minimalist tech",
     "mood": "Sophisticated, data-driven, futuristic, authoritative",
-    "background": "Near-black (#0a0b10 approximate) with subtle particle/3D mesh visuals",
+    "background": "#0a0b10 near-black with subtle particle / 3D mesh visuals",
     "design_motifs": ["particle fields", "3D fluid mesh", "sparse starfield", "glassmorphism cards"]
   },
 
@@ -22,66 +30,48 @@
   },
 
   "typography": {
-    "wordmark_style": "Mixed weight — 'Scale' in light/thin weight, 'vertise' in bold",
+    "wordmark_style": "Mixed weight — 'Scale' in light/thin, 'vertise' in bold",
     "hero_display": "Extra-bold, wide tracking, all-caps — 'SCALE' in #afabe9, 'VERTISE' in #ffffff",
-    "heading_style": "Serif or geometric sans, sentence case, tight leading",
+    "heading_style": "Geometric sans, sentence case, tight leading",
     "body_style": "Clean sans-serif, small size, generous line height",
-    "label_style": "Spaced uppercase tracking, muted opacity — e.g. 'WHAT WE DO', 'PRICING'",
+    "label_style": "Spaced uppercase tracking, muted opacity",
     "cta_style": "Full-width pill button, white fill, dark text, bold label"
   },
 
   "messaging": {
     "tagline": "AI-powered ad infrastructure for modern brands",
-    "section_headline": "Two engines. One growth system.",
+    "hero_headline": "SCALEVERTISE",
+    "hero_subheadline": "AI-powered ad infrastructure for modern brands",
+    "domain_callout": "scalevertise.app",
     "cta_primary": "Let's Work Together",
     "contact_note": "No spam · 100% confidential · Reply within 24 hours"
   },
 
-  "value_propositions": [
-    {
-      "title": "Predictive Targeting",
-      "description": "Surfaces high-intent audiences before the market moves."
-    },
-    {
-      "title": "Autonomous Creative",
-      "description": "Generative variants test and evolve themselves, endlessly."
-    },
-    {
-      "title": "Instant ROI",
-      "description": "Unified attribution turns every touchpoint into one signal."
-    }
-  ],
-
   "services": [
     {
       "id": "01",
-      "name": "META ADS",
-      "description": "We engineer and optimize high-converting campaigns that systematically turn attention into revenue. Powered by high-intent audience targeting and aggressive creative testing."
+      "name": "Ads Management",
+      "price": "$650/mo",
+      "description": "Full Meta Ads management from our elite portfolio. Includes campaign setup, audience targeting, ongoing optimization, and monthly reporting.",
+      "headline_hook": "Your ads. Managed by pros. $650/mo."
     },
     {
       "id": "02",
-      "name": "CLIENT BASE GROWTH",
-      "description": "We don't just buy clients; we design paid social pipelines that acquire lifelong customers and scale your business footprint."
+      "name": "Ad Creation",
+      "price": "$400/mo",
+      "description": "Static and video ad creatives plus copywriting — up to 8 creatives per month, built to your brand.",
+      "headline_hook": "8 scroll-stopping creatives. Every month. $400/mo."
+    },
+    {
+      "id": "03",
+      "name": "Website + Ads Bundle",
+      "price": "$900/mo",
+      "description": "Our flagship package. A conversion-optimized landing page built for your brand plus full Meta Ads management — one team, one system, maximum ROAS.",
+      "headline_hook": "Full-stack growth. Website + Ads. $900/mo."
     }
   ],
 
-  "pricing": [
-    {
-      "tier": "ADS ONLY",
-      "setup_fee": "$100",
-      "monthly": "$300/mo",
-      "description": "Comprehensive Meta management, optimization, and monthly reporting."
-    },
-    {
-      "tier": "ADS + WEBSITE",
-      "setup_fee": "$400",
-      "monthly": "$350/mo",
-      "description": "Conversion-optimized landing page + Ads management for max ROAS."
-    },
-    {
-      "note": "Ad pricing scales with your budget and goals."
-    }
-  ],
+  "nav_sections": ["Engine", "Results", "Pricing", "Contact"],
 
   "client_verticals_seen": [
     "Tattoo studios",
@@ -89,22 +79,22 @@
     "Dental care / healthcare"
   ],
 
-  "nav_sections": ["Engine", "Results", "Pricing", "Contact"],
-
   "ad_creative_guidelines": {
     "do": [
       "Use dark backgrounds (#0a0b10 or near-black)",
-      "Lead with #afabe9 lavender on key words or headlines",
+      "Lead with #afabe9 lavender on key words or price callouts",
       "Keep layouts minimal — lots of negative space",
+      "Always reference scalevertise.app as the domain",
+      "Anchor copy around the $650, $400, or $900 packages",
       "Use bold, wide display type for hero headlines",
       "Pair with 3D mesh / particle / abstract tech visuals",
-      "Uppercase spaced labels for section markers",
       "White pill CTAs with dark text"
     ],
     "dont": [
+      "Reference old pricing ($300, $350 tiers — these are deprecated)",
+      "Include the agency email in any ad copy",
       "Use bright or colorful backgrounds",
       "Use more than 2-3 colors per creative",
-      "Include the agency email address in any ad copy",
       "Use cluttered or busy layouts",
       "Use warm tones or lifestyle photography styles"
     ]

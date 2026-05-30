@@ -1,0 +1,341 @@
+{
+  "manifest_version": "1.0",
+  "brand": "Scalevertise",
+  "stage": "Stage 2 — Creative Concept Generation & Media Buyer Architecture",
+  "total_concepts": 20,
+  "color_palette": {
+    "accent": "#afabe9",
+    "white": "#ffffff",
+    "background": "#0a0b10",
+    "card": "#111318"
+  },
+
+  "creative_angles": [
+    {
+      "angle_id": 1,
+      "angle_name": "High-End Tech Infrastructure",
+      "angle_brief": "Position Scalevertise as the elite technical backbone of modern ad operations — not an agency, but an infrastructure layer. Appeals to founders who think in systems, not campaigns.",
+      "tone": "Cold, precise, authoritative. Like a Bloomberg terminal ad.",
+      "hook_logic": "Pattern interrupt — most agencies sell creativity. We sell architecture."
+    },
+    {
+      "angle_id": 2,
+      "angle_name": "Scale vs. Cost Efficiency",
+      "angle_brief": "Attack the 'expensive agency' objection head-on. Show that $300/mo for full Meta infrastructure is asymmetric value vs. hiring in-house or using bloated retainer agencies.",
+      "tone": "Direct, punchy, numbers-forward. Confidence without arrogance.",
+      "hook_logic": "Price anchoring + contrast. Make $300 feel like stealing."
+    },
+    {
+      "angle_id": 3,
+      "angle_name": "Problem / Solution for Bottlenecked Brands",
+      "angle_brief": "Speak directly to the pain: inconsistent leads, wasted ad spend, creatives that don't convert. Scalevertise is the fix. Empathy-first then pivot to capability.",
+      "tone": "Empathetic, urgent, solution-oriented. Feels like the brand *gets it*.",
+      "hook_logic": "Agitate the wound, then offer the cure. Classic direct-response."
+    },
+    {
+      "angle_id": 4,
+      "angle_name": "AI-Native Superiority",
+      "angle_brief": "Lean fully into the AI angle — predictive targeting, autonomous creative evolution, unified attribution. Position competitors as manual and outdated by contrast.",
+      "tone": "Futuristic, technical, slightly elitist. For the forward-thinking operator.",
+      "hook_logic": "Future-pacing. Makes the audience feel left behind if they don't act."
+    },
+    {
+      "angle_id": 5,
+      "angle_name": "Social Proof & Results Credibility",
+      "angle_brief": "Let the work speak. Reference the client verticals (tattoo studios, dental, coaching) as proof that the system works across industries. Generalize the outcome: any brand, any vertical.",
+      "tone": "Warm confidence. Proof-led, outcome-forward.",
+      "hook_logic": "Borrowed credibility. If it worked for them, it works for you."
+    }
+  ],
+
+  "ad_concepts": [
+
+    {
+      "concept_id": "A1-01",
+      "angle_id": 1,
+      "angle_name": "High-End Tech Infrastructure",
+      "variation": 1,
+      "format": "Static Image — Full Bleed Dark Hero",
+
+      "headline": "YOUR ADS. ENGINEERED.",
+      "primary_text": "Most agencies build campaigns.\n\nWe build infrastructure.\n\nPredictive targeting. Autonomous creative testing. Unified attribution — all running 24/7 so you don't have to.\n\nThis is what modern ad operations look like.",
+      "description": "AI-powered Meta ads for brands that refuse to stay small.",
+
+      "image_prompt": "Ultra-premium dark tech advertisement for a company called Scalevertise. Full bleed near-black background (#0a0b10). A complex, glowing 3D neural network or data mesh structure floats in the center-right of the frame, rendered in deep blue and soft lavender (#afabe9) light traces. Left side holds a clean typographic lockup: large bold sans-serif headline 'YOUR ADS. ENGINEERED.' in crisp white (#ffffff) with the word 'ENGINEERED' in pastel lavender (#afabe9). Below it, a single line in small spaced white text: 'AI-powered ad infrastructure for modern brands'. Bottom-left: the wordmark 'Scalevertise' in thin white sans-serif. No clutter. Extreme negative space. Cinematic lighting. Shot like a luxury tech product poster. 16:9 aspect ratio."
+    },
+
+    {
+      "concept_id": "A1-02",
+      "angle_id": 1,
+      "angle_name": "High-End Tech Infrastructure",
+      "variation": 2,
+      "format": "Static Image — Data Dashboard Aesthetic",
+
+      "headline": "TWO ENGINES. ONE GROWTH SYSTEM.",
+      "primary_text": "While your competitors are manually adjusting budgets and guessing at audiences —\n\nScalevertise is running predictive models, evolving creatives autonomously, and routing every dollar to its highest-return placement.\n\nInfrastructure wins. Always.",
+      "description": "Meta Ads management built for operators, not beginners.",
+
+      "image_prompt": "Luxury B2B advertisement for Scalevertise. Dark background (#0a0b10). Minimalist UI dashboard wireframe rendered in faint lavender (#afabe9) lines floats in the background — abstract, not literal. Foreground holds a bold centered typographic statement: 'TWO ENGINES.' in oversized white extra-bold type, second line 'ONE GROWTH SYSTEM.' in the same size but in pastel lavender (#afabe9). A thin horizontal rule in lavender separates the headline from a small descriptor line in muted white below. Bottom corner watermark: 'Scalevertise'. Particle dust in background. Deep shadows. Hyper-minimalist. High fashion meets fintech aesthetic. 1:1 square format."
+    },
+
+    {
+      "concept_id": "A1-03",
+      "angle_id": 1,
+      "angle_name": "High-End Tech Infrastructure",
+      "variation": 3,
+      "format": "Static Image — Abstract Architecture",
+
+      "headline": "INFRASTRUCTURE THEY CAN'T REPLICATE.",
+      "primary_text": "Your in-house team can't build this.\nYour current agency isn't thinking this way.\n\n→ Predictive audience signals\n→ Self-evolving creative variants\n→ Attribution that closes every loop\n\nScalevertise. Built different.",
+      "description": "The ad system modern brands are quietly switching to.",
+
+      "image_prompt": "Premium dark-mode advertisement for Scalevertise ad agency. Full bleed black background with subtle noise texture. Three glowing architectural pillars or columns rendered in soft lavender (#afabe9) light rise vertically in the frame — abstract, geometric, minimal. Top of frame: small spaced uppercase white text 'INFRASTRUCTURE THEY CAN'T REPLICATE.' Bold. The Scalevertise wordmark sits bottom-center in white thin weight. The overall feel is luxury architecture meets deep tech — think Zaha Hadid meets Bloomberg. Zero photography. Pure geometry and light. 4:5 aspect ratio."
+    },
+
+    {
+      "concept_id": "A1-04",
+      "angle_id": 1,
+      "angle_name": "High-End Tech Infrastructure",
+      "variation": 4,
+      "format": "Static Image — Signal / Frequency Visualization",
+
+      "headline": "EVERY SIGNAL. ONE SYSTEM.",
+      "primary_text": "Clicks. Views. Conversions. Retargeting windows. Creative fatigue curves.\n\nMost brands are flying blind on half of these.\n\nScalevertise unifies every signal into one attribution layer — so every dollar knows exactly where it's going.",
+      "description": "Unified Meta attribution. Built for scale.",
+
+      "image_prompt": "Ultra-sleek technology advertisement for Scalevertise. Near-black background (#0a0b10). A single glowing frequency or audio-waveform-like data signal stretches horizontally across the center of the image — thin lines in pastel lavender (#afabe9) that pulse and taper toward the edges. Above the signal: bold white sans-serif text 'EVERY SIGNAL.' Below the signal: 'ONE SYSTEM.' in matching bold white. The overall layout is perfectly symmetric. Bottom-left logo: 'Scalevertise' in light weight white. Extreme minimalism. Think Apple product launch slide meets quant trading terminal. 16:9 widescreen format."
+    },
+
+    {
+      "concept_id": "A2-01",
+      "angle_id": 2,
+      "angle_name": "Scale vs. Cost Efficiency",
+      "variation": 1,
+      "format": "Static Image — Price Contrast Card",
+
+      "headline": "$300/MO. FULL META INFRASTRUCTURE.",
+      "primary_text": "A junior media buyer costs $4,000/mo minimum.\nA bloated agency retainer? $3,000+ and you're still micromanaging.\n\nScalevertise gives you full campaign engineering, creative testing, and optimization for $300/mo.\n\nThe math isn't close.",
+      "description": "Premium Meta management. Transparent pricing. Zero bloat.",
+
+      "image_prompt": "High-end dark-mode B2B advertisement for Scalevertise. Background: deep near-black (#0a0b10). Center of frame: a sleek glassmorphism card with subtle border in dark charcoal (#1e2028). Inside the card: large bold white price '$300' with '/mo' in smaller weight beside it. Above it: a small spaced lavender (#afabe9) label reading 'ADS ONLY'. Below: short descriptor in muted white 'Full Meta management. Zero bloat.' Card sits against a backdrop of faint geometric grid lines in dark lavender. Bottom: Scalevertise wordmark in white thin font. Feels like a premium SaaS pricing page brought to life as an ad. 1:1 square."
+    },
+
+    {
+      "concept_id": "A2-02",
+      "angle_id": 2,
+      "angle_name": "Scale vs. Cost Efficiency",
+      "variation": 2,
+      "format": "Static Image — ROI Math Callout",
+
+      "headline": "SPEND $300. ENGINEER YOUR REVENUE.",
+      "primary_text": "This isn't a retainer. It's a growth engine.\n\nFor less than a single day of most agencies' work, you get:\n✓ Full campaign build and optimization\n✓ Aggressive creative testing\n✓ Monthly performance reporting\n✓ High-intent audience targeting\n\nScalevertise. Built for operators who know their numbers.",
+      "description": "Complete Meta Ads management starting at $300/mo.",
+
+      "image_prompt": "Luxury financial-aesthetic advertisement for Scalevertise. Full bleed dark background (#0a0b10). Left half: bold oversized white numeral '$300' in ultra-heavy display font, with a thin lavender (#afabe9) underline. Right half: clean vertical list of four short white checkmark items in small sans-serif type — readable but secondary. Top center: small spaced uppercase label in lavender: 'META ADS MANAGEMENT'. Bottom: Scalevertise wordmark in thin white. The visual language is Bloomberg terminal meets luxury brand. High contrast. Cinematic. 4:5 format."
+    },
+
+    {
+      "concept_id": "A2-03",
+      "angle_id": 2,
+      "angle_name": "Scale vs. Cost Efficiency",
+      "variation": 3,
+      "format": "Static Image — Asymmetric Value Comparison",
+
+      "headline": "THE ASYMMETRIC BET ON YOUR BRAND.",
+      "primary_text": "You're already spending money on ads.\n\nThe question is: are those dollars working as hard as they could?\n\nAt $300/mo, Scalevertise is the only bet that costs less than what you're already losing to inefficiency.",
+      "description": "Stop guessing. Start scaling. $300/mo.",
+
+      "image_prompt": "Premium minimalist advertisement for Scalevertise. Dark background (#0a0b10). A single large upward-trending arrow or diagonal line rendered in pastel lavender (#afabe9) cuts diagonally across the frame from bottom-left to top-right — bold, geometric, glowing softly. Left of the arrow: muted dark background with faint grid. Right of the arrow: very slightly lighter, implying upside. Overlaid typography: bold white headline 'THE ASYMMETRIC BET.' centered in upper third. Small descriptor below in muted white. Bottom: Scalevertise wordmark. Dark, confident, mathematical. 16:9."
+    },
+
+    {
+      "concept_id": "A2-04",
+      "angle_id": 2,
+      "angle_name": "Scale vs. Cost Efficiency",
+      "variation": 4,
+      "format": "Static Image — Ads + Website Bundle",
+
+      "headline": "ADS + WEBSITE. $350/MO.",
+      "primary_text": "Most brands run traffic to a page that wasn't built to convert.\n\nThat's where the money bleeds out.\n\nScalevertise bundles a conversion-optimized landing page with full Meta management — for $350/mo.\n\nOne system. Max ROAS.",
+      "description": "Landing page + Meta Ads. Engineered to convert.",
+
+      "image_prompt": "Ultra-premium split-composition dark advertisement for Scalevertise. Background near-black (#0a0b10). Left panel: abstract wireframe of a sleek landing page mockup in faint lavender lines. Right panel: abstract Meta ads dashboard wireframe in faint white lines. A thin vertical divider in solid lavender (#afabe9) separates the two panels. Above both panels: bold white headline 'ADS + WEBSITE' with '$350/MO' in lavender below. Bottom: Scalevertise wordmark centered in white thin weight. Clean. Technical. Premium. 1:1 square format."
+    },
+
+    {
+      "concept_id": "A3-01",
+      "angle_id": 3,
+      "angle_name": "Problem / Solution for Bottlenecked Brands",
+      "variation": 1,
+      "format": "Static Image — Pain Identification",
+
+      "headline": "YOUR ADS ARE RUNNING. YOUR REVENUE ISN'T.",
+      "primary_text": "You're boosting posts. Running campaigns. Watching the budget drain.\n\nBut the leads aren't converting, the targeting feels off, and your creative is stale after week two.\n\nThat's not a budget problem. That's an infrastructure problem.\n\nScalevertise fixes it.",
+      "description": "Stop bleeding ad spend. Build a system that scales.",
+
+      "image_prompt": "Dark emotive advertisement for Scalevertise. Background: deep black (#0a0b10) with very subtle red-tinted vignette at edges (barely visible, tension-creating). Center: a cracked or fragmented abstract geometric shape — like a broken data structure — rendered in dark grey and faint lavender (#afabe9). The fracture lines glow softly in lavender. Bold white headline above: 'YOUR ADS ARE RUNNING.' Second line: 'YOUR REVENUE ISN'T.' in slightly smaller white. Bottom third: Scalevertise wordmark in white thin font. Cinematic. Emotionally weighted but still minimalist. 4:5 portrait."
+    },
+
+    {
+      "concept_id": "A3-02",
+      "angle_id": 3,
+      "angle_name": "Problem / Solution for Bottlenecked Brands",
+      "variation": 2,
+      "format": "Static Image — Before/After Implication",
+
+      "headline": "FROM WASTED SPEND TO ENGINEERED GROWTH.",
+      "primary_text": "Before Scalevertise:\n→ Inconsistent leads\n→ Creatives that flatline after 7 days\n→ No idea what's actually working\n\nAfter Scalevertise:\n→ Predictive audiences, always fresh\n→ Autonomous creative testing\n→ One unified attribution signal\n\nThe difference is infrastructure.",
+      "description": "AI-driven Meta ads that compound over time.",
+
+      "image_prompt": "Split-panel premium advertisement for Scalevertise. Full bleed dark background (#0a0b10). Left half: muted, slightly desaturated dark panel with faint downward graph line in grey — implies stagnation. Right half: same panel but a clean upward curve rendered in glowing lavender (#afabe9) — implies growth. A bold centered dividing rule in white separates them. Headline overlaid across top in white bold caps: 'FROM WASTED SPEND TO ENGINEERED GROWTH.' Scalevertise wordmark bottom-center in white. Cinematic, high contrast. 16:9."
+    },
+
+    {
+      "concept_id": "A3-03",
+      "angle_id": 3,
+      "angle_name": "Problem / Solution for Bottlenecked Brands",
+      "variation": 3,
+      "format": "Static Image — Direct Callout Hook",
+
+      "headline": "IF YOUR ADS AREN'T SCALING, IT'S THE SYSTEM.",
+      "primary_text": "Not the budget. Not the product. Not the market.\n\nThe system.\n\nMost brands are running campaigns built on guesswork. Scalevertise replaces guesswork with infrastructure — predictive targeting, autonomous creative, unified attribution.\n\nBook a call. We'll show you exactly where yours is leaking.",
+      "description": "Identify the leak. Fix the system. Scale the brand.",
+
+      "image_prompt": "Bold dark-mode tech advertisement for Scalevertise. Background: near-black with subtle particle noise (#0a0b10). A large bold sans-serif word 'SYSTEM.' sits as the visual anchor — white, ultra-heavy, centered, taking up significant vertical space. Below it in smaller spaced lavender (#afabe9) uppercase: 'THE PROBLEM IS THE SYSTEM.' Above it: a small abstract broken-circuit or interrupted-signal icon in lavender. Bottom: Scalevertise wordmark in white. Brutalist-minimalist meets premium tech. 1:1 square."
+    },
+
+    {
+      "concept_id": "A3-04",
+      "angle_id": 3,
+      "angle_name": "Problem / Solution for Bottlenecked Brands",
+      "variation": 4,
+      "format": "Static Image — Urgency + Solution",
+
+      "headline": "EVERY DAY WITHOUT THE RIGHT SYSTEM IS REVENUE LOST.",
+      "primary_text": "The brands scaling on Meta right now aren't spending more.\n\nThey're spending smarter — with better targeting, self-testing creative, and attribution that closes every gap.\n\nYou can have that system this week.\n\nScalevertise. Let's build it.",
+      "description": "Full Meta infrastructure. Launch-ready in days.",
+
+      "image_prompt": "Urgent yet premium dark advertisement for Scalevertise. Background: deep black (#0a0b10). A bold glowing countdown or clock-like abstract geometric — rings or concentric circles in lavender (#afabe9) — pulses gently in the background. Foreground: bold white headline across the top 'EVERY DAY WITHOUT THE RIGHT SYSTEM IS REVENUE LOST.' Clean, wide font. Center: a single thin lavender horizontal rule. Below: spaced white text 'Scalevertise — Launch-ready in days.' Bottom-left: Scalevertise wordmark. Cinematic tension. Luxury urgency. 16:9."
+    },
+
+    {
+      "concept_id": "A4-01",
+      "angle_id": 4,
+      "angle_name": "AI-Native Superiority",
+      "variation": 1,
+      "format": "Static Image — Neural Network Visual",
+
+      "headline": "PREDICTIVE TARGETING. BEFORE THE MARKET MOVES.",
+      "primary_text": "While manual campaigns are still warming up their audiences, Scalevertise's predictive layer has already found your next 1,000 highest-intent buyers.\n\nAI doesn't wait. Neither should your ads.",
+      "description": "Predictive Meta targeting powered by AI infrastructure.",
+
+      "image_prompt": "Futuristic premium advertisement for Scalevertise. Background: deep near-black (#0a0b10). A complex glowing neural network or synaptic web fills the right two-thirds of the frame — nodes in white, connecting lines in pastel lavender (#afabe9), rendered with depth and glow. Left side: bold white headline 'PREDICTIVE TARGETING.' on one line, 'BEFORE THE MARKET MOVES.' on the second line in slightly lighter weight white. Small Scalevertise wordmark bottom-left. The visual is dense but not chaotic — like a Bloomberg data terminal rendered as fine art. 16:9 cinematic."
+    },
+
+    {
+      "concept_id": "A4-02",
+      "angle_id": 4,
+      "angle_name": "AI-Native Superiority",
+      "variation": 2,
+      "format": "Static Image — Autonomous Creative Loop",
+
+      "headline": "CREATIVES THAT TEST THEMSELVES. ENDLESSLY.",
+      "primary_text": "Your competitors are manually swapping creatives every two weeks.\n\nScalevertise generates, tests, and evolves creative variants autonomously — so the best-performing version is always running.\n\nGenerative. Iterative. Unstoppable.",
+      "description": "Autonomous creative testing. Zero creative fatigue.",
+
+      "image_prompt": "Dark tech advertisement for Scalevertise with motion-loop implication. Background: near-black (#0a0b10). A circular infinite-loop symbol or Möbius strip-like form rendered in glowing lavender (#afabe9) light sits center frame, 3D, rotating feel, luminous. Surrounding it: faint abstract creative thumbnails or frame-stills in dark charcoal suggesting variant testing. Headline: bold white uppercase above the loop — 'CREATIVES THAT TEST THEMSELVES.' Below: 'ENDLESSLY.' in matching lavender. Scalevertise wordmark bottom-right in white thin. Ultra-premium. Hyper-minimalist. 1:1."
+    },
+
+    {
+      "concept_id": "A4-03",
+      "angle_id": 4,
+      "angle_name": "AI-Native Superiority",
+      "variation": 3,
+      "format": "Static Image — Unified Attribution",
+
+      "headline": "ONE SIGNAL. EVERY DOLLAR ACCOUNTED FOR.",
+      "primary_text": "Clicks from cold audiences. Retargeting windows. Video view thresholds. Purchase attribution.\n\nMost brands are looking at fragmented data and calling it strategy.\n\nScalevertise unifies every signal into a single attribution layer so you know exactly what's working — and exactly what's not.",
+      "description": "Unified Meta attribution. Full-funnel clarity.",
+
+      "image_prompt": "Precision-aesthetic dark advertisement for Scalevertise. Background: deep black (#0a0b10). Multiple faint data streams — thin glowing lines in lavender (#afabe9) and white — converge from the four corners of the frame into a single glowing point at center. That central node pulses with white light. Above the convergence point: bold white headline 'ONE SIGNAL.' Below it: 'EVERY DOLLAR ACCOUNTED FOR.' in white. The image feels like a physics diagram meets luxury poster. Scalevertise wordmark bottom-center white thin. 4:5 portrait."
+    },
+
+    {
+      "concept_id": "A4-04",
+      "angle_id": 4,
+      "angle_name": "AI-Native Superiority",
+      "variation": 4,
+      "format": "Static Image — AI vs Manual Contrast",
+
+      "headline": "MANUAL ADS ARE ALREADY OBSOLETE.",
+      "primary_text": "If your media buyer is still hand-selecting placements, manually refreshing creatives, and reading 7-day attribution windows —\n\nYou're operating on 2019 infrastructure.\n\nScalevertise is the 2025 system. AI-native. Autonomous. Precise.\n\nMake the switch.",
+      "description": "The AI-native Meta ads system. Built for now.",
+
+      "image_prompt": "Bold contrast advertisement for Scalevertise. Dark background (#0a0b10) split subtly: left half slightly more muted/grey — labelled in tiny spaced white uppercase text at top 'MANUAL'. Right half — slightly more luminous dark — labelled 'AI-NATIVE'. A dominant center headline in white bold caps: 'MANUAL ADS ARE ALREADY OBSOLETE.' A single diagonal lavender (#afabe9) slash cuts across the center implying obsolescence on the left. Scalevertise wordmark bottom-center. Clean. Provocative. Premium. 16:9."
+    },
+
+    {
+      "concept_id": "A5-01",
+      "angle_id": 5,
+      "angle_name": "Social Proof & Results Credibility",
+      "variation": 1,
+      "format": "Static Image — Vertical Results Card",
+
+      "headline": "THE SYSTEM WORKS. ACROSS EVERY VERTICAL.",
+      "primary_text": "From tattoo studios to dental practices to coaching brands —\n\nScalevertise has engineered high-converting campaigns across industries.\n\nThe common thread? Infrastructure built for intent.\n\nYour vertical is next.",
+      "description": "Proven Meta campaigns across multiple industries.",
+
+      "image_prompt": "Premium testimonial-style dark advertisement for Scalevertise. Background: near-black (#0a0b10). Three minimal dark glassmorphism cards arranged in a clean vertical or slight-fan layout — each card representing a client category with a short 1-2 word white label (e.g. 'Dental Care', 'Creative Studio', 'Growth Coaching'). Each card has a subtle lavender (#afabe9) accent border or corner detail. Above the cards: bold white headline 'THE SYSTEM WORKS.' Below: 'ACROSS EVERY VERTICAL.' in lavender. Scalevertise wordmark bottom-center in white thin. Ultra-premium card-UI aesthetic. 4:5 portrait."
+    },
+
+    {
+      "concept_id": "A5-02",
+      "angle_id": 5,
+      "angle_name": "Social Proof & Results Credibility",
+      "variation": 2,
+      "format": "Static Image — Results Metrics Callout",
+
+      "headline": "MORE LEADS. LOWER CPL. BETTER ROAS.",
+      "primary_text": "That's what engineered Meta infrastructure delivers.\n\nNot promises. Systems.\n\nPredictive audiences find the right people. Autonomous creatives hold their attention. Unified attribution tells you what's converting.\n\nScalevertise. Built to perform.",
+      "description": "Performance-engineered Meta ads. Real results.",
+
+      "image_prompt": "Data-forward dark advertisement for Scalevertise. Background (#0a0b10). Three bold metrics displayed in clean oversized white type, stacked vertically center-frame: '↓ CPL' / '↑ ROAS' / '↑ LEADS' — each on its own line, with the arrows in pastel lavender (#afabe9). Below the metrics: a thin lavender rule, then small white descriptor text 'Performance-engineered Meta ads.' Top of frame: small spaced uppercase white label 'SCALEVERTISE RESULTS'. Bottom: Scalevertise wordmark in thin white. Bloomberg terminal energy. Hyper-clean. 1:1 square."
+    },
+
+    {
+      "concept_id": "A5-03",
+      "angle_id": 5,
+      "angle_name": "Social Proof & Results Credibility",
+      "variation": 3,
+      "format": "Static Image — Client Category Credibility",
+
+      "headline": "IF IT CONVERTS FOR THEM, IT CONVERTS FOR YOU.",
+      "primary_text": "Local service brands. Coaching businesses. Healthcare practices.\n\nScalevertise has built high-converting systems across markets that most agencies refuse to touch.\n\nBecause the infrastructure works regardless of the vertical.\n\nBook a call. We'll prove it.",
+      "description": "Meta ads that work across every niche and industry.",
+
+      "image_prompt": "Premium social-proof advertisement for Scalevertise. Dark background (#0a0b10). Three industry labels displayed in bold white sans-serif type, stacked with generous spacing — clean, authoritative. Between each label: a thin lavender (#afabe9) horizontal rule. Below the stack: centered white headline in slightly larger bold type 'IF IT CONVERTS FOR THEM, IT CONVERTS FOR YOU.' Very top: tiny spaced uppercase white text 'OUR CLIENTS'. Bottom: Scalevertise wordmark white thin. The aesthetic is like a premium law firm or investment fund meets tech startup. 4:5 portrait."
+    },
+
+    {
+      "concept_id": "A5-04",
+      "angle_id": 5,
+      "angle_name": "Social Proof & Results Credibility",
+      "variation": 4,
+      "format": "Static Image — Founder-Mode Trust",
+
+      "headline": "BUILT BY OPERATORS. FOR OPERATORS.",
+      "primary_text": "Scalevertise wasn't built by people who read about Meta ads.\n\nIt was built by people who've tested thousands of creatives, burned through bad targeting, and rebuilt the system from scratch.\n\nWe know what works. We know what bleeds money.\n\nAnd we built infrastructure so you don't have to learn the hard way.",
+      "description": "Meta ads built by people who've been in the trenches.",
+
+      "image_prompt": "Founder-energy premium advertisement for Scalevertise. Background: deep near-black (#0a0b10) with subtle grain texture. Center: a large bold white quotation mark or abstract bracket character — typographic, architectural, minimal. Inside the bracket visual space: bold white headline 'BUILT BY OPERATORS.' second line 'FOR OPERATORS.' in matching weight. Below: a small lavender (#afabe9) horizontal rule, then tiny white descriptor 'Real experience. Real infrastructure. Real results.' Scalevertise wordmark bottom-left in thin white. The feel is honest confidence — like a Patagonia ad but for tech. 16:9."
+    }
+
+  ],
+
+  "production_notes": {
+    "image_generation_tool": "Higgsfield MCP (mcp__5f07cae8-f64e-4663-aa64-1b50c18125ca__generate_image)",
+    "recommended_formats": ["1:1 square (1080x1080) — Feed", "4:5 portrait (1080x1350) — Feed optimized", "16:9 (1920x1080) — Stories / Reels cover"],
+    "next_step": "Stage 3 — Generate all 20 images via Higgsfield MCP, then push creatives to Meta Ads account",
+    "batch_order": "Generate A1 series first for hero brand awareness, A2 for retargeting warm audiences, A3 for cold prospecting, A4 for tech-forward audiences, A5 for mid-funnel credibility"
+  }
+}

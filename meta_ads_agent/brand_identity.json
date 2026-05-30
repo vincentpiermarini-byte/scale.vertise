@@ -1,52 +1,112 @@
 {
-  "brand": "Scalevertise",
+  "brand_name": "Scalevertise",
   "website": "https://scalevertise.app",
-  "scraped_at": "2026-05-30",
-  "scrape_status": "MANUAL_ENTRY_REQUIRED — site blocked automated scraping (403). Fill in fields below from your live site.",
+
+  "aesthetic": {
+    "style": "Ultra-premium, high-end, dark mode, sleek minimalist tech",
+    "mood": "Sophisticated, data-driven, futuristic, authoritative",
+    "background": "Near-black (#0a0b10 approximate) with subtle particle/3D mesh visuals",
+    "design_motifs": ["particle fields", "3D fluid mesh", "sparse starfield", "glassmorphism cards"]
+  },
 
   "colors": {
-    "primary_purple": "#afabe9",
-    "secondary": null,
-    "accent": null,
-    "background": null,
-    "text_dark": null,
-    "text_light": null,
-    "gradient": null
+    "primary_accent": "#afabe9",
+    "primary_accent_name": "Pastel Lavender / Purple",
+    "secondary": "#ffffff",
+    "secondary_name": "Crisp White",
+    "background_dark": "#0a0b10",
+    "card_surface": "#111318",
+    "card_border": "#1e2028",
+    "text_primary": "#ffffff",
+    "text_muted": "rgba(255,255,255,0.55)"
   },
 
   "typography": {
-    "heading_font": null,
-    "body_font": null,
-    "font_weights_used": [],
-    "base_font_size": null
-  },
-
-  "logo": {
-    "primary_logo_url": null,
-    "icon_url": null,
-    "logo_usage_notes": null
+    "wordmark_style": "Mixed weight — 'Scale' in light/thin weight, 'vertise' in bold",
+    "hero_display": "Extra-bold, wide tracking, all-caps — 'SCALE' in #afabe9, 'VERTISE' in #ffffff",
+    "heading_style": "Serif or geometric sans, sentence case, tight leading",
+    "body_style": "Clean sans-serif, small size, generous line height",
+    "label_style": "Spaced uppercase tracking, muted opacity — e.g. 'WHAT WE DO', 'PRICING'",
+    "cta_style": "Full-width pill button, white fill, dark text, bold label"
   },
 
   "messaging": {
-    "tagline": null,
-    "hero_headline": null,
-    "hero_subheadline": null,
-    "cta_primary": null,
-    "cta_secondary": null,
-    "value_propositions": [],
-    "services": []
+    "tagline": "AI-powered ad infrastructure for modern brands",
+    "section_headline": "Two engines. One growth system.",
+    "cta_primary": "Let's Work Together",
+    "contact_note": "No spam · 100% confidential · Reply within 24 hours"
   },
 
-  "visual_style": {
-    "border_radius": null,
-    "design_motifs": [],
-    "illustration_style": null,
-    "image_treatment": null
-  },
+  "value_propositions": [
+    {
+      "title": "Predictive Targeting",
+      "description": "Surfaces high-intent audiences before the market moves."
+    },
+    {
+      "title": "Autonomous Creative",
+      "description": "Generative variants test and evolve themselves, endlessly."
+    },
+    {
+      "title": "Instant ROI",
+      "description": "Unified attribution turns every touchpoint into one signal."
+    }
+  ],
 
-  "social_proof": {
-    "client_logos": [],
-    "testimonials": [],
-    "stats": []
+  "services": [
+    {
+      "id": "01",
+      "name": "META ADS",
+      "description": "We engineer and optimize high-converting campaigns that systematically turn attention into revenue. Powered by high-intent audience targeting and aggressive creative testing."
+    },
+    {
+      "id": "02",
+      "name": "CLIENT BASE GROWTH",
+      "description": "We don't just buy clients; we design paid social pipelines that acquire lifelong customers and scale your business footprint."
+    }
+  ],
+
+  "pricing": [
+    {
+      "tier": "ADS ONLY",
+      "setup_fee": "$100",
+      "monthly": "$300/mo",
+      "description": "Comprehensive Meta management, optimization, and monthly reporting."
+    },
+    {
+      "tier": "ADS + WEBSITE",
+      "setup_fee": "$400",
+      "monthly": "$350/mo",
+      "description": "Conversion-optimized landing page + Ads management for max ROAS."
+    },
+    {
+      "note": "Ad pricing scales with your budget and goals."
+    }
+  ],
+
+  "client_verticals_seen": [
+    "Tattoo studios",
+    "Women entrepreneurs / coaching",
+    "Dental care / healthcare"
+  ],
+
+  "nav_sections": ["Engine", "Results", "Pricing", "Contact"],
+
+  "ad_creative_guidelines": {
+    "do": [
+      "Use dark backgrounds (#0a0b10 or near-black)",
+      "Lead with #afabe9 lavender on key words or headlines",
+      "Keep layouts minimal — lots of negative space",
+      "Use bold, wide display type for hero headlines",
+      "Pair with 3D mesh / particle / abstract tech visuals",
+      "Uppercase spaced labels for section markers",
+      "White pill CTAs with dark text"
+    ],
+    "dont": [
+      "Use bright or colorful backgrounds",
+      "Use more than 2-3 colors per creative",
+      "Include the agency email address in any ad copy",
+      "Use cluttered or busy layouts",
+      "Use warm tones or lifestyle photography styles"
+    ]
   }
 }

@@ -1,0 +1,111 @@
+{
+  "push_date": "2026-05-30",
+  "stage": "Stage 4 — Meta Ads Infrastructure Push",
+  "status": "COMPLETE — ALL 20 ADS PAUSED, ZERO SPEND",
+
+  "account": {
+    "ad_account_id": "act_1145155784435172",
+    "note": "Active account with payment method on file. A dedicated 'Scalevertise' ad account cannot be created via MCP — must be done manually at business.facebook.com > Accounts > Ad Accounts > Add."
+  },
+
+  "business_portfolio": {
+    "name": "Scalevertise",
+    "business_id": "26148670491473719"
+  },
+
+  "page": {
+    "name": "Scalevertise",
+    "page_id": "1135357392997032"
+  },
+
+  "campaign": {
+    "name": "CBO_Agency_Launch_v1",
+    "campaign_id": "52541756759621",
+    "objective": "OUTCOME_TRAFFIC",
+    "budget_type": "CBO",
+    "campaign_daily_budget_cents": 5000,
+    "bid_strategy": "LOWEST_COST_WITHOUT_CAP",
+    "status": "PAUSED"
+  },
+
+  "ad_sets": [
+    {
+      "name": "A1+A2 — Full-Stack Authority & Value Anchor",
+      "ad_set_id": "52541756938821",
+      "angles": [1, 2],
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "targeting": "US broad, Advantage+ Audience enabled",
+      "status": "PAUSED"
+    },
+    {
+      "name": "A3 — Creative Machine ($400/mo)",
+      "ad_set_id": "52541756989221",
+      "angles": [3],
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "targeting": "US broad, Advantage+ Audience enabled",
+      "status": "PAUSED"
+    },
+    {
+      "name": "A4 — Elite Ads Management ($650/mo)",
+      "ad_set_id": "52541757031821",
+      "angles": [4],
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "targeting": "US broad, Advantage+ Audience enabled",
+      "status": "PAUSED"
+    },
+    {
+      "name": "A5 — Proof & Cross-Vertical Credibility",
+      "ad_set_id": "52541757066021",
+      "angles": [5],
+      "optimization_goal": "LANDING_PAGE_VIEWS",
+      "targeting": "US broad, Advantage+ Audience enabled",
+      "status": "PAUSED"
+    }
+  ],
+
+  "ads": [
+    { "ad_id": "52541761430421", "name": "v2_A1-01 — Your Entire Growth Stack. Done For You.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761576021", "name": "v2_A1-02 — Website. Ads. Creative. One Team.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761671621", "name": "v2_A1-03 — Elite Portfolio. Not A Freelancer.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761734621", "name": "v2_A1-04 — You Run The Business. We Run The Growth.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761796021", "name": "v2_A2-01 — $900/mo. The Math Is Embarrassing.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761863421", "name": "v2_A2-02 — $650/mo. A Full Meta Ads Operation.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541761966821", "name": "v2_A2-03 — $400/mo. 8 Creatives. Every Month.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541762043421", "name": "v2_A2-04 — Website + Ads. $900/mo. Nothing Else To Buy.", "ad_set_id": "52541756938821", "status": "PAUSED" },
+    { "ad_id": "52541762159221", "name": "v2_A3-01 — Your Creative Is Dying. We Fix That.", "ad_set_id": "52541756989221", "status": "PAUSED" },
+    { "ad_id": "52541762251021", "name": "v2_A3-02 — 8 Creatives. Every Month. Done.", "ad_set_id": "52541756989221", "status": "PAUSED" },
+    { "ad_id": "52541762358221", "name": "v2_A3-03 — Creative Is The Lever. We Pull It For You.", "ad_set_id": "52541756989221", "status": "PAUSED" },
+    { "ad_id": "52541762467021", "name": "v2_A3-04 — Never Run Stale Creative Again.", "ad_set_id": "52541756989221", "status": "PAUSED" },
+    { "ad_id": "52541762577621", "name": "v2_A4-01 — Your Ads. Managed By An Elite Portfolio.", "ad_set_id": "52541757031821", "status": "PAUSED" },
+    { "ad_id": "52541762728621", "name": "v2_A4-02 — Campaign Setup. Targeting. Optimization. Reporting.", "ad_set_id": "52541757031821", "status": "PAUSED" },
+    { "ad_id": "52541762858421", "name": "v2_A4-03 — Every Dollar. Tracked. Optimized. Reported.", "ad_set_id": "52541757031821", "status": "PAUSED" },
+    { "ad_id": "52541762958621", "name": "v2_A4-04 — Stop Managing Your Ads. Start Scaling.", "ad_set_id": "52541757031821", "status": "PAUSED" },
+    { "ad_id": "52541763135221", "name": "v2_A5-01 — It Works. Across Every Vertical.", "ad_set_id": "52541757066021", "status": "PAUSED" },
+    { "ad_id": "52541763256421", "name": "v2_A5-02 — Lower CPL. Better ROAS. More Clients.", "ad_set_id": "52541757066021", "status": "PAUSED" },
+    { "ad_id": "52541763351421", "name": "v2_A5-03 — If It Converts For Them, It Converts For You.", "ad_set_id": "52541757066021", "status": "PAUSED" },
+    { "ad_id": "52541763463221", "name": "v2_A5-04 — Your Competition Is Already Scaling. Are You?", "ad_set_id": "52541757066021", "status": "PAUSED" }
+  ],
+
+  "manual_actions_required": [
+    {
+      "action": "Create dedicated Scalevertise ad account",
+      "where": "business.facebook.com > Accounts > Ad Accounts > Add",
+      "why": "No MCP tool exists to programmatically create new ad accounts"
+    },
+    {
+      "action": "Verify domain scalevertise.app",
+      "where": "Meta Business Settings > Brand Safety & Suitability > Domains",
+      "why": "Domain verification cannot be done via MCP — required for pixel tracking and conversion events"
+    },
+    {
+      "action": "Install Meta Pixel on scalevertise.app",
+      "where": "Meta Events Manager > Connect Data Sources > Web",
+      "why": "Pixel enables conversion optimization (OFFSITE_CONVERSIONS / LEAD_GENERATION goals) for future campaign upgrades"
+    },
+    {
+      "action": "Review and UNPAUSE campaign when ready to spend",
+      "where": "Ads Manager > CBO_Agency_Launch_v1",
+      "why": "All ads are currently PAUSED — no spend will occur until you manually activate"
+    }
+  ]
+}

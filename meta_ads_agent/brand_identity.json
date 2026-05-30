@@ -1,0 +1,52 @@
+{
+  "brand": "Scalevertise",
+  "website": "https://scalevertise.app",
+  "scraped_at": "2026-05-30",
+  "scrape_status": "MANUAL_ENTRY_REQUIRED — site blocked automated scraping (403). Fill in fields below from your live site.",
+
+  "colors": {
+    "primary_purple": "#afabe9",
+    "secondary": null,
+    "accent": null,
+    "background": null,
+    "text_dark": null,
+    "text_light": null,
+    "gradient": null
+  },
+
+  "typography": {
+    "heading_font": null,
+    "body_font": null,
+    "font_weights_used": [],
+    "base_font_size": null
+  },
+
+  "logo": {
+    "primary_logo_url": null,
+    "icon_url": null,
+    "logo_usage_notes": null
+  },
+
+  "messaging": {
+    "tagline": null,
+    "hero_headline": null,
+    "hero_subheadline": null,
+    "cta_primary": null,
+    "cta_secondary": null,
+    "value_propositions": [],
+    "services": []
+  },
+
+  "visual_style": {
+    "border_radius": null,
+    "design_motifs": [],
+    "illustration_style": null,
+    "image_treatment": null
+  },
+
+  "social_proof": {
+    "client_logos": [],
+    "testimonials": [],
+    "stats": []
+  }
+}

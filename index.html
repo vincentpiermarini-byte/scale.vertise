@@ -1138,12 +1138,15 @@ you don't pay us a single penny.">
   @media (max-width: 768px) { .nav-book { font-size: 12px; padding: 7px 14px; } }
   .nav-toggle { display: flex; z-index: 51; }
   @media (max-width: 768px) {
-    .hero h1 { font-size: clamp(2rem, 9vw, 2.8rem) !important; width: 100% !important; }
-    .hero .sub { font-size: clamp(0.85rem, 3.5vw, 1rem); padding: 0 4px; }
-    .hero { padding-top: 72px; padding-bottom: 80px; justify-content: flex-start; }
-    .hero-form-card { order: 1 !important; margin-top: 32px !important; margin-bottom: 0 !important; }
+    .hero h1 { font-size: clamp(2.4rem, 11vw, 3.2rem) !important; width: 100% !important; }
+    .hero .sub { display: none !important; }
+    .hero-bullets { display: none !important; }
+    .hero-badge { white-space: nowrap; }
+    .hero { padding-top: 0; padding-bottom: 0; justify-content: center; min-height: 100svh; }
     .hero-text-col { order: 0 !important; }
+    .hero-form-card { order: 1 !important; margin-top: 28px !important; }
     .scroll-hint { display: none !important; }
+    .nav-book { display: none !important; }
   }
 </style></head>
 <body>
@@ -1177,12 +1180,14 @@ you don't pay us a single penny.">
         }
       </style>
       <div class="hero-text-col">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(175,171,233,0.1);border:1px solid rgba(175,171,233,0.3);border-radius:100px;padding:6px 14px;font-size:11px;font-family:var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:#afabe9;margin-bottom:28px;">● Custom-Engineered Meta Ad Systems</div>
+        <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(175,171,233,0.1);border:1px solid rgba(175,171,233,0.3);border-radius:100px;padding:6px 14px;font-size:11px;font-family:var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:#afabe9;margin-bottom:28px;">● Custom-Engineered Meta Ad Systems</div>
         <h1 style="width:auto;font-size:clamp(2.4rem,5.5vw,4rem);font-weight:300;letter-spacing:-0.04em;line-height:1.05;margin-bottom:16px;">
           We build your Meta<br>ads. You scale.<br>
           <span style="color:#afabe9;">Or you pay nothing.</span>
         </h1>
         <p class="sub" style="text-align:left;font-size:clamp(0.9rem,1.6vw,1rem);max-width:480px;margin-bottom:24px;">Stop burning capital on overpriced agencies who wing it. We deploy a precision-engineered growth system backed by a 100% performance guarantee. If we don't deliver, you don't pay a single penny.</p>
+        <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){var i=document.querySelector('#lead-form input[name=name]');if(i)i.focus();},600);" style="display:none;background:rgba(175,171,233,0.9);color:#050608;font-size:1rem;font-weight:700;padding:15px 28px;border-radius:100px;text-decoration:none;margin-bottom:0;width:100%;box-sizing:border-box;text-align:center;">See If You Qualify →</a>
+        <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
         <div class="hero-bullets" style="display:flex;flex-direction:column;gap:10px;">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Targeting Intelligence:</strong> we reach the exact buyers who are ready to spend right now.</span></div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Autonomous Creative:</strong> we engineer fresh angles constantly, so your ads never go stale.</span></div>

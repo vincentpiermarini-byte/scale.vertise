@@ -1533,20 +1533,19 @@ you don't pay us a single penny.">
       <h2>Ads we build. Results they drive.</h2>
       <p class="sub" style="max-width:520px;margin:0 auto;">Every creative is engineered to stop the scroll, qualify the lead, and convert cold traffic into booked calls.</p>
     </div>
-    <div style="position:relative;width:min(460px,calc(100vw - 64px));margin:clamp(40px,5vw,64px) auto 0;">
-      <!-- Viewport — overflow hidden here is what clips the slides -->
-      <div style="overflow:hidden;border-radius:16px;">
-        <div id="ad-track" style="display:flex;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);will-change:transform;">
-          <div style="min-width:100%;flex-shrink:0;"><img src="uploads/SV_Static6.png" alt="Ad 1" style="width:100%;display:block;"></div>
-          <div style="min-width:100%;flex-shrink:0;"><img src="uploads/SV_Static7.png" alt="Ad 2" style="width:100%;display:block;"></div>
-          <div style="min-width:100%;flex-shrink:0;"><img src="uploads/SV_Static8.png" alt="Ad 3" style="width:100%;display:block;"></div>
-          <div style="min-width:100%;flex-shrink:0;"><img src="uploads/SV_Static4.png" alt="Ad 4" style="width:100%;display:block;"></div>
-          <div style="min-width:100%;flex-shrink:0;"><img src="uploads/SV_Static5.png" alt="Ad 5" style="width:100%;display:block;"></div>
+    <div style="position:relative;width:min(420px,calc(100vw - 80px));margin:clamp(40px,5vw,64px) auto 0;">
+      <div id="ad-viewport" style="overflow:hidden;border-radius:16px;width:100%;">
+        <div id="ad-track" style="display:flex;width:500%;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);will-change:transform;">
+          <div style="width:20%;flex-shrink:0;"><img src="uploads/SV_Static6.png" alt="Ad 1" style="width:100%;display:block;"></div>
+          <div style="width:20%;flex-shrink:0;"><img src="uploads/SV_Static7.png" alt="Ad 2" style="width:100%;display:block;"></div>
+          <div style="width:20%;flex-shrink:0;"><img src="uploads/SV_Static8.png" alt="Ad 3" style="width:100%;display:block;"></div>
+          <div style="width:20%;flex-shrink:0;"><img src="uploads/SV_Static4.png" alt="Ad 4" style="width:100%;display:block;"></div>
+          <div style="width:20%;flex-shrink:0;"><img src="uploads/SV_Static5.png" alt="Ad 5" style="width:100%;display:block;"></div>
         </div>
       </div>
       <!-- Arrows -->
-      <button onclick="adCarousel(-1)" aria-label="Previous" style="position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">‹</button>
-      <button onclick="adCarousel(1)" aria-label="Next" style="position:absolute;right:-24px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">›</button>
+      <button onclick="adCarousel(-1)" aria-label="Previous" style="position:absolute;left:-24px;top:45%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">‹</button>
+      <button onclick="adCarousel(1)" aria-label="Next" style="position:absolute;right:-24px;top:45%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">›</button>
       <!-- Dots -->
       <div style="display:flex;justify-content:center;gap:8px;margin-top:20px;">
         <button onclick="adGoTo(0)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:1;transition:opacity 0.2s;"></button>
@@ -1560,7 +1559,7 @@ you don't pay us a single penny.">
     var adIdx = 0, adTotal = 5;
     function adGoTo(n) {
       adIdx = n;
-      document.getElementById('ad-track').style.transform = 'translateX(-' + (adIdx * 100) + '%)';
+      document.getElementById('ad-track').style.transform = 'translateX(-' + (adIdx * 20) + '%)';
       document.querySelectorAll('.ad-dot').forEach(function(d,i){ d.style.opacity = i===adIdx ? '1' : '0.3'; });
     }
     function adCarousel(dir) { adGoTo((adIdx + dir + adTotal) % adTotal); }

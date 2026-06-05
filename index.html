@@ -1535,13 +1535,13 @@ you don't pay us a single penny.">
     </div>
 
     <style>
-      .marquee-row { display:flex; gap:16px; margin-top:clamp(28px,4vw,48px); }
-      .marquee-row .track { display:flex; gap:16px; animation-timing-function:linear; animation-iteration-count:infinite; }
-      .marquee-row .track img { height:220px; width:auto; border-radius:12px; display:block; flex-shrink:0; }
       .marquee-wrap { overflow:hidden; width:100%; }
-      .marquee-label { font-size:0.7rem; font-family:var(--font-mono); letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); padding:0 clamp(24px,5vw,64px); margin-bottom:10px; }
-      @keyframes marquee-left  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
-      @keyframes marquee-right { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+      .marquee-row { display:flex; gap:12px; }
+      .marquee-row .track { display:flex; gap:12px; flex-shrink:0; animation-timing-function:linear; animation-iteration-count:infinite; }
+      .marquee-row .track img { height:160px; width:120px; object-fit:cover; border-radius:10px; display:block; flex-shrink:0; }
+      .marquee-label { font-size:0.68rem; font-family:var(--font-mono); letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); padding:0 clamp(24px,5vw,64px); margin-bottom:12px; }
+      @keyframes marquee-left  { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+      @keyframes marquee-right { from{transform:translateX(-50%)} to{transform:translateX(0)} }
     </style>
 
     <!-- Row 1: Scalevertise — left -->

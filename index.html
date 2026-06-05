@@ -1554,10 +1554,9 @@ you don't pay us a single penny.">
       <div class="client-header">
         <div>
           <div class="client-name">Scalevertise</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 5 campaigns</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Active Client</span>
           <div class="client-arrows">
             <button onclick="scrollRow('sv',-1)">‹</button>
             <button onclick="scrollRow('sv',1)">›</button>
@@ -1565,7 +1564,7 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="sv-track" class="client-track">
-        <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
+        <img src="uploads/SV_Static6.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static7.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static8.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static4.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static5.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
     </div>
 
@@ -1576,10 +1575,9 @@ you don't pay us a single penny.">
       <div class="client-header">
         <div>
           <div class="client-name">Blue Wave Pro Wash</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 5 campaigns</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Active Client</span>
           <div class="client-arrows">
             <button onclick="scrollRow('bw',-1)">‹</button>
             <button onclick="scrollRow('bw',1)">›</button>
@@ -1587,7 +1585,7 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="bw-track" class="client-track">
-        <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
+        <img src="uploads/BW_Static1.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static2.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static3.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static4.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static5.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
     </div>
 
@@ -1598,10 +1596,9 @@ you don't pay us a single penny.">
       <div class="client-header">
         <div>
           <div class="client-name">Quack Quotes</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 3 campaigns</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
         </div>
         <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Active Client</span>
           <div class="client-arrows">
             <button onclick="scrollRow('qq',-1)">‹</button>
             <button onclick="scrollRow('qq',1)">›</button>
@@ -1609,8 +1606,14 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="qq-track" class="client-track">
-        <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+        <img src="uploads/QQ_Static1.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static2.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static3.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lb" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:24px;">
+      <img id="lb-img" src="" style="max-height:90vh;max-width:90vw;border-radius:12px;box-shadow:0 0 80px rgba(0,0,0,0.8);">
+      <button onclick="closeLightbox()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:22px;width:40px;height:40px;border-radius:50%;cursor:pointer;line-height:1;">×</button>
     </div>
 
     <script>
@@ -1623,6 +1626,17 @@ you don't pay us a single penny.">
       rowOffsets[id] = Math.max(0, Math.min(rowOffsets[id] + dir * step * 2, maxOffset));
       track.style.transform = 'translateX(-' + rowOffsets[id] + 'px)';
     }
+    function openLightbox(src) {
+      var lb = document.getElementById('lb');
+      document.getElementById('lb-img').src = src;
+      lb.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lb').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
     </script>
   </section>
 

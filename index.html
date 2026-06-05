@@ -1162,9 +1162,34 @@ you don't pay us a single penny.">
       <style>
         @media(max-width:768px){
           .hero-inner { grid-template-columns:1fr !important; text-align:center !important; }
-          .hero-form-card { margin-top:32px; }
           .hero-bullets { justify-content:center !important; }
+          /* Form becomes a slide-up bottom sheet on mobile */
+          .hero-form-card {
+            position:fixed !important;
+            left:0; right:0; bottom:0;
+            z-index:1000;
+            margin:0 !important;
+            border-radius:24px 24px 0 0 !important;
+            background:#0d0e14 !important;
+            border:none !important;
+            border-top:1px solid rgba(175,171,233,0.35) !important;
+            box-shadow:0 -20px 60px rgba(0,0,0,0.65) !important;
+            max-height:92vh;
+            overflow-y:auto;
+            padding-top:34px !important;
+            transform:translateY(110%);
+            transition:transform 0.42s cubic-bezier(0.32,0.72,0,1);
+          }
+          .hero-form-card.sheet-open { transform:translateY(0); }
+          .sheet-close { display:flex !important; }
+          .sheet-handle { display:block !important; }
         }
+        .sheet-backdrop {
+          display:none; position:fixed; inset:0; z-index:999;
+          background:rgba(0,0,0,0.6); -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+          opacity:0; transition:opacity 0.3s ease;
+        }
+        .sheet-backdrop.open { display:block; opacity:1; }
       </style>
       <div class="hero-text-col">
         <div class="hero-badge" style="display:inline-flex;align-items:center;gap:8px;background:rgba(175,171,233,0.1);border:1px solid rgba(175,171,233,0.3);border-radius:100px;padding:6px 14px;font-size:11px;font-family:var(--font-mono);letter-spacing:0.15em;text-transform:uppercase;color:#afabe9;margin-bottom:28px;">● Custom-Engineered Meta Ad Systems</div>
@@ -1178,14 +1203,16 @@ you don't pay us a single penny.">
           <p style="font-size:0.78rem;color:var(--muted);font-style:italic;border-left:2px solid rgba(175,171,233,0.4);padding-left:10px;margin:0;">"4–5 leads/mo to 20+ in two weeks." <span style="color:rgba(175,171,233,0.8);font-style:normal;">— Blue Wave Pro Wash, Cary NC</span></p>
         </div>
         <style>@media(max-width:768px){.mobile-social-proof{display:block!important;}}</style>
-        <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){var i=document.querySelector('#lead-form input[name=name]');if(i)i.focus();},600);" style="display:none;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;margin-top:8px;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 0 32px rgba(175,171,233,0.45),0 4px 20px rgba(0,0,0,0.3);">See If You Qualify →</a>
+        <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:none;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;margin-top:8px;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 0 32px rgba(175,171,233,0.45),0 4px 20px rgba(0,0,0,0.3);">Get My Free Blueprint →</a>
         <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
         <div class="hero-bullets" style="display:flex;flex-direction:column;gap:10px;">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Targeting Intelligence:</strong> we reach the exact buyers who are ready to spend right now.</span></div>
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Autonomous Creative:</strong> we engineer fresh angles constantly, so your ads never go stale.</span></div>
         </div>
       </div>
-      <div class="hero-form-card" style="background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
+      <div class="hero-form-card" style="position:relative;background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
+        <div class="sheet-handle" style="display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:100px;background:rgba(255,255,255,0.25);"></div>
+        <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:none;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;">×</button>
         <div id="lead-form-view">
         <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--white);margin-bottom:8px;">Get your free strategy blueprint</h3>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:24px;">See exactly how we'll build and scale your ad system. Zero obligation.</p>
@@ -1219,7 +1246,23 @@ you don't pay us a single penny.">
       <span class="label">SCROLL</span>
       <span class="line"></span>
     </div>
+    <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeLeadSheet()"></div>
     <script>
+    function openLeadSheet() {
+      if (window.innerWidth > 768) {
+        document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});
+        return;
+      }
+      document.querySelector('.hero-form-card').classList.add('sheet-open');
+      document.getElementById('sheet-backdrop').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function(){var i=document.querySelector('#lead-form input[name=name]');if(i)i.focus();},450);
+    }
+    function closeLeadSheet() {
+      document.querySelector('.hero-form-card').classList.remove('sheet-open');
+      document.getElementById('sheet-backdrop').classList.remove('open');
+      document.body.style.overflow = '';
+    }
     function handleLeadForm(e) {
       e.preventDefault();
       var form = e.target;
@@ -1785,22 +1828,21 @@ you don't pay us a single penny.">
 
 <!-- Sticky mobile CTA -->
 <div id="sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;padding:12px 16px 16px;background:rgba(5,6,8,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(175,171,233,0.18);box-shadow:0 -8px 32px rgba(0,0,0,0.5);">
-  <a href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});" style="display:block;width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:14px;border-radius:100px;text-decoration:none;text-align:center;box-shadow:0 0 24px rgba(175,171,233,0.35);box-sizing:border-box;min-height:48px;display:flex;align-items:center;justify-content:center;">Get My Free Blueprint →</a>
+  <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:14px;border-radius:100px;text-decoration:none;text-align:center;box-shadow:0 0 24px rgba(175,171,233,0.35);box-sizing:border-box;min-height:48px;">Get My Free Blueprint →</a>
 </div>
 <script>
 (function(){
   if (window.innerWidth > 768) return;
   var bar = document.getElementById('sticky-cta');
   var hero = document.querySelector('.hero');
-  var form = document.querySelector('.hero-form-card');
   function check() {
     var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
-    var formRect = form ? form.getBoundingClientRect() : {top:9999,bottom:0};
-    var formVisible = formRect.top < window.innerHeight * 0.85 && formRect.bottom > 80;
-    bar.style.display = (heroBottom < 0 && !formVisible) ? 'block' : 'none';
+    var sheetOpen = document.querySelector('.hero-form-card').classList.contains('sheet-open');
+    bar.style.display = (heroBottom < 0 && !sheetOpen) ? 'block' : 'none';
   }
   window.addEventListener('scroll', check, {passive:true});
   window.addEventListener('resize', function(){ if(window.innerWidth > 768) bar.style.display='none'; });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') { if(typeof closeLeadSheet==='function') closeLeadSheet(); } });
   check();
 })();
 </script>

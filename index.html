@@ -1137,8 +1137,11 @@ you don't pay us a single penny.">
   .nav-book:hover { background: rgba(175,171,233,0.28); }
   @media (max-width: 768px) { .nav-book { font-size: 12px; padding: 7px 14px; } }
   .nav-toggle { display: flex; z-index: 51; }
-    .hero h1 { font-size: clamp(2.4rem, 10vw, 4rem) !important; width: 100% !important; }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: clamp(1.9rem, 8vw, 2.8rem) !important; width: 100% !important; }
     .hero .sub { font-size: clamp(0.85rem, 3.5vw, 1rem); padding: 0 12px; }
+    .hero { padding-top: 80px; padding-bottom: 60px; justify-content: flex-start; }
+    .hero-form-card { margin-bottom: 0 !important; }
   }
 </style></head>
 <body>

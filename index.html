@@ -1183,29 +1183,38 @@ you don't pay us a single penny.">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Autonomous Creative:</strong> we engineer fresh angles constantly, so your ads never go stale.</span></div>
         </div>
       </div>
-      <div class="hero-form-card" style="background:rgba(15,12,28,0.85);backdrop-filter:blur(16px);border:1px solid rgba(175,171,233,0.2);border-radius:16px;padding:clamp(24px,3vw,36px);">
+      <div class="hero-form-card" style="background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
+        <div id="lead-form-view">
         <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--white);margin-bottom:8px;">Get your free strategy blueprint</h3>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:24px;">See exactly how we'll build and scale your ad system. Zero obligation.</p>
-        <form onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
+        <form id="lead-form" onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Your Name</label>
-            <input type="text" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="text" name="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Phone Number</label>
-            <input type="tel" placeholder="(555) 123-4567" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="tel" name="phone" placeholder="(555) 123-4567" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Business Email</label>
-            <input type="email" placeholder="john@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="email" name="email" placeholder="john@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Website / Facebook URL</label>
-            <input type="text" placeholder="mysite.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="text" name="website" placeholder="mysite.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <button type="submit" style="width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;margin-top:4px;" onmouseover="this.style.background='rgba(175,171,233,1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(175,171,233,0.9)';this.style.transform=''">Analyze My Ad Potential →</button>
         </form>
         <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px;">We only partner with businesses we're 100% sure we can scale.</p>
+        </div>
+        <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 4px;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(175,171,233,0.2);border:1px solid rgba(175,171,233,0.45);display:flex;align-items:center;justify-content:center;color:#afabe9;font-size:26px;">✓</div>
+          <h3 style="font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:600;color:var(--white);margin:0;">You're in, <span id="success-name">there</span>.</h3>
+          <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;">Your blueprint request is locked in. Grab the open slot on the calendar and we'll walk you through it live — campaign plan, targeting, and projected numbers.</p>
+          <a href="https://cal.com/scalevertise.app/30min" target="_blank" style="display:block;width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;text-decoration:none;box-sizing:border-box;transition:background 0.2s ease;" onmouseover="this.style.background='rgba(175,171,233,1)'" onmouseout="this.style.background='rgba(175,171,233,0.9)'">Book Your Strategy Call →</a>
+          <p style="font-size:0.72rem;color:var(--muted);margin:0;">Only 4 client spots left this month.</p>
+        </div>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1215,11 +1224,28 @@ you don't pay us a single penny.">
     <script>
     function handleLeadForm(e) {
       e.preventDefault();
-      var btn = e.target.querySelector('button[type="submit"]');
-      btn.textContent = 'Booking your call...';
+      var form = e.target;
+      var btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
       btn.style.opacity = '0.7';
-      if(typeof fbq!=='undefined'){fbq('track','Lead');}
-      setTimeout(function(){ window.open('https://cal.com/scalevertise.app/30min','_blank'); btn.textContent='Analyze My Ad Potential →'; btn.style.opacity='1'; }, 400);
+      var nameField = form.querySelector('input[name="name"]');
+      var firstName = (nameField && nameField.value) ? nameField.value.trim().split(' ')[0] : 'there';
+      fetch('https://formspree.io/f/xdavkdvg', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res){
+        if(!res.ok){ throw new Error('submit failed'); }
+        if(typeof fbq!=='undefined'){fbq('track','Lead');}
+        document.getElementById('success-name').textContent = firstName;
+        document.getElementById('lead-form-view').style.display = 'none';
+        var sv = document.getElementById('lead-success-view');
+        sv.style.display = 'flex';
+      }).catch(function(){
+        btn.textContent = 'Try Again →';
+        btn.style.opacity = '1';
+        alert('Something went wrong sending your info. Please try again, or email vincentpiermarini@gmail.com directly.');
+      });
     }
     </script>
   </section>

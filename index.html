@@ -1527,57 +1527,103 @@ you don't pay us a single penny.">
 
   </section>
 
-  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-left:0;padding-right:0;padding-bottom:clamp(64px,8vw,100px);overflow:hidden;">
-    <div class="section-head center" style="padding:0 clamp(24px,5vw,64px);">
+  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-bottom:clamp(64px,8vw,100px);">
+    <div class="section-head center">
       <div class="eyebrow">The Creative</div>
       <h2>Ads we build. Results they drive.</h2>
-      <p class="sub" style="max-width:520px;margin:0 auto;">Real campaigns, real clients. Every creative engineered to stop the scroll and book the call.</p>
+      <p class="sub" style="max-width:520px;margin:0 auto;">Real campaigns. Real clients. Every creative engineered to stop the scroll and book the call.</p>
     </div>
 
     <style>
-      .marquee-wrap { overflow:hidden; width:100%; }
-      .marquee-row { display:flex; gap:12px; }
-      .marquee-row .track { display:flex; gap:12px; flex-shrink:0; animation-timing-function:linear; animation-iteration-count:infinite; }
-      .marquee-row .track img { height:160px; width:120px; object-fit:cover; border-radius:10px; display:block; flex-shrink:0; }
-      .marquee-label { font-size:0.68rem; font-family:var(--font-mono); letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); padding:0 clamp(24px,5vw,64px); margin-bottom:12px; }
-      @keyframes marquee-left  { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-      @keyframes marquee-right { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+      .client-block { margin-top:clamp(48px,6vw,72px); }
+      .client-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+      .client-name { font-size:clamp(1.1rem,2vw,1.4rem); font-weight:600; color:var(--white); letter-spacing:-0.02em; }
+      .client-tag { font-size:0.68rem; font-family:var(--font-mono); letter-spacing:0.12em; text-transform:uppercase; color:#afabe9; background:rgba(175,171,233,0.1); border:1px solid rgba(175,171,233,0.25); border-radius:100px; padding:4px 12px; }
+      .client-arrows { display:flex; gap:8px; }
+      .client-arrows button { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--white); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+      .client-arrows button:hover { background:rgba(175,171,233,0.2); border-color:rgba(175,171,233,0.4); color:#afabe9; }
+      .client-scroll { overflow:hidden; }
+      .client-track { display:flex; gap:14px; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+      .client-track img { height:200px; width:150px; object-fit:cover; border-radius:12px; flex-shrink:0; display:block; border:1px solid rgba(255,255,255,0.06); transition:transform 0.3s,box-shadow 0.3s; cursor:pointer; }
+      .client-track img:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 16px 40px rgba(0,0,0,0.5); }
+      .client-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent); margin-top:clamp(48px,6vw,72px); }
     </style>
 
-    <!-- Row 1: Scalevertise — left -->
-    <div class="marquee-label">Scalevertise</div>
-    <div class="marquee-wrap">
-      <div class="marquee-row">
-        <div class="track" style="animation:marquee-left 28s linear infinite;">
-          <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
-          <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
+    <!-- Scalevertise -->
+    <div class="client-block">
+      <div class="client-header">
+        <div>
+          <div class="client-name">Scalevertise</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 5 campaigns</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="client-tag">Active Client</span>
+          <div class="client-arrows">
+            <button onclick="scrollRow('sv',-1)">‹</button>
+            <button onclick="scrollRow('sv',1)">›</button>
+          </div>
         </div>
       </div>
+      <div class="client-scroll"><div id="sv-track" class="client-track">
+        <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
+      </div></div>
     </div>
 
-    <!-- Row 2: Blue Wave Pro Wash — right -->
-    <div class="marquee-label" style="margin-top:clamp(20px,3vw,36px);">Blue Wave Pro Wash</div>
-    <div class="marquee-wrap">
-      <div class="marquee-row">
-        <div class="track" style="animation:marquee-right 32s linear infinite;">
-          <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
-          <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
+    <div class="client-divider"></div>
+
+    <!-- Blue Wave Pro Wash -->
+    <div class="client-block">
+      <div class="client-header">
+        <div>
+          <div class="client-name">Blue Wave Pro Wash</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 5 campaigns</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="client-tag">Active Client</span>
+          <div class="client-arrows">
+            <button onclick="scrollRow('bw',-1)">‹</button>
+            <button onclick="scrollRow('bw',1)">›</button>
+          </div>
         </div>
       </div>
+      <div class="client-scroll"><div id="bw-track" class="client-track">
+        <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
+      </div></div>
     </div>
 
-    <!-- Row 3: Quack Quotes — left -->
-    <div class="marquee-label" style="margin-top:clamp(20px,3vw,36px);">Quack Quotes</div>
-    <div class="marquee-wrap">
-      <div class="marquee-row">
-        <div class="track" style="animation:marquee-left 24s linear infinite;">
-          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
-          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
-          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
-          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+    <div class="client-divider"></div>
+
+    <!-- Quack Quotes -->
+    <div class="client-block">
+      <div class="client-header">
+        <div>
+          <div class="client-name">Quack Quotes</div>
+          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Creative — 3 campaigns</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="client-tag">Active Client</span>
+          <div class="client-arrows">
+            <button onclick="scrollRow('qq',-1)">‹</button>
+            <button onclick="scrollRow('qq',1)">›</button>
+          </div>
         </div>
       </div>
+      <div class="client-scroll"><div id="qq-track" class="client-track">
+        <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+      </div></div>
     </div>
+
+    <script>
+    var rowOffsets = {sv:0, bw:0, qq:0};
+    function scrollRow(id, dir) {
+      var track = document.getElementById(id+'-track');
+      var img = track.querySelector('img');
+      var step = img.offsetWidth + 14;
+      var maxOffset = track.scrollWidth - track.parentElement.offsetWidth;
+      rowOffsets[id] = Math.max(0, Math.min(rowOffsets[id] + dir * step * 2, maxOffset));
+      track.style.transform = 'translateX(-' + rowOffsets[id] + 'px)';
+    }
+    </script>
   </section>
 
   <section class="section" id="pricing" data-screen-label="Pricing">

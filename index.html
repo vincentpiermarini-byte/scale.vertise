@@ -1154,7 +1154,7 @@ you don't pay us a single penny.">
   </nav>
 
   <section class="hero" data-screen-label="Hero">
-    <video autoplay="" loop="" muted="" playsinline="">
+    <video autoplay loop muted playsinline preload="metadata">
       <source src="uploads/pingpong.webm" type="video/webm">
     </video>
     <div class="hero-dim"></div>
@@ -1173,7 +1173,10 @@ you don't pay us a single penny.">
           <span style="color:#afabe9;">Or you pay nothing.</span>
         </h1>
         <p class="sub" style="text-align:left;font-size:clamp(0.9rem,1.6vw,1rem);max-width:480px;margin-bottom:24px;">Stop burning capital on overpriced agencies who wing it. We deploy a precision-engineered growth system backed by a 100% performance guarantee. If we don't deliver, you don't pay a single penny.</p>
-        <p class="mobile-social-proof" style="display:none;font-size:0.8rem;color:var(--muted);margin-bottom:12px;">⭐⭐⭐⭐⭐ &nbsp;<strong style="color:var(--white);">4.1x avg ROAS</strong> across active clients</p>
+        <div class="mobile-social-proof" style="display:none;margin-bottom:16px;">
+          <p style="font-size:0.8rem;color:var(--muted);margin-bottom:8px;">⭐⭐⭐⭐⭐ &nbsp;<strong style="color:var(--white);">4.1x avg ROAS</strong> across active clients</p>
+          <p style="font-size:0.78rem;color:var(--muted);font-style:italic;border-left:2px solid rgba(175,171,233,0.4);padding-left:10px;margin:0;">"4–5 leads/mo to 20+ in two weeks." <span style="color:rgba(175,171,233,0.8);font-style:normal;">— Blue Wave Pro Wash, Cary NC</span></p>
+        </div>
         <style>@media(max-width:768px){.mobile-social-proof{display:block!important;}}</style>
         <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){var i=document.querySelector('#lead-form input[name=name]');if(i)i.focus();},600);" style="display:none;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;margin-top:8px;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 0 32px rgba(175,171,233,0.45),0 4px 20px rgba(0,0,0,0.3);">See If You Qualify →</a>
         <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
@@ -1189,19 +1192,24 @@ you don't pay us a single penny.">
         <form id="lead-form" onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Your Name</label>
-            <input type="text" name="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="text" name="name" autocomplete="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+          </div>
+          <div>
+            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Email Address</label>
+            <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Phone Number</label>
-            <input type="tel" name="phone" placeholder="(555) 123-4567" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="tel" name="phone" autocomplete="tel" placeholder="(555) 123-4567" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <p style="font-size:0.68rem;color:var(--muted);margin:5px 0 0 2px;">So we can walk you through your blueprint live.</p>
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Company Name</label>
-            <input type="text" name="company" placeholder="Acme Roofing Co." required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="text" name="company" autocomplete="organization" placeholder="Acme Roofing Co." required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
-          <button type="submit" style="width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;margin-top:4px;" onmouseover="this.style.background='rgba(175,171,233,1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(175,171,233,0.9)';this.style.transform=''">Analyze My Ad Potential →</button>
+          <button type="submit" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:0.95rem;font-weight:700;padding:15px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s ease,transform 0.15s ease;margin-top:4px;box-shadow:0 0 24px rgba(175,171,233,0.3);" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Send Me My Free Blueprint →</button>
         </form>
-        <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:12px;">We only partner with businesses we're 100% sure we can scale.</p>
+        <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
         </div>
         <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 4px;">
           <div style="width:56px;height:56px;border-radius:50%;background:rgba(175,171,233,0.2);border:1px solid rgba(175,171,233,0.45);display:flex;align-items:center;justify-content:center;color:#afabe9;font-size:26px;">✓</div>
@@ -1335,7 +1343,7 @@ you don't pay us a single penny.">
       <div class="result-card" style="background:#0d0e14;border:1px solid rgba(56,189,248,0.15);border-radius:20px;padding:clamp(24px,3vw,40px);transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;" onmouseenter="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(56,189,248,0.4)';this.style.boxShadow='0 0 40px rgba(56,189,248,0.07)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(56,189,248,0.15)';this.style.boxShadow=''">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
           <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <img src="uploads/bwpw-logo.png" alt="Blue Wave Pro Wash" style="width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;" />
+            <img src="uploads/bwpw-logo.png" alt="Blue Wave Pro Wash" loading="lazy" style="width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;" />
           </div>
           <div>
             <div style="font-weight:600;font-size:0.95rem;color:var(--white);">Blue Wave Pro Wash</div>
@@ -1345,15 +1353,15 @@ you don't pay us a single penny.">
 
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;margin-bottom:28px;">
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;">
-            <div class="counter" data-target="47" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">0</div>
+            <div class="counter" data-target="47" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">47</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Leads/mo</div>
           </div>
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;border-left:1px solid rgba(255,255,255,0.06);border-right:1px solid rgba(255,255,255,0.06);">
-            <div class="counter" data-target="4.1" data-suffix="x" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">0x</div>
+            <div class="counter" data-target="4.1" data-suffix="x" data-decimal="1" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">4.1x</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Avg ROAS</div>
           </div>
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;">
-            <div class="counter" data-target="82" data-suffix="%" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">0%</div>
+            <div class="counter" data-target="82" data-suffix="%" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#38bdf8;">82%</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Book Rate</div>
           </div>
         </div>
@@ -1389,7 +1397,7 @@ you don't pay us a single penny.">
       <div class="result-card" style="background:#0d0e14;border:1px solid rgba(167,139,250,0.15);border-radius:20px;padding:clamp(24px,3vw,40px);transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;" onmouseenter="this.style.transform='translateY(-2px)';this.style.borderColor='rgba(167,139,250,0.4)';this.style.boxShadow='0 0 40px rgba(167,139,250,0.07)'" onmouseleave="this.style.transform='';this.style.borderColor='rgba(167,139,250,0.15)';this.style.boxShadow=''">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
           <div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <img src="uploads/qq-logo.png" alt="Quack Quote" style="width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;" />
+            <img src="uploads/qq-logo.png" alt="Quack Quote" loading="lazy" style="width:44px;height:44px;object-fit:contain;border-radius:8px;background:#fff;padding:4px;" />
           </div>
           <div>
             <div style="font-weight:600;font-size:0.95rem;color:var(--white);">Quack Quote</div>
@@ -1399,15 +1407,15 @@ you don't pay us a single penny.">
 
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;margin-bottom:28px;">
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;">
-            <div class="counter" data-target="63" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">0</div>
+            <div class="counter" data-target="63" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">63</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Leads/mo</div>
           </div>
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;border-left:1px solid rgba(255,255,255,0.06);border-right:1px solid rgba(255,255,255,0.06);">
-            <div class="counter" data-target="5.3" data-suffix="x" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">0x</div>
+            <div class="counter" data-target="5.3" data-suffix="x" data-decimal="1" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">5.3x</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Avg ROAS</div>
           </div>
           <div style="background:#0d0e14;padding:16px 10px;text-align:center;">
-            <div class="counter" data-target="71" data-suffix="%" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">0%</div>
+            <div class="counter" data-target="71" data-suffix="%" style="font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:#a78bfa;">71%</div>
             <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.06em;">Book Rate</div>
           </div>
         </div>
@@ -1444,11 +1452,11 @@ you don't pay us a single penny.">
     <!-- Bottom stat bar -->
     <div class="bottom-stats">
       <div class="bottom-stat">
-        <div class="counter" data-target="4.6" data-suffix="x" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:var(--white);">0x</div>
+        <div class="counter" data-target="4.6" data-suffix="x" data-decimal="1" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:var(--white);">4.6x</div>
         <div style="font-size:0.72rem;color:var(--muted);margin-top:8px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;">Avg ROAS</div>
       </div>
       <div class="bottom-stat">
-        <div class="counter" data-target="14" data-prefix="$" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:var(--white);">$0</div>
+        <div class="counter" data-target="14" data-prefix="$" style="font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:var(--white);">$14</div>
         <div style="font-size:0.72rem;color:var(--muted);margin-top:8px;font-family:var(--font-mono);letter-spacing:0.08em;text-transform:uppercase;">Cost Per Lead</div>
       </div>
       <div class="bottom-stat">
@@ -1499,9 +1507,9 @@ you don't pay us a single penny.">
         });
       }
       if ('IntersectionObserver' in window) {
-        var cObs = new IntersectionObserver(animateCounters, {threshold:0.3});
+        var cObs = new IntersectionObserver(animateCounters, {threshold:0.05});
         document.querySelectorAll('.counter').forEach(function(el){ cObs.observe(el); });
-        var bObs = new IntersectionObserver(animateBars, {threshold:0.2});
+        var bObs = new IntersectionObserver(animateBars, {threshold:0.05});
         document.querySelectorAll('.result-card').forEach(function(el){ bObs.observe(el); });
       }
     })();
@@ -1547,7 +1555,7 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="sv-track" class="client-track">
-        <img src="uploads/SV_Static6.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static7.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static8.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static4.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static5.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
+        <img src="uploads/SV_Static6.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static7.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static8.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static4.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static5.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
     </div>
 
@@ -1569,7 +1577,7 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="bw-track" class="client-track">
-        <img src="uploads/BW_Static1.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static2.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static3.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static4.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static5.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
+        <img src="uploads/BW_Static1.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static2.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static3.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static4.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static5.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
     </div>
 
@@ -1591,7 +1599,7 @@ you don't pay us a single penny.">
         </div>
       </div>
       <div class="client-scroll"><div id="qq-track" class="client-track">
-        <img src="uploads/QQ_Static1.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static2.png" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static3.png" onclick="openLightbox(this.src)" style="cursor:zoom-in">
+        <img src="uploads/QQ_Static1.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static2.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static3.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
       </div></div>
     </div>
 
@@ -1780,4 +1788,25 @@ you don't pay us a single penny.">
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 </script>
 
+<!-- Sticky mobile CTA -->
+<div id="sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;padding:12px 16px 16px;background:rgba(5,6,8,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(175,171,233,0.18);box-shadow:0 -8px 32px rgba(0,0,0,0.5);">
+  <a href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});" style="display:block;width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:14px;border-radius:100px;text-decoration:none;text-align:center;box-shadow:0 0 24px rgba(175,171,233,0.35);box-sizing:border-box;min-height:48px;display:flex;align-items:center;justify-content:center;">Get My Free Blueprint →</a>
+</div>
+<script>
+(function(){
+  if (window.innerWidth > 768) return;
+  var bar = document.getElementById('sticky-cta');
+  var hero = document.querySelector('.hero');
+  var form = document.querySelector('.hero-form-card');
+  function check() {
+    var heroBottom = hero ? hero.getBoundingClientRect().bottom : 0;
+    var formRect = form ? form.getBoundingClientRect() : {top:9999,bottom:0};
+    var formVisible = formRect.top < window.innerHeight * 0.85 && formRect.bottom > 80;
+    bar.style.display = (heroBottom < 0 && !formVisible) ? 'block' : 'none';
+  }
+  window.addEventListener('scroll', check, {passive:true});
+  window.addEventListener('resize', function(){ if(window.innerWidth > 768) bar.style.display='none'; });
+  check();
+})();
+</script>
 </body></html>

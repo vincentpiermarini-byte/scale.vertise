@@ -719,33 +719,21 @@ you don't pay us a single penny.">
   }
   .price-cta {
     margin-top: 28px;
-    width: 100%;
-    display: block;
+    display: inline-block;
     text-decoration: none;
-    text-align: center;
     font-family: var(--font-display);
-    font-size: 14.5px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.01em;
-    color: var(--white);
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.2);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    padding: 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(175,171,233,0.7);
+    transition: color 0.2s ease;
   }
-  .price-cta:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .price-cta:hover { color: #afabe9; }
   .price-card.featured .price-cta {
-    color: var(--black);
-    background: var(--white);
-    border-color: var(--white);
+    color: var(--white);
   }
-  .price-card.featured .price-cta:hover {
-    box-shadow: 0 12px 32px rgba(150,130,255,0.4);
-  }
+  .price-card.featured .price-cta:hover { color: rgba(255,255,255,0.7); }
   /* push CTA to bottom so cards align */
   .price-card .feats { flex: 1 0 auto; }
   .price-note {
@@ -1319,7 +1307,6 @@ you don't pay us a single penny.">
             <p style="font-size:clamp(0.95rem,1.6vw,1.1rem);font-weight:400;color:var(--white);line-height:1.5;margin:0;">We build the system that turns clicks into booked calls.</p>
           </div>
         </div>
-        <a class="loop-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});" style="display:inline-block;margin:0;">See If You Qualify →</a>
       </div>
 
     </div>
@@ -1476,9 +1463,6 @@ you don't pay us a single penny.">
       </div>
     </div>
 
-    <div style="max-width:1080px;margin:40px auto 0;text-align:center;">
-      <a class="avail-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Apply Now →</a>
-    </div>
 
     <script>
     (function(){
@@ -1658,7 +1642,7 @@ you don't pay us a single penny.">
           <li>Monthly performance report</li>
           <li>Basic creative direction</li>
         </ul>
-        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Apply Now →</a>
+        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Get started →</a>
       </article>
 
       <article class="glass price-card featured">
@@ -1673,7 +1657,7 @@ you don't pay us a single penny.">
           <li>A/B creative testing (up to 6 variants/month)</li>
           <li class="guarantee">If it doesn't work, you don't pay a single penny. Ever.</li>
         </ul>
-        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Apply Now →</a>
+        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Get started →</a>
       </article>
 
       <article class="glass price-card">
@@ -1687,7 +1671,7 @@ you don't pay us a single penny.">
           <li>Google Ads alongside Meta</li>
           <li>Monthly competitor audit</li>
         </ul>
-        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Apply Now →</a>
+        <a class="price-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});">Get started →</a>
       </article>
     </div>
     <p class="price-note">One-time setup fee: $250 — waived with 3-month commitment</p>
@@ -1744,13 +1728,10 @@ you don't pay us a single penny.">
     </div>
   </section>
 
-  <section class="section contact" id="contact" data-screen-label="Get In Touch" style="text-align:center;">
+  <section class="section contact" id="contact" data-screen-label="Get In Touch" style="text-align:center;padding-top:clamp(48px,6vw,80px);padding-bottom:clamp(48px,6vw,80px);">
     <div class="contact-shell">
-      <div class="eyebrow" style="margin-bottom:20px;">Get Started</div>
-      <h2 class="contact-title" style="font-size:clamp(2rem,5vw,3.2rem);margin-bottom:20px;">Ready to get more leads?</h2>
-      <p class="contact-lead" style="max-width:540px;margin:0 auto;">Fill out the form above — takes 60 seconds. We review every application personally and reach out within 24 hours. If we're not the right fit, we'll tell you straight.</p>
-      <p style="font-size:0.8rem;opacity:0.45;margin-top:14px;max-width:420px;margin-left:auto;margin-right:auto;">If we take you on and it doesn't work —<br>you don't pay a single penny.</p>
-      <a class="contact-book" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});" style="margin-top:32px;display:inline-block;">Apply Now →</a>
+      <p style="font-size:clamp(0.7rem,1.2vw,0.8rem);font-family:var(--font-mono);letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Performance guarantee</p>
+      <h2 class="contact-title" style="font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:0;font-weight:600;line-height:1.2;">If we take you on and it doesn't work —<br>you don't pay a single penny.</h2>
     </div>
   </section>
 

@@ -1527,6 +1527,64 @@ you don't pay us a single penny.">
 
   </section>
 
+  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-bottom:clamp(64px,8vw,100px);overflow:hidden;">
+    <div class="section-head center">
+      <div class="eyebrow">The Creative</div>
+      <h2>Ads we build. Results they drive.</h2>
+      <p class="sub" style="max-width:520px;margin:0 auto;">Every creative is engineered to stop the scroll, qualify the lead, and convert cold traffic into booked calls.</p>
+    </div>
+    <div style="position:relative;max-width:420px;margin:clamp(40px,5vw,64px) auto 0;">
+      <!-- Track -->
+      <div id="ad-track" style="display:flex;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);will-change:transform;">
+        <div class="ad-slide" style="min-width:100%;padding:0 8px;box-sizing:border-box;">
+          <img src="uploads/SV_Static1.png" alt="Scalevertise Ad 1" style="width:100%;border-radius:16px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+        </div>
+        <div class="ad-slide" style="min-width:100%;padding:0 8px;box-sizing:border-box;">
+          <img src="uploads/SV_Static2.png" alt="Scalevertise Ad 2" style="width:100%;border-radius:16px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+        </div>
+        <div class="ad-slide" style="min-width:100%;padding:0 8px;box-sizing:border-box;">
+          <img src="uploads/SV_Static3.png" alt="Scalevertise Ad 3" style="width:100%;border-radius:16px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+        </div>
+        <div class="ad-slide" style="min-width:100%;padding:0 8px;box-sizing:border-box;">
+          <img src="uploads/SV_Static4.png" alt="Scalevertise Ad 4" style="width:100%;border-radius:16px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+        </div>
+        <div class="ad-slide" style="min-width:100%;padding:0 8px;box-sizing:border-box;">
+          <img src="uploads/SV_Static5.png" alt="Scalevertise Ad 5" style="width:100%;border-radius:16px;display:block;box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+        </div>
+      </div>
+      <!-- Arrows -->
+      <button onclick="adCarousel(-1)" style="position:absolute;left:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">‹</button>
+      <button onclick="adCarousel(1)" style="position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;" onmouseover="this.style.background='rgba(175,171,233,0.3)'" onmouseout="this.style.background='rgba(175,171,233,0.15)'">›</button>
+      <!-- Dots -->
+      <div id="ad-dots" style="display:flex;justify-content:center;gap:8px;margin-top:20px;">
+        <button onclick="adGoTo(0)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;transition:opacity 0.2s;opacity:1;"></button>
+        <button onclick="adGoTo(1)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;transition:opacity 0.2s;opacity:0.3;"></button>
+        <button onclick="adGoTo(2)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;transition:opacity 0.2s;opacity:0.3;"></button>
+        <button onclick="adGoTo(3)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;transition:opacity 0.2s;opacity:0.3;"></button>
+        <button onclick="adGoTo(4)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;transition:opacity 0.2s;opacity:0.3;"></button>
+      </div>
+    </div>
+    <script>
+    var adIdx = 0;
+    var adTotal = 5;
+    function adGoTo(n) {
+      adIdx = n;
+      document.getElementById('ad-track').style.transform = 'translateX(-' + (adIdx * 100) + '%)';
+      document.querySelectorAll('.ad-dot').forEach(function(d, i) { d.style.opacity = i === adIdx ? '1' : '0.3'; });
+    }
+    function adCarousel(dir) {
+      adGoTo((adIdx + dir + adTotal) % adTotal);
+    }
+    // Swipe support
+    (function(){
+      var t = document.getElementById('ad-track');
+      var sx = 0;
+      t.addEventListener('touchstart', function(e){ sx = e.touches[0].clientX; }, {passive:true});
+      t.addEventListener('touchend', function(e){ var dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 40) adCarousel(dx < 0 ? 1 : -1); }, {passive:true});
+    })();
+    </script>
+  </section>
+
   <section class="section" id="pricing" data-screen-label="Pricing">
     <div class="section-head center">
       <div class="eyebrow">Pricing</div>

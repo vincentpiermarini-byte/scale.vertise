@@ -1187,6 +1187,8 @@ you don't pay us a single penny.">
           <span style="color:#afabe9;">Or you pay nothing.</span>
         </h1>
         <p class="sub" style="text-align:left;font-size:clamp(0.9rem,1.6vw,1rem);max-width:480px;margin-bottom:24px;">Stop burning capital on overpriced agencies who wing it. We deploy a precision-engineered growth system backed by a 100% performance guarantee. If we don't deliver, you don't pay a single penny.</p>
+        <p class="mobile-social-proof" style="display:none;font-size:0.8rem;color:var(--muted);margin-bottom:12px;">⭐⭐⭐⭐⭐ &nbsp;<strong style="color:var(--white);">4.1x avg ROAS</strong> across active clients</p>
+        <style>@media(max-width:768px){.mobile-social-proof{display:block!important;}}</style>
         <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){var i=document.querySelector('#lead-form input[name=name]');if(i)i.focus();},600);" style="display:none;background:rgba(175,171,233,0.9);color:#050608;font-size:1rem;font-weight:700;padding:15px 28px;border-radius:100px;text-decoration:none;margin-top:8px;width:100%;box-sizing:border-box;text-align:center;">See If You Qualify →</a>
         <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
         <div class="hero-bullets" style="display:flex;flex-direction:column;gap:10px;">
@@ -1205,15 +1207,11 @@ you don't pay us a single penny.">
           </div>
           <div>
             <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Phone Number</label>
-            <input type="tel" name="phone" placeholder="(555) 123-4567" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <input type="tel" name="phone" placeholder="(555) 123-4567" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <div>
-            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Business Email</label>
-            <input type="email" name="email" placeholder="john@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          </div>
-          <div>
-            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Website / Facebook URL</label>
-            <input type="text" name="website" placeholder="mysite.com" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Company Name</label>
+            <input type="text" name="company" placeholder="Acme Roofing Co." required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
           </div>
           <button type="submit" style="width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;border:none;cursor:pointer;transition:background 0.2s ease,transform 0.15s ease;margin-top:4px;" onmouseover="this.style.background='rgba(175,171,233,1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='rgba(175,171,233,0.9)';this.style.transform=''">Analyze My Ad Potential →</button>
         </form>
@@ -1732,12 +1730,4 @@ you don't pay us a single penny.">
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 </script>
 
-  <style>
-    #msb { display:none;position:fixed;bottom:0;left:0;width:100%;background:rgba(5,6,8,0.96);backdrop-filter:blur(12px);border-top:1px solid rgba(175,171,233,0.25);padding:12px 20px;z-index:9999;align-items:center;justify-content:space-between;gap:12px; }
-    @media(max-width:768px){ #msb { display:flex!important; } }
-  </style>
-  <div id="msb">
-    <span style="font-size:13px;color:var(--white);font-weight:500;line-height:1.3;">Zero Risk.<br>Real Results.</span>
-    <a href="#lead-form" onclick="event.preventDefault();document.getElementById('lead-form').closest('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});document.querySelector('#lead-form input[name=name]').focus();" style="background:var(--white);color:#050608;font-size:13px;font-weight:600;padding:10px 18px;border-radius:100px;text-decoration:none;white-space:nowrap;flex-shrink:0;">Get Started →</a>
-  </div>
 </body></html>

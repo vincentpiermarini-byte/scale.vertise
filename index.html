@@ -1527,59 +1527,57 @@ you don't pay us a single penny.">
 
   </section>
 
-  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-bottom:clamp(64px,8vw,100px);padding-left:0;padding-right:0;">
+  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-left:0;padding-right:0;padding-bottom:clamp(64px,8vw,100px);overflow:hidden;">
     <div class="section-head center" style="padding:0 clamp(24px,5vw,64px);">
       <div class="eyebrow">The Creative</div>
       <h2>Ads we build. Results they drive.</h2>
-      <p class="sub" style="max-width:520px;margin:0 auto;">Every creative is engineered to stop the scroll, qualify the lead, and convert cold traffic into booked calls.</p>
+      <p class="sub" style="max-width:520px;margin:0 auto;">Real campaigns, real clients. Every creative engineered to stop the scroll and book the call.</p>
     </div>
-    <div style="position:relative;margin:clamp(40px,5vw,64px) auto 0;max-width:900px;padding:0 48px;">
-      <div style="overflow:hidden;">
-        <div id="ad-track" style="display:flex;gap:20px;transition:transform 0.45s cubic-bezier(0.4,0,0.2,1);will-change:transform;">
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:0.4;transform:scale(0.92);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;"><img src="uploads/SV_Static5.png" style="width:100%;display:block;"></div>
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:1;transform:scale(1);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;box-shadow:0 12px 48px rgba(175,171,233,0.2);"><img src="uploads/SV_Static6.png" style="width:100%;display:block;"></div>
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:0.4;transform:scale(0.92);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;"><img src="uploads/SV_Static7.png" style="width:100%;display:block;"></div>
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:0.4;transform:scale(0.92);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;"><img src="uploads/SV_Static8.png" style="width:100%;display:block;"></div>
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:0.4;transform:scale(0.92);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;"><img src="uploads/SV_Static4.png" style="width:100%;display:block;"></div>
-          <div class="ad-slide" style="flex:0 0 calc(50% - 10px);opacity:0.4;transform:scale(0.92);transition:opacity 0.4s,transform 0.4s;border-radius:16px;overflow:hidden;"><img src="uploads/SV_Static5.png" style="width:100%;display:block;"></div>
+
+    <style>
+      .marquee-row { display:flex; gap:16px; margin-top:clamp(28px,4vw,48px); }
+      .marquee-row .track { display:flex; gap:16px; animation-timing-function:linear; animation-iteration-count:infinite; }
+      .marquee-row .track img { height:220px; width:auto; border-radius:12px; display:block; flex-shrink:0; }
+      .marquee-wrap { overflow:hidden; width:100%; }
+      .marquee-label { font-size:0.7rem; font-family:var(--font-mono); letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); padding:0 clamp(24px,5vw,64px); margin-bottom:10px; }
+      @keyframes marquee-left  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+      @keyframes marquee-right { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+    </style>
+
+    <!-- Row 1: Scalevertise — left -->
+    <div class="marquee-label">Scalevertise</div>
+    <div class="marquee-wrap">
+      <div class="marquee-row">
+        <div class="track" style="animation:marquee-left 28s linear infinite;">
+          <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
+          <img src="uploads/SV_Static6.png"><img src="uploads/SV_Static7.png"><img src="uploads/SV_Static8.png"><img src="uploads/SV_Static4.png"><img src="uploads/SV_Static5.png">
         </div>
       </div>
-      <button onclick="adCarousel(-1)" style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">‹</button>
-      <button onclick="adCarousel(1)" style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);color:#afabe9;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;">›</button>
-      <div style="display:flex;justify-content:center;gap:8px;margin-top:24px;">
-        <button onclick="adGoTo(0)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:1;transition:opacity 0.2s;"></button>
-        <button onclick="adGoTo(1)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:0.3;transition:opacity 0.2s;"></button>
-        <button onclick="adGoTo(2)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:0.3;transition:opacity 0.2s;"></button>
-        <button onclick="adGoTo(3)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:0.3;transition:opacity 0.2s;"></button>
-        <button onclick="adGoTo(4)" class="ad-dot" style="width:8px;height:8px;border-radius:50%;background:#afabe9;border:none;cursor:pointer;padding:0;opacity:0.3;transition:opacity 0.2s;"></button>
+    </div>
+
+    <!-- Row 2: Blue Wave Pro Wash — right -->
+    <div class="marquee-label" style="margin-top:clamp(20px,3vw,36px);">Blue Wave Pro Wash</div>
+    <div class="marquee-wrap">
+      <div class="marquee-row">
+        <div class="track" style="animation:marquee-right 32s linear infinite;">
+          <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
+          <img src="uploads/BW_Static1.png"><img src="uploads/BW_Static2.png"><img src="uploads/BW_Static3.png"><img src="uploads/BW_Static4.png"><img src="uploads/BW_Static5.png">
+        </div>
       </div>
     </div>
-    <script>
-    var adIdx = 0, adTotal = 5;
-    var adSrcs = ['uploads/SV_Static6.png','uploads/SV_Static7.png','uploads/SV_Static8.png','uploads/SV_Static4.png','uploads/SV_Static5.png'];
-    function adGoTo(n) {
-      adIdx = (n + adTotal) % adTotal;
-      var slides = document.querySelectorAll('.ad-slide');
-      var slideW = slides[0].offsetWidth + 20;
-      // prev is adIdx-1 mod total, current is adIdx, next is adIdx+1 mod total
-      // track shows: prev, current, next+... we shift so current is 2nd visible
-      document.getElementById('ad-track').style.transform = 'translateX(-' + (adIdx * slideW) + 'px)';
-      slides.forEach(function(s,i){
-        var rel = (i - adIdx - 1 + adTotal + 1) % (adTotal + 1);
-        var isCurrent = (i === adIdx + 1);
-        s.style.opacity = isCurrent ? '1' : '0.4';
-        s.style.transform = isCurrent ? 'scale(1)' : 'scale(0.92)';
-        s.style.boxShadow = isCurrent ? '0 12px 48px rgba(175,171,233,0.2)' : 'none';
-      });
-      document.querySelectorAll('.ad-dot').forEach(function(d,i){ d.style.opacity = i===adIdx?'1':'0.3'; });
-    }
-    function adCarousel(dir) { adGoTo(adIdx + dir); }
-    (function(){
-      var t = document.getElementById('ad-track'), sx = 0;
-      t.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;},{passive:true});
-      t.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)adCarousel(dx<0?1:-1);},{passive:true});
-    })();
-    </script>
+
+    <!-- Row 3: Quack Quotes — left -->
+    <div class="marquee-label" style="margin-top:clamp(20px,3vw,36px);">Quack Quotes</div>
+    <div class="marquee-wrap">
+      <div class="marquee-row">
+        <div class="track" style="animation:marquee-left 24s linear infinite;">
+          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+          <img src="uploads/QQ_Static1.png"><img src="uploads/QQ_Static2.png"><img src="uploads/QQ_Static3.png">
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="section" id="pricing" data-screen-label="Pricing">

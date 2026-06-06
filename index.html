@@ -1240,38 +1240,6 @@ you don't pay us a single penny.">
         .desktop-hero-cta-col { display:flex; align-items:center; justify-content:center; }
         @media(max-width:768px){ .desktop-hero-cta-col { display:none !important; } }
       </style>
-      <div class="hero-form-card" style="position:relative;background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
-        <div class="sheet-handle" style="display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:100px;background:rgba(255,255,255,0.25);"></div>
-        <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:none;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;">×</button>
-        <div id="lead-form-view">
-        <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--white);margin-bottom:8px;">Get your free strategy blueprint</h3>
-        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:24px;">See exactly how we'll build and scale your ad system. Zero obligation.</p>
-        <form id="lead-form" onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
-          <div>
-            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Your Name</label>
-            <input type="text" name="name" autocomplete="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          </div>
-          <div>
-            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Email Address</label>
-            <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          </div>
-          <div>
-            <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Business / Company Name <span style="text-transform:none;letter-spacing:0;font-size:0.72em;opacity:0.65;">(Leave blank if solo)</span></label>
-            <input type="text" name="company" autocomplete="organization" placeholder="Acme Roofing Co." style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
-          </div>
-          <button type="submit" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:0.95rem;font-weight:700;padding:15px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s ease,transform 0.15s ease;margin-top:4px;box-shadow:0 0 24px rgba(175,171,233,0.3);" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Send Me My Free Blueprint →</button>
-        </form>
-        <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
-        </div>
-        <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 4px;">
-          <div style="width:56px;height:56px;border-radius:50%;background:rgba(175,171,233,0.2);border:1px solid rgba(175,171,233,0.45);display:flex;align-items:center;justify-content:center;color:#afabe9;font-size:26px;">✓</div>
-          <h3 style="font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:600;color:var(--white);margin:0;">You're in, <span id="success-name">there</span>.</h3>
-          <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;">Your blueprint request is locked in. Grab the open slot on the calendar and we'll walk you through it live — campaign plan, targeting, and projected numbers.</p>
-          <a href="https://cal.com/scalevertise.app/30min" target="_blank" style="display:block;width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;text-decoration:none;box-sizing:border-box;transition:background 0.2s ease;" onmouseover="this.style.background='rgba(175,171,233,1)'" onmouseout="this.style.background='rgba(175,171,233,0.9)'">Book Your Strategy Call →</a>
-          <p style="font-size:0.72rem;color:var(--muted);margin:0;">Only 4 client spots left this month.</p>
-        </div>
-      </div>
-      <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeLeadSheet()"></div>
     </div>
     <div class="scroll-hint">
       <span class="label">SCROLL</span>
@@ -1757,4 +1725,39 @@ you don't pay us a single penny.">
   check();
 })();
 </script>
+
+<!-- Lead form sheet — lives at body level so position:fixed always works from anywhere on the page -->
+<div class="hero-form-card" id="lead-sheet" style="background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
+  <div class="sheet-handle" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:100px;background:rgba(255,255,255,0.25);"></div>
+  <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:flex;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;">×</button>
+  <div id="lead-form-view">
+    <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--white);margin-bottom:8px;">Get your free strategy blueprint</h3>
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:24px;">See exactly how we'll build and scale your ad system. Zero obligation.</p>
+    <form id="lead-form" onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
+      <div>
+        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Your Name</label>
+        <input type="text" name="name" autocomplete="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <div>
+        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Email Address</label>
+        <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <div>
+        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Business / Company Name <span style="text-transform:none;letter-spacing:0;font-size:0.72em;opacity:0.65;">(Leave blank if solo)</span></label>
+        <input type="text" name="company" autocomplete="organization" placeholder="Acme Roofing Co." style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+      </div>
+      <button type="submit" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:0.95rem;font-weight:700;padding:15px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s ease,transform 0.15s ease;margin-top:4px;box-shadow:0 0 24px rgba(175,171,233,0.3);" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Send Me My Free Blueprint →</button>
+    </form>
+    <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
+  </div>
+  <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 4px;">
+    <div style="width:56px;height:56px;border-radius:50%;background:rgba(175,171,233,0.2);border:1px solid rgba(175,171,233,0.45);display:flex;align-items:center;justify-content:center;color:#afabe9;font-size:26px;">✓</div>
+    <h3 style="font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:600;color:var(--white);margin:0;">You're in, <span id="success-name">there</span>.</h3>
+    <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;">Your blueprint request is locked in. Grab the open slot on the calendar and we'll walk you through it live — campaign plan, targeting, and projected numbers.</p>
+    <a href="https://cal.com/scalevertise.app/30min" target="_blank" style="display:block;width:100%;background:rgba(175,171,233,0.9);color:#050608;font-size:0.95rem;font-weight:700;padding:14px;border-radius:8px;text-decoration:none;box-sizing:border-box;transition:background 0.2s ease;" onmouseover="this.style.background='rgba(175,171,233,1)'" onmouseout="this.style.background='rgba(175,171,233,0.9)'">Book Your Strategy Call →</a>
+    <p style="font-size:0.72rem;color:var(--muted);margin:0;">Only 4 client spots left this month.</p>
+  </div>
+</div>
+<div class="sheet-backdrop" id="sheet-backdrop" onclick="closeLeadSheet()"></div>
+
 </body></html>

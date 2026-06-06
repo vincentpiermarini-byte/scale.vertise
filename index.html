@@ -1296,7 +1296,8 @@ you don't pay us a single penny.">
       }).then(function(res){
         if(!res.ok){ throw new Error('submit failed'); }
         if(typeof fbq!=='undefined'){fbq('track','Lead');}
-        document.getElementById('success-name').textContent = firstName;
+        var nameEl = document.getElementById('success-name');
+        if(nameEl){ nameEl.textContent = firstName; }
         document.getElementById('lead-form-view').style.display = 'none';
         var sv = document.getElementById('lead-success-view');
         sv.style.display = 'flex';

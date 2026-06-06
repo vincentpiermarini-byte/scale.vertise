@@ -1153,7 +1153,7 @@ you don't pay us a single penny.">
       <source src="uploads/pingpong.webm" type="video/webm">
     </video>
     <div class="hero-dim"></div>
-    <div class="hero-inner" style="width:100%;max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;text-align:left;padding:0 clamp(20px,4vw,48px);">
+    <div class="hero-inner" style="width:100%;max-width:660px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;">
       <style>
         /* Form is a centered modal (mobile + desktop) */
         .hero-form-card {
@@ -1178,8 +1178,7 @@ you don't pay us a single penny.">
         .sheet-close { display:flex !important; }
         .sheet-handle { display:none !important; }
         @media(max-width:768px){
-          .hero-inner { grid-template-columns:1fr !important; text-align:center !important; }
-          .hero-bullets { justify-content:center !important; }
+          .hero-inner { padding:0 16px !important; }
         }
         .sheet-backdrop {
           display:none; position:fixed; inset:0; z-index:999;
@@ -1235,33 +1234,10 @@ you don't pay us a single penny.">
             </div>
           </div>
         </div>
-        <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:none;background:rgba(0,0,0,0.3);border:1px solid rgba(175,171,233,0.55);color:#fff;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 0 25px rgba(175,171,233,0.55);">Get My Free Growth Plan →</a>
-        <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
-        <div class="hero-bullets" style="display:flex;flex-direction:column;gap:10px;">
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Targeting Intelligence:</strong> we reach the exact buyers who are ready to spend right now.</span></div>
-          <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Autonomous Creative:</strong> we engineer fresh angles constantly, so your ads never go stale.</span></div>
+        <div style="position:relative;border-radius:100px;box-shadow:0 0 25px rgba(175,171,233,0.55);width:100%;margin-bottom:0;">
+          <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:block;background:rgba(0,0,0,0.3);border:1px solid rgba(175,171,233,0.55);color:#fff;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;width:100%;box-sizing:border-box;text-align:center;">Get My Free Growth Plan →</a>
         </div>
       </div>
-      <!-- Desktop CTA replaces inline form card -->
-      <div class="desktop-hero-cta-col">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;">
-          <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:360px;">
-            <div style="font-size:0.78rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:#afabe9;margin-bottom:4px;">Free Growth Plan — Zero Risk</div>
-            <button onclick="openLeadSheet()" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1.05rem;font-weight:700;padding:18px 32px;border-radius:100px;border:none;cursor:pointer;box-shadow:0 0 40px rgba(175,171,233,0.45),0 4px 24px rgba(0,0,0,0.3);transition:opacity 0.2s,transform 0.15s;" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Get My Free Growth Plan →</button>
-            <p style="font-size:0.75rem;color:var(--muted);margin:0;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px;text-align:left;">
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>We analyze your current ad account for free</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>Custom Craving-Capture framework built for your niche</span></div>
-            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>If we don't deliver — you don't pay a cent</span></div>
-          </div>
-          <p style="font-size:0.72rem;color:rgba(175,171,233,0.6);margin:0;font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase;">Only 4 spots left this month</p>
-        </div>
-      </div>
-      <style>
-        .desktop-hero-cta-col { display:flex; align-items:center; justify-content:center; }
-        @media(max-width:768px){ .desktop-hero-cta-col { display:none !important; } }
-      </style>
     </div>
     <div class="scroll-hint">
       <span class="label">SCROLL</span>

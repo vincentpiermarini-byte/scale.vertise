@@ -1192,9 +1192,18 @@ you don't pay us a single penny.">
       </style>
       <div class="hero-text-col">
         <style>
-          @keyframes eyebrowFade { 0%,100%{opacity:0;} 15%,80%{opacity:1;} }
+          @keyframes typewriter {
+            0%    { width:0; }
+            70%   { width:100%; }
+            85%   { width:100%; }
+            95%   { width:0; }
+            100%  { width:0; }
+          }
+          @keyframes blink { 0%,100%{border-color:rgba(175,171,233,0.8);} 50%{border-color:transparent;} }
+          .hero-eyebrow-wrap { overflow:hidden; white-space:nowrap; width:0; border-right:1.5px solid rgba(175,171,233,0.8); animation:typewriter 6s steps(56,end) infinite, blink 0.75s step-end infinite; margin-bottom:14px; display:inline-block; }
+          .hero-eyebrow-text { font-size:9px; font-family:var(--font-mono); letter-spacing:0.16em; text-transform:uppercase; color:rgba(175,171,233,0.8); }
         </style>
-        <p style="font-size:9px;font-family:var(--font-mono);letter-spacing:0.18em;text-transform:uppercase;color:rgba(175,171,233,0.8);margin-bottom:14px;animation:eyebrowFade 5s ease-in-out infinite;">● Attn: Business Owners Seeking Ad Spend That Actually Turns Into Customers</p>
+        <div><span class="hero-eyebrow-wrap"><span class="hero-eyebrow-text">● Attn: Business Owners Seeking Ad Spend That Actually Turns Into Customers</span></span></div>
         <h1 style="width:auto;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:10px;">Your Business Should Be Bigger Than This.</h1>
         <style>
           @keyframes pillarIn {

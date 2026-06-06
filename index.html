@@ -1639,16 +1639,10 @@ you don't pay us a single penny.">
   <script type="text/babel" src="tweaks-panel.jsx"></script>
   <script type="text/babel" src="tweaks-app.jsx"></script>
 
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const links = document.querySelector('.nav .links');
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-</script>
 
 <!-- Sticky mobile CTA -->
 <div id="sticky-cta" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:998;padding:12px 16px 16px;background:rgba(5,6,8,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(175,171,233,0.18);box-shadow:0 -8px 32px rgba(0,0,0,0.5);">
-  <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:14px;border-radius:100px;text-decoration:none;text-align:center;box-shadow:0 0 24px rgba(175,171,233,0.35);box-sizing:border-box;min-height:48px;">Get My Free Blueprint →</a>
+  <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:14px;border-radius:100px;text-decoration:none;text-align:center;box-shadow:0 0 24px rgba(175,171,233,0.35);box-sizing:border-box;min-height:48px;">Get My Free Growth Plan →</a>
 </div>
 <script>
 (function(){

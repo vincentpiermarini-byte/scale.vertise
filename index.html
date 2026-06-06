@@ -1193,7 +1193,44 @@ you don't pay us a single penny.">
       <div class="hero-text-col">
         <div class="hero-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(175,171,233,0.1);border:1px solid rgba(175,171,233,0.3);border-radius:100px;padding:6px 14px;font-size:10px;font-family:var(--font-mono);letter-spacing:0.1em;text-transform:uppercase;color:#afabe9;margin-bottom:18px;">● Attn: Business Owners Seeking Ad Spend That Actually Turns Into Customers</div>
         <h1 style="width:auto;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:10px;">Your Business Should Be Bigger Than This.</h1>
-        <p style="font-size:clamp(1rem,3.2vw,1.25rem);font-weight:400;letter-spacing:-0.01em;line-height:1.6;color:rgba(255,255,255,0.7);margin-bottom:20px;">We build your <span style="color:#afabe9;">Craving-Capture</span> ad system, get you booked calls in 7–14 days, and if it doesn't work you don't pay a single penny.</p>
+        <style>
+          @keyframes pillarIn {
+            from { opacity:0; transform:translateY(18px); }
+            to   { opacity:1; transform:translateY(0); }
+          }
+          .hero-pillar { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; border-radius:14px; background:rgba(175,171,233,0.05); border:1px solid rgba(175,171,233,0.12); margin-bottom:10px; opacity:0; animation:pillarIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; position:relative; overflow:hidden; }
+          .hero-pillar::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(175,171,233,0.07) 0%,transparent 60%); pointer-events:none; }
+          .hero-pillar:nth-child(1) { animation-delay:0.1s; }
+          .hero-pillar:nth-child(2) { animation-delay:0.25s; }
+          .hero-pillar:nth-child(3) { animation-delay:0.4s; }
+          .pillar-icon { flex-shrink:0; width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,rgba(175,171,233,0.25) 0%,rgba(150,130,255,0.15) 100%); border:1px solid rgba(175,171,233,0.3); display:flex; align-items:center; justify-content:center; font-size:1rem; }
+          .pillar-title { font-size:0.82rem; font-weight:700; color:#fff; letter-spacing:0.01em; margin-bottom:2px; }
+          .pillar-sub { font-size:0.78rem; color:rgba(255,255,255,0.5); line-height:1.4; }
+          @media(max-width:768px){ .hero-pillar { padding:12px 13px; gap:11px; } .pillar-icon { width:32px; height:32px; font-size:0.9rem; } }
+        </style>
+        <div style="margin-bottom:20px;">
+          <div class="hero-pillar">
+            <div class="pillar-icon">⚡</div>
+            <div>
+              <div class="pillar-title">Done-For-You Ad System</div>
+              <div class="pillar-sub">We build your full <span style="color:#afabe9;">Craving-Capture</span> framework — creative, copy, targeting, all of it.</div>
+            </div>
+          </div>
+          <div class="hero-pillar">
+            <div class="pillar-icon">📅</div>
+            <div>
+              <div class="pillar-title">Booked Calls in 7–14 Days</div>
+              <div class="pillar-sub">Not impressions. Not clicks. Real conversations with people ready to buy.</div>
+            </div>
+          </div>
+          <div class="hero-pillar">
+            <div class="pillar-icon">🛡️</div>
+            <div>
+              <div class="pillar-title">Zero Risk Guarantee</div>
+              <div class="pillar-sub">If we don't deliver, you don't pay a single penny. Full stop.</div>
+            </div>
+          </div>
+        </div>
         <a class="mobile-hero-cta" href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:none;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;width:100%;box-sizing:border-box;text-align:center;box-shadow:0 0 32px rgba(175,171,233,0.45),0 4px 20px rgba(0,0,0,0.3);">Get My Free Growth Plan →</a>
         <style>@media(max-width:768px){.mobile-hero-cta{display:block!important;margin-bottom:0;}}</style>
         <div class="mobile-stars" style="display:none;margin-top:14px;text-align:center;">

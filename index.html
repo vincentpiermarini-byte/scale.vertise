@@ -1710,33 +1710,91 @@ you don't pay us a single penny.">
 </script>
 
 <!-- Lead form sheet — lives at body level so position:fixed always works from anywhere on the page -->
-<div class="hero-form-card" id="lead-sheet" style="background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
-  <div class="sheet-handle" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:100px;background:rgba(255,255,255,0.25);"></div>
-  <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:flex;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;">×</button>
-  <div id="lead-form-view">
-    <h3 style="font-size:clamp(1.1rem,2vw,1.35rem);font-weight:600;color:var(--white);margin-bottom:6px;">See If You Qualify</h3>
-    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:18px;">We review every application personally. We only take on 3 new clients per month.</p>
+<style>
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  .sheet-submit-btn {
+    width:100%;
+    background: linear-gradient(135deg, #afabe9 0%, #9682ff 50%, #afabe9 100%);
+    background-size: 200% auto;
+    color: #050608;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 16px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 6px;
+    box-shadow: 0 0 32px rgba(175,171,233,0.5), 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    animation: shimmer 3s linear infinite;
+    letter-spacing: 0.01em;
+  }
+  .sheet-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(175,171,233,0.7), 0 8px 32px rgba(0,0,0,0.4); }
+  .sheet-input {
+    width: 100%;
+    background: rgba(175,171,233,0.06);
+    border: 1px solid rgba(175,171,233,0.18);
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 0.92rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+  }
+  .sheet-input::placeholder { color: rgba(255,255,255,0.25); }
+  .sheet-input:focus { border-color: rgba(175,171,233,0.6); background: rgba(175,171,233,0.1); box-shadow: 0 0 0 3px rgba(175,171,233,0.1); }
+  .sheet-label { font-size: 0.65rem; font-family: var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: rgba(175,171,233,0.7); display: block; margin-bottom: 7px; }
+</style>
+
+<div class="hero-form-card" id="lead-sheet" style="background:linear-gradient(180deg,#16112a 0%,#0d0b18 60%,#090810 100%);border-top:none !important;box-shadow:0 -32px 80px rgba(0,0,0,0.8), 0 -1px 0 rgba(175,171,233,0.0) !important;">
+
+  <!-- gradient border line at top -->
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(175,171,233,0.6) 40%,rgba(150,130,255,0.8) 60%,transparent 100%);border-radius:24px 24px 0 0;"></div>
+
+  <!-- purple aurora glow at top -->
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:80%;height:120px;background:radial-gradient(ellipse at 50% 0%,rgba(175,171,233,0.18) 0%,transparent 70%);pointer-events:none;border-radius:50%;"></div>
+
+  <div class="sheet-handle" style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:36px;height:4px;border-radius:100px;background:rgba(175,171,233,0.3);"></div>
+  <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:flex;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(175,171,233,0.1);border:1px solid rgba(175,171,233,0.2);color:rgba(255,255,255,0.7);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;transition:background 0.2s;">×</button>
+
+  <div id="lead-form-view" style="position:relative;">
+    <!-- header -->
+    <div style="text-align:center;margin-bottom:24px;padding-top:8px;">
+      <div style="font-size:0.65rem;font-family:var(--font-mono);letter-spacing:0.18em;text-transform:uppercase;color:#afabe9;margin-bottom:8px;">3 spots left this month</div>
+      <h3 style="font-size:clamp(1.25rem,5vw,1.5rem);font-weight:700;color:var(--white);margin:0;letter-spacing:-0.02em;">See If You Qualify</h3>
+      <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);margin:6px 0 0;">We review every application personally.</p>
+    </div>
+
     <form id="lead-form" onsubmit="handleLeadForm(event)" style="display:flex;flex-direction:column;gap:14px;">
       <div>
-        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Your Name</label>
-        <input type="text" name="name" autocomplete="name" placeholder="John Doe" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <label class="sheet-label">Your Name</label>
+        <input class="sheet-input" type="text" name="name" autocomplete="name" placeholder="John Doe" required>
       </div>
       <div>
-        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Email Address</label>
-        <input type="email" name="email" autocomplete="email" placeholder="you@company.com" required style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <label class="sheet-label">Email Address</label>
+        <input class="sheet-input" type="email" name="email" autocomplete="email" placeholder="you@company.com" required>
       </div>
       <div>
-        <label style="font-size:0.68rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;">Business / Company Name <span style="text-transform:none;letter-spacing:0;font-size:0.72em;opacity:0.65;">(Leave blank if solo)</span></label>
-        <input type="text" name="company" autocomplete="organization" placeholder="Acme Roofing Co." style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:12px 14px;font-size:0.9rem;color:var(--white);outline:none;transition:border-color 0.2s;box-sizing:border-box;" onfocus="this.style.borderColor='rgba(175,171,233,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'">
+        <label class="sheet-label">Business / Company Name <span style="text-transform:none;letter-spacing:0;font-size:0.85em;opacity:0.5;">(Leave blank if solo)</span></label>
+        <input class="sheet-input" type="text" name="company" autocomplete="organization" placeholder="Acme Roofing Co.">
       </div>
-      <button type="submit" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:0.95rem;font-weight:700;padding:15px;border-radius:8px;border:none;cursor:pointer;transition:opacity 0.2s ease,transform 0.15s ease;margin-top:4px;box-shadow:0 0 24px rgba(175,171,233,0.3);" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Get My Free Growth Plan →</button>
+      <button type="submit" class="sheet-submit-btn">Get My Free Growth Plan →</button>
     </form>
-    <p style="font-size:0.72rem;color:var(--muted);text-align:center;margin-top:10px;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
+
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;">
+      <span style="font-size:0.7rem;color:rgba(255,255,255,0.2);">🔒</span>
+      <p style="font-size:0.7rem;color:rgba(255,255,255,0.28);text-align:center;margin:0;">No pitch. No spam. 60 seconds.</p>
+    </div>
   </div>
-  <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:12px 4px;">
-    <div style="font-size:2.5rem;line-height:1;">✅</div>
-    <h3 style="font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:600;color:var(--white);margin:0;">You're in.</h3>
-    <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;margin:0;">We review every application and reach out within 24 hours with your custom growth plan. Check your email — we'll be in touch soon.</p>
+
+  <div id="lead-success-view" style="display:none;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:24px 4px;position:relative;">
+    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(175,171,233,0.2),rgba(150,130,255,0.1));border:1px solid rgba(175,171,233,0.4);display:flex;align-items:center;justify-content:center;font-size:28px;">✅</div>
+    <h3 style="font-size:clamp(1.2rem,2.2vw,1.5rem);font-weight:700;color:var(--white);margin:0;letter-spacing:-0.02em;">You're in.</h3>
+    <p style="font-size:0.85rem;color:rgba(255,255,255,0.5);line-height:1.6;margin:0;">We review every application and reach out within 24 hours with your custom growth plan. Check your email — we'll be in touch soon.</p>
   </div>
 </div>
 <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeLeadSheet()"></div>

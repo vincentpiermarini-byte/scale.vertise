@@ -171,14 +171,15 @@ you don't pay us a single penny.">
 
   .scroll-hint {
     position: absolute;
-    bottom: 32px; left: 50%;
+    bottom: 24px; left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 10;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
     animation: pulse 2.4s ease-in-out infinite;
+    pointer-events: none;
   }
   .scroll-hint .label {
     font-family: var(--font-mono);
@@ -189,7 +190,7 @@ you don't pay us a single penny.">
     color: oklch(0.72 0.006 250);
   }
   .scroll-hint .line {
-    width: 1px; height: 10px;
+    width: 1px; height: 24px;
     background: linear-gradient(var(--muted), transparent);
   }
   @keyframes pulse { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
@@ -1131,12 +1132,12 @@ you don't pay us a single penny.">
     .hero .sub { display: none !important; }
     .hero-bullets { display: none !important; }
     .hero-badge { display: inline-flex !important; font-size: 10px !important; padding: 6px 12px !important; margin-bottom: 14px !important; background: rgba(175,171,233,0.18) !important; letter-spacing: 0.08em !important; }
-    .hero { padding-top: 0; padding-bottom: 0; padding-left: 0 !important; padding-right: 0 !important; justify-content: flex-start; align-items: stretch; min-height: 100svh; }
+    .hero { position: relative !important; padding-top: 0; padding-bottom: 0; padding-left: 0 !important; padding-right: 0 !important; justify-content: flex-start; align-items: stretch; min-height: 100svh; }
     .hero-inner { display: flex !important; flex-direction: column !important; align-items: stretch !important; max-width: 100% !important; grid-template-columns: none !important; gap: 0px !important; padding-top: 64px !important; padding-bottom: 80px !important; padding-left: 16px !important; padding-right: 16px !important; min-height: 100svh !important; box-sizing: border-box !important; }
     .hero video { object-fit: cover !important; object-position: center 65% !important; }
     .hero-text-col { order: 0 !important; flex-shrink: 0; }
     .hero-form-card { order: 1 !important; margin-top: 0 !important; }
-    .scroll-hint { display: flex !important; position: absolute !important; bottom: 8px !important; gap: 4px !important; }
+    .scroll-hint { display: flex !important; position: absolute !important; bottom: 24px !important; left: 50% !important; transform: translateX(-50%) !important; gap: 6px !important; z-index: 10 !important; pointer-events: none !important; }
     .nav-book { display: none !important; }
   }
 </style></head>

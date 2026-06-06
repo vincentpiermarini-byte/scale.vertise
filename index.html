@@ -1150,7 +1150,6 @@ you don't pay us a single penny.">
     <div class="links">
       <a href="#engine">how it works</a>
       <a href="#work">results</a>
-      <a href="#ads">our work</a>
       <a href="#faq">faq</a>
     </div>
   </nav>
@@ -1162,29 +1161,33 @@ you don't pay us a single penny.">
     <div class="hero-dim"></div>
     <div class="hero-inner" style="width:100%;max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:center;text-align:left;padding:0 clamp(20px,4vw,48px);">
       <style>
+        /* Form is always a slide-up bottom sheet (mobile + desktop) */
+        .hero-form-card {
+          position:fixed !important;
+          left:0; right:0; bottom:0;
+          z-index:1000;
+          margin:0 !important;
+          border-radius:24px 24px 0 0 !important;
+          background:#0d0e14 !important;
+          border:none !important;
+          border-top:1px solid rgba(175,171,233,0.35) !important;
+          box-shadow:0 -20px 60px rgba(0,0,0,0.65) !important;
+          max-height:92vh;
+          overflow-y:auto;
+          padding-top:34px !important;
+          transform:translateY(110%);
+          transition:transform 0.42s cubic-bezier(0.32,0.72,0,1);
+        }
+        .hero-form-card.sheet-open { transform:translateY(0); }
+        .sheet-close { display:flex !important; }
+        .sheet-handle { display:block !important; }
+        @media(min-width:769px){
+          .hero-form-card { max-width:480px; left:50%; right:auto; transform:translateX(-50%) translateY(110%); }
+          .hero-form-card.sheet-open { transform:translateX(-50%) translateY(0); }
+        }
         @media(max-width:768px){
           .hero-inner { grid-template-columns:1fr !important; text-align:center !important; }
           .hero-bullets { justify-content:center !important; }
-          /* Form becomes a slide-up bottom sheet on mobile */
-          .hero-form-card {
-            position:fixed !important;
-            left:0; right:0; bottom:0;
-            z-index:1000;
-            margin:0 !important;
-            border-radius:24px 24px 0 0 !important;
-            background:#0d0e14 !important;
-            border:none !important;
-            border-top:1px solid rgba(175,171,233,0.35) !important;
-            box-shadow:0 -20px 60px rgba(0,0,0,0.65) !important;
-            max-height:92vh;
-            overflow-y:auto;
-            padding-top:34px !important;
-            transform:translateY(110%);
-            transition:transform 0.42s cubic-bezier(0.32,0.72,0,1);
-          }
-          .hero-form-card.sheet-open { transform:translateY(0); }
-          .sheet-close { display:flex !important; }
-          .sheet-handle { display:block !important; }
         }
         .sheet-backdrop {
           display:none; position:fixed; inset:0; z-index:999;
@@ -1211,6 +1214,26 @@ you don't pay us a single penny.">
           <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.88rem;color:var(--white);"><span style="color:#afabe9;margin-top:2px;">✓</span><span><strong>Autonomous Creative:</strong> we engineer fresh angles constantly, so your ads never go stale.</span></div>
         </div>
       </div>
+      <!-- Desktop CTA replaces inline form card -->
+      <div class="desktop-hero-cta-col">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;">
+          <div style="display:flex;flex-direction:column;gap:14px;width:100%;max-width:360px;">
+            <div style="font-size:0.78rem;font-family:var(--font-mono);letter-spacing:0.12em;text-transform:uppercase;color:#afabe9;margin-bottom:4px;">Free Strategy Blueprint</div>
+            <button onclick="openLeadSheet()" style="width:100%;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1.05rem;font-weight:700;padding:18px 32px;border-radius:100px;border:none;cursor:pointer;box-shadow:0 0 40px rgba(175,171,233,0.45),0 4px 24px rgba(0,0,0,0.3);transition:opacity 0.2s,transform 0.15s;" onmouseover="this.style.opacity='0.9';this.style.transform='translateY(-2px)'" onmouseout="this.style.opacity='1';this.style.transform=''">Get My Free Blueprint →</button>
+            <p style="font-size:0.75rem;color:var(--muted);margin:0;">No pitch. No spam. Just a real plan — takes 60 seconds.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:360px;text-align:left;">
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>We analyze your current ad account for free</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>Custom Craving-Capture framework built for your niche</span></div>
+            <div style="display:flex;align-items:flex-start;gap:10px;font-size:0.85rem;color:var(--white);"><span style="color:#afabe9;">✓</span><span>If we don't deliver — you don't pay a cent</span></div>
+          </div>
+          <p style="font-size:0.72rem;color:rgba(175,171,233,0.6);margin:0;font-family:var(--font-mono);letter-spacing:0.06em;text-transform:uppercase;">Only 4 spots left this month</p>
+        </div>
+      </div>
+      <style>
+        .desktop-hero-cta-col { display:flex; align-items:center; justify-content:center; }
+        @media(max-width:768px){ .desktop-hero-cta-col { display:none !important; } }
+      </style>
       <div class="hero-form-card" style="position:relative;background:linear-gradient(135deg,rgba(175,171,233,0.18) 0%,rgba(175,171,233,0.06) 100%);backdrop-filter:blur(24px);border:1px solid rgba(175,171,233,0.35);border-radius:16px;padding:clamp(24px,3vw,36px);">
         <div class="sheet-handle" style="display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);width:40px;height:4px;border-radius:100px;background:rgba(255,255,255,0.25);"></div>
         <button class="sheet-close" onclick="closeLeadSheet()" aria-label="Close" style="display:none;position:absolute;top:14px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;line-height:1;cursor:pointer;align-items:center;justify-content:center;">×</button>
@@ -1250,10 +1273,6 @@ you don't pay us a single penny.">
     </div>
     <script>
     function openLeadSheet() {
-      if (window.innerWidth > 768) {
-        document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});
-        return;
-      }
       document.querySelector('.hero-form-card').classList.add('sheet-open');
       document.getElementById('sheet-backdrop').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1556,121 +1575,6 @@ you don't pay us a single penny.">
 
   </section>
 
-  <section class="section" id="ads" data-screen-label="Ad Gallery" style="padding-bottom:clamp(64px,8vw,100px);">
-    <div class="section-head center">
-      <div class="eyebrow">The Creative</div>
-      <h2>Ads we build. Results they drive.</h2>
-      <p class="sub" style="max-width:520px;margin:0 auto;">Real campaigns. Real clients. Every creative engineered to stop the scroll and book the call.</p>
-    </div>
-
-    <style>
-      .client-block { margin-top:clamp(48px,6vw,72px); }
-      .client-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
-      .client-name { font-size:clamp(1.1rem,2vw,1.4rem); font-weight:600; color:var(--white); letter-spacing:-0.02em; }
-      .client-tag { font-size:0.68rem; font-family:var(--font-mono); letter-spacing:0.12em; text-transform:uppercase; color:#afabe9; background:rgba(175,171,233,0.1); border:1px solid rgba(175,171,233,0.25); border-radius:100px; padding:4px 12px; }
-      .client-arrows { display:flex; gap:8px; }
-      .client-arrows button { width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); color:var(--white); font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
-      .client-arrows button:hover { background:rgba(175,171,233,0.2); border-color:rgba(175,171,233,0.4); color:#afabe9; }
-      .client-scroll { overflow:hidden; }
-      .client-track { display:flex; gap:14px; transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); }
-      .client-track img { height:200px; width:150px; object-fit:cover; border-radius:12px; flex-shrink:0; display:block; border:1px solid rgba(255,255,255,0.06); transition:transform 0.3s,box-shadow 0.3s; cursor:pointer; }
-      .client-track img:hover { transform:translateY(-4px) scale(1.02); box-shadow:0 16px 40px rgba(0,0,0,0.5); }
-      .client-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent); margin-top:clamp(48px,6vw,72px); }
-    </style>
-
-    <!-- Scalevertise -->
-    <div class="client-block">
-      <div class="client-header">
-        <div>
-          <div class="client-name">Scalevertise</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Demo</span>
-          <div class="client-arrows">
-            <button onclick="scrollRow('sv',-1)">‹</button>
-            <button onclick="scrollRow('sv',1)">›</button>
-          </div>
-        </div>
-      </div>
-      <div class="client-scroll"><div id="sv-track" class="client-track">
-        <img src="uploads/SV_Static6.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static7.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static8.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static4.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/SV_Static5.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
-      </div></div>
-    </div>
-
-    <div class="client-divider"></div>
-
-    <!-- Blue Wave Pro Wash -->
-    <div class="client-block">
-      <div class="client-header">
-        <div>
-          <div class="client-name">Blue Wave Pro Wash</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Active Client</span>
-          <div class="client-arrows">
-            <button onclick="scrollRow('bw',-1)">‹</button>
-            <button onclick="scrollRow('bw',1)">›</button>
-          </div>
-        </div>
-      </div>
-      <div class="client-scroll"><div id="bw-track" class="client-track">
-        <img src="uploads/BW_Static1.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static2.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static3.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static4.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/BW_Static5.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
-      </div></div>
-    </div>
-
-    <div class="client-divider"></div>
-
-    <!-- Quack Quotes -->
-    <div class="client-block">
-      <div class="client-header">
-        <div>
-          <div class="client-name">Quack Quotes</div>
-          <div style="font-size:0.78rem;color:var(--muted);margin-top:3px;">Meta Ad Campaign</div>
-        </div>
-        <div style="display:flex;align-items:center;gap:16px;">
-          <span class="client-tag">Active Client</span>
-          <div class="client-arrows">
-            <button onclick="scrollRow('qq',-1)">‹</button>
-            <button onclick="scrollRow('qq',1)">›</button>
-          </div>
-        </div>
-      </div>
-      <div class="client-scroll"><div id="qq-track" class="client-track">
-        <img src="uploads/QQ_Static1.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static2.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in"><img src="uploads/QQ_Static3.png" loading="lazy" onclick="openLightbox(this.src)" style="cursor:zoom-in">
-      </div></div>
-    </div>
-
-    <!-- Lightbox -->
-    <div id="lb" onclick="closeLightbox()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;align-items:center;justify-content:center;padding:24px;">
-      <img id="lb-img" src="" style="max-height:90vh;max-width:90vw;border-radius:12px;box-shadow:0 0 80px rgba(0,0,0,0.8);">
-      <button onclick="closeLightbox()" style="position:absolute;top:20px;right:24px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;font-size:22px;width:40px;height:40px;border-radius:50%;cursor:pointer;line-height:1;">×</button>
-    </div>
-
-    <script>
-    var rowOffsets = {sv:0, bw:0, qq:0};
-    function scrollRow(id, dir) {
-      var track = document.getElementById(id+'-track');
-      var img = track.querySelector('img');
-      var step = img.offsetWidth + 14;
-      var maxOffset = track.scrollWidth - track.parentElement.offsetWidth;
-      rowOffsets[id] = Math.max(0, Math.min(rowOffsets[id] + dir * step * 2, maxOffset));
-      track.style.transform = 'translateX(-' + rowOffsets[id] + 'px)';
-    }
-    function openLightbox(src) {
-      var lb = document.getElementById('lb');
-      document.getElementById('lb-img').src = src;
-      lb.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-      document.getElementById('lb').style.display = 'none';
-      document.body.style.overflow = '';
-    }
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
-    </script>
-  </section>
 
 
   <section class="section" id="faq" data-screen-label="FAQ" style="max-width:760px;margin-left:auto;margin-right:auto;">
@@ -1732,7 +1636,7 @@ you don't pay us a single penny.">
   </section>
 
   <div style="text-align:center;padding:clamp(48px,6vw,80px) 24px;">
-    <a href="#lead-form" onclick="event.preventDefault();document.querySelector('.hero-form-card').scrollIntoView({behavior:'smooth',block:'center'});" style="display:inline-block;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:18px 48px;border-radius:100px;text-decoration:none;box-shadow:0 0 40px rgba(175,171,233,0.4),0 4px 24px rgba(0,0,0,0.3);">See If You Qualify →</a>
+    <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:inline-block;background:linear-gradient(135deg,rgba(175,171,233,1) 0%,rgba(150,130,255,0.95) 100%);color:#050608;font-size:1rem;font-weight:700;padding:18px 48px;border-radius:100px;text-decoration:none;box-shadow:0 0 40px rgba(175,171,233,0.4),0 4px 24px rgba(0,0,0,0.3);">See If You Qualify →</a>
   </div>
 
   <footer>

@@ -1634,65 +1634,69 @@ you don't pay us a single penny.">
       <div class="eyebrow">Client Reviews</div>
       <h2 class="section-title">What Our Clients Say</h2>
     </div>
-    <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
-
-      <!-- Review 1 -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:1.1rem;font-weight:700;color:#afabe9;">J</span>
-          </div>
-          <div>
-            <div style="font-size:0.88rem;font-weight:700;color:#fff;">Josh Frankena</div>
-            <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">Blue Wave Pro Wash</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:3px;">
-          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
-        </div>
-        <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Working with Scalevertise completely changed our pipeline. We went from barely getting calls to having a consistent flow of booked jobs every week. Best investment we've made for the business."</p>
-      </div>
-
-      <!-- Review 2 -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:1.1rem;font-weight:700;color:#afabe9;">L</span>
-          </div>
-          <div>
-            <div style="font-size:0.88rem;font-weight:700;color:#fff;">Luke Piermarini</div>
-            <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">QuackQuotes</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:3px;">
-          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
-        </div>
-        <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"I was skeptical at first but the results speak for themselves. Our cost per lead dropped significantly and the quality of inquiries is so much better. Vincent knows exactly what he's doing."</p>
-      </div>
-
-      <!-- Review 3 -->
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="font-size:1.1rem;font-weight:700;color:#afabe9;">W</span>
-          </div>
-          <div>
-            <div style="font-size:0.88rem;font-weight:700;color:#fff;">Will Akers</div>
-            <div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">SnootCo</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:3px;">
-          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
-        </div>
-        <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Scalevertise delivered fast. Within two weeks we were seeing real booked appointments from our ads. The whole process was smooth and the communication was always on point."</p>
-      </div>
-
-    </div>
     <style>
-      @media (max-width: 700px) {
-        #reviews > div:last-child { grid-template-columns: 1fr !important; }
-      }
+      @keyframes reviewScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+      .review-track-wrap { overflow:hidden; mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent); }
+      .review-track { display:flex; gap:20px; animation:reviewScroll 22s linear infinite; width:max-content; }
+      .review-track:hover { animation-play-state:paused; }
+      .review-card { width:300px; flex-shrink:0; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); border-radius:18px; padding:22px 20px; display:flex; flex-direction:column; gap:12px; }
     </style>
+    <div class="review-track-wrap">
+      <div class="review-track">
+        <!-- Card 1 -->
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">J</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Josh Frankena</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">Blue Wave Pro Wash</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Working with Scalevertise completely changed our pipeline. We went from barely getting calls to having a consistent flow of booked jobs every week. Best investment we've made for the business."</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">L</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Luke Piermarini</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">QuackQuotes</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"I was skeptical at first but the results speak for themselves. Our cost per lead dropped significantly and the quality of inquiries is so much better. Vincent knows exactly what he's doing."</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">W</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Will Akers</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">SnootCo</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Scalevertise delivered fast. Within two weeks we were seeing real booked appointments from our ads. The whole process was smooth and the communication was always on point."</p>
+        </div>
+        <!-- Duplicates for seamless loop -->
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">J</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Josh Frankena</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">Blue Wave Pro Wash</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Working with Scalevertise completely changed our pipeline. We went from barely getting calls to having a consistent flow of booked jobs every week. Best investment we've made for the business."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">L</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Luke Piermarini</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">QuackQuotes</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"I was skeptical at first but the results speak for themselves. Our cost per lead dropped significantly and the quality of inquiries is so much better. Vincent knows exactly what he's doing."</p>
+        </div>
+        <div class="review-card">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div style="width:44px;height:44px;border-radius:50%;background:rgba(175,171,233,0.18);border:1px solid rgba(175,171,233,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><span style="font-size:1.1rem;font-weight:700;color:#afabe9;">W</span></div>
+            <div><div style="font-size:0.88rem;font-weight:700;color:#fff;">Will Akers</div><div style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1px;">SnootCo</div></div>
+          </div>
+          <span style="color:#f5a623;font-size:1rem;">★★★★★</span>
+          <p style="font-size:0.84rem;color:rgba(255,255,255,0.7);line-height:1.55;margin:0;">"Scalevertise delivered fast. Within two weeks we were seeing real booked appointments from our ads. The whole process was smooth and the communication was always on point."</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Pricing -->

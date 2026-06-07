@@ -1150,9 +1150,16 @@ you don't pay us a single penny.">
   </nav>
 
   <section class="hero" data-screen-label="Hero">
-    <video autoplay loop muted playsinline preload="metadata">
+    <video autoplay loop muted playsinline preload="auto" id="hero-video" style="display:block;">
       <source src="uploads/pingpong.webm" type="video/webm">
     </video>
+    <script>
+    (function(){
+      var v = document.getElementById('hero-video');
+      if (!v) return;
+      v.play().catch(function(){ v.style.display = 'none'; });
+    })();
+    </script>
     <div class="hero-dim"></div>
     <div class="hero-inner" style="width:100%;max-width:660px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;">
       <style>

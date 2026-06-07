@@ -1194,7 +1194,7 @@ you don't pay us a single penny.">
           sx = (v.videoWidth - sw) / 2; sy = 0;
         } else {
           sw = v.videoWidth; sh = sw / cr;
-          sx = 0; sy = (v.videoHeight - sh) * 0.2;
+          sx = 0; sy = (v.videoHeight - sh) * 0.72;
         }
         ctx.drawImage(v, sx, sy, sw, sh, 0, 0, c.width, c.height);
         raf = requestAnimationFrame(drawCover);

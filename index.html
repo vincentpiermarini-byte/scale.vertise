@@ -1089,9 +1089,16 @@ you don't pay us a single penny.">
     background: var(--white);
     border-radius: 2px;
   }
-  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls,
+  video::-webkit-media-controls-panel,
   video::-webkit-media-controls-play-button,
-  video::-webkit-media-controls { display: none !important; -webkit-appearance: none; }
+  video::-webkit-media-controls-start-playback-button,
+  video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
   @media (max-width: 768px) {
     .nav { padding: 20px 24px; }
     .nav .links {
@@ -1150,14 +1157,18 @@ you don't pay us a single penny.">
   </nav>
 
   <section class="hero" data-screen-label="Hero">
-    <video autoplay loop muted playsinline preload="auto" poster="uploads/pingpong-poster.jpg" id="hero-video">
+    <video autoplay loop muted playsinline preload="auto" poster="uploads/pingpong-poster.jpg" id="hero-video" x-webkit-airplay="deny" disablepictureinpicture>
       <source src="uploads/pingpong.mp4" type="video/mp4">
       <source src="uploads/pingpong.webm" type="video/webm">
     </video>
     <script>
     (function(){
       var v = document.getElementById('hero-video');
-      if (v) v.play().catch(function(){});
+      if (!v) return;
+      function tryPlay() { v.play().catch(function(){}); }
+      tryPlay();
+      v.addEventListener('canplay', tryPlay, { once: true });
+      v.addEventListener('loadeddata', tryPlay, { once: true });
     })();
     </script>
     <div class="hero-dim"></div>

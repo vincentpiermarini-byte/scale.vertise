@@ -1249,66 +1249,58 @@ you don't pay us a single penny.">
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;width:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#afabe9;flex-shrink:0;"></span><span style="font-size:10px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:#afabe9;font-weight:600;">Attn: Business Owners</span></div>
         <h1 style="width:auto;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:12px;">Your Business Should Be Bigger Than This.</h1>
 
-        <!-- Social proof -->
-        <div style="margin-bottom:16px;width:100%;">
-          <p style="font-size:9px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;">Trusted by 20+ Local Service Brands</p>
-          <div style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:space-around;width:100%;box-sizing:border-box;">
-
-            <div style="display:flex;flex-direction:row;align-items:center;gap:6px;opacity:0.45;">
-              <svg width="16" height="14" viewBox="0 0 28 24" fill="none"><path d="M2 16 Q7 8 14 14 Q21 20 26 12" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M2 20 Q7 12 14 18 Q21 24 26 16" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-              <span style="font-size:8.5px;font-family:var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.75);white-space:nowrap;">Blue Wave</span>
+        <!-- Social proof ticker -->
+        <div style="margin-bottom:16px;width:100%;overflow:hidden;">
+          <p style="font-size:9px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;text-align:center;">Trusted by 10+ Local Service Brands</p>
+          <style>
+            @keyframes logoScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
+            .logo-track { display:flex; gap:32px; animation:logoScroll 18s linear infinite; width:max-content; }
+            .logo-track-wrap { overflow:hidden; mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent); -webkit-mask-image:linear-gradient(90deg,transparent,black 12%,black 88%,transparent); }
+            .logo-item { display:flex; flex-direction:row; align-items:center; gap:6px; opacity:0.45; flex-shrink:0; }
+            .logo-item span { font-size:8.5px; font-family:var(--font-mono); letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.75); white-space:nowrap; }
+          </style>
+          <div class="logo-track-wrap">
+            <div class="logo-track">
+              <!-- Set 1 -->
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><path d="M2 16 Q7 8 14 14 Q21 20 26 12" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M2 20 Q7 12 14 18 Q21 24 26 16" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Blue Wave</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><rect x="2" y="2" width="24" height="16" rx="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M8 22 L12 18 L8 18" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/><circle cx="18" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/></svg><span>QuackQuotes</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><ellipse cx="14" cy="15" rx="5" ry="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><circle cx="9" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="14" cy="7" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="19" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/></svg><span>SnootCo</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><circle cx="14" cy="12" r="8" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M10 9 Q14 7 18 9 Q14 15 10 9Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><circle cx="14" cy="16" r="1.5" fill="rgba(255,255,255,0.8)"/></svg><span>Subutai.ai</span></div>
+              <!-- Set 2 (duplicate for seamless loop) -->
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><path d="M2 16 Q7 8 14 14 Q21 20 26 12" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M2 20 Q7 12 14 18 Q21 24 26 16" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span>Blue Wave</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><rect x="2" y="2" width="24" height="16" rx="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M8 22 L12 18 L8 18" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/><circle cx="18" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/></svg><span>QuackQuotes</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><ellipse cx="14" cy="15" rx="5" ry="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><circle cx="9" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="14" cy="7" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="19" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/></svg><span>SnootCo</span></div>
+              <div class="logo-item"><svg width="16" height="14" viewBox="0 0 28 24" fill="none"><circle cx="14" cy="12" r="8" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M10 9 Q14 7 18 9 Q14 15 10 9Z" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" fill="none"/><circle cx="14" cy="16" r="1.5" fill="rgba(255,255,255,0.8)"/></svg><span>Subutai.ai</span></div>
             </div>
-
-            <div style="display:flex;flex-direction:row;align-items:center;gap:6px;opacity:0.45;">
-              <svg width="16" height="14" viewBox="0 0 28 24" fill="none"><rect x="2" y="2" width="24" height="16" rx="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><path d="M8 22 L12 18 L8 18" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/><circle cx="18" cy="10" r="1.5" fill="rgba(255,255,255,0.9)"/></svg>
-              <span style="font-size:8.5px;font-family:var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.75);white-space:nowrap;">QuackQuotes</span>
-            </div>
-
-            <div style="display:flex;flex-direction:row;align-items:center;gap:6px;opacity:0.45;">
-              <svg width="16" height="14" viewBox="0 0 28 24" fill="none"><ellipse cx="14" cy="15" rx="5" ry="4" stroke="rgba(255,255,255,0.9)" stroke-width="2" fill="none"/><circle cx="9" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="14" cy="7" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/><circle cx="19" cy="9" r="2" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" fill="none"/></svg>
-              <span style="font-size:8.5px;font-family:var(--font-mono);letter-spacing:0.07em;text-transform:uppercase;color:rgba(255,255,255,0.75);white-space:nowrap;">SnootCo</span>
-            </div>
-
           </div>
         </div>
         <style>
-          @keyframes pillarIn {
-            from { opacity:0; transform:translateY(18px); }
-            to   { opacity:1; transform:translateY(0); }
-          }
-          .hero-pillar { display:flex; align-items:flex-start; gap:12px; padding:10px 14px; border-radius:14px; background:rgba(175,171,233,0.05); border:1px solid rgba(175,171,233,0.12); margin-bottom:7px; opacity:0; animation:pillarIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; position:relative; overflow:hidden; }
-          .hero-pillar::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(175,171,233,0.07) 0%,transparent 60%); pointer-events:none; }
-          .hero-pillar:nth-child(1) { animation-delay:0.1s; }
-          .hero-pillar:nth-child(2) { animation-delay:0.25s; }
-          .hero-pillar:nth-child(3) { animation-delay:0.4s; }
-          .pillar-icon { flex-shrink:0; width:36px; height:36px; border-radius:10px; background:transparent; border:1px solid rgba(175,171,233,0.15); display:flex; align-items:center; justify-content:center; font-size:1rem; }
-          .pillar-title { font-size:0.82rem; font-weight:700; color:#fff; letter-spacing:0.01em; margin-bottom:2px; text-align:left; }
-          .pillar-sub { font-size:0.78rem; color:rgba(255,255,255,0.5); line-height:1.4; text-align:left; }
-          @media(max-width:768px){ .hero-pillar { padding:12px 13px; gap:11px; } .pillar-icon { width:32px; height:32px; font-size:0.9rem; } }
+          @keyframes pillarIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+          .hero-pillar { display:flex; align-items:flex-start; gap:14px; margin-bottom:18px; opacity:0; animation:pillarIn 0.5s cubic-bezier(0.22,1,0.36,1) forwards; }
+          .hero-pillar:nth-child(1){animation-delay:0.1s}
+          .hero-pillar:nth-child(2){animation-delay:0.22s}
+          .hero-pillar:nth-child(3){animation-delay:0.34s}
+          .pillar-accent { width:2px; flex-shrink:0; border-radius:2px; margin-top:3px; align-self:stretch; }
+          .pillar-title { font-size:0.85rem; font-weight:700; color:#fff; letter-spacing:0.01em; margin-bottom:3px; text-align:left; }
+          .pillar-sub { font-size:0.78rem; color:rgba(255,255,255,0.45); line-height:1.5; text-align:left; }
         </style>
-        <div style="margin-bottom:20px;">
+        <div style="margin-bottom:22px;">
           <div class="hero-pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </div>
+            <div class="pillar-accent" style="background:#f59e0b;"></div>
             <div>
               <div class="pillar-title">Craving-Capture Formula</div>
               <div class="pillar-sub">Proprietary Meta frameworks that turn cold traffic into hyper-intent buyers.</div>
             </div>
           </div>
           <div class="hero-pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/></svg>
-            </div>
+            <div class="pillar-accent" style="background:#60a5fa;"></div>
             <div>
-              <div class="pillar-title">Booked Calls in 7–14 Days</div>
+              <div class="pillar-title">Booked Calls in 7-14 Days</div>
               <div class="pillar-sub">Not impressions. Real booked calls with people ready to spend.</div>
             </div>
           </div>
           <div class="hero-pillar">
-            <div class="pillar-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-            </div>
+            <div class="pillar-accent" style="background:#34d399;"></div>
             <div>
               <div class="pillar-title">Zero Risk Guarantee</div>
               <div class="pillar-sub">If we don't deliver results, you don't pay. Period.</div>

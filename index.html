@@ -760,7 +760,7 @@ you don't pay us a single penny.">
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 20%;
     display: block;
     border-radius: 18px;
     border: 1px solid rgba(255,255,255,0.14);
@@ -1150,15 +1150,14 @@ you don't pay us a single penny.">
   </nav>
 
   <section class="hero" data-screen-label="Hero">
-    <video autoplay loop muted playsinline preload="auto" id="hero-video" style="display:block;">
+    <video autoplay loop muted playsinline preload="auto" poster="uploads/pingpong-poster.jpg" id="hero-video">
       <source src="uploads/pingpong.mp4" type="video/mp4">
       <source src="uploads/pingpong.webm" type="video/webm">
     </video>
     <script>
     (function(){
       var v = document.getElementById('hero-video');
-      if (!v) return;
-      v.play().catch(function(){ v.style.display = 'none'; });
+      if (v) v.play().catch(function(){});
     })();
     </script>
     <div class="hero-dim"></div>
@@ -1266,7 +1265,6 @@ you don't pay us a single penny.">
         <div style="position:relative;border-radius:100px;box-shadow:0 0 40px rgba(175,171,233,0.75),0 0 80px rgba(175,171,233,0.3);width:100%;margin-bottom:0;">
           <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:block;background:rgba(0,0,0,0.3);border:1px solid rgba(175,171,233,0.55);color:#fff;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;width:100%;box-sizing:border-box;text-align:center;">See If You Qualify →</a>
         </div>
-        <p style="font-size:10px;font-family:var(--font-mono);letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-top:10px;text-align:center;">4 client spots remaining this month</p>
       </div>
     </div>
     <div class="scroll-hint">
@@ -1609,7 +1607,7 @@ you don't pay us a single penny.">
   <!-- Founder -->
   <style>
     .founder { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:35% 65%; gap:clamp(32px,5vw,64px); align-items:stretch; }
-    .founder-photo { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; border-radius:18px; border:1px solid rgba(255,255,255,0.14); box-shadow:0 18px 50px rgba(0,0,0,0.45); }
+    .founder-photo { width:100%; height:100%; object-fit:cover; object-position:center 20%; display:block; border-radius:18px; border:1px solid rgba(255,255,255,0.14); box-shadow:0 18px 50px rgba(0,0,0,0.45); }
     .founder-name { font-size:clamp(32px,4vw,52px); font-weight:300; letter-spacing:-0.03em; line-height:1; }
     .founder-role { margin-top:12px; font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase; color:rgba(175,171,233,0.6); }
     .founder-rule { width:56px; height:2px; margin:22px 0 26px; background:rgba(150,130,255,0.7); }

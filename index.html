@@ -99,9 +99,16 @@ you don't pay us a single penny.">
   .hero video {
     position: absolute;
     inset: 0;
+    width: 1px; height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+  #hero-canvas {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     z-index: 0;
   }
   .hero::after {
@@ -1157,6 +1164,7 @@ you don't pay us a single penny.">
   </nav>
 
   <section class="hero" data-screen-label="Hero">
+    <canvas id="hero-canvas"></canvas>
     <video autoplay loop muted playsinline preload="auto" id="hero-video" x-webkit-airplay="deny" disablepictureinpicture>
       <source src="uploads/pingpong.mp4" type="video/mp4">
       <source src="uploads/pingpong.webm" type="video/webm">
@@ -1164,7 +1172,45 @@ you don't pay us a single penny.">
     <script>
     (function(){
       var v = document.getElementById('hero-video');
-      if (v) v.play().catch(function(){});
+      var c = document.getElementById('hero-canvas');
+      if (!v || !c) return;
+      var ctx = c.getContext('2d');
+      var raf;
+
+      function resize() {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function drawCover() {
+        if (!v.videoWidth) return;
+        var vr = v.videoWidth / v.videoHeight;
+        var cr = c.width / c.height;
+        var sx, sy, sw, sh;
+        if (vr > cr) {
+          sh = v.videoHeight; sw = sh * cr;
+          sx = (v.videoWidth - sw) / 2; sy = 0;
+        } else {
+          sw = v.videoWidth; sh = sw / cr;
+          sx = 0; sy = (v.videoHeight - sh) / 2;
+        }
+        ctx.drawImage(v, sx, sy, sw, sh, 0, 0, c.width, c.height);
+        raf = requestAnimationFrame(drawCover);
+      }
+
+      function start() {
+        v.play().catch(function(){});
+        if (raf) cancelAnimationFrame(raf);
+        drawCover();
+      }
+
+      v.addEventListener('canplay', start, { once: true });
+      v.addEventListener('playing', function() {
+        if (!raf) drawCover();
+      });
+      v.load();
     })();
     </script>
     <div class="hero-dim"></div>

@@ -1154,6 +1154,22 @@ you don't pay us a single penny.">
     .scroll-hint { display: flex !important; position: absolute !important; bottom: 24px !important; left: 50% !important; transform: translateX(-50%) !important; gap: 6px !important; z-index: 10 !important; pointer-events: none !important; }
     .nav-book { display: none !important; }
   }
+</style>
+<style>
+  @keyframes heroIn {
+    0%   { opacity:0; transform:translateY(22px) scale(0.98); }
+    100% { opacity:1; transform:translateY(0) scale(1); }
+  }
+  .hero-enter {
+    opacity:0;
+    animation:heroIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+  @keyframes revealIn {
+    0%   { opacity:0; transform:translateY(28px) scale(0.97); }
+    100% { opacity:1; transform:translateY(0) scale(1); }
+  }
+  .reveal { opacity:0; }
+  .reveal.revealed { animation:revealIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards; }
 </style></head>
 <body>
 
@@ -1246,11 +1262,11 @@ you don't pay us a single penny.">
         .sheet-backdrop.open { display:block; opacity:1; }
       </style>
       <div class="hero-text-col">
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;width:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#afabe9;flex-shrink:0;"></span><span style="font-size:10px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:#afabe9;font-weight:600;">Attn: Business Owners</span></div>
-        <h1 style="width:auto;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:12px;">Your Business Should Be Bigger Than This.</h1>
+        <div class="hero-enter" style="animation-delay:0.05s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;width:100%;"><span style="width:6px;height:6px;border-radius:50%;background:#afabe9;flex-shrink:0;"></span><span style="font-size:10px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:#afabe9;font-weight:600;">Attn: Business Owners</span></div>
+        <h1 class="hero-enter" style="animation-delay:0.15s;width:auto;font-size:clamp(2rem,5vw,3.8rem);font-weight:700;letter-spacing:-0.02em;line-height:1.05;margin-bottom:12px;">Your Business Should Be Bigger Than This.</h1>
 
         <!-- Social proof ticker -->
-        <div style="margin-bottom:16px;width:100%;overflow:hidden;">
+        <div class="hero-enter" style="animation-delay:0.25s;margin-bottom:16px;width:100%;overflow:hidden;">
           <p style="font-size:9px;font-family:var(--font-mono);letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:10px;text-align:center;">Trusted by 10+ Local Service Brands</p>
           <style>
             @keyframes logoScroll { 0% { transform:translateX(0); } 100% { transform:translateX(-50%); } }
@@ -1278,9 +1294,9 @@ you don't pay us a single penny.">
           @keyframes pillarIn { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
           .hero-pillar { display:flex; align-items:flex-start; gap:12px; padding:10px 14px; border-radius:14px; background:rgba(175,171,233,0.05); border:1px solid rgba(175,171,233,0.12); margin-bottom:7px; opacity:0; animation:pillarIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; position:relative; overflow:hidden; }
           .hero-pillar::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(175,171,233,0.07) 0%,transparent 60%); pointer-events:none; }
-          .hero-pillar:nth-child(1){animation-delay:0.1s}
-          .hero-pillar:nth-child(2){animation-delay:0.25s}
-          .hero-pillar:nth-child(3){animation-delay:0.4s}
+          .hero-pillar:nth-child(1){animation-delay:0.35s}
+          .hero-pillar:nth-child(2){animation-delay:0.45s}
+          .hero-pillar:nth-child(3){animation-delay:0.55s}
           .pillar-icon { flex-shrink:0; width:36px; height:36px; border-radius:10px; background:transparent; border:1px solid rgba(175,171,233,0.15); display:flex; align-items:center; justify-content:center; }
           .pillar-title { font-size:0.82rem; font-weight:700; color:#fff; letter-spacing:0.01em; margin-bottom:2px; text-align:left; }
           .pillar-sub { font-size:0.78rem; color:rgba(255,255,255,0.5); line-height:1.4; text-align:left; }
@@ -1315,7 +1331,7 @@ you don't pay us a single penny.">
             </div>
           </div>
         </div>
-        <div style="position:relative;border-radius:100px;box-shadow:0 0 40px rgba(175,171,233,0.75),0 0 80px rgba(175,171,233,0.3);width:100%;margin-bottom:0;">
+        <div class="hero-enter" style="animation-delay:0.55s;position:relative;border-radius:100px;box-shadow:0 0 40px rgba(175,171,233,0.75),0 0 80px rgba(175,171,233,0.3);width:100%;margin-bottom:0;">
           <a href="#lead-form" onclick="event.preventDefault();openLeadSheet();" style="display:block;background:rgba(0,0,0,0.3);border:1px solid rgba(175,171,233,0.55);color:#fff;font-size:1rem;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;width:100%;box-sizing:border-box;text-align:center;">See If You Qualify →</a>
         </div>
       </div>
@@ -2031,4 +2047,38 @@ you don't pay us a single penny.">
 </div>
 <div class="sheet-backdrop" id="sheet-backdrop" onclick="closeLeadSheet()"></div>
 
+<script>
+(function(){
+  var sel = [
+    '.section-head','section h2','section h3',
+    '.hiw-connector + div','.result-card','.bottom-stat',
+    '.faq-item','.founder-photo','.founder-name',
+    '.founder-bio','.founder-creds','.founder-contact',
+    '.engine-split > div',
+    '.review-card',
+    'section > div > p'
+  ].join(',');
+  var els = document.querySelectorAll(sel);
+  var delays = [0, 0.08, 0.15, 0.22, 0.28];
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var el = e.target;
+      var siblings = el.parentElement
+        ? Array.from(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+        : [];
+      var idx = siblings.indexOf(el);
+      el.style.animationDelay = (delays[Math.min(idx,delays.length-1)]) + 's';
+      el.classList.add('revealed');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function(el){
+    if(!el.classList.contains('hero-enter') && !el.closest('.hero')){
+      el.classList.add('reveal');
+      io.observe(el);
+    }
+  });
+})();
+</script>
 </body></html>

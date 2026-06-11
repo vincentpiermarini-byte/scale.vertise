@@ -159,7 +159,13 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .reveal.revealed { animation:riseIn 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
 
 /* ════════ SECTION 1 · HERO ════════ */
-.hero { padding:clamp(64px,9vw,120px) 0 clamp(72px,9vw,120px); position:relative; overflow:hidden; }
+.hero { padding:clamp(100px,11vw,140px) 0 clamp(72px,9vw,120px); position:relative; overflow:hidden; }
+.hero-sub-mobile { display:none; }
+@media(max-width:640px) {
+  .hero { padding:88px 0 clamp(52px,8vw,80px); }
+  .hero-sub-desktop { display:none; }
+  .hero-sub-mobile { display:block; }
+}
 /* animated landscape background — canvas render for iOS autoplay */
 .hero video {
   position:absolute; inset:0;
@@ -361,12 +367,13 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   margin-bottom:9px;
 }
 .form-field input {
-  width:100%; background:#0A0E1A; border:1px solid rgba(148,163,184,0.18);
-  border-radius:12px; padding:16px 18px; font-family:var(--font);
-  font-size:1rem; color:var(--white); outline:none;
-  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+  width:100%; background:#07090F; border:1px solid rgba(148,163,184,0.16);
+  border-radius:12px; padding:17px 20px; font-family:var(--font);
+  font-size:1rem; color:#fff; outline:none;
+  transition:border-color 0.22s ease, box-shadow 0.22s ease;
+  -webkit-appearance:none;
 }
-.form-field input::placeholder { color:var(--slate-500); }
+.form-field input::placeholder { color:#475569; font-weight:400; }
 .form-field input:focus {
   border-color:rgba(175,171,233,0.6);
   box-shadow:0 0 0 3px rgba(175,171,233,0.12);
@@ -454,6 +461,15 @@ footer .legal {
 <div class="geo-field"></div>
 <div class="geo-grid"></div>
 
+<!-- ── Top bar: branding only, zero nav links ── -->
+<header style="position:absolute;top:0;left:0;right:0;z-index:10;padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;pointer-events:none;">
+  <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.025em;pointer-events:none;">scale<span style="color:#AFABE9;">vertise</span></div>
+  <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#94A3B8;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;pointer-events:none;">
+    <span style="width:7px;height:7px;border-radius:50%;background:#AFABE9;flex-shrink:0;box-shadow:0 0 8px rgba(175,171,233,0.9);animation:pulse 2s ease-in-out infinite;"></span>
+    Raleigh Radius: Active
+  </div>
+</header>
+
 <main>
 
 <!-- ════════════════ SECTION 1 · HERO ════════════════ -->
@@ -517,8 +533,11 @@ footer .legal {
       I Will Put <span class="hl">5 New Patients</span> On Your Schedule In 30 Days, Or You Don't Pay Me A Single Penny.
     </h1>
 
-    <p class="hero-sub enter" style="animation-delay:0.25s;">
+    <p class="hero-sub hero-sub-desktop enter" style="animation-delay:0.25s;">
       I build automated booking systems that fill your open clinic calendar slots on autopilot using targeted local ads. 100% money-back guarantee.
+    </p>
+    <p class="hero-sub hero-sub-mobile enter" style="animation-delay:0.25s;">
+      Automated booking systems &amp; local ads that fill your open calendar slots. 100% guaranteed.
     </p>
 
     <div class="trust-row enter" style="animation-delay:0.33s;">

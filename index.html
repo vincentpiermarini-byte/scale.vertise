@@ -173,7 +173,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .zip-feedback { display:none; align-items:center; gap:10px; padding:14px 18px;
   border-radius:12px; margin-bottom:16px; font-size:0.92rem; font-weight:600; }
 .zip-feedback.loading { display:flex; background:rgba(175,171,233,0.07); border:1px solid rgba(175,171,233,0.2); color:var(--slate-300); }
-.zip-feedback.success { display:flex; background:rgba(175,171,233,0.1); border:1px solid rgba(175,171,233,0.4); color:var(--emerald-hot); }
+.zip-feedback.success { display:flex; background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.4); color:#10B981; }
 .zip-spinner {
   width:18px; height:18px; border-radius:50%; flex-shrink:0;
   border:2px solid rgba(175,171,233,0.25);
@@ -182,16 +182,23 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 @keyframes spin { to { transform:rotate(360deg); } }
 /* mobile sticky bar */
+/* sticky bar: always in DOM, off-screen by default, only slides in on mobile */
 .sticky-cta {
-  display:none; position:fixed; bottom:0; left:0; right:0; z-index:999;
+  position:fixed; bottom:0; left:0; right:0;
+  z-index:9999;
   padding:12px 20px 20px;
-  background:rgba(11,15,25,0.88);
-  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
-  border-top:1px solid rgba(148,163,184,0.1);
-  transform:translateY(100%);
-  transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+  background:rgba(11,15,25,0.92);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid rgba(148,163,184,0.12);
+  transform:translateY(110%);
+  transition:transform 0.42s cubic-bezier(0.22,1,0.36,1);
+  /* hidden on desktop via pointer-events + opacity, not display:none */
+  opacity:0; pointer-events:none;
 }
-.sticky-cta.visible { transform:translateY(0); }
+.sticky-cta.visible {
+  transform:translateY(0);
+  opacity:1; pointer-events:auto;
+}
 @media(max-width:640px) {
   .hero { padding:88px 0 clamp(52px,8vw,80px); }
   .hero-sub-desktop { display:none; }
@@ -201,8 +208,8 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   .hero-kicker { display:block; }
   .trust-row { flex-direction:column; gap:8px; margin-bottom:26px; }
   .hero-cta-block { margin-bottom:clamp(32px,5vw,48px); }
-  .sticky-cta { display:block; }
-  /* add bottom clearance so sticky bar doesn't cover last section */
+  /* only on mobile does the bar actually appear */
+  .sticky-cta.visible { opacity:1; pointer-events:auto; }
   footer { padding-bottom:88px; }
 }
 /* animated landscape background — canvas render for iOS autoplay */
@@ -421,10 +428,10 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .form-success { display:none; text-align:center; padding:28px 6px; }
 .form-success .check {
   width:62px; height:62px; border-radius:50%; margin:0 auto 18px;
-  background:rgba(175,171,233,0.12); border:1px solid rgba(175,171,233,0.5);
+  background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.5);
   display:flex; align-items:center; justify-content:center;
-  color:var(--emerald-hot); font-size:28px;
-  box-shadow:0 0 30px rgba(175,171,233,0.25);
+  color:#10B981; font-size:28px;
+  box-shadow:0 0 30px rgba(16,185,129,0.25);
 }
 .form-success h3 { font-size:1.35rem; font-weight:800; margin-bottom:10px; }
 .form-success p { font-size:0.92rem; line-height:1.7; margin-bottom:20px; }
@@ -501,12 +508,8 @@ footer .legal {
 <div class="geo-grid"></div>
 
 <!-- ── Top bar: branding only, zero nav links ── -->
-<header style="position:absolute;top:0;left:0;right:0;z-index:10;padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;pointer-events:none;">
+<header style="position:absolute;top:0;left:0;right:0;z-index:10;padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;pointer-events:none;">
   <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.025em;pointer-events:none;">scale<span style="color:#AFABE9;">vertise</span></div>
-  <div style="display:flex;align-items:center;gap:8px;font-size:0.78rem;color:#94A3B8;font-family:'JetBrains Mono',monospace;letter-spacing:0.06em;pointer-events:none;">
-    <span style="width:7px;height:7px;border-radius:50%;background:#AFABE9;flex-shrink:0;box-shadow:0 0 8px rgba(175,171,233,0.9);animation:pulse 2s ease-in-out infinite;"></span>
-    Raleigh Radius: Active
-  </div>
 </header>
 
 <main>
@@ -997,7 +1000,8 @@ function verifyZip() {
   if (!bar) return;
   var vsl = document.querySelector('.vsl-frame');
   function check() {
-    if (!vsl) return;
+    if (window.innerWidth > 640) { bar.classList.remove('visible'); return; }
+    if (!vsl) { bar.classList.add('visible'); return; }
     var rect = vsl.getBoundingClientRect();
     if (rect.bottom < 0) {
       bar.classList.add('visible');
@@ -1006,6 +1010,7 @@ function verifyZip() {
     }
   }
   window.addEventListener('scroll', check, { passive:true });
+  window.addEventListener('resize', check, { passive:true });
   check();
 })();
 </script>

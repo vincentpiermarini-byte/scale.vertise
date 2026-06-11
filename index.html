@@ -176,20 +176,50 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   animation:spin 0.7s linear infinite;
 }
 @keyframes spin { to { transform:rotate(360deg); } }
-/* mobile sticky bar */
-/* ── STICKY BAR: CSS-only, no JS trigger ── */
-.sticky-cta {
-  display: none; /* hidden everywhere by default */
+/* mobile sticky pill — floating, not a full-width bar */
+.sticky-pill {
+  display: none;
   position: fixed;
-  bottom: 0; left: 0; right: 0;
-  width: 100%;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 380px;
   z-index: 99999;
-  padding: 12px 16px 24px;
-  background: rgba(11,15,25,0.93);
-  -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid rgba(148,163,184,0.13);
+  border-radius: 100px;
+  background: rgba(0,0,0,0.55);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 10px 10px 18px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(175,171,233,0.08);
 }
+.sticky-pill-label {
+  font-size: 0.72rem;
+  color: #94A3B8;
+  white-space: nowrap;
+  font-family: var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.sticky-pill-btn {
+  flex-shrink: 0;
+  background: #AFABE9;
+  color: #0B0F19;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 9px 18px;
+  border-radius: 100px;
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+.sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
   .hero { padding: 88px 0 clamp(52px,8vw,80px); }
   .hero-sub-desktop { display: none; }
@@ -201,7 +231,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   .hero-cta-block { margin-bottom: clamp(28px,5vw,44px); }
   footer { padding-bottom: 96px; }
   /* CSS-only: always show bar on mobile, no JS needed */
-  .sticky-cta { display: block; }
+  .sticky-pill { display: flex; }
 }
 /* animated landscape background — canvas render for iOS autoplay */
 .hero video {
@@ -503,7 +533,7 @@ footer .legal {
   <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.025em;pointer-events:none;">scale<span style="color:#AFABE9;">vertise</span></div>
 </header>
 
-<main>
+<main style="padding-bottom:clamp(80px,12vw,128px)">
 
 <!-- ════════════════ SECTION 1 · HERO ════════════════ -->
 <section class="hero center">
@@ -579,8 +609,8 @@ footer .legal {
         <span>Rated 4.9/5 by Active Clinic Owners</span>
       </div>
       <div class="trust-item scarcity">
-        <span>🔥</span>
-        <span>Only 3 practice spots left for Raleigh clinics this month to ensure results.</span>
+        <span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);border-radius:4px;padding:2px 7px;color:#AFABE9;font-weight:700;">3 LEFT</span>
+        <span>Only 3 practice spots left for Raleigh clinics this month.</span>
       </div>
     </div>
 
@@ -986,9 +1016,10 @@ function verifyZip() {
 /* sticky bar is CSS-only — no JS needed */
 </script>
 
-<!-- Mobile sticky CTA bar -->
-<div class="sticky-cta" id="sticky-cta-bar">
-  <a class="cta-btn" style="width:100%;display:flex;" href="#claim-territory">Secure Your Practice Alignment Call</a>
+<!-- Mobile sticky floating pill -->
+<div class="sticky-pill">
+  <span class="sticky-pill-label">Limited Spots</span>
+  <a class="sticky-pill-btn" href="#claim-territory">Secure Call</a>
 </div>
 </body>
 </html>

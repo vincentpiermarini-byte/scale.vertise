@@ -161,11 +161,6 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 /* ════════ SECTION 1 · HERO ════════ */
 .hero { padding:clamp(100px,11vw,140px) 0 clamp(72px,9vw,120px); position:relative; overflow:hidden; }
 .hero-sub-mobile { display:none; }
-/* hero headline kicker */
-.hero-kicker {
-  display:none; font-size:0.95rem; font-weight:400; color:var(--slate-400);
-  letter-spacing:-0.01em; margin-bottom:10px; line-height:1.5;
-}
 /* two-step form */
 .form-step { transition:opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1); }
 .form-step.hidden { display:none; }
@@ -182,35 +177,31 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 @keyframes spin { to { transform:rotate(360deg); } }
 /* mobile sticky bar */
-/* sticky bar: always in DOM, off-screen by default, only slides in on mobile */
+/* ── STICKY BAR: CSS-only, no JS trigger ── */
 .sticky-cta {
-  position:fixed; bottom:0; left:0; right:0;
-  z-index:9999;
-  padding:12px 20px 20px;
-  background:rgba(11,15,25,0.92);
-  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  border-top:1px solid rgba(148,163,184,0.12);
-  transform:translateY(110%);
-  transition:transform 0.42s cubic-bezier(0.22,1,0.36,1);
-  /* hidden on desktop via pointer-events + opacity, not display:none */
-  opacity:0; pointer-events:none;
+  display: none; /* hidden everywhere by default */
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  width: 100%;
+  z-index: 99999;
+  padding: 12px 16px 24px;
+  background: rgba(11,15,25,0.93);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(148,163,184,0.13);
 }
-.sticky-cta.visible {
-  transform:translateY(0);
-  opacity:1; pointer-events:auto;
-}
-@media(max-width:640px) {
-  .hero { padding:88px 0 clamp(52px,8vw,80px); }
-  .hero-sub-desktop { display:none; }
-  .hero-sub-mobile { display:block; }
-  .hero h1 { font-size:clamp(1.75rem,7.5vw,2.4rem); line-height:1.15; letter-spacing:-0.025em; }
-  .hero-callout { margin-bottom:16px; font-size:10px; }
-  .hero-kicker { display:block; }
-  .trust-row { flex-direction:column; gap:8px; margin-bottom:26px; }
-  .hero-cta-block { margin-bottom:clamp(32px,5vw,48px); }
-  /* only on mobile does the bar actually appear */
-  .sticky-cta.visible { opacity:1; pointer-events:auto; }
-  footer { padding-bottom:88px; }
+@media (max-width: 640px) {
+  .hero { padding: 88px 0 clamp(52px,8vw,80px); }
+  .hero-sub-desktop { display: none; }
+  .hero-sub-mobile { display: block; }
+  .hero h1 { font-size: clamp(1.75rem,7.5vw,2.4rem); line-height: 1.2; letter-spacing: -0.025em; }
+  .hero-callout { margin-bottom: 12px; font-size: 10px; letter-spacing: 0.22em; }
+  .hero-kicker { display: block; }
+  .trust-row { flex-direction: column; gap: 8px; margin-bottom: 24px; }
+  .hero-cta-block { margin-bottom: clamp(28px,5vw,44px); }
+  footer { padding-bottom: 96px; }
+  /* CSS-only: always show bar on mobile, no JS needed */
+  .sticky-cta { display: block; }
 }
 /* animated landscape background — canvas render for iOS autoplay */
 .hero video {
@@ -571,9 +562,7 @@ footer .legal {
       ATTENTION: CHIROPRACTIC PRACTICE OWNERS
     </div>
 
-    <p class="hero-kicker enter" style="animation-delay:0.1s;">A bold promise, backed by a 100% refund.</p>
-
-    <h1 class="enter" style="animation-delay:0.15s;">
+    <h1 class="enter" style="animation-delay:0.12s;">
       I Will Put <span class="hl">5 New Patients</span> On Your Schedule In 30 Days, Or You Don't Pay Me A Single Penny.
     </h1>
 
@@ -994,25 +983,7 @@ function verifyZip() {
   }, 1500);
 }
 
-/* ── Sticky mobile CTA ── */
-(function(){
-  var bar = document.getElementById('sticky-cta-bar');
-  if (!bar) return;
-  var vsl = document.querySelector('.vsl-frame');
-  function check() {
-    if (window.innerWidth > 640) { bar.classList.remove('visible'); return; }
-    if (!vsl) { bar.classList.add('visible'); return; }
-    var rect = vsl.getBoundingClientRect();
-    if (rect.bottom < 0) {
-      bar.classList.add('visible');
-    } else {
-      bar.classList.remove('visible');
-    }
-  }
-  window.addEventListener('scroll', check, { passive:true });
-  window.addEventListener('resize', check, { passive:true });
-  check();
-})();
+/* sticky bar is CSS-only — no JS needed */
 </script>
 
 <!-- Mobile sticky CTA bar -->

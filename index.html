@@ -616,7 +616,7 @@ footer .legal {
 
     <div class="hero-cta-block enter" style="animation-delay:0.42s;">
       <div class="neon-frame" style="border-radius:14px;">
-        <a class="cta-btn" href="#claim-territory">Secure Your 15-Minute Practice Alignment Call</a>
+        <a class="cta-btn" href="/survey">Secure Your 15-Minute Practice Alignment Call</a>
       </div>
       <div class="cta-micro">No long-term contracts. 100% risk-free.</div>
     </div>
@@ -627,7 +627,7 @@ footer .legal {
         <i></i><i></i><i></i>
         <span>SCALEVERTISE · PATIENT PIPELINE BRIEFING</span>
       </div>
-      <a class="vsl-play" href="#claim-territory" aria-label="Watch introduction">
+      <a class="vsl-play" href="/survey" aria-label="Watch introduction">
         <svg width="30" height="34" viewBox="0 0 30 34" fill="none">
           <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#0B0F19"/>
         </svg>
@@ -738,84 +738,6 @@ footer .legal {
 
 <div class="rule"></div>
 
-<!-- ════════════════ SECTION 5 · CAPTURE FORM ════════════════ -->
-<section id="claim-territory">
-  <div class="wrap center">
-    <div class="eyebrow reveal">Exclusive Territory Access</div>
-    <h2 class="section-h2 reveal">Claim Your Exclusive Territory For This Month</h2>
-    <p class="section-sub reveal">To guarantee our 5-patient minimum, we strictly partner with only <strong style="color:var(--slate-300);">ONE chiropractic clinic per geographic radius</strong>. Check availability for your location below.</p>
-
-    <div class="form-card reveal" style="text-align:left;">
-
-      <!-- Step indicator -->
-      <div id="step-indicator" style="display:flex;align-items:center;gap:0;margin-bottom:26px;">
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div id="step-dot-1" style="width:26px;height:26px;border-radius:50%;background:rgba(175,171,233,0.9);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#0B0F19;transition:background 0.3s;">1</div>
-          <span style="font-size:0.78rem;font-weight:600;color:#AFABE9;font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;">Your Info</span>
-        </div>
-        <div style="flex:1;height:1px;background:rgba(148,163,184,0.18);margin:0 14px;"></div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div id="step-dot-2" style="width:26px;height:26px;border-radius:50%;background:rgba(148,163,184,0.15);border:1px solid rgba(148,163,184,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#64748B;transition:all 0.3s;">2</div>
-          <span id="step-label-2" style="font-size:0.78rem;font-weight:600;color:#475569;font-family:var(--mono);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;">Verify Location</span>
-        </div>
-      </div>
-
-      <!-- STEP 1 -->
-      <div id="form-step-1" class="form-step">
-        <div class="form-field">
-          <label for="f-name">Full Name</label>
-          <input id="f-name" name="name" type="text" placeholder="Dr. Jane Smith" autocomplete="name" required>
-        </div>
-        <div class="form-field">
-          <label for="f-email">Direct Practice Email</label>
-          <input id="f-email" name="email" type="email" placeholder="drsmith@yourclinic.com" autocomplete="email" required>
-        </div>
-        <div class="form-field">
-          <label for="f-phone">Best Mobile Number</label>
-          <input id="f-phone" name="phone" type="tel" placeholder="(919) 555-0123" autocomplete="tel" required>
-        </div>
-        <div class="neon-frame" style="border-radius:14px;">
-          <button type="button" onclick="goToStep2()" class="cta-btn form-submit">Continue to Radius Check →</button>
-        </div>
-        <div class="cta-micro" style="text-align:center;">No long-term contracts. 100% risk-free.</div>
-      </div>
-
-      <!-- STEP 2 -->
-      <div id="form-step-2" class="form-step hidden">
-        <div id="zip-feedback-loading" class="zip-feedback loading" style="display:none;">
-          <div class="zip-spinner"></div>
-          <span>Analyzing local market saturation...</span>
-        </div>
-        <div id="zip-feedback-success" class="zip-feedback success" style="display:none;">
-          <span style="font-size:1.1rem;">✓</span>
-          <span>Geographic Location Available. Reserving your territory...</span>
-        </div>
-        <div id="zip-fields">
-          <div class="form-field">
-            <label for="f-zip">Practice Zip Code</label>
-            <input id="f-zip" name="zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="27601" required>
-          </div>
-          <div class="neon-frame" style="border-radius:14px;">
-            <button type="button" onclick="verifyZip()" class="cta-btn form-submit" id="verify-btn">Verify Location Availability</button>
-          </div>
-          <div class="cta-micro" style="text-align:center;">We partner with only one practice per radius.</div>
-        </div>
-      </div>
-
-      <!-- Success view (hidden until submission) -->
-      <div class="form-success" id="form-success">
-        <div class="check">✓</div>
-        <h3>Territory Reserved.</h3>
-        <p>Your radius is locked in. Book the call below and we'll confirm your territory and walk you through the full pipeline live.</p>
-        <a class="cta-btn" style="width:100%;" href="https://cal.com/scalevertise.app/30min" target="_blank" rel="noopener">Book Your Alignment Call Now</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="rule"></div>
-
 <!-- ════════════════ SECTION 6 · FAQ ════════════════ -->
 <section>
   <div class="wrap center">
@@ -859,7 +781,7 @@ footer .legal {
     <!-- final CTA loop-back -->
     <div style="margin-top:clamp(48px,6vw,72px);display:flex;flex-direction:column;align-items:center;">
       <div class="neon-frame reveal" style="border-radius:14px;">
-        <a class="cta-btn" href="#claim-territory">Secure Your 15-Minute Practice Alignment Call</a>
+        <a class="cta-btn" href="/survey">Secure Your 15-Minute Practice Alignment Call</a>
       </div>
       <div class="cta-micro">No long-term contracts. 100% risk-free.</div>
     </div>
@@ -1019,7 +941,7 @@ function verifyZip() {
 <!-- Mobile sticky floating pill -->
 <div class="sticky-pill">
   <span class="sticky-pill-label">Limited Spots</span>
-  <a class="sticky-pill-btn" href="#claim-territory">Secure Call</a>
+  <a class="sticky-pill-btn" href="/survey">Secure Call</a>
 </div>
 </body>
 </html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1919445055416768');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Territory Availability — Scalevertise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #0B0F19;
+  --bg-card:  #0E1422;
+  --white:    #FFFFFF;
+  --slate-300:#CBD5E1;
+  --slate-400:#94A3B8;
+  --slate-500:#64748B;
+  --purple:   #AFABE9;
+  --purple-hot:#C9C6F5;
+  --purple-deep:#8F89DD;
+  --emerald:  #10B981;
+  --neon:     #AFABE9;
+  --line:     rgba(148,163,184,0.12);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+::-webkit-scrollbar { display:none; }
+html { -ms-overflow-style:none; scrollbar-width:none; background:var(--bg); height:100%; }
+body {
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--slate-400);
+  -webkit-font-smoothing:antialiased;
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ambient glow */
+.geo-field {
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background:
+    radial-gradient(ellipse 55% 35% at 50% 0%, rgba(175,171,233,0.08), transparent 60%),
+    radial-gradient(ellipse 35% 25% at 85% 100%, rgba(175,171,233,0.05), transparent 60%);
+}
+.geo-grid {
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.28;
+  background-image:
+    linear-gradient(rgba(148,163,184,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,0.04) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 50% at 50% 0%, black, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 50% at 50% 0%, black, transparent 70%);
+}
+
+/* layout */
+header {
+  position:relative; z-index:10;
+  padding:20px clamp(20px,5vw,48px);
+  display:flex; align-items:center;
+  border-bottom:1px solid var(--line);
+  flex-shrink:0;
+}
+.brand { font-size:1.05rem; font-weight:800; color:#fff; letter-spacing:-0.025em; }
+.brand .accent { color:var(--purple); }
+
+.page-body {
+  flex:1; position:relative; z-index:1;
+  display:flex; align-items:center; justify-content:center;
+  padding:clamp(32px,5vw,64px) clamp(20px,5vw,32px);
+}
+
+footer {
+  position:relative; z-index:1;
+  padding:24px clamp(20px,5vw,48px);
+  text-align:center;
+  border-top:1px solid var(--line);
+  flex-shrink:0;
+}
+footer p { font-size:0.78rem; color:var(--slate-500); }
+footer .legal { margin-top:6px; display:flex; justify-content:center; gap:20px; font-size:0.74rem; color:var(--slate-500); }
+
+/* card */
+.survey-card {
+  width:100%; max-width:480px;
+  background:var(--bg-card);
+  border:1px solid rgba(148,163,184,0.14);
+  border-radius:24px;
+  padding:clamp(28px,4vw,44px);
+  box-shadow:0 32px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(175,171,233,0.05);
+}
+
+/* step indicator */
+.step-row {
+  display:flex; align-items:center; gap:0; margin-bottom:28px;
+}
+.step-dot {
+  width:28px; height:28px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700;
+  transition:all 0.3s ease; flex-shrink:0;
+}
+.step-dot.active { background:rgba(175,171,233,0.9); color:#0B0F19; }
+.step-dot.done   { background:rgba(16,185,129,0.85); color:#fff; }
+.step-dot.idle   { background:rgba(148,163,184,0.12); border:1px solid rgba(148,163,184,0.2); color:#64748B; }
+.step-line { flex:1; height:1px; background:rgba(148,163,184,0.16); margin:0 12px; }
+.step-label {
+  font-size:0.72rem; font-weight:600; text-transform:uppercase;
+  letter-spacing:0.1em; font-family:var(--mono); transition:color 0.3s;
+}
+.step-label.active { color:var(--purple); }
+.step-label.done   { color:var(--emerald); }
+.step-label.idle   { color:#475569; }
+
+/* card heading */
+.card-eyebrow {
+  font-family:var(--mono); font-size:10px; font-weight:700;
+  letter-spacing:0.3em; text-transform:uppercase; color:var(--slate-500);
+  margin-bottom:8px;
+}
+.card-title {
+  font-size:clamp(1.2rem,2.5vw,1.5rem); font-weight:800; color:#fff;
+  letter-spacing:-0.025em; line-height:1.2; margin-bottom:6px;
+}
+.card-sub {
+  font-size:0.88rem; color:var(--slate-400); line-height:1.6; margin-bottom:24px;
+}
+
+/* form */
+.form-step.hidden { display:none; }
+.f-group { margin-bottom:16px; }
+.f-group label {
+  display:block; font-family:var(--mono); font-size:10px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--slate-500);
+  margin-bottom:8px;
+}
+.f-group input {
+  width:100%; background:#07090F; border:1px solid rgba(148,163,184,0.16);
+  border-radius:12px; padding:16px 18px; font-family:var(--font);
+  font-size:1rem; color:#fff; outline:none; -webkit-appearance:none;
+  transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.f-group input::placeholder { color:#475569; }
+.f-group input:focus {
+  border-color:rgba(175,171,233,0.55);
+  box-shadow:0 0 0 3px rgba(175,171,233,0.1);
+}
+.f-group input.error {
+  border-color:rgba(239,68,68,0.6);
+  box-shadow:0 0 0 3px rgba(239,68,68,0.1);
+}
+
+/* CTA button */
+.cta-btn {
+  display:flex; align-items:center; justify-content:center;
+  width:100%; padding:17px 24px; border-radius:13px; border:none; cursor:pointer;
+  background:linear-gradient(160deg, var(--purple-hot) 0%, var(--purple) 50%, var(--purple-deep) 100%);
+  color:#0B0F19; font-size:1rem; font-weight:800; font-family:var(--font);
+  letter-spacing:-0.01em; text-decoration:none; text-align:center;
+  box-shadow:0 0 0 1px rgba(175,171,233,0.4), 0 0 24px rgba(175,171,233,0.25), 0 8px 24px rgba(0,0,0,0.4);
+  transition:transform 0.15s cubic-bezier(0.22,1,0.36,1), box-shadow 0.15s ease;
+  margin-top:4px;
+}
+.cta-btn:hover { transform:translateY(-1px); box-shadow:0 0 0 1px rgba(201,198,245,0.7), 0 0 36px rgba(175,171,233,0.4), 0 12px 28px rgba(0,0,0,0.45); }
+.cta-btn:active { transform:scale(0.99); }
+.cta-btn:disabled { opacity:0.65; cursor:not-allowed; transform:none; }
+.cta-micro {
+  text-align:center; margin-top:10px;
+  font-size:0.74rem; color:var(--slate-500);
+  font-family:var(--mono); letter-spacing:0.04em;
+}
+
+/* neon corner accents on CTA wrapper */
+.neon-wrap { position:relative; border-radius:13px; }
+.neon-wrap::before, .neon-wrap::after {
+  content:''; position:absolute; width:22px; height:22px; pointer-events:none; z-index:1;
+}
+.neon-wrap::before { top:-2px; left:-2px; border-top:1.5px solid var(--neon); border-left:1.5px solid var(--neon); border-top-left-radius:10px; filter:drop-shadow(0 0 5px rgba(175,171,233,0.7)); }
+.neon-wrap::after  { bottom:-2px; right:-2px; border-bottom:1.5px solid var(--neon); border-right:1.5px solid var(--neon); border-bottom-right-radius:10px; filter:drop-shadow(0 0 5px rgba(175,171,233,0.7)); }
+
+/* zip feedback */
+.zip-feedback {
+  display:none; align-items:center; gap:10px;
+  padding:13px 16px; border-radius:12px; margin-bottom:16px;
+  font-size:0.9rem; font-weight:600; line-height:1.4;
+}
+.zip-feedback.show { display:flex; }
+.zip-feedback.loading {
+  background:rgba(175,171,233,0.07); border:1px solid rgba(175,171,233,0.2); color:var(--slate-300);
+}
+.zip-feedback.success {
+  background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.38); color:var(--emerald);
+}
+.zip-spinner {
+  width:17px; height:17px; border-radius:50%; flex-shrink:0;
+  border:2px solid rgba(175,171,233,0.2); border-top-color:var(--purple);
+  animation:spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+/* success view */
+.success-view { display:none; text-align:center; padding:8px 0; }
+.success-view .check-circle {
+  width:64px; height:64px; border-radius:50%; margin:0 auto 20px;
+  background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.45);
+  display:flex; align-items:center; justify-content:center;
+  font-size:28px; color:var(--emerald);
+  box-shadow:0 0 32px rgba(16,185,129,0.22);
+}
+.success-view h2 { font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:10px; letter-spacing:-0.02em; }
+.success-view p { font-size:0.92rem; line-height:1.7; margin-bottom:24px; }
+
+/* entrance animation */
+@keyframes riseIn { from { opacity:0; transform:translateY(20px) scale(0.97); } to { opacity:1; transform:none; } }
+.survey-card { animation:riseIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+/* back link */
+.back-link {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:0.78rem; font-family:var(--mono); color:var(--slate-500);
+  text-decoration:none; letter-spacing:0.06em; text-transform:uppercase;
+  margin-left:auto; transition:color 0.15s;
+}
+.back-link:hover { color:var(--slate-300); }
+</style>
+</head>
+<body>
+<div class="geo-field"></div>
+<div class="geo-grid"></div>
+
+<header>
+  <a class="brand" href="/" style="text-decoration:none;">scale<span class="accent">vertise</span></a>
+  <a class="back-link" href="/">← Back</a>
+</header>
+
+<div class="page-body">
+  <div class="survey-card">
+
+    <!-- Step indicator -->
+    <div class="step-row">
+      <div class="step-dot active" id="dot-1">1</div>
+      <span class="step-label active" id="lbl-1" style="margin-left:8px;">Your Info</span>
+      <div class="step-line"></div>
+      <span class="step-label idle" id="lbl-2" style="margin-right:8px;">Verify Location</span>
+      <div class="step-dot idle" id="dot-2">2</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div id="step-1" class="form-step">
+      <div class="card-eyebrow">Step 1 of 2</div>
+      <h1 class="card-title">Claim Your Exclusive Territory</h1>
+      <p class="card-sub">We partner with only one practice per geographic radius. Enter your details to check availability.</p>
+
+      <div class="f-group">
+        <label for="f-name">Full Name</label>
+        <input id="f-name" type="text" placeholder="Dr. Jane Smith" autocomplete="name">
+      </div>
+      <div class="f-group">
+        <label for="f-email">Direct Practice Email</label>
+        <input id="f-email" type="email" placeholder="drsmith@yourclinic.com" autocomplete="email">
+      </div>
+      <div class="f-group">
+        <label for="f-phone">Best Mobile Number</label>
+        <input id="f-phone" type="tel" placeholder="(919) 555-0123" autocomplete="tel">
+      </div>
+
+      <div class="neon-wrap">
+        <button class="cta-btn" onclick="toStep2()">Continue to Radius Check →</button>
+      </div>
+      <div class="cta-micro">No long-term contracts. 100% risk-free.</div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step-2" class="form-step hidden">
+      <div class="card-eyebrow">Step 2 of 2</div>
+      <h1 class="card-title">Verify Your Location</h1>
+      <p class="card-sub">Enter your practice zip code to check if your radius is still available this month.</p>
+
+      <div class="zip-feedback loading" id="fb-loading">
+        <div class="zip-spinner"></div>
+        <span>Analyzing local market saturation...</span>
+      </div>
+      <div class="zip-feedback success" id="fb-success">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Geographic Location Available. Reserving your territory...</span>
+      </div>
+
+      <div id="zip-fields">
+        <div class="f-group">
+          <label for="f-zip">Practice Zip Code</label>
+          <input id="f-zip" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="27601">
+        </div>
+        <div class="neon-wrap">
+          <button class="cta-btn" id="verify-btn" onclick="verifyZip()">Verify Location Availability</button>
+        </div>
+        <div class="cta-micro">We partner with only one practice per radius.</div>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-view" id="success-view">
+      <div class="check-circle">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2>Territory Reserved.</h2>
+      <p>Your radius is locked in. Book the 15-minute call below — we'll walk you through the full pipeline live and confirm your territory.</p>
+      <div class="neon-wrap">
+        <a class="cta-btn" href="https://cal.com/scalevertise.app/30min" target="_blank" rel="noopener">Book Your Alignment Call Now →</a>
+      </div>
+      <div class="cta-micro" style="margin-top:12px;">Only 3 spots left this month.</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Scalevertise. All rights reserved.</p>
+  <div class="legal"><span>Privacy Policy</span><span>Terms of Service</span></div>
+</footer>
+
+<script>
+function toStep2() {
+  var name  = document.getElementById('f-name');
+  var email = document.getElementById('f-email');
+  var phone = document.getElementById('f-phone');
+  var valid = true;
+  [name, email, phone].forEach(function(f) {
+    f.classList.remove('error');
+    if (!f.value.trim()) { f.classList.add('error'); valid = false; }
+  });
+  if (!valid) return;
+
+  /* advance step indicator */
+  document.getElementById('dot-1').className  = 'step-dot done';
+  document.getElementById('dot-1').innerHTML  = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  document.getElementById('lbl-1').className  = 'step-label done';
+  document.getElementById('dot-2').className  = 'step-dot active';
+  document.getElementById('dot-2').textContent = '2';
+  document.getElementById('lbl-2').className  = 'step-label active';
+
+  document.getElementById('step-1').classList.add('hidden');
+  document.getElementById('step-2').classList.remove('hidden');
+  document.getElementById('f-zip').focus();
+}
+
+function verifyZip() {
+  var zip = document.getElementById('f-zip');
+  zip.classList.remove('error');
+  if (!zip.value || zip.value.length < 5) { zip.classList.add('error'); return; }
+
+  var btn     = document.getElementById('verify-btn');
+  var fields  = document.getElementById('zip-fields');
+  var loading = document.getElementById('fb-loading');
+  var success = document.getElementById('fb-success');
+
+  btn.disabled = true;
+  loading.classList.add('show');
+
+  setTimeout(function() {
+    loading.classList.remove('show');
+    success.classList.add('show');
+
+    setTimeout(function() {
+      var data = new FormData();
+      data.append('name',  document.getElementById('f-name').value);
+      data.append('email', document.getElementById('f-email').value);
+      data.append('phone', document.getElementById('f-phone').value);
+      data.append('zip',   zip.value);
+
+      fetch('https://formspree.io/f/xdavkdvg', {
+        method:'POST', body:data, headers:{'Accept':'application/json'}
+      }).finally(function() {
+        if (typeof fbq === 'function') fbq('track', 'Lead');
+        document.getElementById('step-2').classList.add('hidden');
+        document.getElementById('success-view').style.display = 'block';
+      });
+    }, 1100);
+  }, 1500);
+}
+</script>
+</body>
+</html>

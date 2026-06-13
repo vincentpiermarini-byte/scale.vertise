@@ -511,15 +511,50 @@ footer .legal {
 
 /* ── responsive ── */
 @media (max-width: 880px) {
-  .pain-grid { grid-template-columns:1fr; gap:16px; }
+  .pain-grid { grid-template-columns:1fr 1fr; gap:14px; }
   .pipeline { grid-template-columns:1fr; }
   .pipe-step { padding:28px 0; }
   .pipe-step + .pipe-step { border-left:none; border-top:1px solid var(--line); }
   .guarantee-card { grid-template-columns:1fr; gap:24px; text-align:left; }
 }
-@media (max-width: 560px) {
-  .cta-btn { width:100%; padding:19px 22px; font-size:1rem; }
-  .trust-row { flex-direction:column; gap:10px; }
+@media (max-width: 640px) {
+  /* sections: tighter vertical rhythm */
+  section { padding:clamp(48px,8vw,72px) 0; }
+
+  /* pain grid: 2-col icon+title only — body copy hidden */
+  .pain-grid { grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
+  .pain-card { padding:18px 14px; border-radius:14px; }
+  .pain-card p { display:none; }
+  .pain-icon { width:38px; height:38px; border-radius:10px; margin-bottom:12px; }
+  .pain-card h3 { font-size:0.85rem; line-height:1.35; font-weight:700; }
+
+  /* section headings: tighter on mobile */
+  .section-h2 { font-size:clamp(1.4rem,5.5vw,1.85rem); margin:10px 0 12px; }
+  .section-sub { font-size:0.9rem; line-height:1.65; }
+  .eyebrow { font-size:10px; }
+
+  /* pipeline: step number + title only, short 2-line body */
+  .pipe-num { font-size:clamp(2rem,7vw,2.6rem); margin-bottom:10px; }
+  .pipe-step h3 { font-size:1rem; margin-bottom:8px; }
+  .pipe-step p { font-size:0.85rem; line-height:1.6;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+
+  /* guarantee: stack cleanly, tighter body */
+  .guarantee-card { padding:28px 22px; gap:18px; }
+  .guarantee-title { font-size:clamp(1.35rem,5.5vw,1.75rem); }
+  .guarantee-body { font-size:0.88rem; line-height:1.75; }
+
+  /* VSL frame: tighter on mobile */
+  .vsl-frame { border-radius:14px; }
+  .vsl-topbar { height:36px; }
+  .vsl-topbar span { font-size:9px; }
+
+  /* trust row single-col */
+  .trust-row { flex-direction:column; gap:8px; margin-bottom:24px; }
+
+  /* CTA full-width pill */
+  .cta-btn { width:100%; padding:19px 22px; font-size:0.97rem; border-radius:12px; }
+  .hero-cta-block { margin-bottom:clamp(28px,5vw,44px); }
 }
 </style>
 </head>
@@ -644,8 +679,8 @@ footer .legal {
 <section>
   <div class="wrap center">
     <div class="eyebrow reveal">The Brutal Reality</div>
-    <h2 class="section-h2 reveal">Why Traditional Local Marketing Safely Burns Your Ad Budget Without Filling Chairs</h2>
-    <p class="section-sub reveal">People buy with emotion and rationalize with logic. Let's look at the brutal reality of generic agency promises.</p>
+    <h2 class="section-h2 reveal">Why Generic Agencies Burn Your Budget Without Filling Chairs</h2>
+    <p class="section-sub reveal" style="display:block;" id="pain-sub">Most agencies optimize for metrics. We optimize for booked appointments.</p>
 
     <div class="pain-grid">
 

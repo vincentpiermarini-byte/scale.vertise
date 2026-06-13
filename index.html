@@ -182,7 +182,6 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   position: fixed;
   bottom: 16px;
   left: 50%;
-  transform: translateX(-50%);
   width: 92%;
   max-width: 380px;
   z-index: 99999;
@@ -192,11 +191,20 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   backdrop-filter: blur(18px);
   border: 1px solid rgba(255,255,255,0.1);
   padding: 10px 10px 10px 18px;
-  display: none;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(175,171,233,0.08);
+  /* hidden by default; slides up once user scrolls past the hero CTA */
+  transform: translate(-50%, 140%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+}
+.sticky-pill.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
 }
 .sticky-pill-label {
   font-size: 0.72rem;
@@ -222,7 +230,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
   footer { padding-bottom: 96px; }
-  .sticky-pill { display: flex; }
+  .sticky-pill { display: flex; }   /* flex, but stays off-screen until .visible */
 }
 /* animated landscape background — canvas render for iOS autoplay */
 .hero video {
@@ -509,11 +517,12 @@ footer .legal {
   .guarantee-card { grid-template-columns:1fr; gap:24px; text-align:left; }
 }
 @media (max-width: 640px) {
-  /* brand header — smaller + thinner so it doesn't compete with h1 */
-  header div { font-size:0.8rem !important; font-weight:500 !important; opacity:0.7; }
+  /* brand header — centered, small + clean so it doesn't compete with h1 */
+  header { justify-content:center !important; padding-top:18px !important; }
+  header div { font-size:0.9rem !important; font-weight:600 !important; opacity:0.85; }
 
   /* ═══ HERO — VIDEO-FIRST LAYOUT (matches reference) ═══ */
-  .hero { padding: 64px 0 24px; }
+  .hero { padding: 60px 0 24px; }
 
   /* stack + reorder: headline → sub → VIDEO → CTA */
   .hero .wrap { display:flex; flex-direction:column; }
@@ -522,31 +531,32 @@ footer .legal {
   .hero-callout { display:none; }
   .trust-row { display:none; }
 
-  /* compact headline so it never fills the screen */
+  /* clean, readable headline — lighter weight is what makes the reference legible */
   .hero h1 {
     order:1;
-    font-size:clamp(1.25rem,5.2vw,1.55rem);
-    line-height:1.16; letter-spacing:-0.02em;
-    margin:0 auto 9px; max-width:100%;
+    font-size:clamp(1.5rem,6vw,1.9rem);
+    font-weight:700;
+    line-height:1.24; letter-spacing:-0.015em;
+    margin:0 auto 12px; max-width:100%;
   }
 
-  /* short single-line sub */
-  .hero-sub { order:2; font-size:0.85rem; line-height:1.45; margin:0 auto 14px; }
+  /* short single-line sub — light, readable, like the reference */
+  .hero-sub { order:2; font-size:0.92rem; line-height:1.5; margin:0 auto 18px; color:var(--slate-400); }
   .hero-sub-desktop { display:none; }
   .hero-sub-mobile { display:block; }
 
-  /* VIDEO front and center — visible the moment the page opens */
+  /* VIDEO front and center — clean rounded card, no fake chrome */
   .vsl-frame {
     order:3;
-    border-radius:14px;
-    margin:0 auto 16px;
+    border-radius:16px;
+    margin:0 auto 18px;
     width:100%;
     aspect-ratio:16/9;
     min-height:0;
     flex-shrink:0;
   }
-  .vsl-topbar { height:34px; }
-  .vsl-topbar span { font-size:8.5px; }
+  .vsl-topbar { display:none; }   /* drop the fake browser-chrome bar */
+  .scanline { display:none; }     /* drop the retro scanline noise */
   .vsl-caption { font-size:9px; bottom:12px; }
 
   /* CTA directly under the video */
@@ -1004,7 +1014,20 @@ function verifyZip() {
   }, 1500);
 }
 
-/* sticky bar is CSS-only — no JS needed */
+/* ── sticky pill: reveal only after the hero CTA scrolls out of view ── */
+(function(){
+  var pill = document.querySelector('.sticky-pill');
+  var heroCta = document.querySelector('.hero-cta-block');
+  if (!pill || !heroCta) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      // CTA visible on first screen → hide pill; scrolled past → show pill
+      if (e.isIntersecting) pill.classList.remove('visible');
+      else pill.classList.add('visible');
+    });
+  }, { threshold: 0 });
+  io.observe(heroCta);
+})();
 </script>
 
 <!-- Mobile sticky floating pill -->

@@ -221,38 +221,6 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
-  .hero { padding: 70px 0 28px; }
-
-  /* reorder hero on mobile: headline → sub → VIDEO → CTA */
-  .hero .wrap { display:flex; flex-direction:column; }
-
-  /* 1. hide the eyebrow — wastes precious space */
-  .hero-callout { display:none !important; }
-
-  /* 2. compact headline */
-  .hero h1 {
-    order:1;
-    font-size:clamp(1.35rem,5.8vw,1.7rem);
-    line-height:1.18; letter-spacing:-0.02em;
-    margin:0 auto 10px;
-  }
-
-  /* 3. short sub */
-  .hero-sub { order:2; font-size:0.88rem; line-height:1.5; margin-bottom:14px; }
-  .hero-sub-desktop { display:none; }
-  .hero-sub-mobile { display:block; }
-
-  /* 4. video frame front and center — the hero IS the video on mobile */
-  .vsl-frame { order:3; border-radius:14px; margin-bottom:18px; }
-
-  /* 5. CTA below video */
-  .hero-cta-block { order:4; margin-bottom:0; }
-  .cta-btn { width:100%; padding:17px 20px; font-size:0.95rem; border-radius:12px; }
-  .cta-micro { font-size:0.72rem; margin-top:8px; }
-
-  /* 6. hide trust row — urgency already covered by sticky pill */
-  .trust-row { display:none; }
-
   footer { padding-bottom: 96px; }
   .sticky-pill { display: flex; }
 }
@@ -541,43 +509,63 @@ footer .legal {
   .guarantee-card { grid-template-columns:1fr; gap:24px; text-align:left; }
 }
 @media (max-width: 640px) {
-  /* sections: tighter vertical rhythm */
+  /* ═══ HERO — VIDEO-FIRST LAYOUT (matches reference) ═══ */
+  .hero { padding: 64px 0 24px; }
+
+  /* stack + reorder: headline → sub → VIDEO → CTA */
+  .hero .wrap { display:flex; flex-direction:column; }
+
+  /* hide eyebrow + trust row — they push the video off-screen */
+  .hero-callout { display:none; }
+  .trust-row { display:none; }
+
+  /* compact headline so it never fills the screen */
+  .hero h1 {
+    order:1;
+    font-size:clamp(1.25rem,5.2vw,1.55rem);
+    line-height:1.16; letter-spacing:-0.02em;
+    margin:0 auto 9px; max-width:100%;
+  }
+
+  /* short single-line sub */
+  .hero-sub { order:2; font-size:0.85rem; line-height:1.45; margin:0 auto 14px; }
+
+  /* VIDEO front and center — visible the moment the page opens */
+  .vsl-frame { order:3; border-radius:14px; margin:0 auto 16px; }
+  .vsl-topbar { height:34px; }
+  .vsl-topbar span { font-size:8.5px; }
+  .vsl-caption { font-size:9px; bottom:12px; }
+
+  /* CTA directly under the video */
+  .hero-cta-block { order:4; margin-bottom:0; }
+  .cta-btn { width:100%; padding:16px 20px; font-size:0.92rem; border-radius:12px; }
+  .cta-micro { font-size:0.7rem; margin-top:8px; }
+
+  /* ═══ rest of page ═══ */
   section { padding:clamp(48px,8vw,72px) 0; }
 
-  /* pain grid: 2-col icon+title only — body copy hidden */
+  /* pain grid: 2x2, icon+title only */
   .pain-grid { grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
   .pain-card { padding:18px 14px; border-radius:14px; }
   .pain-card p { display:none; }
   .pain-icon { width:38px; height:38px; border-radius:10px; margin-bottom:12px; }
   .pain-card h3 { font-size:0.85rem; line-height:1.35; font-weight:700; }
 
-  /* section headings: tighter on mobile */
+  /* section headings */
   .section-h2 { font-size:clamp(1.4rem,5.5vw,1.85rem); margin:10px 0 12px; }
   .section-sub { font-size:0.9rem; line-height:1.65; }
   .eyebrow { font-size:10px; }
 
-  /* pipeline: step number + title only, short 2-line body */
+  /* pipeline */
   .pipe-num { font-size:clamp(2rem,7vw,2.6rem); margin-bottom:10px; }
   .pipe-step h3 { font-size:1rem; margin-bottom:8px; }
   .pipe-step p { font-size:0.85rem; line-height:1.6;
     display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 
-  /* guarantee: stack cleanly, tighter body */
+  /* guarantee */
   .guarantee-card { padding:28px 22px; gap:18px; }
   .guarantee-title { font-size:clamp(1.35rem,5.5vw,1.75rem); }
   .guarantee-body { font-size:0.88rem; line-height:1.75; }
-
-  /* VSL frame: tighter on mobile */
-  .vsl-frame { border-radius:14px; }
-  .vsl-topbar { height:36px; }
-  .vsl-topbar span { font-size:9px; }
-
-  /* trust row single-col */
-  .trust-row { flex-direction:column; gap:8px; margin-bottom:24px; }
-
-  /* CTA full-width pill */
-  .cta-btn { width:100%; padding:19px 22px; font-size:0.97rem; border-radius:12px; }
-  .hero-cta-block { margin-bottom:clamp(28px,5vw,44px); }
 }
 </style>
 </head>

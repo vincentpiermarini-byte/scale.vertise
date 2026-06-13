@@ -221,24 +221,39 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
-  /* compact hero: small headline → short sub → video → CTA, all in view fast */
-  .hero { padding: 76px 0 clamp(36px,6vw,52px); }
-  .hero-sub-desktop { display: none; }
-  .hero-sub-mobile { display: block; }
+  .hero { padding: 70px 0 28px; }
+
+  /* reorder hero on mobile: headline → sub → VIDEO → CTA */
+  .hero .wrap { display:flex; flex-direction:column; }
+
+  /* 1. hide the eyebrow — wastes precious space */
+  .hero-callout { display:none !important; }
+
+  /* 2. compact headline */
   .hero h1 {
-    font-size: clamp(1.4rem,5.8vw,1.85rem);
-    line-height: 1.18; letter-spacing: -0.02em;
-    margin: 0 auto 14px;
+    order:1;
+    font-size:clamp(1.35rem,5.8vw,1.7rem);
+    line-height:1.18; letter-spacing:-0.02em;
+    margin:0 auto 10px;
   }
-  .hero-sub { font-size: 0.92rem; line-height: 1.5; margin-bottom: 18px; }
-  .hero-callout { margin-bottom: 10px; font-size: 9.5px; letter-spacing: 0.2em; }
-  .hero-kicker { display: block; }
-  .trust-row { flex-direction: column; gap: 6px; margin-bottom: 18px; }
-  .trust-item { font-size: 0.82rem; }
-  .hero-cta-block { margin-bottom: clamp(22px,4vw,32px); }
-  .vsl-caption { font-size: 9.5px; }
+
+  /* 3. short sub */
+  .hero-sub { order:2; font-size:0.88rem; line-height:1.5; margin-bottom:14px; }
+  .hero-sub-desktop { display:none; }
+  .hero-sub-mobile { display:block; }
+
+  /* 4. video frame front and center — the hero IS the video on mobile */
+  .vsl-frame { order:3; border-radius:14px; margin-bottom:18px; }
+
+  /* 5. CTA below video */
+  .hero-cta-block { order:4; margin-bottom:0; }
+  .cta-btn { width:100%; padding:17px 20px; font-size:0.95rem; border-radius:12px; }
+  .cta-micro { font-size:0.72rem; margin-top:8px; }
+
+  /* 6. hide trust row — urgency already covered by sticky pill */
+  .trust-row { display:none; }
+
   footer { padding-bottom: 96px; }
-  /* CSS-only: always show bar on mobile, no JS needed */
   .sticky-pill { display: flex; }
 }
 /* animated landscape background — canvas render for iOS autoplay */

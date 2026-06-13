@@ -221,14 +221,22 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
-  .hero { padding: 88px 0 clamp(52px,8vw,80px); }
+  /* compact hero: small headline → short sub → video → CTA, all in view fast */
+  .hero { padding: 76px 0 clamp(36px,6vw,52px); }
   .hero-sub-desktop { display: none; }
   .hero-sub-mobile { display: block; }
-  .hero h1 { font-size: clamp(1.75rem,7.5vw,2.4rem); line-height: 1.2; letter-spacing: -0.025em; }
-  .hero-callout { margin-bottom: 12px; font-size: 10px; letter-spacing: 0.22em; }
+  .hero h1 {
+    font-size: clamp(1.4rem,5.8vw,1.85rem);
+    line-height: 1.18; letter-spacing: -0.02em;
+    margin: 0 auto 14px;
+  }
+  .hero-sub { font-size: 0.92rem; line-height: 1.5; margin-bottom: 18px; }
+  .hero-callout { margin-bottom: 10px; font-size: 9.5px; letter-spacing: 0.2em; }
   .hero-kicker { display: block; }
-  .trust-row { flex-direction: column; gap: 8px; margin-bottom: 24px; }
-  .hero-cta-block { margin-bottom: clamp(28px,5vw,44px); }
+  .trust-row { flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .trust-item { font-size: 0.82rem; }
+  .hero-cta-block { margin-bottom: clamp(22px,4vw,32px); }
+  .vsl-caption { font-size: 9.5px; }
   footer { padding-bottom: 96px; }
   /* CSS-only: always show bar on mobile, no JS needed */
   .sticky-pill { display: flex; }
@@ -336,7 +344,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 
 /* ════════ SECTION 2 · PAIN GRID ════════ */
 .pain-grid {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
   margin-top:clamp(40px,5vw,60px);
 }
 .pain-card {
@@ -712,6 +720,16 @@ footer .legal {
         </div>
         <h3>The 7-Field Form Friction</h3>
         <p>Over-cluttered intake forms scare away high-intent, local back pain sufferers who just want immediate relief, dropping completions <strong>under 15%</strong>.</p>
+      </div>
+
+      <div class="pain-card reveal" style="text-align:left;">
+        <div class="pain-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><line x1="4" y1="4" x2="20" y2="20" stroke-opacity="0.5"/>
+          </svg>
+        </div>
+        <h3>The Slow-Follow-Up Leak</h3>
+        <p>Leads go cold within minutes. Without instant automated follow-up, even great prospects <strong>book with the clinic that called first</strong> — usually not you.</p>
       </div>
 
     </div>

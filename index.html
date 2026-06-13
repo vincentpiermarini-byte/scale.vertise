@@ -529,9 +529,19 @@ footer .legal {
 
   /* short single-line sub */
   .hero-sub { order:2; font-size:0.85rem; line-height:1.45; margin:0 auto 14px; }
+  .hero-sub-desktop { display:none; }
+  .hero-sub-mobile { display:block; }
 
   /* VIDEO front and center — visible the moment the page opens */
-  .vsl-frame { order:3; border-radius:14px; margin:0 auto 16px; }
+  .vsl-frame {
+    order:3;
+    border-radius:14px;
+    margin:0 auto 16px;
+    width:100%;
+    aspect-ratio:16/9;
+    min-height:0;
+    flex-shrink:0;
+  }
   .vsl-topbar { height:34px; }
   .vsl-topbar span { font-size:8.5px; }
   .vsl-caption { font-size:9px; bottom:12px; }

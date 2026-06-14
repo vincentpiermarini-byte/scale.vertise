@@ -20,10 +20,10 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 <!-- End Meta Pixel Code -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Scalevertise — We Put Booked Appointments On Your Calendar, Or We Don't Get Paid">
-<meta property="og:description" content="Scalevertise runs Meta ads that stop the scroll, capture the lead, and text them back within seconds to book a confirmed appointment — before they go cold. Done for you, flat rate, you own the ad account.">
+<meta property="og:title" content="Scalevertise: Booked Appointments On Your Calendar, Or We Don't Get Paid">
+<meta property="og:description" content="Scalevertise runs Meta ads that stop the scroll, capture the lead, and text them back within seconds to book a confirmed appointment before they go cold. Done for you, flat rate, you own the ad account.">
 <meta property="og:image" content="https://scalevertise.app/assets/sv-logo.png">
-<title>Scalevertise — Booked Appointments On Your Calendar, Or We Don't Get Paid</title>
+<title>Scalevertise: Booked Appointments On Your Calendar, Or We Don't Get Paid</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 
 <style>
 /* ============================================================
-   SCALEVERTISE — AD ENGINE · BOOKED APPOINTMENT SYSTEM
+   SCALEVERTISE · AD ENGINE · BOOKED APPOINTMENT SYSTEM
    Obsidian theme · zero nav leaks · single CTA pathway
    ============================================================ */
 :root {
@@ -95,7 +95,7 @@ h1,h2,h3 { color:var(--white); letter-spacing:-0.025em; }
 }
 .section-sub {
   font-size:clamp(0.95rem,1.5vw,1.08rem); color:var(--slate-400);
-  max-width:620px; line-height:1.7;
+  max-width:640px; line-height:1.75;
 }
 .center { text-align:center; }
 .center .section-sub { margin-left:auto; margin-right:auto; }
@@ -159,7 +159,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .reveal.revealed { animation:riseIn 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
 
 /* ════════ PLACEHOLDER BLOCKS ════════ */
-/* Visually distinct fill-in slots — remove when real data lands */
+/* Visually distinct fill-in slots. Remove when real data lands. */
 .ph-block {
   border:1.5px dashed rgba(175,171,233,0.28);
   border-radius:14px;
@@ -278,7 +278,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .hero-callout {
   display:inline-flex; align-items:center; gap:10px;
   font-family:var(--mono); font-size:11px; font-weight:700;
-  letter-spacing:0.34em; text-transform:uppercase; color:var(--slate-400);
+  letter-spacing:0.28em; text-transform:uppercase; color:var(--slate-400);
   margin-bottom:28px;
 }
 .hero-callout .dot {
@@ -290,21 +290,34 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
 .hero h1 {
-  font-size:clamp(2.1rem,5.2vw,3.9rem); font-weight:900; line-height:1.06;
-  letter-spacing:-0.035em; max-width:920px; margin:0 auto 24px;
+  font-size:clamp(2.1rem,5.2vw,3.9rem); font-weight:900; line-height:1.08;
+  letter-spacing:-0.035em; max-width:940px; margin:0 auto 24px;
 }
 .hero h1 .hl { color:var(--emerald-hot); }
 .hero-sub {
   font-size:clamp(1.02rem,1.7vw,1.2rem); color:var(--slate-400);
-  line-height:1.75; max-width:640px; margin:0 auto 28px;
+  line-height:1.75; max-width:660px; margin:0 auto 30px;
 }
 
 .trust-row {
   display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
   gap:14px 32px; margin-bottom:38px;
 }
-.trust-item { display:flex; align-items:center; gap:8px; font-size:0.92rem; color:var(--slate-300); font-weight:500; }
-.trust-item .stars { color:#FBBF24; letter-spacing:1px; font-size:0.95rem; }
+
+/* hero proof pill (placeholder until real reviews land) */
+.proof-pill-ph {
+  display:inline-flex; align-items:center; gap:12px;
+  padding:9px 10px 9px 18px; border-radius:100px;
+  border:1px dashed rgba(175,171,233,0.3);
+  background:rgba(175,171,233,0.04);
+}
+.proof-pill-stars { color:rgba(251,191,36,0.45); letter-spacing:1.5px; font-size:0.9rem; }
+.proof-pill-text { font-size:0.85rem; color:var(--slate-400); font-weight:500; }
+.proof-pill-tag {
+  font-family:var(--mono); font-size:8.5px; font-weight:700;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--emerald);
+  background:rgba(175,171,233,0.1); border-radius:100px; padding:5px 11px;
+}
 
 .hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-bottom:clamp(48px,6vw,72px); }
 
@@ -430,9 +443,16 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .proof-stat:last-child { border-right:none; }
 .proof-stat-num {
   font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:900;
-  color:var(--white); letter-spacing:-0.04em; line-height:1; margin-bottom:8px;
+  color:var(--white); letter-spacing:-0.04em; line-height:1; margin-bottom:10px;
 }
-.proof-stat-num.ph { color:var(--slate-500); font-size:clamp(1rem,2vw,1.4rem); font-weight:600; letter-spacing:0; }
+.proof-stat-num.ph {
+  display:flex; align-items:center; justify-content:center;
+  min-height:clamp(1.8rem,3.5vw,2.6rem);
+}
+.stat-bar {
+  display:inline-block; width:40px; height:6px; border-radius:3px;
+  background:rgba(148,163,184,0.22);
+}
 .proof-stat-label {
   font-family:var(--mono); font-size:10px; font-weight:600;
   letter-spacing:0.2em; text-transform:uppercase; color:var(--slate-500);
@@ -493,7 +513,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   filter:drop-shadow(0 0 9px rgba(175,171,233,0.9));
 }
 .guarantee-title {
-  font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:900; line-height:1.12;
+  font-size:clamp(1.7rem,3.4vw,2.5rem); font-weight:900; line-height:1.14;
   letter-spacing:-0.03em;
 }
 .guarantee-title .hl { color:var(--emerald-hot); }
@@ -507,9 +527,14 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .guarantee-body { font-size:clamp(0.98rem,1.5vw,1.08rem); line-height:1.85; color:var(--slate-300); font-weight:300; }
 .guarantee-body strong { color:var(--white); font-weight:700; }
 .guarantee-conditions {
-  font-size:0.78rem; color:var(--slate-500); line-height:1.7;
-  margin-top:20px; font-family:var(--mono);
-  border-top:1px solid rgba(148,163,184,0.1); padding-top:16px;
+  font-size:0.78rem; color:var(--slate-500); line-height:1.8;
+  margin-top:22px; font-family:var(--mono);
+  border-top:1px solid rgba(148,163,184,0.1); padding-top:18px;
+}
+.gc-head {
+  display:block; font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--emerald);
+  opacity:0.7; margin-bottom:10px;
 }
 
 /* ════════ SECTION 6 · FORM ════════ */
@@ -751,28 +776,27 @@ footer .legal {
 
     <!--
       HEADLINE OPTIONS (keep the others as comments until A/B tested):
-      A (default — wedge-first): "Most agencies sell you leads. We put booked, showed appointments on your calendar — or we don't get paid."
+      A (default, wedge-first): "Most agencies sell you leads. We put booked appointments on your calendar, or we don't get paid."
       B (mechanism-first): "Your leads are going cold in minutes. We text them back and book them before they book someone else."
       C (contrast-only): "Other agencies hand you clicks. We hand you a calendar full of people who actually showed up."
     -->
     <h1 class="enter" style="animation-delay:0.12s;">
-      Most agencies sell you <span class="hl">leads.</span><br>We put booked appointments on your calendar — or we don't get paid.
+      Most agencies sell you <span class="hl">leads.</span><br>We put booked appointments on your calendar, or we don't get paid.
     </h1>
 
     <p class="hero-sub hero-sub-desktop enter" style="animation-delay:0.25s;">
-      We run targeted Meta ads that stop the scroll, capture the lead in one tap, then text them back within seconds to lock in a confirmed appointment — before the moment passes and they call someone else. Done for you. Flat rate. You own the ad account.
+      We run targeted Meta ads that stop the scroll, capture the lead in one tap, then text them back within seconds to lock in a confirmed appointment before the moment passes and they call someone else. Done for you. Flat rate. You own the ad account.
     </p>
     <p class="hero-sub hero-sub-mobile enter" style="animation-delay:0.25s;">
-      Meta ads → instant lead text-back → booked appointment on your calendar. Done for you. If we don't deliver, you don't pay our fee.
+      Meta ads, instant lead text-back, and booked appointments on your calendar. Done for you. If we don't deliver, you don't pay our fee.
     </p>
 
-    <!-- PROOF ROW: replace placeholder once you have real ratings from real named clients -->
+    <!-- PROOF ROW: replace this placeholder pill once you have real ratings from named clients -->
     <div class="trust-row enter" style="animation-delay:0.33s;">
-      <div class="trust-item" style="opacity:0.55;">
-        <div class="ph-block" style="padding:10px 18px; border-radius:100px; display:inline-flex; align-items:center; gap:10px;">
-          <span class="ph-label" style="margin:0; font-size:8.5px;">PLACEHOLDER</span>
-          <span class="ph-desc" style="font-size:0.78rem;">★★★★★ Rating — collect real reviews from clients, then replace this</span>
-        </div>
+      <div class="proof-pill-ph">
+        <span class="proof-pill-stars">★★★★★</span>
+        <span class="proof-pill-text">Real client reviews go here</span>
+        <span class="proof-pill-tag">Placeholder</span>
       </div>
     </div>
 
@@ -788,7 +812,7 @@ footer .legal {
       <div class="scanline"></div>
       <div class="vsl-topbar">
         <i></i><i></i><i></i>
-        <span>SCALEVERTISE — SYSTEM WALKTHROUGH</span>
+        <span>SCALEVERTISE · SYSTEM WALKTHROUGH</span>
       </div>
       <a class="vsl-play" href="/survey" aria-label="Watch introduction">
         <svg width="30" height="34" viewBox="0 0 30 34" fill="none">
@@ -796,8 +820,8 @@ footer .legal {
         </svg>
       </a>
       <div class="vsl-ph">
-        <span class="vsl-ph-label">Placeholder — VSL</span>
-        <span class="vsl-ph-text">Record a 2–3 min walkthrough: who this is for, how the system works, the guarantee. Replace this play button with the real embed.</span>
+        <span class="vsl-ph-label">Placeholder · VSL</span>
+        <span class="vsl-ph-text">Record a 2 to 3 minute walkthrough: who this is for, how the system works, the guarantee. Replace this play button with the real embed.</span>
       </div>
     </div>
 
@@ -811,7 +835,7 @@ footer .legal {
   <div class="wrap center">
     <div class="eyebrow reveal">The Brutal Reality</div>
     <h2 class="section-h2 reveal">Why Most Ad Spend Never Turns Into A Booked Appointment</h2>
-    <p class="section-sub reveal" style="display:block;">The problem isn't your market. It's the gap between a lead hitting submit and someone actually showing up — and every agency you've tried has ignored that gap.</p>
+    <p class="section-sub reveal" style="display:block;">The problem isn't your market. It's the gap between a lead hitting submit and someone actually showing up. Every agency you've tried has ignored that gap.</p>
 
     <div class="pain-grid">
 
@@ -822,7 +846,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The "Clicks &amp; Impressions" Scam</h3>
-        <p>Your agency sends a report full of reach, CTR, and impressions. Your calendar is empty. Those are <strong>activity metrics, not revenue metrics</strong> — and most agencies hide behind them because they can't promise anything harder.</p>
+        <p>Your agency sends a report full of reach, CTR, and impressions. Your calendar is empty. Those are <strong>activity metrics, not revenue metrics</strong>, and most agencies hide behind them because they can't promise anything harder.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -832,7 +856,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The Lead Response Black Hole</h3>
-        <p>A lead submits their info, then waits. Your team sees it hours later and calls — no answer. They try again — voicemail. By then, <strong>that lead has already booked with whoever called first</strong>. The window is minutes, not hours.</p>
+        <p>A lead submits their info, then waits. Your team sees it hours later and calls. No answer. They try again. Voicemail. By then, <strong>that lead has already booked with whoever called first</strong>. The window is minutes, not hours.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -842,7 +866,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The 7-Field Form Friction</h3>
-        <p>Most lead forms ask for name, email, phone, address, how they heard about you, what service, preferred time, and a message. The prospect just wanted to inquire. <strong>Most bail before hitting submit</strong> — and the ones who do often aren't serious.</p>
+        <p>Most lead forms ask for name, email, phone, address, how they heard about you, what service, preferred time, and a message. The prospect just wanted to inquire. <strong>Most bail before hitting submit</strong>, and the ones who do often aren't serious.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -852,7 +876,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The No-Show Appointment</h3>
-        <p>Even when a lead books, a manual process with no follow-up means they forget, change their mind, or double-book. <strong>No confirmation, no reminder, no show</strong> — and you've paid for an ad that produced nothing.</p>
+        <p>Even when a lead books, a manual process with no follow-up means they forget, change their mind, or double-book. <strong>No confirmation, no reminder, no show.</strong> You've paid for an ad that produced nothing.</p>
       </div>
 
     </div>
@@ -866,26 +890,26 @@ footer .legal {
   <div class="wrap center">
     <div class="eyebrow reveal">How It Works</div>
     <h2 class="section-h2 reveal">The Ad Engine: Why Each Step Exists</h2>
-    <p class="section-sub reveal">A lead cools off fast. The business that reaches them first — with the right message, in the right moment — wins the appointment. Every step of this system is designed around that one truth.</p>
+    <p class="section-sub reveal">A lead cools off fast. The business that reaches them first, with the right message in the right moment, wins the appointment. Every step of this system is designed around that one truth.</p>
 
     <div class="pipeline" style="text-align:left;">
 
       <div class="pipe-step reveal">
         <div class="pipe-num">01</div>
         <h3><span class="tag">The Hook</span>The Scroll-Stopping Static Ad</h3>
-        <p>Your potential customer is on their phone when the problem is real — right now, in this moment. We build a static image ad that <strong>calls out their exact situation directly</strong>, so they stop scrolling because they feel seen, not because the creative is flashy. That moment of recognition is what creates a qualified lead instead of a curious click.</p>
+        <p>Your potential customer is on their phone when the problem is real, right now, in this moment. We build a static image ad that <strong>calls out their exact situation directly</strong>, so they stop scrolling because they feel seen, not because the creative is flashy. That moment of recognition is what creates a qualified lead instead of a curious click.</p>
       </div>
 
       <div class="pipe-step reveal">
         <div class="pipe-num">02</div>
         <h3><span class="tag">The Capture</span>One-Tap Lead Form</h3>
-        <p>We pull their name and number from Meta's pre-filled form in a single tap — no typing, no seven fields, no friction. The shorter the ask, <strong>the more real people actually submit</strong>. Every extra field you add is a reason for a qualified prospect to abandon. We eliminate the reasons.</p>
+        <p>We pull their name and number from Meta's pre-filled form in a single tap. No typing, no seven fields, no friction. The shorter the ask, <strong>the more real people actually submit</strong>. Every extra field you add is a reason for a qualified prospect to abandon. We eliminate the reasons.</p>
       </div>
 
       <div class="pipe-step reveal">
         <div class="pipe-num">03</div>
         <h3><span class="tag">The Lock-In</span>Instant Text-Back &amp; Booking</h3>
-        <p>The second a lead submits, an automated text goes out — within seconds, not hours. It prompts them to pick a time slot directly from your calendar. <strong>They book while the intent is still hot.</strong> A confirmation goes out automatically. You get a booked, reminded appointment — not a name in a spreadsheet that your team has to chase.</p>
+        <p>The second a lead submits, an automated text goes out within seconds, not hours. It prompts them to pick a time slot directly from your calendar. <strong>They book while the intent is still hot.</strong> A confirmation goes out automatically. You get a booked, reminded appointment, not a name in a spreadsheet that your team has to chase.</p>
       </div>
 
     </div>
@@ -899,81 +923,81 @@ footer .legal {
   <div class="wrap center">
     <div class="eyebrow reveal">Results</div>
     <h2 class="section-h2 reveal">What the System Delivers</h2>
-    <p class="section-sub reveal">Real numbers from real clients. These slots are placeholders — they'll be filled with actual Ads Manager screenshots, calendar data, and client quotes as we collect them.</p>
+    <p class="section-sub reveal">Real numbers from real clients. These slots are placeholders. They'll be filled with actual Ads Manager screenshots, calendar data, and client quotes as we collect them.</p>
 
-    <!-- Aggregate proof bar — all placeholder until real data -->
+    <!-- Aggregate proof bar (all placeholder until real data) -->
     <div class="proof-bar reveal" style="margin-top:clamp(36px,4vw,52px);">
       <div class="proof-stat">
-        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-num ph"><span class="stat-bar"></span></div>
         <div class="proof-stat-label">Appointments Booked</div>
       </div>
       <div class="proof-stat">
-        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-num ph"><span class="stat-bar"></span></div>
         <div class="proof-stat-label">Avg. Cost Per Booking</div>
       </div>
       <div class="proof-stat">
-        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-num ph"><span class="stat-bar"></span></div>
         <div class="proof-stat-label">Ad Spend Managed</div>
       </div>
       <div class="proof-stat">
-        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-num ph"><span class="stat-bar"></span></div>
         <div class="proof-stat-label">Show Rate</div>
       </div>
     </div>
-    <!-- Replace each — with real aggregates once you have 3+ clients with data -->
+    <!-- Replace each bar with a real aggregate once you have 2+ clients with clean data -->
     <div class="ph-block reveal" style="max-width:640px;margin:0 auto 48px;text-align:left;">
-      <span class="ph-label">Placeholder — Aggregate Bar</span>
-      <span class="ph-desc">Collect from Ads Manager + GHL/calendar: total appointments booked, cost per booked appointment, total ad spend managed, confirmed show rate. Update the four stats above when you have clean data across 2+ clients.</span>
+      <span class="ph-label">Placeholder · Aggregate Bar</span>
+      <span class="ph-desc">Collect from Ads Manager and GHL/calendar: total appointments booked, cost per booked appointment, total ad spend managed, confirmed show rate. Update the four stats above when you have clean data across 2+ clients.</span>
     </div>
 
     <!-- 3 Case Study Cards -->
     <div class="case-grid">
 
       <div class="case-card reveal">
-        <div class="case-tag">Placeholder — Case Study 01</div>
-        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-tag">Placeholder · Case Study 01</div>
+        <div class="case-ph-title">Client business type, city, and starting situation</div>
         <div class="case-ph-fields">
-          <span>→</span> Business type &amp; what they sell<br>
-          <span>→</span> Starting situation (how they were getting customers before)<br>
-          <span>→</span> What we ran (ad creative angle, audience, offer)<br>
-          <span>→</span> Appointments booked in 30 days<br>
-          <span>→</span> Cost per booked appointment<br>
-          <span>→</span> Show rate<br>
-          <span>→</span> Revenue or jobs added (optional if client shares)<br>
-          <span>→</span> One-line testimonial quote (get written approval)<br>
-          <span>→</span> Screenshot: Ads Manager or GHL calendar
+          <span>&rsaquo;</span> Business type and what they sell<br>
+          <span>&rsaquo;</span> Starting situation (how they got customers before)<br>
+          <span>&rsaquo;</span> What we ran (ad angle, audience, offer)<br>
+          <span>&rsaquo;</span> Appointments booked in 30 days<br>
+          <span>&rsaquo;</span> Cost per booked appointment<br>
+          <span>&rsaquo;</span> Show rate<br>
+          <span>&rsaquo;</span> Revenue or jobs added (optional if shared)<br>
+          <span>&rsaquo;</span> One-line testimonial quote (get approval)<br>
+          <span>&rsaquo;</span> Screenshot: Ads Manager or GHL calendar
         </div>
       </div>
 
       <div class="case-card reveal">
-        <div class="case-tag">Placeholder — Case Study 02</div>
-        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-tag">Placeholder · Case Study 02</div>
+        <div class="case-ph-title">Client business type, city, and starting situation</div>
         <div class="case-ph-fields">
-          <span>→</span> Business type &amp; what they sell<br>
-          <span>→</span> Starting situation<br>
-          <span>→</span> What we ran<br>
-          <span>→</span> Appointments booked in 30 days<br>
-          <span>→</span> Cost per booked appointment<br>
-          <span>→</span> Show rate<br>
-          <span>→</span> Revenue or jobs added<br>
-          <span>→</span> One-line testimonial quote<br>
-          <span>→</span> Screenshot: Ads Manager or GHL calendar
+          <span>&rsaquo;</span> Business type and what they sell<br>
+          <span>&rsaquo;</span> Starting situation<br>
+          <span>&rsaquo;</span> What we ran<br>
+          <span>&rsaquo;</span> Appointments booked in 30 days<br>
+          <span>&rsaquo;</span> Cost per booked appointment<br>
+          <span>&rsaquo;</span> Show rate<br>
+          <span>&rsaquo;</span> Revenue or jobs added<br>
+          <span>&rsaquo;</span> One-line testimonial quote<br>
+          <span>&rsaquo;</span> Screenshot: Ads Manager or GHL calendar
         </div>
       </div>
 
       <div class="case-card reveal">
-        <div class="case-tag">Placeholder — Case Study 03</div>
-        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-tag">Placeholder · Case Study 03</div>
+        <div class="case-ph-title">Client business type, city, and starting situation</div>
         <div class="case-ph-fields">
-          <span>→</span> Business type &amp; what they sell<br>
-          <span>→</span> Starting situation<br>
-          <span>→</span> What we ran<br>
-          <span>→</span> Appointments booked in 30 days<br>
-          <span>→</span> Cost per booked appointment<br>
-          <span>→</span> Show rate<br>
-          <span>→</span> Revenue or jobs added<br>
-          <span>→</span> One-line testimonial quote<br>
-          <span>→</span> Screenshot: Ads Manager or GHL calendar
+          <span>&rsaquo;</span> Business type and what they sell<br>
+          <span>&rsaquo;</span> Starting situation<br>
+          <span>&rsaquo;</span> What we ran<br>
+          <span>&rsaquo;</span> Appointments booked in 30 days<br>
+          <span>&rsaquo;</span> Cost per booked appointment<br>
+          <span>&rsaquo;</span> Show rate<br>
+          <span>&rsaquo;</span> Revenue or jobs added<br>
+          <span>&rsaquo;</span> One-line testimonial quote<br>
+          <span>&rsaquo;</span> Screenshot: Ads Manager or GHL calendar
         </div>
       </div>
 
@@ -993,16 +1017,16 @@ footer .legal {
           The Scalevertise Guarantee
         </div>
         <!-- PLACEHOLDER: Replace [N] with the real number once you have cost-per-booked-appointment data from 2+ clients -->
-        <h2 class="guarantee-title"><span class="hl">[N] Booked, Showed Appointments</span> — or we refund our entire management fee.</h2>
+        <h2 class="guarantee-title"><span class="hl">[N] Booked, Showed Appointments.</span> Or we refund our entire management fee.</h2>
       </div>
       <div>
         <p class="guarantee-body">
-          We guarantee <strong>booked appointments that actually show</strong> — not leads, not clicks, not "interested" contacts. If the Ad Engine doesn't put the agreed number of confirmed, showed appointments on your calendar within 30 days of going live, <strong>we refund every cent of our management fee.</strong> Your ad spend goes directly to Meta — we don't mark it up and we don't control it. The guarantee covers what we control: the system, the creative, and the bookings it produces.
+          We guarantee <strong>booked appointments that actually show</strong>. Not leads, not clicks, not "interested" contacts. If the Ad Engine doesn't put the agreed number of confirmed, showed appointments on your calendar within 30 days of going live, <strong>we refund every cent of our management fee.</strong> Your ad spend goes directly to Meta. We don't mark it up and we don't control it. The guarantee covers what we control: the system, the creative, and the bookings it produces.
         </p>
         <div class="guarantee-conditions">
           <!-- Placeholder: finalize exact terms before publishing -->
-          <span class="ph-label" style="display:inline; margin-right:6px;">Conditions (finalize before launch):</span>
-          Minimum ad budget of $[X]/month maintained throughout the guarantee period · Onboarding call completed within [X] days of signing · Appointments honored — if the client's team doesn't show up to their own bookings, the guarantee doesn't apply · Guarantee covers our management fee only; ad spend is billed directly by Meta and is not refundable by Scalevertise.
+          <span class="gc-head">Conditions (finalize before launch)</span>
+          Minimum ad budget of $[X]/month maintained through the guarantee period. Onboarding call completed within [X] days of signing. Appointments honored (if your team doesn't show up to their own bookings, the guarantee doesn't apply). Guarantee covers our management fee only; ad spend is billed directly by Meta and is not refundable by Scalevertise.
         </div>
       </div>
     </div>
@@ -1025,7 +1049,7 @@ footer .legal {
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>We handle everything on the advertising and booking side: writing and designing the ads, building the lead form, setting up the automated text-back, and connecting to your calendar. You do one onboarding call with us (roughly 60 minutes) where we learn your offer and your business. After that, your only job is to show up for the appointments we book and deliver your service. We send you a weekly report so you know what's running and what it's producing.</p>
+          <p>We handle everything on the advertising and booking side: writing and designing the ads, building the lead form, setting up the automated text-back, and connecting to your calendar. You do one onboarding call with us (roughly 60 minutes) where we learn your offer and your business. After that, your only job is to show up for the appointments we book and deliver your service. We send you a weekly report so you always know what's running and what it's producing.</p>
         </div>
       </div>
 
@@ -1035,7 +1059,7 @@ footer .legal {
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Most agencies get paid whether or not you get results — so they optimize for keeping the contract, not for filling your calendar. We're different in two ways. First, we guarantee <strong>booked, showed appointments</strong> — not leads, not clicks, not "brand awareness." If we don't hit the agreed number, we refund our fee. Second, you own your ad account. Every dollar of ad spend goes directly to Meta, visible to you at any time. You can verify every penny. We earn our fee by performing, not by obscuring what we're doing.</p>
+          <p>Most agencies get paid whether or not you get results, so they optimize for keeping the contract, not for filling your calendar. We're different in two ways. First, we guarantee <strong>booked, showed appointments</strong>. Not leads, not clicks, not "brand awareness." If we don't hit the agreed number, we refund our fee. Second, you own your ad account. Every dollar of ad spend goes directly to Meta, visible to you at any time. You can verify every penny. We earn our fee by performing, not by obscuring what we're doing.</p>
         </div>
       </div>
 
@@ -1046,10 +1070,10 @@ footer .legal {
         </div>
         <div class="faq-a">
           <!-- PLACEHOLDER: replace [X] with the real minimum once you have cost-per-booked-appointment data -->
-          <p>Our management fee is separate from your ad spend — the ad budget goes directly to Meta and is set by you. To get enough data to optimize and hit the appointment guarantee, we recommend a minimum of <strong>$[X]/month on ad spend</strong>. Below that threshold, there isn't enough volume to run the system properly — and we won't take on a client we can't realistically deliver for. We'll tell you the right number for your market on the strategy call.</p>
+          <p>Our management fee is separate from your ad spend. The ad budget goes directly to Meta and is set by you. To get enough data to optimize and hit the appointment guarantee, we recommend a minimum of <strong>$[X]/month on ad spend</strong>. Below that threshold, there isn't enough volume to run the system properly, and we won't take on a client we can't realistically deliver for. We'll tell you the right number for your market on the strategy call.</p>
           <div class="ph-block" style="margin-top:14px;">
-            <span class="ph-label">Placeholder — Minimum Budget</span>
-            <span class="ph-desc">Replace $[X] with real number once you have cost-per-booked-appointment data across 2+ clients. Typical range for local businesses: $500–$1,500/month ad spend.</span>
+            <span class="ph-label">Placeholder · Minimum Budget</span>
+            <span class="ph-desc">Replace $[X] with a real number once you have cost-per-booked-appointment data across 2+ clients. Typical range for local businesses: $500 to $1,500/month ad spend.</span>
           </div>
         </div>
       </div>
@@ -1060,7 +1084,7 @@ footer .legal {
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Static ads load instantly and stop the scroll in under three seconds — before a video has even buffered. A sharp image with the right words does one thing: it makes your ideal customer think "that's exactly my problem," and click. High-production video introduces production delays, higher cost, and creative risk. We run what consistently produces the lowest cost per booked appointment, and right now that's a well-crafted static ad with problem-focused copy.</p>
+          <p>Static ads load instantly and stop the scroll in under three seconds, before a video has even buffered. A sharp image with the right words does one thing: it makes your ideal customer think "that's exactly my problem," and click. High-production video introduces production delays, higher cost, and creative risk. We run what consistently produces the lowest cost per booked appointment, and right now that's a well-crafted static ad with problem-focused copy.</p>
         </div>
       </div>
 
@@ -1070,7 +1094,7 @@ footer .legal {
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>If we don't hit the agreed number of booked, showed appointments within 30 days — and you've held up your end (maintained the minimum ad budget, completed onboarding, honored the appointments we booked) — you message us and we issue a <strong>full refund of our management fee</strong>. No long explanation needed, no dispute process. The guarantee only covers our fee; your ad spend was spent by Meta and can't be refunded by us, which is why we're transparent about that upfront. We don't take the fee unless we earn it.</p>
+          <p>If we don't hit the agreed number of booked, showed appointments within 30 days, and you've held up your end (maintained the minimum ad budget, completed onboarding, honored the appointments we booked), you message us and we issue a <strong>full refund of our management fee</strong>. No long explanation needed, no dispute process. The guarantee only covers our fee; your ad spend was spent by Meta and can't be refunded by us, which is why we're transparent about that upfront. We don't take the fee unless we earn it.</p>
         </div>
       </div>
 

@@ -20,10 +20,10 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 <!-- End Meta Pixel Code -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta property="og:title" content="Scalevertise — 5 New Customers in 30 Days or You Don't Pay">
-<meta property="og:description" content="The Scalevertise Ad Engine is a done-for-you customer acquisition system for small businesses. 5 new customers in 30 days or a 100% refund. You pay a flat rate, you own your ad account.">
+<meta property="og:title" content="Scalevertise — We Put Booked Appointments On Your Calendar, Or We Don't Get Paid">
+<meta property="og:description" content="Scalevertise runs Meta ads that stop the scroll, capture the lead, and text them back within seconds to book a confirmed appointment — before they go cold. Done for you, flat rate, you own the ad account.">
 <meta property="og:image" content="https://scalevertise.app/assets/sv-logo.png">
-<title>Scalevertise — 5 New Customers in 30 Days or You Don't Pay</title>
+<title>Scalevertise — Booked Appointments On Your Calendar, Or We Don't Get Paid</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,7 +31,7 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 
 <style>
 /* ============================================================
-   SCALEVERTISE — AD ENGINE · CUSTOMER ACQUISITION SYSTEM
+   SCALEVERTISE — AD ENGINE · BOOKED APPOINTMENT SYSTEM
    Obsidian theme · zero nav leaks · single CTA pathway
    ============================================================ */
 :root {
@@ -63,7 +63,7 @@ body {
   line-height:1.6;
 }
 
-/* ── ambient geometry (subtle, non-distracting) ── */
+/* ── ambient geometry ── */
 .geo-field {
   position:fixed; inset:0; pointer-events:none; z-index:0;
   background:
@@ -103,7 +103,7 @@ h1,h2,h3 { color:var(--white); letter-spacing:-0.025em; }
 section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .rule { height:1px; background:linear-gradient(90deg,transparent,var(--line),transparent); max-width:1120px; margin:0 auto; }
 
-/* ── CTA system — the ONLY interactive pathway ── */
+/* ── CTA system ── */
 .cta-btn {
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   background:linear-gradient(160deg, var(--emerald-hot) 0%, var(--emerald) 45%, var(--emerald-deep) 100%);
@@ -131,7 +131,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   font-family:var(--mono); letter-spacing:0.04em;
 }
 
-/* neon corner accents — reserved exclusively for CTA blocks + guarantee */
+/* neon corner accents */
 .neon-frame { position:relative; }
 .neon-frame::before, .neon-frame::after {
   content:''; position:absolute; width:26px; height:26px; pointer-events:none;
@@ -158,13 +158,38 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .reveal { opacity:0; }
 .reveal.revealed { animation:riseIn 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
 
+/* ════════ PLACEHOLDER BLOCKS ════════ */
+/* Visually distinct fill-in slots — remove when real data lands */
+.ph-block {
+  border:1.5px dashed rgba(175,171,233,0.28);
+  border-radius:14px;
+  background:rgba(175,171,233,0.03);
+  padding:18px 22px;
+  position:relative;
+}
+.ph-label {
+  display:block;
+  font-family:var(--mono);
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  color:var(--emerald);
+  opacity:0.65;
+  margin-bottom:8px;
+}
+.ph-desc {
+  font-family:var(--mono);
+  font-size:0.78rem;
+  color:var(--slate-500);
+  line-height:1.65;
+}
+
 /* ════════ SECTION 1 · HERO ════════ */
 .hero { padding:clamp(100px,11vw,140px) 0 clamp(72px,9vw,120px); position:relative; overflow:hidden; }
 .hero-sub-mobile { display:none; }
-/* two-step form */
 .form-step { transition:opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1); }
 .form-step.hidden { display:none; }
-/* step-2 zip feedback states */
 .zip-feedback { display:none; align-items:center; gap:10px; padding:14px 18px;
   border-radius:12px; margin-bottom:16px; font-size:0.92rem; font-weight:600; }
 .zip-feedback.loading { display:flex; background:rgba(175,171,233,0.07); border:1px solid rgba(175,171,233,0.2); color:var(--slate-300); }
@@ -176,7 +201,8 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   animation:spin 0.7s linear infinite;
 }
 @keyframes spin { to { transform:rotate(360deg); } }
-/* mobile sticky pill — floating, not a full-width bar */
+
+/* mobile sticky pill */
 .sticky-pill {
   display: none;
   position: fixed;
@@ -195,7 +221,6 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   justify-content: space-between;
   gap: 12px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(175,171,233,0.08);
-  /* hidden by default; slides up once user scrolls past the hero CTA */
   transform: translate(-50%, 140%);
   opacity: 0;
   pointer-events: none;
@@ -230,9 +255,10 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .sticky-pill-btn:hover { background: #C9C6F5; }
 @media (max-width: 640px) {
   footer { padding-bottom: 96px; }
-  .sticky-pill { display: flex; }   /* flex, but stays off-screen until .visible */
+  .sticky-pill { display: flex; }
 }
-/* animated landscape background — canvas render for iOS autoplay */
+
+/* hero background canvas */
 .hero video {
   position:absolute; inset:0;
   width:1px; height:1px;
@@ -279,11 +305,10 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .trust-item { display:flex; align-items:center; gap:8px; font-size:0.92rem; color:var(--slate-300); font-weight:500; }
 .trust-item .stars { color:#FBBF24; letter-spacing:1px; font-size:0.95rem; }
-.trust-item.scarcity { color:var(--emerald-hot); font-weight:600; }
 
 .hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-bottom:clamp(48px,6vw,72px); }
 
-/* video authority frame */
+/* VSL frame */
 .vsl-frame {
   position:relative; max-width:880px; margin:0 auto;
   aspect-ratio:16/9; border-radius:20px; overflow:hidden;
@@ -332,6 +357,23 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
   font-family:var(--mono); font-size:11px; letter-spacing:0.22em;
   text-transform:uppercase; color:var(--slate-500);
 }
+/* VSL placeholder overlay */
+.vsl-ph {
+  position:absolute; bottom:0; left:0; right:0;
+  padding:20px 24px;
+  background:linear-gradient(0deg, rgba(11,15,25,0.9) 0%, transparent 100%);
+  pointer-events:none;
+}
+.vsl-ph-label {
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--emerald); opacity:0.6;
+  display:block; margin-bottom:4px;
+}
+.vsl-ph-text {
+  font-family:var(--mono); font-size:0.75rem;
+  color:var(--slate-500); line-height:1.5;
+}
 
 /* ════════ SECTION 2 · PAIN GRID ════════ */
 .pain-grid {
@@ -374,7 +416,53 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .pipe-step p { font-size:0.92rem; line-height:1.75; font-weight:300; }
 .pipe-step p strong { color:var(--slate-300); font-weight:600; }
 
-/* ════════ SECTION 4 · GUARANTEE ════════ */
+/* ════════ SECTION 4 · PROOF / CASE STUDIES ════════ */
+.proof-bar {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+  border:1px solid var(--line); border-radius:18px;
+  background:var(--bg-card); overflow:hidden;
+  margin-bottom:clamp(48px,6vw,72px);
+}
+.proof-stat {
+  padding:clamp(24px,3vw,36px) clamp(20px,2.5vw,32px);
+  border-right:1px solid var(--line); text-align:center;
+}
+.proof-stat:last-child { border-right:none; }
+.proof-stat-num {
+  font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:900;
+  color:var(--white); letter-spacing:-0.04em; line-height:1; margin-bottom:8px;
+}
+.proof-stat-num.ph { color:var(--slate-500); font-size:clamp(1rem,2vw,1.4rem); font-weight:600; letter-spacing:0; }
+.proof-stat-label {
+  font-family:var(--mono); font-size:10px; font-weight:600;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--slate-500);
+}
+
+.case-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  margin-top:clamp(36px,4vw,52px);
+}
+.case-card {
+  background:var(--bg-card); border:1.5px dashed rgba(175,171,233,0.22);
+  border-radius:20px; padding:clamp(24px,3vw,36px);
+  display:flex; flex-direction:column; gap:18px;
+  transition:border-color 0.25s ease;
+}
+.case-card:hover { border-color:rgba(175,171,233,0.4); }
+.case-tag {
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:0.28em; text-transform:uppercase; color:var(--emerald); opacity:0.7;
+}
+.case-ph-title {
+  font-size:1rem; font-weight:700; color:var(--slate-500); line-height:1.4;
+}
+.case-ph-fields {
+  font-family:var(--mono); font-size:0.78rem; color:var(--slate-500);
+  line-height:1.9; border-top:1px solid var(--line); padding-top:16px;
+}
+.case-ph-fields span { color:var(--emerald); opacity:0.6; }
+
+/* ════════ SECTION 5 · GUARANTEE ════════ */
 .guarantee-card {
   position:relative; border-radius:24px; overflow:visible;
   background:
@@ -418,8 +506,13 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .guarantee-body { font-size:clamp(0.98rem,1.5vw,1.08rem); line-height:1.85; color:var(--slate-300); font-weight:300; }
 .guarantee-body strong { color:var(--white); font-weight:700; }
+.guarantee-conditions {
+  font-size:0.78rem; color:var(--slate-500); line-height:1.7;
+  margin-top:20px; font-family:var(--mono);
+  border-top:1px solid rgba(148,163,184,0.1); padding-top:16px;
+}
 
-/* ════════ SECTION 5 · FORM ════════ */
+/* ════════ SECTION 6 · FORM ════════ */
 .form-card {
   max-width:560px; margin:clamp(40px,5vw,56px) auto 0;
   background:var(--bg-card); border:1px solid rgba(148,163,184,0.16);
@@ -456,7 +549,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 .form-success h3 { font-size:1.35rem; font-weight:800; margin-bottom:10px; }
 .form-success p { font-size:0.92rem; line-height:1.7; margin-bottom:20px; }
 
-/* ════════ SECTION 6 · FAQ ════════ */
+/* ════════ SECTION 7 · FAQ ════════ */
 .faq-list { max-width:760px; margin:clamp(36px,4vw,52px) auto 0; }
 .faq-item {
   border:1px solid var(--line); border-radius:16px; margin-bottom:14px;
@@ -492,7 +585,7 @@ section { padding:clamp(72px,9vw,128px) 0; position:relative; }
 }
 .faq-a p strong { color:var(--slate-300); font-weight:600; }
 
-/* ════════ SECTION 7 · FOOTER ════════ */
+/* ════════ FOOTER ════════ */
 footer {
   padding:48px 0 56px; text-align:center;
   border-top:1px solid var(--line);
@@ -515,23 +608,21 @@ footer .legal {
   .pipe-step { padding:28px 0; }
   .pipe-step + .pipe-step { border-left:none; border-top:1px solid var(--line); }
   .guarantee-card { grid-template-columns:1fr; gap:24px; text-align:left; }
+  .proof-bar { grid-template-columns:1fr 1fr; }
+  .proof-stat:nth-child(2) { border-right:none; }
+  .proof-stat:nth-child(3) { border-top:1px solid var(--line); }
+  .proof-stat:nth-child(4) { border-top:1px solid var(--line); border-right:none; }
+  .case-grid { grid-template-columns:1fr; }
 }
 @media (max-width: 640px) {
-  /* brand header — centered, small + clean so it doesn't compete with h1 */
   header { justify-content:center !important; padding-top:18px !important; }
   header div { font-size:0.9rem !important; font-weight:600 !important; opacity:0.85; }
 
-  /* ═══ HERO — VIDEO-FIRST LAYOUT (matches reference) ═══ */
   .hero { padding: 60px 0 24px; }
-
-  /* stack + reorder: headline → sub → VIDEO → CTA */
   .hero .wrap { display:flex; flex-direction:column; }
-
-  /* hide eyebrow + trust row — they push the video off-screen */
   .hero-callout { display:none; }
   .trust-row { display:none; }
 
-  /* clean, readable headline — lighter weight is what makes the reference legible */
   .hero h1 {
     order:1;
     font-size:clamp(1.5rem,6vw,1.9rem);
@@ -540,12 +631,10 @@ footer .legal {
     margin:0 auto 12px; max-width:100%;
   }
 
-  /* short single-line sub — light, readable, like the reference */
   .hero-sub { order:2; font-size:0.92rem; line-height:1.5; margin:0 auto 18px; color:var(--slate-400); }
   .hero-sub-desktop { display:none; }
   .hero-sub-mobile { display:block; }
 
-  /* VIDEO front and center — clean rounded card, no fake chrome */
   .vsl-frame {
     order:3;
     border-radius:16px;
@@ -555,37 +644,36 @@ footer .legal {
     min-height:0;
     flex-shrink:0;
   }
-  .vsl-topbar { display:none; }   /* drop the fake browser-chrome bar */
-  .scanline { display:none; }     /* drop the retro scanline noise */
+  .vsl-topbar { display:none; }
+  .scanline { display:none; }
   .vsl-caption { font-size:9px; bottom:12px; }
 
-  /* CTA directly under the video */
   .hero-cta-block { order:4; margin-bottom:0; }
   .cta-btn { width:100%; padding:16px 20px; font-size:0.92rem; border-radius:12px; }
   .cta-micro { font-size:0.7rem; margin-top:8px; }
 
-  /* ═══ rest of page ═══ */
   section { padding:clamp(48px,8vw,72px) 0; }
 
-  /* pain grid: 2x2, icon+title only */
   .pain-grid { grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
   .pain-card { padding:18px 14px; border-radius:14px; }
   .pain-card p { display:none; }
   .pain-icon { width:38px; height:38px; border-radius:10px; margin-bottom:12px; }
   .pain-card h3 { font-size:0.85rem; line-height:1.35; font-weight:700; }
 
-  /* section headings */
   .section-h2 { font-size:clamp(1.4rem,5.5vw,1.85rem); margin:10px 0 12px; }
   .section-sub { font-size:0.9rem; line-height:1.65; }
   .eyebrow { font-size:10px; }
 
-  /* pipeline */
   .pipe-num { font-size:clamp(2rem,7vw,2.6rem); margin-bottom:10px; }
   .pipe-step h3 { font-size:1rem; margin-bottom:8px; }
   .pipe-step p { font-size:0.85rem; line-height:1.6;
     display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
 
-  /* guarantee */
+  .proof-bar { grid-template-columns:1fr 1fr; }
+  .proof-stat:nth-child(2) { border-right:none; }
+  .proof-stat:nth-child(3) { border-top:1px solid var(--line); }
+  .proof-stat:nth-child(4) { border-top:1px solid var(--line); border-right:none; }
+
   .guarantee-card { padding:28px 22px; gap:18px; }
   .guarantee-title { font-size:clamp(1.35rem,5.5vw,1.75rem); }
   .guarantee-body { font-size:0.88rem; line-height:1.75; }
@@ -597,7 +685,7 @@ footer .legal {
 <div class="geo-field"></div>
 <div class="geo-grid"></div>
 
-<!-- ── Top bar: branding only, zero nav links ── -->
+<!-- ── Top bar: branding only ── -->
 <header style="position:absolute;top:0;left:0;right:0;z-index:10;padding:16px clamp(20px,5vw,48px);display:flex;align-items:center;pointer-events:none;">
   <div style="font-size:1.05rem;font-weight:800;color:#fff;letter-spacing:-0.025em;pointer-events:none;">scale<span style="color:#AFABE9;">vertise</span></div>
 </header>
@@ -658,28 +746,33 @@ footer .legal {
 
     <div class="hero-callout enter" style="animation-delay:0.05s;">
       <span class="dot"></span>
-      ATTENTION: SMALL BUSINESS OWNERS
+      For local businesses that run on booked appointments
     </div>
 
+    <!--
+      HEADLINE OPTIONS (keep the others as comments until A/B tested):
+      A (default — wedge-first): "Most agencies sell you leads. We put booked, showed appointments on your calendar — or we don't get paid."
+      B (mechanism-first): "Your leads are going cold in minutes. We text them back and book them before they book someone else."
+      C (contrast-only): "Other agencies hand you clicks. We hand you a calendar full of people who actually showed up."
+    -->
     <h1 class="enter" style="animation-delay:0.12s;">
-      I Will Put <span class="hl">5 New Customers</span> On Your Calendar In 30 Days, Or You Don't Pay Me A Single Penny.
+      Most agencies sell you <span class="hl">leads.</span><br>We put booked appointments on your calendar — or we don't get paid.
     </h1>
 
     <p class="hero-sub hero-sub-desktop enter" style="animation-delay:0.25s;">
-      The Scalevertise Ad Engine is a done-for-you customer acquisition system that fills your pipeline with qualified buyers using targeted ads — built, launched, and managed for you. 100% money-back guarantee.
+      We run targeted Meta ads that stop the scroll, capture the lead in one tap, then text them back within seconds to lock in a confirmed appointment — before the moment passes and they call someone else. Done for you. Flat rate. You own the ad account.
     </p>
     <p class="hero-sub hero-sub-mobile enter" style="animation-delay:0.25s;">
-      Done-for-you customer acquisition — targeted ads that fill your pipeline with qualified buyers. 100% guaranteed.
+      Meta ads → instant lead text-back → booked appointment on your calendar. Done for you. If we don't deliver, you don't pay our fee.
     </p>
 
+    <!-- PROOF ROW: replace placeholder once you have real ratings from real named clients -->
     <div class="trust-row enter" style="animation-delay:0.33s;">
-      <div class="trust-item">
-        <span class="stars">★★★★★</span>
-        <span>Rated 4.9/5 by Business Owners</span>
-      </div>
-      <div class="trust-item scarcity">
-        <span style="font-family:var(--mono);font-size:10px;letter-spacing:0.1em;background:rgba(175,171,233,0.15);border:1px solid rgba(175,171,233,0.35);border-radius:4px;padding:2px 7px;color:#AFABE9;font-weight:700;">3 LEFT</span>
-        <span>Only 3 client spots left this month.</span>
+      <div class="trust-item" style="opacity:0.55;">
+        <div class="ph-block" style="padding:10px 18px; border-radius:100px; display:inline-flex; align-items:center; gap:10px;">
+          <span class="ph-label" style="margin:0; font-size:8.5px;">PLACEHOLDER</span>
+          <span class="ph-desc" style="font-size:0.78rem;">★★★★★ Rating — collect real reviews from clients, then replace this</span>
+        </div>
       </div>
     </div>
 
@@ -687,21 +780,25 @@ footer .legal {
       <div class="neon-frame" style="border-radius:14px;">
         <a class="cta-btn" href="/survey">Secure Your 15-Minute Growth Strategy Call</a>
       </div>
-      <div class="cta-micro">No long-term contracts. 100% risk-free.</div>
+      <div class="cta-micro">No long-term contracts. Flat-rate fee. You own your ad account.</div>
     </div>
 
+    <!-- VSL: replace the play button with a real embedded video when ready -->
     <div class="vsl-frame enter" style="animation-delay:0.55s;">
       <div class="scanline"></div>
       <div class="vsl-topbar">
         <i></i><i></i><i></i>
-        <span>SCALEVERTISE — CUSTOMER PIPELINE BRIEFING</span>
+        <span>SCALEVERTISE — SYSTEM WALKTHROUGH</span>
       </div>
       <a class="vsl-play" href="/survey" aria-label="Watch introduction">
         <svg width="30" height="34" viewBox="0 0 30 34" fill="none">
           <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#0B0F19"/>
         </svg>
       </a>
-      <div class="vsl-caption">2-Minute System Walkthrough</div>
+      <div class="vsl-ph">
+        <span class="vsl-ph-label">Placeholder — VSL</span>
+        <span class="vsl-ph-text">Record a 2–3 min walkthrough: who this is for, how the system works, the guarantee. Replace this play button with the real embed.</span>
+      </div>
     </div>
 
   </div>
@@ -713,8 +810,8 @@ footer .legal {
 <section>
   <div class="wrap center">
     <div class="eyebrow reveal">The Brutal Reality</div>
-    <h2 class="section-h2 reveal">Why Generic Agencies Burn Your Budget Without Getting You Customers</h2>
-    <p class="section-sub reveal" style="display:block;" id="pain-sub">Most agencies optimize for metrics. We optimize for new customers in your pipeline.</p>
+    <h2 class="section-h2 reveal">Why Most Ad Spend Never Turns Into A Booked Appointment</h2>
+    <p class="section-sub reveal" style="display:block;">The problem isn't your market. It's the gap between a lead hitting submit and someone actually showing up — and every agency you've tried has ignored that gap.</p>
 
     <div class="pain-grid">
 
@@ -725,7 +822,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The "Clicks &amp; Impressions" Scam</h3>
-        <p>Cheap agencies brag about click-through rates and impressions while your pipeline remains <strong>completely empty</strong>. You cannot grow your business with "likes".</p>
+        <p>Your agency sends a report full of reach, CTR, and impressions. Your calendar is empty. Those are <strong>activity metrics, not revenue metrics</strong> — and most agencies hide behind them because they can't promise anything harder.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -735,7 +832,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The Lead Response Black Hole</h3>
-        <p>Leads come in but no one follows up fast enough — they go cold within hours and <strong>buy from the competitor who called first</strong>. No system means no sale.</p>
+        <p>A lead submits their info, then waits. Your team sees it hours later and calls — no answer. They try again — voicemail. By then, <strong>that lead has already booked with whoever called first</strong>. The window is minutes, not hours.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -745,7 +842,7 @@ footer .legal {
           </svg>
         </div>
         <h3>The 7-Field Form Friction</h3>
-        <p>Over-built forms scare away ready-to-buy prospects who won't fill out seven fields to give you money, dropping completions <strong>under 15%</strong>.</p>
+        <p>Most lead forms ask for name, email, phone, address, how they heard about you, what service, preferred time, and a message. The prospect just wanted to inquire. <strong>Most bail before hitting submit</strong> — and the ones who do often aren't serious.</p>
       </div>
 
       <div class="pain-card reveal" style="text-align:left;">
@@ -754,8 +851,8 @@ footer .legal {
             <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/><line x1="4" y1="4" x2="20" y2="20" stroke-opacity="0.5"/>
           </svg>
         </div>
-        <h3>The Slow-Follow-Up Leak</h3>
-        <p>Leads go cold within minutes. Without instant automated follow-up, even great prospects <strong>buy from the business that responded first</strong> — usually not you.</p>
+        <h3>The No-Show Appointment</h3>
+        <p>Even when a lead books, a manual process with no follow-up means they forget, change their mind, or double-book. <strong>No confirmation, no reminder, no show</strong> — and you've paid for an ad that produced nothing.</p>
       </div>
 
     </div>
@@ -764,31 +861,31 @@ footer .legal {
 
 <div class="rule"></div>
 
-<!-- ════════════════ SECTION 3 · THE PIPELINE ════════════════ -->
+<!-- ════════════════ SECTION 3 · THE MECHANISM ════════════════ -->
 <section>
   <div class="wrap center">
-    <div class="eyebrow reveal">Logic &amp; Process</div>
-    <h2 class="section-h2 reveal">The Scalevertise Ad Engine: 3-Step Automated Customer Pipeline</h2>
-    <p class="section-sub reveal">How we move a cold scrolling stranger into a booked, ready-to-buy customer on your calendar — on autopilot.</p>
+    <div class="eyebrow reveal">How It Works</div>
+    <h2 class="section-h2 reveal">The Ad Engine: Why Each Step Exists</h2>
+    <p class="section-sub reveal">A lead cools off fast. The business that reaches them first — with the right message, in the right moment — wins the appointment. Every step of this system is designed around that one truth.</p>
 
     <div class="pipeline" style="text-align:left;">
 
       <div class="pipe-step reveal">
         <div class="pipe-num">01</div>
-        <h3><span class="tag">Step One</span>The Visual Static Hook</h3>
-        <p>We deploy ultra-targeted static image ads across Meta that call out your ideal customer's <strong>specific problem directly</strong> — halting their scroll within 3 seconds using sharp, problem-focused visuals.</p>
+        <h3><span class="tag">The Hook</span>The Scroll-Stopping Static Ad</h3>
+        <p>Your potential customer is on their phone when the problem is real — right now, in this moment. We build a static image ad that <strong>calls out their exact situation directly</strong>, so they stop scrolling because they feel seen, not because the creative is flashy. That moment of recognition is what creates a qualified lead instead of a curious click.</p>
       </div>
 
       <div class="pipe-step reveal">
         <div class="pipe-num">02</div>
-        <h3><span class="tag">Step Two</span>The Minimal-Friction Capture</h3>
-        <p>Instead of overwhelming the prospect, we capture names via a <strong>single consolidated input field</strong>, instantly boosting initial completion rates to 25%.</p>
+        <h3><span class="tag">The Capture</span>One-Tap Lead Form</h3>
+        <p>We pull their name and number from Meta's pre-filled form in a single tap — no typing, no seven fields, no friction. The shorter the ask, <strong>the more real people actually submit</strong>. Every extra field you add is a reason for a qualified prospect to abandon. We eliminate the reasons.</p>
       </div>
 
       <div class="pipe-step reveal">
         <div class="pipe-num">03</div>
-        <h3><span class="tag">Step Three — The Magic</span>The Instant Booking Loop</h3>
-        <p>The exact millisecond a lead is submitted, GoHighLevel triggers an <strong>automated text conversation</strong>, prompting them to book directly into your calendar or CRM (Calendly, GoHighLevel, HubSpot, etc.) — without your team lifting a finger.</p>
+        <h3><span class="tag">The Lock-In</span>Instant Text-Back &amp; Booking</h3>
+        <p>The second a lead submits, an automated text goes out — within seconds, not hours. It prompts them to pick a time slot directly from your calendar. <strong>They book while the intent is still hot.</strong> A confirmation goes out automatically. You get a booked, reminded appointment — not a name in a spreadsheet that your team has to chase.</p>
       </div>
 
     </div>
@@ -797,7 +894,96 @@ footer .legal {
 
 <div class="rule"></div>
 
-<!-- ════════════════ SECTION 4 · GUARANTEE ════════════════ -->
+<!-- ════════════════ SECTION 4 · PROOF (Placeholder until real data) ════════════════ -->
+<section>
+  <div class="wrap center">
+    <div class="eyebrow reveal">Results</div>
+    <h2 class="section-h2 reveal">What the System Delivers</h2>
+    <p class="section-sub reveal">Real numbers from real clients. These slots are placeholders — they'll be filled with actual Ads Manager screenshots, calendar data, and client quotes as we collect them.</p>
+
+    <!-- Aggregate proof bar — all placeholder until real data -->
+    <div class="proof-bar reveal" style="margin-top:clamp(36px,4vw,52px);">
+      <div class="proof-stat">
+        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-label">Appointments Booked</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-label">Avg. Cost Per Booking</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-label">Ad Spend Managed</div>
+      </div>
+      <div class="proof-stat">
+        <div class="proof-stat-num ph">——</div>
+        <div class="proof-stat-label">Show Rate</div>
+      </div>
+    </div>
+    <!-- Replace each — with real aggregates once you have 3+ clients with data -->
+    <div class="ph-block reveal" style="max-width:640px;margin:0 auto 48px;text-align:left;">
+      <span class="ph-label">Placeholder — Aggregate Bar</span>
+      <span class="ph-desc">Collect from Ads Manager + GHL/calendar: total appointments booked, cost per booked appointment, total ad spend managed, confirmed show rate. Update the four stats above when you have clean data across 2+ clients.</span>
+    </div>
+
+    <!-- 3 Case Study Cards -->
+    <div class="case-grid">
+
+      <div class="case-card reveal">
+        <div class="case-tag">Placeholder — Case Study 01</div>
+        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-ph-fields">
+          <span>→</span> Business type &amp; what they sell<br>
+          <span>→</span> Starting situation (how they were getting customers before)<br>
+          <span>→</span> What we ran (ad creative angle, audience, offer)<br>
+          <span>→</span> Appointments booked in 30 days<br>
+          <span>→</span> Cost per booked appointment<br>
+          <span>→</span> Show rate<br>
+          <span>→</span> Revenue or jobs added (optional if client shares)<br>
+          <span>→</span> One-line testimonial quote (get written approval)<br>
+          <span>→</span> Screenshot: Ads Manager or GHL calendar
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-tag">Placeholder — Case Study 02</div>
+        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-ph-fields">
+          <span>→</span> Business type &amp; what they sell<br>
+          <span>→</span> Starting situation<br>
+          <span>→</span> What we ran<br>
+          <span>→</span> Appointments booked in 30 days<br>
+          <span>→</span> Cost per booked appointment<br>
+          <span>→</span> Show rate<br>
+          <span>→</span> Revenue or jobs added<br>
+          <span>→</span> One-line testimonial quote<br>
+          <span>→</span> Screenshot: Ads Manager or GHL calendar
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="case-tag">Placeholder — Case Study 03</div>
+        <div class="case-ph-title">Client business type + city + starting situation</div>
+        <div class="case-ph-fields">
+          <span>→</span> Business type &amp; what they sell<br>
+          <span>→</span> Starting situation<br>
+          <span>→</span> What we ran<br>
+          <span>→</span> Appointments booked in 30 days<br>
+          <span>→</span> Cost per booked appointment<br>
+          <span>→</span> Show rate<br>
+          <span>→</span> Revenue or jobs added<br>
+          <span>→</span> One-line testimonial quote<br>
+          <span>→</span> Screenshot: Ads Manager or GHL calendar
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<!-- ════════════════ SECTION 5 · GUARANTEE ════════════════ -->
 <section>
   <div class="wrap">
     <div class="guarantee-card reveal">
@@ -806,12 +992,19 @@ footer .legal {
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#AFABE9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
           The Scalevertise Guarantee
         </div>
-        <h2 class="guarantee-title">5 New Customers, Or A <span class="hl">100% Complete Refund.</span></h2>
+        <!-- PLACEHOLDER: Replace [N] with the real number once you have cost-per-booked-appointment data from 2+ clients -->
+        <h2 class="guarantee-title"><span class="hl">[N] Booked, Showed Appointments</span> — or we refund our entire management fee.</h2>
       </div>
-      <p class="guarantee-body">
-        I take <strong>100% of the financial risk</strong> onto my shoulders. If the Scalevertise Ad Engine does not generate at least 5 new qualified customers within 30 days of launching, I refund every single cent of my management fee. <strong>No loopholes. No excuses.</strong> I perform, or you don't pay me a single penny.
-      </p>
-      <p style="font-size:0.78rem;color:var(--slate-500);line-height:1.6;margin-top:16px;">Guarantee applies when the recommended minimum ad budget is maintained and the onboarding call is completed.</p>
+      <div>
+        <p class="guarantee-body">
+          We guarantee <strong>booked appointments that actually show</strong> — not leads, not clicks, not "interested" contacts. If the Ad Engine doesn't put the agreed number of confirmed, showed appointments on your calendar within 30 days of going live, <strong>we refund every cent of our management fee.</strong> Your ad spend goes directly to Meta — we don't mark it up and we don't control it. The guarantee covers what we control: the system, the creative, and the bookings it produces.
+        </p>
+        <div class="guarantee-conditions">
+          <!-- Placeholder: finalize exact terms before publishing -->
+          <span class="ph-label" style="display:inline; margin-right:6px;">Conditions (finalize before launch):</span>
+          Minimum ad budget of $[X]/month maintained throughout the guarantee period · Onboarding call completed within [X] days of signing · Appointments honored — if the client's team doesn't show up to their own bookings, the guarantee doesn't apply · Guarantee covers our management fee only; ad spend is billed directly by Meta and is not refundable by Scalevertise.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -828,31 +1021,56 @@ footer .legal {
 
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span>Do I or my team need to learn any complex new software?</span>
+          <span>What do you actually do, and how much of my time does this take?</span>
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Absolutely not. Our system works silently in the background and integrates straight into your existing calendar or CRM (<strong>Calendly, GoHighLevel, HubSpot, etc.</strong>). Your team handles customers exactly like they do now — nothing changes on your end.</p>
+          <p>We handle everything on the advertising and booking side: writing and designing the ads, building the lead form, setting up the automated text-back, and connecting to your calendar. You do one onboarding call with us (roughly 60 minutes) where we learn your offer and your business. After that, your only job is to show up for the appointments we book and deliver your service. We send you a weekly report so you know what's running and what it's producing.</p>
         </div>
       </div>
 
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span>Why do you focus strictly on static image ads instead of video?</span>
+          <span>I've been burned by an agency before. Why is this different?</span>
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Static ads load instantly, stop the scroll in under 3 seconds, and cost a fraction of video production. A sharp image that calls out your customer's exact problem outperforms most video ads — driving cheaper, faster customer acquisition at scale.</p>
+          <p>Most agencies get paid whether or not you get results — so they optimize for keeping the contract, not for filling your calendar. We're different in two ways. First, we guarantee <strong>booked, showed appointments</strong> — not leads, not clicks, not "brand awareness." If we don't hit the agreed number, we refund our fee. Second, you own your ad account. Every dollar of ad spend goes directly to Meta, visible to you at any time. You can verify every penny. We earn our fee by performing, not by obscuring what we're doing.</p>
         </div>
       </div>
 
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span>What happens if I only get 4 new customers instead of 5?</span>
+          <span>How much do I need to spend on ads to start?</span>
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Then I failed my promise. Even if I get you 4 customers who generate real revenue, if it's not at least 5 within 30 days, you simply message me and you get a <strong>100% refund of your management fee immediately</strong>. No questions. No friction.</p>
+          <!-- PLACEHOLDER: replace [X] with the real minimum once you have cost-per-booked-appointment data -->
+          <p>Our management fee is separate from your ad spend — the ad budget goes directly to Meta and is set by you. To get enough data to optimize and hit the appointment guarantee, we recommend a minimum of <strong>$[X]/month on ad spend</strong>. Below that threshold, there isn't enough volume to run the system properly — and we won't take on a client we can't realistically deliver for. We'll tell you the right number for your market on the strategy call.</p>
+          <div class="ph-block" style="margin-top:14px;">
+            <span class="ph-label">Placeholder — Minimum Budget</span>
+            <span class="ph-desc">Replace $[X] with real number once you have cost-per-booked-appointment data across 2+ clients. Typical range for local businesses: $500–$1,500/month ad spend.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>Why static image ads instead of video?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-a">
+          <p>Static ads load instantly and stop the scroll in under three seconds — before a video has even buffered. A sharp image with the right words does one thing: it makes your ideal customer think "that's exactly my problem," and click. High-production video introduces production delays, higher cost, and creative risk. We run what consistently produces the lowest cost per booked appointment, and right now that's a well-crafted static ad with problem-focused copy.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>What if I don't hit the promised number of booked appointments?</span>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-a">
+          <p>If we don't hit the agreed number of booked, showed appointments within 30 days — and you've held up your end (maintained the minimum ad budget, completed onboarding, honored the appointments we booked) — you message us and we issue a <strong>full refund of our management fee</strong>. No long explanation needed, no dispute process. The guarantee only covers our fee; your ad spend was spent by Meta and can't be refunded by us, which is why we're transparent about that upfront. We don't take the fee unless we earn it.</p>
         </div>
       </div>
 
@@ -863,14 +1081,14 @@ footer .legal {
       <div class="neon-frame reveal" style="border-radius:14px;">
         <a class="cta-btn" href="/survey">Secure Your 15-Minute Growth Strategy Call</a>
       </div>
-      <div class="cta-micro">No long-term contracts. 100% risk-free.</div>
+      <div class="cta-micro">No long-term contracts. Flat-rate fee. You own your ad account.</div>
     </div>
   </div>
 </section>
 
 </main>
 
-<!-- ════════════════ SECTION 7 · FOOTER ════════════════ -->
+<!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="wrap">
     <div class="brand">scale<span class="accent">vertise</span></div>
@@ -898,36 +1116,6 @@ function toggleFaq(q) {
   }
 }
 
-/* ── 3-field territory form → Formspree + Pixel Lead event ── */
-function handleTerritoryForm(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var btn = form.querySelector('button[type=submit]');
-  btn.disabled = true;
-  btn.textContent = 'Checking Availability…';
-
-  fetch('https://formspree.io/f/xdavkdvg', {
-    method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  }).then(function(res){
-    if (res.ok) {
-      if (typeof fbq === 'function') fbq('track', 'Lead');
-      form.style.display = 'none';
-      document.getElementById('form-success').style.display = 'block';
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Check Radius Availability & Secure Booking Call';
-      alert('Something went wrong — please try again.');
-    }
-  }).catch(function(){
-    btn.disabled = false;
-    btn.textContent = 'Check Radius Availability & Secure Booking Call';
-    alert('Network error — please try again.');
-  });
-}
-
 /* ── scroll reveal with sibling stagger ── */
 (function(){
   var els = document.querySelectorAll('.reveal');
@@ -948,73 +1136,6 @@ function handleTerritoryForm(e) {
   els.forEach(function(el){ io.observe(el); });
 })();
 
-/* ── Two-step form logic ── */
-function goToStep2() {
-  var name = document.getElementById('f-name');
-  var email = document.getElementById('f-email');
-  var phone = document.getElementById('f-phone');
-  if (!name.value.trim() || !email.value.trim() || !phone.value.trim()) {
-    [name, email, phone].forEach(function(f) {
-      if (!f.value.trim()) {
-        f.style.borderColor = 'rgba(239,68,68,0.6)';
-        f.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.1)';
-        setTimeout(function(){ f.style.borderColor=''; f.style.boxShadow=''; }, 2000);
-      }
-    });
-    return;
-  }
-  document.getElementById('form-step-1').classList.add('hidden');
-  document.getElementById('form-step-2').classList.remove('hidden');
-  /* update step indicator */
-  document.getElementById('step-dot-1').style.background = 'rgba(175,171,233,0.35)';
-  document.getElementById('step-dot-1').style.color = '#94A3B8';
-  document.getElementById('step-dot-2').style.background = 'rgba(175,171,233,0.9)';
-  document.getElementById('step-dot-2').style.border = 'none';
-  document.getElementById('step-dot-2').style.color = '#0B0F19';
-  document.getElementById('step-label-2').style.color = '#AFABE9';
-  document.getElementById('f-zip').focus();
-}
-
-function verifyZip() {
-  var zip = document.getElementById('f-zip');
-  if (!zip.value || zip.value.length < 5) {
-    zip.style.borderColor = 'rgba(239,68,68,0.6)';
-    zip.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.1)';
-    setTimeout(function(){ zip.style.borderColor=''; zip.style.boxShadow=''; }, 2000);
-    return;
-  }
-  var btn = document.getElementById('verify-btn');
-  var fields = document.getElementById('zip-fields');
-  var loading = document.getElementById('zip-feedback-loading');
-  var success = document.getElementById('zip-feedback-success');
-  btn.disabled = true;
-  loading.style.display = 'flex';
-  setTimeout(function() {
-    loading.style.display = 'none';
-    success.style.display = 'flex';
-    setTimeout(function() {
-      /* submit to Formspree */
-      var data = new FormData();
-      data.append('name', document.getElementById('f-name').value);
-      data.append('email', document.getElementById('f-email').value);
-      data.append('phone', document.getElementById('f-phone').value);
-      data.append('zip', zip.value);
-      fetch('https://formspree.io/f/xdavkdvg', {
-        method:'POST', body:data, headers:{'Accept':'application/json'}
-      }).then(function(r) {
-        if (typeof fbq === 'function') fbq('track', 'Lead');
-        document.getElementById('form-step-2').classList.add('hidden');
-        document.getElementById('step-indicator').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      }).catch(function(){
-        document.getElementById('form-step-2').classList.add('hidden');
-        document.getElementById('step-indicator').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
-      });
-    }, 1200);
-  }, 1500);
-}
-
 /* ── sticky pill: reveal only after the hero CTA scrolls out of view ── */
 (function(){
   var pill = document.querySelector('.sticky-pill');
@@ -1022,7 +1143,6 @@ function verifyZip() {
   if (!pill || !heroCta) return;
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      // CTA visible on first screen → hide pill; scrolled past → show pill
       if (e.isIntersecting) pill.classList.remove('visible');
       else pill.classList.add('visible');
     });
@@ -1033,8 +1153,8 @@ function verifyZip() {
 
 <!-- Mobile sticky floating pill -->
 <div class="sticky-pill">
-  <span class="sticky-pill-label">Limited Spots</span>
-  <a class="sticky-pill-btn" href="/survey">Secure Call</a>
+  <span class="sticky-pill-label">Book a Call</span>
+  <a class="sticky-pill-btn" href="/survey">Get Started</a>
 </div>
 </body>
 </html>

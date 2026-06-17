@@ -68,8 +68,8 @@ header {
   border-bottom:1px solid var(--line);
   flex-shrink:0;
 }
-.brand { font-size:1.05rem; font-weight:800; color:var(--text); letter-spacing:-0.025em; text-decoration:none; }
-.brand .accent { color:var(--accent); }
+.brand { display:flex; align-items:center; text-decoration:none; }
+.brand img { height:30px; width:auto; display:block; }
 
 .page-body {
   flex:1; position:relative; z-index:1;
@@ -203,7 +203,7 @@ footer p { font-size:0.78rem; color:var(--text-3); }
 <div class="geo-field"></div>
 
 <header>
-  <a class="brand" href="/">scale<span class="accent">vertise</span></a>
+  <a class="brand" href="/"><img src="/assets/sv-logo.png" alt="Scalevertise"></a>
 </header>
 
 <div class="page-body">

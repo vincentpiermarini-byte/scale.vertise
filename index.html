@@ -148,8 +148,8 @@ header {
   padding:22px clamp(20px,5vw,48px); display:flex; align-items:center;
   pointer-events:none;
 }
-.header-brand { font-size:1.05rem; font-weight:800; color:var(--text); letter-spacing:-0.025em; }
-.header-brand .accent { color:var(--accent); }
+.header-brand { display:flex; align-items:center; }
+.header-brand img { height:32px; width:auto; display:block; }
 
 /* ════ HERO ════ */
 .hero {
@@ -518,8 +518,8 @@ footer {
   padding:48px 0 56px; text-align:center;
   border-top:1px solid var(--line);
 }
-footer .brand { font-weight:800; font-size:1.05rem; color:var(--text); letter-spacing:-0.02em; margin-bottom:12px; }
-footer .brand .accent { color:var(--accent); }
+footer .brand { margin-bottom:12px; }
+footer .brand img { height:28px; width:auto; display:block; }
 footer p { font-size:0.82rem; color:var(--text-3); }
 footer .legal { margin-top:10px; font-size:0.78rem; color:var(--text-3); display:flex; justify-content:center; gap:24px; }
 footer .legal a { color:var(--text-3); text-decoration:none; }
@@ -601,7 +601,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 <div class="geo-field"></div>
 
 <header>
-  <div class="header-brand">scale<span class="accent">vertise</span></div>
+  <div class="header-brand"><img src="/assets/sv-logo.png" alt="Scalevertise"></div>
 </header>
 
 <main style="padding-bottom:clamp(80px,12vw,128px)">
@@ -931,7 +931,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
   <div class="wrap">
-    <div class="brand">scale<span class="accent">vertise</span></div>
+    <div class="brand"><img src="/assets/sv-logo.png" alt="Scalevertise"></div>
     <p>© 2026 Scalevertise. All rights reserved.</p>
     <div class="legal">
       <a href="#">Privacy Policy</a>

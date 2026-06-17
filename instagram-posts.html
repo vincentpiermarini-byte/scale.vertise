@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scalevertise — Instagram Posts</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#111;
+  font-family:'Inter', sans-serif;
+  padding:40px;
+  display:flex;
+  flex-direction:column;
+  gap:40px;
+  align-items:center;
+}
+body::before {
+  content:'SCALEVERTISE · INSTAGRAM POSTS · SCREENSHOT EACH ONE AT 1080×1350px';
+  color:#666;
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+/* ── POST SHELL ── */
+.post {
+  width:1080px;
+  height:1350px;
+  position:relative;
+  overflow:hidden;
+  flex-shrink:0;
+  background:#1A1714;
+}
+
+/* shared noise texture */
+.post::before {
+  content:'';
+  position:absolute; inset:0; z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,122,0,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 110%, rgba(196,168,130,0.04) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+/* ── GRID LINE ACCENT (consistent across all) ── */
+.grid-line {
+  position:absolute;
+  background:rgba(196,168,130,0.07);
+  z-index:1;
+}
+.grid-line.v { width:1px; top:0; bottom:0; }
+.grid-line.h { height:1px; left:0; right:0; }
+
+/* ── NAV BAR (top) ── */
+.post-nav {
+  position:absolute; top:0; left:0; right:0; z-index:10;
+  padding:52px 72px 0;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.post-brand {
+  display:flex; align-items:center; gap:10px;
+}
+.post-brand .mark {
+  width:36px; height:36px;
+  background:linear-gradient(135deg, #FFA940, #FF7A00);
+  border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Poppins', sans-serif;
+  font-weight:900; font-size:16px; color:#1A1714;
+  letter-spacing:-0.03em;
+}
+.post-brand .name {
+  font-family:'Poppins', sans-serif;
+  font-weight:800; font-size:22px;
+  color:#F6F2E8; letter-spacing:-0.03em; line-height:1;
+}
+.post-brand .name span { color:#FF7A00; }
+.post-tag {
+  font-family:'JetBrains Mono', monospace;
+  font-size:14px; font-weight:500;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(196,168,130,0.5);
+}
+
+/* ── BOTTOM BAR ── */
+.post-bottom {
+  position:absolute; bottom:0; left:0; right:0; z-index:10;
+  padding:0 72px 52px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.post-url {
+  font-family:'JetBrains Mono', monospace;
+  font-size:14px; color:rgba(196,168,130,0.4);
+  letter-spacing:0.1em;
+}
+.post-num {
+  font-family:'JetBrains Mono', monospace;
+  font-size:14px; color:rgba(196,168,130,0.25);
+  letter-spacing:0.15em;
+}
+
+/* ── CONTENT AREA ── */
+.post-body {
+  position:absolute; z-index:5;
+  left:72px; right:72px;
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  font-family:'JetBrains Mono', monospace;
+  font-size:16px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase;
+  color:#FF7A00; margin-bottom:28px;
+  display:flex; align-items:center; gap:10px;
+}
+.eyebrow::before {
+  content:'';
+  width:8px; height:8px; border-radius:50%;
+  background:#FF7A00; flex-shrink:0;
+}
+
+/* ── HEADLINE ── */
+.hl-main {
+  font-family:'Poppins', sans-serif;
+  font-weight:800; line-height:1.05;
+  letter-spacing:-0.03em;
+  color:#F6F2E8;
+}
+.hl-main .o { color:#FF7A00; }
+.hl-main .s { color:#C4A882; }
+
+.body-text {
+  font-size:28px; line-height:1.65;
+  color:#C5C0C9; font-weight:400;
+}
+.body-text strong { color:#F6F2E8; font-weight:600; }
+
+/* ── DIVIDER ── */
+.divider {
+  height:1px;
+  background:linear-gradient(90deg, rgba(196,168,130,0.25), transparent);
+  margin:40px 0;
+}
+
+/* ── STEP ROW ── */
+.step-row {
+  display:flex; align-items:flex-start; gap:28px;
+  margin-bottom:40px;
+}
+.step-num {
+  font-family:'Poppins', sans-serif;
+  font-size:18px; font-weight:800;
+  color:rgba(255,122,0,0.3);
+  letter-spacing:-0.02em;
+  flex-shrink:0; width:52px;
+  margin-top:4px;
+}
+.step-text {
+  flex:1;
+}
+.step-text .step-label {
+  font-family:'JetBrains Mono', monospace;
+  font-size:13px; letter-spacing:0.18em;
+  text-transform:uppercase; color:#C4A882;
+  margin-bottom:6px;
+}
+.step-text p {
+  font-size:26px; font-weight:600;
+  color:#F6F2E8; line-height:1.2;
+  letter-spacing:-0.01em;
+}
+
+/* ── BIG STAT ── */
+.big-stat {
+  font-family:'Poppins', sans-serif;
+  font-weight:900; letter-spacing:-0.04em;
+  color:#FF7A00; line-height:1;
+}
+
+/* ── GUARANTEE BLOCK ── */
+.guarantee-wrap {
+  border:1px solid rgba(255,122,0,0.25);
+  border-radius:24px;
+  padding:56px 60px;
+  background:rgba(255,122,0,0.04);
+}
+
+/* ── ACCENT LINE ── */
+.accent-bar {
+  width:64px; height:4px;
+  background:#FF7A00; border-radius:2px;
+  margin-bottom:32px;
+}
+
+/*═══════════════════════════════════
+  POST 1 — CALLOUT
+═══════════════════════════════════*/
+#post1 .post-body { top:168px; }
+#post1 .hl-main { font-size:86px; }
+
+/*═══════════════════════════════════
+  POST 2 — DAILY MATH
+═══════════════════════════════════*/
+#post2 .post-body { top:160px; }
+#post2 .big-stat { font-size:220px; }
+#post2 .hl-main { font-size:52px; }
+
+/*═══════════════════════════════════
+  POST 3 — CONTRARIAN TRUTH
+═══════════════════════════════════*/
+#post3 .post-body { top:168px; }
+#post3 .hl-main { font-size:72px; }
+
+/*═══════════════════════════════════
+  POST 4 — THE SYSTEM
+═══════════════════════════════════*/
+#post4 .post-body { top:160px; }
+#post4 .hl-main { font-size:66px; margin-bottom:56px; }
+
+/*═══════════════════════════════════
+  POST 5 — THE GUARANTEE
+═══════════════════════════════════*/
+#post5 .post-body { top:160px; }
+#post5 .hl-main { font-size:78px; }
+
+/*═══════════════════════════════════
+  POST 6 — SCARCITY CTA
+═══════════════════════════════════*/
+#post6 .post-body { top:168px; }
+#post6 .hl-main { font-size:80px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ POST 1 — CALLOUT ═══════════ -->
+<div class="post" id="post1">
+  <div class="grid-line v" style="left:33.3%"></div>
+  <div class="grid-line v" style="left:66.6%"></div>
+  <div class="grid-line h" style="top:50%"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">Care Homes</div>
+  </div>
+
+  <div class="post-body">
+    <div class="eyebrow">Who this is for</div>
+    <h1 class="hl-main">
+      If you own<br>
+      a care home<br>
+      with <span class="o">empty<br>
+      beds</span>...
+    </h1>
+    <div class="divider"></div>
+    <p class="body-text" style="font-size:36px; font-weight:600; color:#F6F2E8;">
+      This page is<br>for you.
+    </p>
+    <p class="body-text" style="font-size:24px; margin-top:24px;">
+      We help care home owners fill<br>
+      vacant beds with <strong>qualified,<br>
+      booked resident appointments</strong><br>
+      using Meta ads. Done for you.
+    </p>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">01 / 06</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ POST 2 — DAILY MATH ═══════════ -->
+<div class="post" id="post2">
+  <div class="grid-line v" style="left:33.3%"></div>
+  <div class="grid-line v" style="left:66.6%"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">The Math</div>
+  </div>
+
+  <div class="post-body">
+    <div class="eyebrow">Every single day</div>
+    <div class="big-stat">$133</div>
+    <div class="accent-bar" style="margin-top:24px;"></div>
+    <h2 class="hl-main" style="font-size:52px; margin-bottom:32px;">
+      That's what an empty<br>
+      bed costs you.<br>
+      <span class="s">Per day. Right now.</span>
+    </h2>
+    <p class="body-text" style="font-size:24px;">
+      $3,000 to $8,000 per month.<br>
+      Divided by 30 days.<br><br>
+      <strong>That's the real cost of<br>
+      waiting on referrals.</strong>
+    </p>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">02 / 06</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ POST 3 — CONTRARIAN TRUTH ═══════════ -->
+<div class="post" id="post3">
+  <div class="grid-line v" style="left:50%"></div>
+  <div class="grid-line h" style="top:40%"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">Hard Truth</div>
+  </div>
+
+  <div class="post-body">
+    <div class="eyebrow">The real reason beds stay empty</div>
+    <h1 class="hl-main" style="font-size:70px; margin-bottom:44px;">
+      The family<br>
+      searching for<br>
+      your home<br>
+      <span class="o">right now</span><br>
+      will choose<br>
+      your competitor.
+    </h1>
+    <div class="divider"></div>
+    <p class="body-text" style="font-size:26px;">
+      Not because you're worse.<br><br>
+      <strong>Because they replied<br>
+      in 4 minutes.<br>
+      You replied in 4 hours.</strong>
+    </p>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">03 / 06</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ POST 4 — THE SYSTEM ═══════════ -->
+<div class="post" id="post4">
+  <div class="grid-line v" style="left:33.3%"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">The Occupancy Engine</div>
+  </div>
+
+  <div class="post-body">
+    <div class="eyebrow">How we fill beds</div>
+    <h1 class="hl-main">
+      3 steps.<br>
+      <span class="o">30 days.</span>
+    </h1>
+
+    <div class="step-row">
+      <div class="step-num">01</div>
+      <div class="step-text">
+        <div class="step-label">The reach</div>
+        <p>Family sees your ad on Facebook or Instagram at the moment they're searching.</p>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num">02</div>
+      <div class="step-text">
+        <div class="step-label">The capture</div>
+        <p>One tap to submit. Name and number already filled in by Meta.</p>
+      </div>
+    </div>
+
+    <div class="step-row">
+      <div class="step-num">03</div>
+      <div class="step-text">
+        <div class="step-label">The lock-in</div>
+        <p>Automated text in seconds. Appointment booked on your calendar before intent fades.</p>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-top:8px;"></div>
+    <p class="body-text" style="font-size:22px;">
+      You show up for the tour.<br>
+      <strong>We handle everything else.</strong>
+    </p>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">04 / 06</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ POST 5 — THE GUARANTEE ═══════════ -->
+<div class="post" id="post5">
+  <div class="grid-line h" style="top:50%"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">The Guarantee</div>
+  </div>
+
+  <div class="post-body" style="top:160px;">
+    <div class="eyebrow">The Occupancy Guarantee</div>
+
+    <div class="guarantee-wrap">
+      <h1 class="hl-main" style="font-size:82px; margin-bottom:40px;">
+        <span class="o">20–30</span><br>
+        qualified<br>
+        resident<br>
+        appointments<br>
+        in 30 days.
+      </h1>
+      <div class="divider"></div>
+      <p class="body-text" style="font-size:30px; font-weight:700; color:#F6F2E8;">
+        Or you don't pay<br>our fee.
+      </p>
+      <p class="body-text" style="font-size:20px; margin-top:20px; color:rgba(196,168,130,0.7);">
+        No dispute. No lengthy explanation.<br>
+        Just a full refund of our management fee.
+      </p>
+    </div>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">05 / 06</div>
+  </div>
+</div>
+
+
+<!-- ═══════════ POST 6 — SCARCITY CTA ═══════════ -->
+<div class="post" id="post6">
+  <div class="grid-line v" style="left:33.3%"></div>
+  <div class="grid-line v" style="left:66.6%"></div>
+  <div class="grid-line h" style="top:60%"></div>
+  <!-- extra warm glow for the final CTA post -->
+  <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,122,0,0.07), transparent 70%);pointer-events:none;"></div>
+
+  <div class="post-nav">
+    <div class="post-brand">
+      <div class="mark">SV</div>
+      <div class="name">scale<span>vertise</span></div>
+    </div>
+    <div class="post-tag">Limited Availability</div>
+  </div>
+
+  <div class="post-body" style="top:168px;">
+    <div class="eyebrow">One home per area</div>
+    <h1 class="hl-main" style="font-size:80px; margin-bottom:44px;">
+      Your area<br>
+      might still<br>
+      be <span class="o">open.</span>
+    </h1>
+    <div class="divider"></div>
+    <p class="body-text" style="font-size:26px; margin-bottom:40px;">
+      We only work with <strong>one care home<br>
+      per geographic area.</strong><br><br>
+      Once a home in your catchment<br>
+      signs, that area is closed.
+    </p>
+    <div style="
+      display:inline-flex; align-items:center;
+      background:#FF7A00; color:#1A1714;
+      font-family:'Poppins',sans-serif;
+      font-weight:800; font-size:26px;
+      letter-spacing:-0.01em;
+      padding:28px 52px; border-radius:100px;
+      box-shadow: 0 0 0 1px rgba(255,122,0,0.4), 0 20px 60px rgba(255,122,0,0.2);
+    ">
+      Check if yours is open
+    </div>
+  </div>
+
+  <div class="post-bottom">
+    <div class="post-url">scalevertise.app</div>
+    <div class="post-num">06 / 06</div>
+  </div>
+</div>
+
+</body>
+</html>

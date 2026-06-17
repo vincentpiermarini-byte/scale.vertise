@@ -10,10 +10,10 @@
 body {
   background:#111;
   font-family:'Inter', sans-serif;
-  padding:40px;
+  padding:20px;
   display:flex;
   flex-direction:column;
-  gap:40px;
+  gap:20px;
   align-items:center;
 }
 body::before {
@@ -33,6 +33,9 @@ body::before {
   overflow:hidden;
   flex-shrink:0;
   background:#1A1714;
+  transform-origin:top center;
+  transform:scale(var(--post-scale,1));
+  margin-bottom:calc((1350px * var(--post-scale,1)) - 1350px);
 }
 
 /* shared noise texture */
@@ -499,5 +502,19 @@ body::before {
   </div>
 </div>
 
+<script>
+function scalePostsToViewport() {
+  const padding = 40;
+  const scale = Math.min(1, (window.innerWidth - padding) / 1080);
+  document.documentElement.style.setProperty('--post-scale', scale);
+  // adjust gap between posts to account for scale
+  document.querySelectorAll('.post').forEach(p => {
+    const collapse = (1350 * scale) - 1350;
+    p.style.marginBottom = collapse + 'px';
+  });
+}
+scalePostsToViewport();
+window.addEventListener('resize', scalePostsToViewport);
+</script>
 </body>
 </html>

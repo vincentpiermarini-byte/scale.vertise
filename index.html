@@ -27,7 +27,7 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
@@ -44,9 +44,9 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
   --accent:  #9DB4C6;   /* Glacier Blue — CTA fill, highlighted words, icons */
   --accent-h:#B8CDD9;   /* lighter hover state */
   --line:    rgba(92,115,134,0.35);
-  --font:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
-  --mono:  'JetBrains Mono', monospace;
+  --font:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --display: 'Poppins', 'Inter', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -78,8 +78,8 @@ h1,h2,h3 { color:var(--text); letter-spacing:-0.01em; }
   letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
 }
 .section-h2 {
-  font-family:var(--serif);
-  font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:400; line-height:1.15;
+  font-family:var(--display);
+  font-size:clamp(1.7rem,3.2vw,2.4rem); font-weight:800; line-height:1.085;
   margin:14px 0 18px; color:var(--text);
 }
 .section-sub {
@@ -97,7 +97,7 @@ section { padding:clamp(72px,9vw,120px) 0; position:relative; }
   display:inline-flex; align-items:center; justify-content:center; gap:10px;
   background:var(--accent);
   color:#0B0F14; font-size:clamp(1rem,1.5vw,1.05rem); font-weight:800;
-  padding:20px 40px; border-radius:12px; border:none; cursor:pointer;
+  padding:18px 40px; border-radius:100px; border:none; cursor:pointer;
   text-decoration:none; letter-spacing:-0.01em; line-height:1.3; text-align:center;
   box-shadow:
     0 0 0 1px rgba(157,180,198,0.35),
@@ -177,11 +177,11 @@ header {
 @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
 .hero h1 {
-  font-family:var(--serif);
-  font-size:clamp(1.75rem,4vw,2.8rem); font-weight:400; line-height:1.1;
-  letter-spacing:-0.02em; max-width:720px; margin:0 auto 18px; color:var(--text);
+  font-family:var(--display);
+  font-size:clamp(1.75rem,4vw,2.8rem); font-weight:800; line-height:1.1;
+  letter-spacing:-0.01em; max-width:720px; margin:0 auto 18px; color:var(--text);
 }
-.hero h1 .hl { color:var(--accent); font-style:italic; }
+.hero h1 .hl { color:var(--accent);  }
 .hero-sub {
   font-size:1rem; color:var(--text-2);
   line-height:1.6; max-width:500px; margin:0 auto 26px;
@@ -274,7 +274,7 @@ header {
   display:flex; align-items:center; justify-content:center;
 }
 .pain-card h3 {
-  font-family:var(--serif); font-size:1.05rem; font-weight:400;
+  font-family:var(--display); font-size:1.05rem; font-weight:400;
   margin-bottom:10px; line-height:1.3; color:var(--text);
 }
 .pain-card p { font-size:0.92rem; line-height:1.65; color:var(--text-2); }
@@ -288,12 +288,12 @@ header {
 .pipe-step { padding:0 clamp(16px,3vw,40px); }
 .pipe-step + .pipe-step { border-left:1px solid var(--line); }
 .pipe-num {
-  font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:400;
+  font-family:var(--display); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:400;
   color:transparent; -webkit-text-stroke:1px rgba(157,180,198,0.3);
   line-height:1; margin-bottom:20px; display:block;
 }
 .pipe-step h3 {
-  font-family:var(--serif); font-size:1.1rem; font-weight:400;
+  font-family:var(--display); font-size:1.1rem; font-weight:400;
   margin-bottom:12px; color:var(--text); line-height:1.3;
 }
 .pipe-step h3 .tag {
@@ -339,7 +339,7 @@ header {
 }
 .proof-stat:last-child { border-right:none; }
 .proof-stat-num {
-  font-family:var(--serif); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:400;
+  font-family:var(--display); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:400;
   color:var(--text); letter-spacing:-0.02em; line-height:1; margin-bottom:10px;
 }
 .proof-stat-num.ph { display:flex; align-items:center; justify-content:center; min-height:clamp(1.8rem,3.5vw,2.6rem); }
@@ -362,7 +362,7 @@ header {
   letter-spacing:0.28em; text-transform:uppercase; color:var(--accent); opacity:0.7;
 }
 .case-ph-title {
-  font-family:var(--serif); font-size:1rem; font-weight:400;
+  font-family:var(--display); font-size:1rem; font-weight:400;
   color:var(--text-3); line-height:1.5;
 }
 .case-ph-fields {
@@ -379,7 +379,7 @@ header {
   align-items:center; margin-top:clamp(40px,5vw,56px);
 }
 .value-number {
-  font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:400;
+  font-family:var(--display); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:400;
   color:var(--accent); line-height:1; margin-bottom:6px;
 }
 .value-label {
@@ -429,11 +429,11 @@ header {
   background:rgba(157,180,198,0.06);
 }
 .guarantee-title {
-  font-family:var(--serif);
-  font-size:clamp(1.55rem,3vw,2.3rem); font-weight:400; line-height:1.15;
+  font-family:var(--display);
+  font-size:clamp(1.55rem,3vw,2.3rem); font-weight:800; line-height:1.085;
   color:var(--text);
 }
-.guarantee-title .hl { color:var(--accent); font-style:italic; }
+.guarantee-title .hl { color:var(--accent);  }
 .guarantee-body { font-size:clamp(0.93rem,1.4vw,1rem); line-height:1.75; color:var(--text-2); }
 .guarantee-body + .guarantee-body { margin-top:16px; }
 .guarantee-body strong { color:var(--text); font-weight:600; }
@@ -551,7 +551,7 @@ footer .legal a:hover { color:var(--accent); }
   .vsl-ph { padding:10px 13px; }
 
   .hero-cta-block { order:4; margin-bottom:0; }
-  .cta-btn { width:100%; padding:16px 20px; font-size:0.95rem; border-radius:10px; }
+  .cta-btn { width:100%; padding:16px 20px; font-size:0.95rem; border-radius:100px; }
   .cta-micro { font-size:0.7rem; margin-top:8px; }
 
   section { padding:clamp(48px,8vw,72px) 0; }
@@ -986,7 +986,7 @@ footer .legal a:hover { color:var(--accent); }
     </div>
 
     <div style="margin-top:clamp(56px,7vw,80px);display:flex;flex-direction:column;align-items:center;">
-      <p style="font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--text);margin-bottom:28px;line-height:1.25;max-width:520px;text-align:center;">Ready to build a predictable resident inquiry pipeline?</p>
+      <p style="font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--text);margin-bottom:28px;line-height:1.25;max-width:520px;text-align:center;">Ready to build a predictable resident inquiry pipeline?</p>
       <a class="cta-btn reveal" href="CALENDLY_URL">Book a Free Strategy Call</a>
       <div class="cta-micro">20 to 30 qualified resident appointments in 30 days, or you don't pay our fee.</div>
     </div>

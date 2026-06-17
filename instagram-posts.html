@@ -573,7 +573,9 @@ body {
   <div class="bottom-row"><div></div><div></div></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
+// Scale slides to fit viewport
 function scale() {
   const s = Math.min(1, (window.innerWidth - 32) / 1080);
   document.documentElement.style.setProperty('--s', s);
@@ -583,6 +585,77 @@ function scale() {
 }
 scale();
 window.addEventListener('resize', scale);
+
+// Inject download buttons after each slide
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+  slides.forEach((slide, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = 'Download slide ' + (i + 1);
+    btn.className = 'dl-btn';
+    btn.onclick = () => downloadSlide(slide, i + 1);
+    slide.insertAdjacentElement('afterend', btn);
+  });
+});
+
+async function downloadSlide(el, num) {
+  const btn = el.nextElementSibling;
+  btn.textContent = 'Rendering...';
+  btn.disabled = true;
+
+  // Temporarily remove transform so html2canvas captures at full 1080x1440
+  const prev = el.style.transform;
+  const prevMB = el.style.marginBottom;
+  el.style.transform = 'none';
+  el.style.marginBottom = '0';
+
+  try {
+    const canvas = await html2canvas(el, {
+      width: 1080,
+      height: 1440,
+      scale: 1,
+      useCORS: true,
+      logging: false,
+      backgroundColor: null
+    });
+
+    // On iOS, open as image in new tab so user can long-press save
+    const dataUrl = canvas.toDataURL('image/png');
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    if (isIOS) {
+      const win = window.open();
+      win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;">');
+      win.document.title = 'sv-slide-' + num + '.png';
+    } else {
+      const a = document.createElement('a');
+      a.download = 'sv-slide-' + num + '.png';
+      a.href = dataUrl;
+      a.click();
+    }
+  } finally {
+    el.style.transform = prev;
+    el.style.marginBottom = prevMB;
+    btn.textContent = 'Download slide ' + num;
+    btn.disabled = false;
+  }
+}
 </script>
+<style>
+.dl-btn {
+  width: calc(1080px * var(--s, 1));
+  padding: 14px;
+  background: #FF7A00;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 28px;
+  border-radius: 0 0 6px 6px;
+}
+.dl-btn:disabled { opacity: 0.6; cursor: wait; }
+</style>
 </body>
 </html>

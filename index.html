@@ -151,7 +151,7 @@ header {
 
 /* ════ HERO ════ */
 .hero {
-  padding:clamp(128px,14vw,168px) 0 clamp(80px,10vw,120px);
+  padding:clamp(100px,12vw,140px) 0 clamp(60px,8vw,96px);
   position:relative; overflow:hidden;
 }
 .hero::after {
@@ -178,15 +178,14 @@ header {
 
 .hero h1 {
   font-family:var(--serif);
-  font-size:clamp(1.9rem,5vw,3rem); font-weight:400; line-height:1.08;
-  letter-spacing:-0.02em; max-width:820px; margin:0 auto 24px; color:var(--text);
+  font-size:clamp(1.75rem,4vw,2.8rem); font-weight:400; line-height:1.1;
+  letter-spacing:-0.02em; max-width:720px; margin:0 auto 18px; color:var(--text);
 }
 .hero h1 .hl { color:var(--accent); font-style:italic; }
 .hero-sub {
-  font-size:clamp(0.95rem,1.5vw,1.05rem); color:var(--text-2);
-  line-height:1.65; max-width:580px; margin:0 auto 28px;
+  font-size:1rem; color:var(--text-2);
+  line-height:1.6; max-width:500px; margin:0 auto 26px;
 }
-.hero-sub-mobile { display:none; }
 
 .trust-row {
   display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
@@ -540,19 +539,16 @@ footer .legal a:hover { color:var(--accent); }
   .sticky-pill { display:flex; }
 }
 @media (max-width:640px) {
-  .hero { padding:90px 0 48px; }
+  .hero { padding:70px 0 36px; }
   .hero .wrap { display:flex; flex-direction:column; }
-  .hero-callout { margin-bottom:20px; font-size:10px; padding:7px 14px; }
-  .trust-row { display:none; }
+  .hero-callout { margin-bottom:14px; font-size:9px; padding:6px 13px; }
 
-  .hero h1 { order:1; font-size:clamp(1.65rem,6vw,1.95rem); line-height:1.1; margin:0 auto 14px; max-width:100%; }
-  .hero-sub { order:2; font-size:0.92rem; line-height:1.65; margin:0 auto 20px; }
-  .hero-sub-desktop { display:none; }
-  .hero-sub-mobile { display:block; }
+  .hero h1 { order:1; font-size:clamp(1.45rem,5.5vw,1.75rem); line-height:1.15; margin:0 auto 10px; max-width:100%; }
+  .hero-sub { order:2; font-size:0.85rem; line-height:1.55; margin:0 auto 16px; }
 
-  .vsl-frame { order:3; border-radius:14px; margin:0 auto 20px; width:100%; aspect-ratio:16/9; min-height:0; flex-shrink:0; }
+  .vsl-frame { order:3; border-radius:12px; margin:0 auto 16px; width:100%; aspect-ratio:16/9; min-height:0; flex-shrink:0; }
   .vsl-topbar { display:none; }
-  .vsl-ph { padding:14px 16px; }
+  .vsl-ph { padding:10px 13px; }
 
   .hero-cta-block { order:4; margin-bottom:0; }
   .cta-btn { width:100%; padding:16px 20px; font-size:0.95rem; border-radius:10px; }
@@ -608,30 +604,19 @@ footer .legal a:hover { color:var(--accent); }
     </div>
 
     <h1 class="enter" style="animation-delay:0.12s;">
-      We'll get you <span class="hl">20 to 30 qualified<br>resident appointments</span> in 30 days.<br>Or you don't pay.
+      We'll get you <span class="hl">20 to 30 qualified resident appointments</span> in 30 days. Or you don't pay.
     </h1>
 
-    <p class="hero-sub hero-sub-desktop enter" style="animation-delay:0.25s;">
-      We build and run a complete Meta advertising system that reaches families actively searching for care for a loved one, captures their inquiry in one tap, and follows up within seconds to book a confirmed appointment on your calendar — before they call another home. Done for you. Flat rate. You own the ad account.
-    </p>
-    <p class="hero-sub hero-sub-mobile enter" style="animation-delay:0.25s;">
-      Meta ads, instant follow-up, and confirmed resident appointments on your calendar. Done for you. If we don't deliver, you don't pay our fee.
+    <p class="hero-sub enter" style="animation-delay:0.2s;">
+      Done-for-you Meta ads, instant follow-up, booked appointments on your calendar. Flat rate. You own the ad account.
     </p>
 
-    <div class="trust-row enter" style="animation-delay:0.33s;">
-      <div class="proof-pill-ph">
-        <span class="proof-pill-stars">★★★★★</span>
-        <span class="proof-pill-text">Real client reviews go here</span>
-        <span class="proof-pill-tag">Placeholder</span>
-      </div>
-    </div>
-
-    <div class="hero-cta-block enter" style="animation-delay:0.42s;">
+    <div class="hero-cta-block enter" style="animation-delay:0.3s;">
       <a class="cta-btn" href="CALENDLY_URL">Book a Free Strategy Call</a>
-      <div class="cta-micro">No long-term contracts · $2,000/month flat fee · You own your ad account</div>
+      <div class="cta-micro">No long-term contracts · $2,000/month · You own your ad account</div>
     </div>
 
-    <div class="vsl-frame enter" style="animation-delay:0.55s;">
+    <div class="vsl-frame enter" style="animation-delay:0.42s;">
       <div class="vsl-topbar">
         <i></i><i></i><i></i>
         <span>Scalevertise · System Walkthrough</span>

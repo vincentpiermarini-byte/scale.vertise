@@ -36,15 +36,15 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
    Midnight Indigo / Porcelain / Solar Flare palette
    ============================================================ */
 :root {
-  --bg:      #1A1714;   /* Warm Charcoal — page background */
+  --bg:      #1A1714;   /* Warm Charcoal, page background */
   --bg-card: #242019;   /* slightly lighter warm panel bg */
-  --text:    #F6F2E8;   /* Porcelain — headlines */
-  --text-2:  #C5C0C9;   /* Lavender Mist — body text */
-  --text-3:  #C4A882;   /* Warm Sand — eyebrows, labels, icons */
+  --text:    #F6F2E8;   /* Porcelain, headlines */
+  --text-2:  #C5C0C9;   /* Lavender Mist, body text */
+  --text-3:  #C4A882;   /* Warm Sand, eyebrows, labels, icons */
   --border:  #332C24;   /* warm dark border */
-  --accent:  #FF7A00;   /* Solar Flare — primary CTAs, highlights */
+  --accent:  #FF7A00;   /* Solar Flare, primary CTAs, highlights */
   --accent-h:#FF9433;   /* Solar Flare hover */
-  --accent-2:#C4A882;   /* Warm Sand — secondary accent */
+  --accent-2:#C4A882;   /* Warm Sand, secondary accent */
   --line:    rgba(196,168,130,0.12);
   --font:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --display: 'Poppins', 'Inter', sans-serif;
@@ -318,10 +318,10 @@ header {
 .qual-list li {
   font-size:0.94rem; line-height:1.6; color:var(--text-2);
   padding:10px 0; border-bottom:1px solid var(--line);
-  display:flex; align-items:baseline; gap:10px;
+  display:flex; align-items:flex-start; gap:10px; text-align:left;
 }
 .qual-list li:last-child { border-bottom:none; padding-bottom:0; }
-.qual-list li::before { flex-shrink:0; font-size:0.82rem; font-weight:700; }
+.qual-list li::before { flex-shrink:0; width:16px; font-size:0.82rem; font-weight:700; margin-top:2px; }
 .qual-col.yes .qual-list li::before { content:'✓'; color:var(--accent); }
 .qual-col.no  .qual-list li::before { content:'✗'; color:var(--text-3); }
 
@@ -603,7 +603,7 @@ footer .legal a:hover { color:var(--accent); }
     </div>
 
     <h1 class="enter" style="animation-delay:0.12s;">
-      We'll get you <span class="hl">20 to 30 qualified resident appointments</span> in 30 days. Or you don't pay our fee.
+      We'll get you <span class="hl">20–30 qualified resident appointments</span> in 30 days. Or you don't pay our fee.
     </h1>
 
     <div class="vsl-frame enter" style="animation-delay:0.2s;">
@@ -637,7 +637,7 @@ footer .legal a:hover { color:var(--accent); }
   <div class="wrap center">
     <div class="eyebrow reveal">Why Beds Stay Empty</div>
     <h2 class="section-h2 reveal">The Real Cost of Unpredictable Occupancy</h2>
-    <p class="section-sub reveal">When referrals slow, beds sit empty — and every unfilled day is revenue you can't recover.</p>
+    <p class="section-sub reveal">When referrals slow, beds sit empty. Every unfilled day is revenue you can't recover.</p>
 
     <div class="pain-grid">
       <div class="pain-card reveal" style="text-align:left;">
@@ -677,7 +677,7 @@ footer .legal a:hover { color:var(--accent); }
           </svg>
         </div>
         <h3>Appointments That Don't Show Up</h3>
-        <p>Even when a family agrees to visit, without a systematic confirmation and reminder process, no-shows are common. <strong>Your team's time, the family's trust, and your revenue expectation</strong> — all wasted when no one walks through the door.</p>
+        <p>Even when a family agrees to visit, without a systematic confirmation and reminder process, no-shows are common. <strong>Your team's time, the family's trust, and your revenue expectation</strong>, all wasted when no one walks through the door.</p>
       </div>
     </div>
   </div>
@@ -748,7 +748,7 @@ footer .legal a:hover { color:var(--accent); }
 
 <div class="rule"></div>
 
-<!-- RESULTS HIDDEN UNTIL DATA — uncomment when real numbers are ready
+<!-- RESULTS HIDDEN UNTIL DATA, uncomment when real numbers are ready
 <section>
   <div class="wrap center">
     <div class="eyebrow">Results</div>
@@ -766,7 +766,7 @@ footer .legal a:hover { color:var(--accent); }
     <div class="value-frame reveal" style="display:block;">
       <div class="value-number">$2,000</div>
       <span class="value-label">Flat management fee per month</span>
-      <p style="font-size:0.95rem;color:var(--text-2);line-height:1.6;max-width:520px;margin-bottom:32px;">Ad spend goes straight to Meta — you set the budget, we never touch it or mark it up.</p>
+      <p style="font-size:0.95rem;color:var(--text-2);line-height:1.6;max-width:520px;margin-bottom:32px;">Ad spend goes straight to Meta, you set the budget, we never touch it or mark it up.</p>
 
       <div class="value-math-row">
         <span>What one filled bed typically earns you</span>
@@ -777,7 +777,7 @@ footer .legal a:hover { color:var(--accent); }
         <span class="val">$2,000 / mo, flat</span>
       </div>
       <div class="value-math-row" style="padding-top:18px;border-top:1px solid rgba(196,168,130,0.2);margin-top:4px;border-bottom:none;">
-        <span style="font-weight:600;color:var(--text);font-size:1rem;">Fill a single bed and we've already paid for ourselves — and we're aiming for 20–30 booked appointments a month.</span>
+        <span style="font-weight:600;color:var(--text);font-size:1rem;">Fill a single bed and we've already paid for ourselves, and we're aiming for 20–30 booked appointments a month.</span>
       </div>
       <p style="font-size:0.75rem;color:var(--text-3);margin-top:16px;line-height:1.65;">Revenue range is typical for private-rate care homes and varies by location and fee structure. Not a guarantee of results.</p>
     </div>
@@ -800,11 +800,11 @@ footer .legal a:hover { color:var(--accent); }
       </div>
       <div>
         <p class="guarantee-body">
-          We guarantee <strong>confirmed appointments from families genuinely searching for a place for a loved one</strong> — not leads, not impressions, not names in a spreadsheet. If we don't hit the agreed number within 30 days, message us and we refund our management fee in full. No dispute, no lengthy explanation needed.
+          We guarantee <strong>confirmed appointments from families genuinely searching for a place for a loved one</strong>, not leads, not impressions, not names in a spreadsheet. If we don't hit the agreed number within 30 days, message us and we refund our management fee in full. No dispute, no lengthy explanation needed.
         </p>
         <div class="guarantee-conditions">
           <span class="gc-head">Conditions</span>
-          <p style="font-size:0.88rem;color:var(--text-3);line-height:1.7;margin-top:10px;">A minimum monthly ad budget, agreed before we start. An onboarding call shortly after you sign. Appointments must be honored by your team — if your staff doesn't show for booked tours or your home declines qualifying residents, the guarantee doesn't apply. The guarantee covers our management fee; ad spend is billed directly by Meta and isn't refundable by us.</p>
+          <p style="font-size:0.88rem;color:var(--text-3);line-height:1.7;margin-top:10px;">A minimum monthly ad budget, agreed before we start. An onboarding call shortly after you sign. Appointments must be honored by your team, if your staff doesn't show for booked tours or your home declines qualifying residents, the guarantee doesn't apply. The guarantee covers our management fee; ad spend is billed directly by Meta and isn't refundable by us.</p>
         </div>
       </div>
     </div>
@@ -827,7 +827,7 @@ footer .legal a:hover { color:var(--accent); }
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Most agencies hand you a list of names and call the job done. The gap between a submitted form and a family who actually walks through your door is where occupancy is won or lost — and most agencies never close that gap. Our system follows up within seconds of every inquiry, books the appointment automatically, and sends confirmations and reminders so families show up. We guarantee <strong>booked, showed resident appointments</strong> — not leads. If we don't hit the agreed number, we don't get paid.</p>
+          <p>Most agencies hand you a list of names and call the job done. The gap between a submitted form and a family who actually walks through your door is where occupancy is won or lost, and most agencies. Our system follows up within seconds of every inquiry, books the appointment automatically, and sends confirmations and reminders so families show up. We guarantee <strong>booked, showed resident appointments</strong>: not leads, If we don't hit the agreed number, we don't get paid.</p>
         </div>
       </div>
 
@@ -857,7 +857,7 @@ footer .legal a:hover { color:var(--accent); }
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
-          <p>Our management fee ($2,000/month) is separate from your ad spend. The ad budget goes directly to Meta and is controlled by you. We require a minimum monthly ad spend — the right number for your market is something we'll confirm on the strategy call. Below a minimum threshold there isn't enough data to run the system well, and we won't take on a client we can't realistically deliver for.</p>
+          <p>Our management fee ($2,000/month) is separate from your ad spend. The ad budget goes directly to Meta and is controlled by you. We require a minimum monthly ad spend, the right number for your market is something we'll confirm on the strategy call. Below a minimum threshold there isn't enough data to run the system well, and we won't take on a client we can't realistically deliver for.</p>
         </div>
       </div>
 

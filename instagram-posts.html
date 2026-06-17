@@ -35,7 +35,7 @@ body {
 /* ── SLIDE ── */
 .slide {
   width:1080px;
-  height:1350px;
+  height:1440px;
   position:relative;
   overflow:hidden;
   background:#F5F1EB;
@@ -47,7 +47,7 @@ body {
   margin-bottom:3px;
   transform-origin:top center;
   transform:scale(var(--s,1));
-  margin-bottom:calc(((var(--s,1)) * 1350px) - 1350px + 4px);
+  margin-bottom:calc(((var(--s,1)) * 1440px) - 1440px + 4px);
 }
 
 /* dark variant */
@@ -578,7 +578,7 @@ function scale() {
   const s = Math.min(1, (window.innerWidth - 32) / 1080);
   document.documentElement.style.setProperty('--s', s);
   document.querySelectorAll('.slide').forEach(el => {
-    el.style.marginBottom = ((s * 1350) - 1350 + 4) + 'px';
+    el.style.marginBottom = ((s * 1440) - 1440 + 4) + 'px';
   });
 }
 scale();

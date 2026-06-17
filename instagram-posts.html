@@ -3,518 +3,586 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scalevertise — Instagram Posts</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<title>Scalevertise — Instagram Carousels</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body {
-  background:#111;
+  background:#0e0e0e;
   font-family:'Inter', sans-serif;
-  padding:20px;
+  padding:24px 16px 60px;
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:0;
   align-items:center;
 }
-body::before {
-  content:'SCALEVERTISE · INSTAGRAM POSTS · SCREENSHOT EACH ONE AT 1080×1350px';
-  color:#666;
-  font-size:11px;
-  letter-spacing:0.15em;
-  text-transform:uppercase;
-  margin-bottom:8px;
-}
 
-/* ── POST SHELL ── */
-.post {
+/* ── SECTION LABEL ── */
+.section-label {
+  width:100%;
+  max-width:480px;
+  color:#444;
+  font-size:10px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  padding:32px 0 12px;
+  border-top:1px solid #1a1a1a;
+  margin-top:32px;
+}
+.section-label:first-child { margin-top:0; border-top:none; padding-top:8px; }
+
+/* ── SLIDE ── */
+.slide {
   width:1080px;
   height:1350px;
   position:relative;
   overflow:hidden;
+  background:#F5F1EB;
   flex-shrink:0;
-  background:#1A1714;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:80px 96px;
+  margin-bottom:3px;
   transform-origin:top center;
-  transform:scale(var(--post-scale,1));
-  margin-bottom:calc((1350px * var(--post-scale,1)) - 1350px);
+  transform:scale(var(--s,1));
+  margin-bottom:calc(((var(--s,1)) * 1350px) - 1350px + 4px);
 }
 
-/* shared noise texture */
-.post::before {
-  content:'';
-  position:absolute; inset:0; z-index:0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,122,0,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 90% 110%, rgba(196,168,130,0.04) 0%, transparent 60%);
-  pointer-events:none;
+/* dark variant */
+.slide.dark {
+  background:#1A1714;
 }
 
-/* ── GRID LINE ACCENT (consistent across all) ── */
-.grid-line {
-  position:absolute;
-  background:rgba(196,168,130,0.07);
-  z-index:1;
-}
-.grid-line.v { width:1px; top:0; bottom:0; }
-.grid-line.h { height:1px; left:0; right:0; }
-
-/* ── NAV BAR (top) ── */
-.post-nav {
-  position:absolute; top:0; left:0; right:0; z-index:10;
-  padding:52px 72px 0;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.post-brand {
-  display:flex; align-items:center; gap:10px;
-}
-.post-brand .mark {
-  width:36px; height:36px;
-  background:linear-gradient(135deg, #FFA940, #FF7A00);
-  border-radius:8px;
-  display:flex; align-items:center; justify-content:center;
-  font-family:'Poppins', sans-serif;
-  font-weight:900; font-size:16px; color:#1A1714;
+/* ── BRAND MARK ── */
+.mark {
+  font-size:22px;
+  font-weight:800;
   letter-spacing:-0.03em;
+  color:#999;
 }
-.post-brand .name {
-  font-family:'Poppins', sans-serif;
-  font-weight:800; font-size:22px;
-  color:#F6F2E8; letter-spacing:-0.03em; line-height:1;
+.mark .o { color:#FF7A00; }
+.slide.dark .mark { color:#555; }
+.slide.dark .mark .o { color:#FF7A00; }
+
+/* ── SLIDE NUMBER ── */
+.slide-num {
+  font-size:14px;
+  font-weight:500;
+  color:#bbb;
+  letter-spacing:0.05em;
 }
-.post-brand .name span { color:#FF7A00; }
-.post-tag {
-  font-family:'JetBrains Mono', monospace;
-  font-size:14px; font-weight:500;
-  letter-spacing:0.18em; text-transform:uppercase;
-  color:rgba(196,168,130,0.5);
+.slide.dark .slide-num { color:#444; }
+
+/* ── TOP ROW ── */
+.top-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-/* ── BOTTOM BAR ── */
-.post-bottom {
-  position:absolute; bottom:0; left:0; right:0; z-index:10;
-  padding:0 72px 52px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.post-url {
-  font-family:'JetBrains Mono', monospace;
-  font-size:14px; color:rgba(196,168,130,0.4);
-  letter-spacing:0.1em;
-}
-.post-num {
-  font-family:'JetBrains Mono', monospace;
-  font-size:14px; color:rgba(196,168,130,0.25);
-  letter-spacing:0.15em;
+/* ── BODY ── */
+.body {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:40px;
 }
 
-/* ── CONTENT AREA ── */
-.post-body {
-  position:absolute; z-index:5;
-  left:72px; right:72px;
+/* ── HOOK ── (big opening line) */
+.hook {
+  font-size:96px;
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-0.04em;
+  color:#1A1714;
+}
+.slide.dark .hook { color:#F6F2E8; }
+
+.hook .accent { color:#FF7A00; }
+.hook em { font-style:italic; font-weight:800; }
+
+/* ── BODY TEXT ── */
+.body-text {
+  font-size:52px;
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:-0.02em;
+  color:#3a3530;
+  max-width:880px;
+}
+.slide.dark .body-text { color:#C5C0B9; }
+
+.body-text strong {
+  font-weight:800;
+  color:#1A1714;
+}
+.slide.dark .body-text strong { color:#F6F2E8; }
+
+.body-text .accent { color:#FF7A00; font-weight:700; }
+
+/* ── STAT BLOCK ── */
+.stat {
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.stat-number {
+  font-size:140px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-0.05em;
+  color:#1A1714;
+}
+.slide.dark .stat-number { color:#F6F2E8; }
+.stat-number .accent { color:#FF7A00; }
+.stat-label {
+  font-size:38px;
+  font-weight:600;
+  color:#888;
+  letter-spacing:-0.01em;
+}
+.slide.dark .stat-label { color:#666; }
+
+/* ── LIST ── */
+.list {
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.list-item {
+  display:flex;
+  align-items:flex-start;
+  gap:28px;
+  font-size:50px;
+  font-weight:500;
+  line-height:1.25;
+  letter-spacing:-0.02em;
+  color:#3a3530;
+}
+.slide.dark .list-item { color:#C5C0B9; }
+.list-item .num {
+  font-size:32px;
+  font-weight:800;
+  color:#FF7A00;
+  min-width:48px;
+  padding-top:8px;
 }
 
-/* ── EYEBROW ── */
-.eyebrow {
-  font-family:'JetBrains Mono', monospace;
-  font-size:16px; font-weight:500;
-  letter-spacing:0.22em; text-transform:uppercase;
-  color:#FF7A00; margin-bottom:28px;
-  display:flex; align-items:center; gap:10px;
+/* ── STEP BLOCK ── */
+.step-block {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
-.eyebrow::before {
-  content:'';
-  width:8px; height:8px; border-radius:50%;
-  background:#FF7A00; flex-shrink:0;
+.step-label {
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#FF7A00;
 }
-
-/* ── HEADLINE ── */
-.hl-main {
-  font-family:'Poppins', sans-serif;
-  font-weight:800; line-height:1.05;
-  letter-spacing:-0.03em;
+.step-head {
+  font-size:80px;
+  font-weight:900;
+  line-height:1.0;
+  letter-spacing:-0.04em;
   color:#F6F2E8;
 }
-.hl-main .o { color:#FF7A00; }
-.hl-main .s { color:#C4A882; }
-
-.body-text {
-  font-size:28px; line-height:1.65;
-  color:#C5C0C9; font-weight:400;
+.step-body {
+  font-size:44px;
+  font-weight:400;
+  line-height:1.4;
+  color:#C5C0B9;
+  max-width:840px;
 }
-.body-text strong { color:#F6F2E8; font-weight:600; }
+.step-body strong { font-weight:700; color:#F6F2E8; }
+
+/* ── CTA BLOCK ── */
+.cta-block {
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.cta-line {
+  font-size:48px;
+  font-weight:700;
+  line-height:1.2;
+  letter-spacing:-0.02em;
+  color:#F6F2E8;
+}
+.cta-sub {
+  font-size:32px;
+  font-weight:400;
+  color:#888;
+  letter-spacing:-0.01em;
+}
+.cta-tag {
+  display:inline-block;
+  background:#FF7A00;
+  color:#fff;
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:0.02em;
+  padding:12px 28px;
+  border-radius:6px;
+  width:fit-content;
+}
 
 /* ── DIVIDER ── */
 .divider {
-  height:1px;
-  background:linear-gradient(90deg, rgba(196,168,130,0.25), transparent);
-  margin:40px 0;
+  width:80px;
+  height:4px;
+  background:#FF7A00;
+  border-radius:2px;
 }
+.slide.light .divider { background:#FF7A00; }
 
-/* ── STEP ROW ── */
-.step-row {
-  display:flex; align-items:flex-start; gap:28px;
-  margin-bottom:40px;
+/* ── BOTTOM ROW ── */
+.bottom-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
 }
-.step-num {
-  font-family:'Poppins', sans-serif;
-  font-size:18px; font-weight:800;
-  color:rgba(255,122,0,0.3);
-  letter-spacing:-0.02em;
-  flex-shrink:0; width:52px;
-  margin-top:4px;
+.swipe-hint {
+  font-size:22px;
+  font-weight:500;
+  color:#bbb;
+  letter-spacing:0.02em;
 }
-.step-text {
-  flex:1;
-}
-.step-text .step-label {
-  font-family:'JetBrains Mono', monospace;
-  font-size:13px; letter-spacing:0.18em;
-  text-transform:uppercase; color:#C4A882;
-  margin-bottom:6px;
-}
-.step-text p {
-  font-size:26px; font-weight:600;
-  color:#F6F2E8; line-height:1.2;
-  letter-spacing:-0.01em;
-}
+.slide.dark .swipe-hint { color:#444; }
 
-/* ── BIG STAT ── */
-.big-stat {
-  font-family:'Poppins', sans-serif;
-  font-weight:900; letter-spacing:-0.04em;
-  color:#FF7A00; line-height:1;
-}
-
-/* ── GUARANTEE BLOCK ── */
-.guarantee-wrap {
-  border:1px solid rgba(255,122,0,0.25);
-  border-radius:24px;
-  padding:56px 60px;
-  background:rgba(255,122,0,0.04);
-}
-
-/* ── ACCENT LINE ── */
-.accent-bar {
-  width:64px; height:4px;
-  background:#FF7A00; border-radius:2px;
-  margin-bottom:32px;
-}
-
-/*═══════════════════════════════════
-  POST 1 — CALLOUT
-═══════════════════════════════════*/
-#post1 .post-body { top:168px; }
-#post1 .hl-main { font-size:86px; }
-
-/*═══════════════════════════════════
-  POST 2 — DAILY MATH
-═══════════════════════════════════*/
-#post2 .post-body { top:160px; }
-#post2 .big-stat { font-size:220px; }
-#post2 .hl-main { font-size:52px; }
-
-/*═══════════════════════════════════
-  POST 3 — CONTRARIAN TRUTH
-═══════════════════════════════════*/
-#post3 .post-body { top:168px; }
-#post3 .hl-main { font-size:72px; }
-
-/*═══════════════════════════════════
-  POST 4 — THE SYSTEM
-═══════════════════════════════════*/
-#post4 .post-body { top:160px; }
-#post4 .hl-main { font-size:66px; margin-bottom:56px; }
-
-/*═══════════════════════════════════
-  POST 5 — THE GUARANTEE
-═══════════════════════════════════*/
-#post5 .post-body { top:160px; }
-#post5 .hl-main { font-size:78px; }
-
-/*═══════════════════════════════════
-  POST 6 — SCARCITY CTA
-═══════════════════════════════════*/
-#post6 .post-body { top:168px; }
-#post6 .hl-main { font-size:80px; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ POST 1 — CALLOUT ═══════════ -->
-<div class="post" id="post1">
-  <div class="grid-line v" style="left:33.3%"></div>
-  <div class="grid-line v" style="left:66.6%"></div>
-  <div class="grid-line h" style="top:50%"></div>
+<!-- ════════════════════════════════════════════
+     POST 1 — THE CALLOUT  (3 slides)
+     "If you own a care home with empty beds..."
+     ════════════════════════════════════════════ -->
 
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
-    </div>
-    <div class="post-tag">Care Homes</div>
+<div class="section-label">Post 1 of 3 &nbsp;·&nbsp; The Callout &nbsp;·&nbsp; 3 slides</div>
+
+<!-- Slide 1/3 — Hook -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">1 / 3</div>
   </div>
+  <div class="body">
+    <div class="hook">If you own a care home<br>with <span class="accent">empty beds</span>,<br>read this.</div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe →</div>
+    <div></div>
+  </div>
+</div>
 
-  <div class="post-body">
-    <div class="eyebrow">Who this is for</div>
-    <h1 class="hl-main">
-      If you own<br>
-      a care home<br>
-      with <span class="o">empty<br>
-      beds</span>...
-    </h1>
+<!-- Slide 2/3 -->
+<div class="slide">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">2 / 3</div>
+  </div>
+  <div class="body">
+    <div class="body-text">
+      You're probably relying on<br><strong>referrals and word of mouth.</strong>
+    </div>
     <div class="divider"></div>
-    <p class="body-text" style="font-size:36px; font-weight:600; color:#F6F2E8;">
-      This page is<br>for you.
-    </p>
-    <p class="body-text" style="font-size:24px; margin-top:24px;">
-      We help care home owners fill<br>
-      vacant beds with <strong>qualified,<br>
-      booked resident appointments</strong><br>
-      using Meta ads. Done for you.
-    </p>
+    <div class="body-text">
+      That worked 10 years ago.<br><br>
+      It doesn't fill beds anymore.
+    </div>
   </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">01 / 06</div>
+  <div class="bottom-row">
+    <div class="swipe-hint" style="color:#bbb;">swipe →</div>
+    <div></div>
   </div>
 </div>
 
-
-<!-- ═══════════ POST 2 — DAILY MATH ═══════════ -->
-<div class="post" id="post2">
-  <div class="grid-line v" style="left:33.3%"></div>
-  <div class="grid-line v" style="left:66.6%"></div>
-
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
+<!-- Slide 3/3 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">3 / 3</div>
+  </div>
+  <div class="body">
+    <div class="body-text" style="color:#C5C0B9;">
+      Families searching for care homes<br>
+      are on Facebook and Instagram<br>
+      right now.
     </div>
-    <div class="post-tag">The Math</div>
-  </div>
-
-  <div class="post-body">
-    <div class="eyebrow">Every single day</div>
-    <div class="big-stat">$133</div>
-    <div class="accent-bar" style="margin-top:24px;"></div>
-    <h2 class="hl-main" style="font-size:52px; margin-bottom:32px;">
-      That's what an empty<br>
-      bed costs you.<br>
-      <span class="s">Per day. Right now.</span>
-    </h2>
-    <p class="body-text" style="font-size:24px;">
-      $3,000 to $8,000 per month.<br>
-      Divided by 30 days.<br><br>
-      <strong>That's the real cost of<br>
-      waiting on referrals.</strong>
-    </p>
-  </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">02 / 06</div>
-  </div>
-</div>
-
-
-<!-- ═══════════ POST 3 — CONTRARIAN TRUTH ═══════════ -->
-<div class="post" id="post3">
-  <div class="grid-line v" style="left:50%"></div>
-  <div class="grid-line h" style="top:40%"></div>
-
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
-    </div>
-    <div class="post-tag">Hard Truth</div>
-  </div>
-
-  <div class="post-body">
-    <div class="eyebrow">The real reason beds stay empty</div>
-    <h1 class="hl-main" style="font-size:70px; margin-bottom:44px;">
-      The family<br>
-      searching for<br>
-      your home<br>
-      <span class="o">right now</span><br>
-      will choose<br>
-      your competitor.
-    </h1>
     <div class="divider"></div>
-    <p class="body-text" style="font-size:26px;">
-      Not because you're worse.<br><br>
-      <strong>Because they replied<br>
-      in 4 minutes.<br>
-      You replied in 4 hours.</strong>
-    </p>
+    <div class="body-text" style="color:#C5C0B9;">
+      <strong>They just don't know you exist.</strong><br><br>
+      Follow for the exact system<br>we use to change that.
+    </div>
   </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">03 / 06</div>
+  <div class="bottom-row">
+    <div class="swipe-hint">follow for more</div>
+    <div></div>
   </div>
 </div>
 
 
-<!-- ═══════════ POST 4 — THE SYSTEM ═══════════ -->
-<div class="post" id="post4">
-  <div class="grid-line v" style="left:33.3%"></div>
+<!-- ════════════════════════════════════════════
+     POST 2 — THE MATH  (5 slides)
+     "One empty bed is costing you $133/day"
+     ════════════════════════════════════════════ -->
 
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
-    </div>
-    <div class="post-tag">The Occupancy Engine</div>
+<div class="section-label">Post 2 of 3 &nbsp;·&nbsp; The Math &nbsp;·&nbsp; 5 slides</div>
+
+<!-- Slide 1/5 — Hook -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">1 / 5</div>
   </div>
+  <div class="body">
+    <div class="stat">
+      <div class="stat-number"><span class="accent">$133</span></div>
+      <div class="stat-label">lost per empty bed, per day.</div>
+    </div>
+    <div class="body-text" style="color:#888;">
+      Most care home owners<br>know they have empty beds.<br>
+      Few of them do the math.
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe to see the full breakdown →</div>
+    <div></div>
+  </div>
+</div>
 
-  <div class="post-body">
-    <div class="eyebrow">How we fill beds</div>
-    <h1 class="hl-main">
-      3 steps.<br>
-      <span class="o">30 days.</span>
-    </h1>
+<!-- Slide 2/5 -->
+<div class="slide">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">2 / 5</div>
+  </div>
+  <div class="body">
+    <div class="body-text">The average care home bed earns around <strong>$4,000/month</strong> in fees.</div>
+    <div class="divider"></div>
+    <div class="body-text">That's <strong>$133 a day.</strong><br><br>Per. Empty. Bed.</div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint" style="color:#bbb;">swipe →</div>
+    <div></div>
+  </div>
+</div>
 
-    <div class="step-row">
-      <div class="step-num">01</div>
-      <div class="step-text">
-        <div class="step-label">The reach</div>
-        <p>Family sees your ad on Facebook or Instagram at the moment they're searching.</p>
+<!-- Slide 3/5 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">3 / 5</div>
+  </div>
+  <div class="body">
+    <div class="body-text" style="color:#C5C0B9;">
+      If you have <strong>5 empty beds,</strong><br>
+      that's <span class="accent" style="font-weight:800;">$20,000/month</span><br>
+      walking out the door.
+    </div>
+    <div class="divider"></div>
+    <div class="body-text" style="color:#666;">
+      Every single month.<br>
+      While you wait for the phone to ring.
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe →</div>
+    <div></div>
+  </div>
+</div>
+
+<!-- Slide 4/5 -->
+<div class="slide">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">4 / 5</div>
+  </div>
+  <div class="body">
+    <div class="body-text">Paid ads aren't an expense.</div>
+    <div class="divider"></div>
+    <div class="body-text">
+      One filled bed earns <strong>$4,000/month.</strong><br><br>
+      A month of ads costs a fraction of that.<br><br>
+      The math works in your favour.
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint" style="color:#bbb;">swipe →</div>
+    <div></div>
+  </div>
+</div>
+
+<!-- Slide 5/5 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">5 / 5</div>
+  </div>
+  <div class="body">
+    <div class="cta-block">
+      <div class="cta-line">If this made you do the maths on your own home...</div>
+      <div class="cta-sub" style="color:#666; font-size:36px; margin-top:8px;">good. that was the point.</div>
+      <div style="margin-top:32px;">
+        <div class="cta-tag">follow for more</div>
+      </div>
+      <div class="cta-sub" style="margin-top:16px;">Next: the exact 3-step system we use<br>to fill those beds with paid ads.</div>
+    </div>
+  </div>
+  <div class="bottom-row"><div></div><div></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     POST 3 — THE SYSTEM  (6 slides)
+     "How we get 20–30 enquiries in 30 days"
+     ════════════════════════════════════════════ -->
+
+<div class="section-label">Post 3 of 3 &nbsp;·&nbsp; The System &nbsp;·&nbsp; 6 slides</div>
+
+<!-- Slide 1/6 — Hook -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">1 / 6</div>
+  </div>
+  <div class="body">
+    <div class="hook">How we get care homes<br><span class="accent">20–30 enquiries</span><br>in 30 days.</div>
+    <div class="body-text" style="color:#555; font-size:40px;">(the full system, no fluff)</div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe to see all 3 steps →</div>
+    <div></div>
+  </div>
+</div>
+
+<!-- Slide 2/6 — Step 1 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">2 / 6</div>
+  </div>
+  <div class="body">
+    <div class="step-block">
+      <div class="step-label">Step 01</div>
+      <div class="step-head">The Right<br>Audience.</div>
+      <div class="step-body">
+        We don't target people looking for care homes.<br><br>
+        We target <strong>adult children aged 45 to 65</strong> making decisions for ageing parents.<br><br>
+        That's who picks up the phone.
       </div>
     </div>
-
-    <div class="step-row">
-      <div class="step-num">02</div>
-      <div class="step-text">
-        <div class="step-label">The capture</div>
-        <p>One tap to submit. Name and number already filled in by Meta.</p>
-      </div>
-    </div>
-
-    <div class="step-row">
-      <div class="step-num">03</div>
-      <div class="step-text">
-        <div class="step-label">The lock-in</div>
-        <p>Automated text in seconds. Appointment booked on your calendar before intent fades.</p>
-      </div>
-    </div>
-
-    <div class="divider" style="margin-top:8px;"></div>
-    <p class="body-text" style="font-size:22px;">
-      You show up for the tour.<br>
-      <strong>We handle everything else.</strong>
-    </p>
   </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">04 / 06</div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe →</div>
+    <div></div>
   </div>
 </div>
 
-
-<!-- ═══════════ POST 5 — THE GUARANTEE ═══════════ -->
-<div class="post" id="post5">
-  <div class="grid-line h" style="top:50%"></div>
-
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
-    </div>
-    <div class="post-tag">The Guarantee</div>
+<!-- Slide 3/6 — Step 2 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">3 / 6</div>
   </div>
-
-  <div class="post-body" style="top:160px;">
-    <div class="eyebrow">The Occupancy Guarantee</div>
-
-    <div class="guarantee-wrap">
-      <h1 class="hl-main" style="font-size:82px; margin-bottom:40px;">
-        <span class="o">20–30</span><br>
-        qualified<br>
-        resident<br>
-        appointments<br>
-        in 30 days.
-      </h1>
-      <div class="divider"></div>
-      <p class="body-text" style="font-size:30px; font-weight:700; color:#F6F2E8;">
-        Or you don't pay<br>our fee.
-      </p>
-      <p class="body-text" style="font-size:20px; margin-top:20px; color:rgba(196,168,130,0.7);">
-        No dispute. No lengthy explanation.<br>
-        Just a full refund of our management fee.
-      </p>
+  <div class="body">
+    <div class="step-block">
+      <div class="step-label">Step 02</div>
+      <div class="step-head">The Right<br>Message.</div>
+      <div class="step-body">
+        We lead with the fear, not the feature.<br><br>
+        <strong>"Is your parent safe at home alone?"</strong><br><br>
+        converts more than<br>
+        "luxury care available nearby."
+      </div>
     </div>
   </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">05 / 06</div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe →</div>
+    <div></div>
   </div>
 </div>
 
-
-<!-- ═══════════ POST 6 — SCARCITY CTA ═══════════ -->
-<div class="post" id="post6">
-  <div class="grid-line v" style="left:33.3%"></div>
-  <div class="grid-line v" style="left:66.6%"></div>
-  <div class="grid-line h" style="top:60%"></div>
-  <!-- extra warm glow for the final CTA post -->
-  <div style="position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,122,0,0.07), transparent 70%);pointer-events:none;"></div>
-
-  <div class="post-nav">
-    <div class="post-brand">
-      <div class="mark">SV</div>
-      <div class="name">scale<span>vertise</span></div>
-    </div>
-    <div class="post-tag">Limited Availability</div>
+<!-- Slide 4/6 — Step 3 -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">4 / 6</div>
   </div>
+  <div class="body">
+    <div class="step-block">
+      <div class="step-label">Step 03</div>
+      <div class="step-head">The Right<br>Follow-up.</div>
+      <div class="step-body">
+        Most leads go cold because<br>
+        no one called within 5 minutes.<br><br>
+        We build the follow-up system<br>
+        so <strong>you never miss an enquiry.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-row">
+    <div class="swipe-hint">swipe →</div>
+    <div></div>
+  </div>
+</div>
 
-  <div class="post-body" style="top:168px;">
-    <div class="eyebrow">One home per area</div>
-    <h1 class="hl-main" style="font-size:80px; margin-bottom:44px;">
-      Your area<br>
-      might still<br>
-      be <span class="o">open.</span>
-    </h1>
+<!-- Slide 5/6 — The Result -->
+<div class="slide">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">5 / 6</div>
+  </div>
+  <div class="body">
+    <div class="body-text"><strong>The result:</strong></div>
     <div class="divider"></div>
-    <p class="body-text" style="font-size:26px; margin-bottom:40px;">
-      We only work with <strong>one care home<br>
-      per geographic area.</strong><br><br>
-      Once a home in your catchment<br>
-      signs, that area is closed.
-    </p>
-    <div style="
-      display:inline-flex; align-items:center;
-      background:#FF7A00; color:#1A1714;
-      font-family:'Poppins',sans-serif;
-      font-weight:800; font-size:26px;
-      letter-spacing:-0.01em;
-      padding:28px 52px; border-radius:100px;
-      box-shadow: 0 0 0 1px rgba(255,122,0,0.4), 0 20px 60px rgba(255,122,0,0.2);
-    ">
-      Check if yours is open
+    <div class="body-text">
+      A predictable flow of qualified<br>
+      resident enquiries every month.<br><br>
+      Not hoping the phone rings.
     </div>
   </div>
-
-  <div class="post-bottom">
-    <div class="post-url">scalevertise.app</div>
-    <div class="post-num">06 / 06</div>
+  <div class="bottom-row">
+    <div class="swipe-hint" style="color:#bbb;">swipe →</div>
+    <div></div>
   </div>
+</div>
+
+<!-- Slide 6/6 — Soft CTA -->
+<div class="slide dark">
+  <div class="top-row">
+    <div class="mark">scale<span class="o">vertise</span></div>
+    <div class="slide-num">6 / 6</div>
+  </div>
+  <div class="body">
+    <div class="cta-block">
+      <div class="cta-line">We only work with one care home per area.</div>
+      <div class="cta-sub" style="font-size:38px; color:#C5C0B9; margin-top:8px;">
+        If you want to know if yours<br>is still available, it's in the bio.
+      </div>
+      <div style="margin-top:40px;">
+        <div class="cta-tag">link in bio</div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-row"><div></div><div></div></div>
 </div>
 
 <script>
-function scalePostsToViewport() {
-  const padding = 40;
-  const scale = Math.min(1, (window.innerWidth - padding) / 1080);
-  document.documentElement.style.setProperty('--post-scale', scale);
-  // adjust gap between posts to account for scale
-  document.querySelectorAll('.post').forEach(p => {
-    const collapse = (1350 * scale) - 1350;
-    p.style.marginBottom = collapse + 'px';
+function scale() {
+  const s = Math.min(1, (window.innerWidth - 32) / 1080);
+  document.documentElement.style.setProperty('--s', s);
+  document.querySelectorAll('.slide').forEach(el => {
+    el.style.marginBottom = ((s * 1350) - 1350 + 4) + 'px';
   });
 }
-scalePostsToViewport();
-window.addEventListener('resize', scalePostsToViewport);
+scale();
+window.addEventListener('resize', scale);
 </script>
 </body>
 </html>

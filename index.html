@@ -91,7 +91,7 @@ h1,h2,h3 { color:var(--text); letter-spacing:-0.01em; }
 .center { text-align:center; }
 .center .section-sub { margin-left:auto; margin-right:auto; }
 
-section { padding:clamp(80px,10vw,130px) 0; position:relative; }
+section { padding:clamp(64px,7vw,100px) 0; position:relative; }
 .rule { height:1px; background:linear-gradient(90deg,transparent,var(--line),transparent); max-width:1120px; margin:0 auto; }
 
 /* CTA */
@@ -153,7 +153,7 @@ header {
 
 /* ════ HERO ════ */
 .hero {
-  padding:clamp(100px,12vw,140px) 0 clamp(60px,8vw,96px);
+  padding:clamp(90px,8vw,112px) 0 clamp(52px,6vw,72px);
   position:relative; overflow:hidden;
 }
 .hero::after {
@@ -162,11 +162,19 @@ header {
 }
 .hero .wrap { position:relative; z-index:2; }
 
+/* Desktop 2-col */
+.hero-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:clamp(40px,5vw,64px);
+  align-items:center;
+}
+.hero-text { text-align:left; }
+.hero-media { width:100%; }
+
 .hero-callout {
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:10px; font-weight:500;
   letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
-  margin-bottom:20px;
+  margin-bottom:18px;
 }
 .hero-callout .dot {
   width:6px; height:6px; border-radius:50%;
@@ -177,13 +185,13 @@ header {
 
 .hero h1 {
   font-family:var(--display);
-  font-size:clamp(1.9rem,6.5vw,3.1rem); font-weight:600; line-height:1.08;
-  letter-spacing:-0.02em; max-width:700px; margin:0 auto 28px; color:var(--text);
+  font-size:clamp(1.9rem,3.2vw,2.85rem); font-weight:600; line-height:1.1;
+  letter-spacing:-0.02em; max-width:none; margin:0 0 20px; color:var(--text);
 }
 .hero h1 .hl { color:var(--accent); }
 .hero-sub {
-  font-size:1.05rem; color:var(--text-2);
-  line-height:1.6; max-width:520px; margin:0 auto 0;
+  font-size:1rem; color:var(--text-2);
+  line-height:1.6; max-width:440px; margin:0;
 }
 
 .trust-row {
@@ -203,12 +211,12 @@ header {
   background:rgba(196,168,130,0.08); border-radius:100px; padding:5px 11px;
 }
 
-.hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-bottom:clamp(36px,5vw,56px); margin-top:8px; }
+.hero-cta-block { display:flex; flex-direction:column; align-items:flex-start; margin-top:28px; }
 
 /* VSL */
 .vsl-frame {
-  position:relative; max-width:840px; margin:0 auto;
-  aspect-ratio:16/9; border-radius:20px; overflow:hidden;
+  position:relative; max-width:none; margin:0;
+  aspect-ratio:16/9; border-radius:16px; overflow:hidden;
   background:linear-gradient(155deg, #1A1410 0%, #120F0C 55%, #0D0B09 100%);
   border:1px solid rgba(196,168,130,0.12);
   box-shadow:0 28px 72px rgba(0,0,0,0.6), 0 0 60px rgba(196,168,130,0.04);
@@ -539,17 +547,19 @@ footer .legal a:hover { color:var(--accent); }
 }
 @media (max-width:640px) {
   .hero { padding:70px 0 36px; }
-  .hero .wrap { display:flex; flex-direction:column; }
+  .hero-inner { grid-template-columns:1fr; gap:28px; }
+  .hero-text { text-align:center; }
   .hero-callout { margin-bottom:14px; font-size:9px; }
+  .hero-cta-block { align-items:center; margin-top:20px; margin-bottom:0; }
 
-  .hero h1 { font-size:clamp(1.6rem,5.8vw,2rem); line-height:1.15; margin:0 auto 10px; max-width:100%; }
-  .hero-sub { font-size:0.85rem; line-height:1.55; margin:16px auto 16px; }
+  .hero h1 { font-size:clamp(1.5rem,5.8vw,1.9rem); line-height:1.12; margin:0 0 14px; }
+  .hero-sub { font-size:0.9rem; line-height:1.55; max-width:100%; }
 
-  .vsl-frame { border-radius:12px; margin:0 auto 0; width:100%; aspect-ratio:16/9; min-height:0; flex-shrink:0; }
+  .hero-media { order:1; }
+  .hero-text  { order:2; }
+  .vsl-frame { border-radius:12px; margin:0; width:100%; aspect-ratio:16/9; min-height:0; flex-shrink:0; }
   .vsl-topbar { display:none; }
   .vsl-ph { padding:10px 13px; }
-
-  .hero-cta-block { margin-bottom:0; }
   .cta-btn { width:100%; padding:16px 20px; font-size:0.95rem; border-radius:100px; }
   .cta-micro { font-size:0.7rem; margin-top:8px; }
 
@@ -582,6 +592,14 @@ footer .legal a:hover { color:var(--accent); }
   .value-frame { grid-template-columns:1fr; padding:24px 20px; }
   .value-number { font-size:clamp(2.2rem,8vw,3rem); }
 }
+
+/* Alternate section backgrounds for visual rhythm */
+section:nth-child(even) { background:rgba(255,255,255,0.015); }
+
+/* Desktop section max line length */
+@media (min-width:880px) {
+  .section-sub { max-width:580px; }
+}
 </style>
 </head>
 <body>
@@ -594,37 +612,47 @@ footer .legal a:hover { color:var(--accent); }
 <main style="padding-bottom:clamp(80px,12vw,128px)">
 
 <!-- ═══════════ HERO ═══════════ -->
-<section class="hero center">
+<section class="hero">
   <div class="wrap">
 
-    <div class="hero-callout enter" style="animation-delay:0.05s;">
-      <span class="dot"></span>
-      For care home owners and administrators
-    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-callout enter" style="animation-delay:0.05s;">
+          <span class="dot"></span>
+          For care home owners and administrators
+        </div>
 
-    <h1 class="enter" style="animation-delay:0.12s;">
-      We'll get you <span class="hl">20–30 qualified resident appointments</span> in 30 days. Or you don't pay our fee.
-    </h1>
+        <h1 class="enter" style="animation-delay:0.12s;">
+          We'll get you <span class="hl">20–30 qualified resident appointments</span> in 30 days. Or you don't pay our fee.
+        </h1>
 
-    <div class="vsl-frame enter" style="animation-delay:0.2s;">
-      <div class="vsl-topbar">
-        <i></i><i></i><i></i>
-        <span>Scalevertise · System Walkthrough</span>
+        <p class="hero-sub enter" style="animation-delay:0.2s;">
+          Done-for-you Meta ads, instant follow-up, booked appointments on your calendar. Flat rate. You own the ad account.
+        </p>
+
+        <div class="hero-cta-block enter" style="animation-delay:0.3s;">
+          <a class="cta-btn" href="CALENDLY_URL">Book a Free Strategy Call</a>
+        </div>
       </div>
-      <a class="vsl-play" href="CALENDLY_URL" aria-label="Watch system walkthrough">
-        <svg width="26" height="30" viewBox="0 0 30 34" fill="none">
-          <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#1A1714"/>
-        </svg>
-      </a>
-      <!-- VSL placeholder text hidden until real embed is ready -->
-    </div>
 
-    <p class="hero-sub enter" style="animation-delay:0.32s; margin-top:24px; margin-bottom:0;">
-      Done-for-you Meta ads, instant follow-up, booked appointments on your calendar. Flat rate. You own the ad account.
-    </p>
+      <div class="hero-media enter" style="animation-delay:0.18s;">
+        <div class="vsl-frame">
+          <div class="vsl-topbar">
+            <i></i><i></i><i></i>
+            <span>Scalevertise · System Walkthrough</span>
+          </div>
+          <a class="vsl-play" href="CALENDLY_URL" aria-label="Watch system walkthrough">
+            <svg width="26" height="30" viewBox="0 0 30 34" fill="none">
+              <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#1A1714"/>
+            </svg>
+          </a>
+          <!-- VSL placeholder text hidden until real embed is ready -->
+        </div>
 
-    <div class="hero-cta-block enter" style="animation-delay:0.44s;">
-      <a class="cta-btn" href="CALENDLY_URL">Book a Free Strategy Call</a>
+        <p class="hero-sub enter" style="animation-delay:0.36s; margin-top:16px; display:none;">
+          Done-for-you Meta ads, instant follow-up, booked appointments on your calendar.
+        </p>
+      </div>
     </div>
 
   </div>

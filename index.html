@@ -161,30 +161,27 @@ header {
 .hero .wrap { position:relative; z-index:2; }
 
 .hero-callout {
-  display:inline-flex; align-items:center; gap:10px;
-  font-family:var(--mono); font-size:11px; font-weight:700;
-  letter-spacing:0.28em; text-transform:uppercase; color:var(--text-3);
-  margin-bottom:28px;
-  background:rgba(157,180,198,0.05); border:1px solid rgba(157,180,198,0.15);
-  border-radius:100px; padding:8px 18px;
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--mono); font-size:10px; font-weight:500;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
+  margin-bottom:20px;
 }
 .hero-callout .dot {
-  width:7px; height:7px; border-radius:50%;
+  width:6px; height:6px; border-radius:50%;
   background:var(--accent); flex-shrink:0;
-  box-shadow:0 0 9px rgba(157,180,198,0.8);
   animation:pulse 2s ease-in-out infinite;
 }
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
 .hero h1 {
   font-family:var(--display);
-  font-size:clamp(1.75rem,4vw,2.8rem); font-weight:600; line-height:1.2;
-  letter-spacing:-0.01em; max-width:720px; margin:0 auto 18px; color:var(--text);
+  font-size:clamp(1.75rem,4vw,2.75rem); font-weight:400; line-height:1.18;
+  letter-spacing:0; max-width:680px; margin:0 auto 16px; color:var(--text);
 }
-.hero h1 .hl { color:var(--accent);  }
+.hero h1 .hl { color:var(--accent); }
 .hero-sub {
-  font-size:1rem; color:var(--text-2);
-  line-height:1.6; max-width:500px; margin:0 auto 26px;
+  font-size:0.95rem; color:var(--text-3);
+  line-height:1.55; max-width:420px; margin:0 auto 26px;
 }
 
 .trust-row {
@@ -541,7 +538,7 @@ footer .legal a:hover { color:var(--accent); }
 @media (max-width:640px) {
   .hero { padding:70px 0 36px; }
   .hero .wrap { display:flex; flex-direction:column; }
-  .hero-callout { margin-bottom:14px; font-size:9px; padding:6px 13px; }
+  .hero-callout { margin-bottom:14px; font-size:9px; }
 
   .hero h1 { order:1; font-size:clamp(1.45rem,5.5vw,1.75rem); line-height:1.15; margin:0 auto 10px; max-width:100%; }
   .hero-sub { order:2; font-size:0.85rem; line-height:1.55; margin:0 auto 16px; }
@@ -626,10 +623,7 @@ footer .legal a:hover { color:var(--accent); }
           <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#0B0F14"/>
         </svg>
       </a>
-      <div class="vsl-ph">
-        <span class="vsl-ph-label">Placeholder · VSL</span>
-        <span class="vsl-ph-text">Record a 2 to 3 minute walkthrough: who this is for, how the Occupancy Engine works, the guarantee. Replace this with the real embed.</span>
-      </div>
+      <!-- VSL placeholder text hidden until real embed is ready -->
     </div>
 
   </div>

@@ -153,7 +153,7 @@ header {
 
 /* ════ HERO ════ */
 .hero {
-  padding:clamp(80px,7vw,100px) 0 clamp(48px,5vw,64px);
+  padding:clamp(40px,4vw,56px) 0 clamp(28px,3vw,40px);
   position:relative; overflow:hidden;
 }
 .hero::after {
@@ -163,15 +163,15 @@ header {
 .hero .wrap { position:relative; z-index:2; }
 
 /* Single-col centered */
-.hero-inner { display:flex; flex-direction:column; align-items:center; }
+.hero-inner { display:flex; flex-direction:column; align-items:center; gap:16px; }
 .hero-text { text-align:center; width:100%; }
-.hero-media { width:100%; max-width:860px; }
+.hero-media { width:100%; max-width:720px; max-height:42vh; }
 
 .hero-callout {
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:10px; font-weight:500;
   letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
-  margin-bottom:18px;
+  margin-bottom:10px;
 }
 .hero-callout .dot {
   width:6px; height:6px; border-radius:50%;
@@ -182,13 +182,13 @@ header {
 
 .hero h1 {
   font-family:var(--display);
-  font-size:clamp(1.85rem,2.8vw,2.6rem); font-weight:700; line-height:1.1;
-  letter-spacing:-0.025em; max-width:800px; margin:0 auto 16px; color:var(--text);
+  font-size:clamp(1.6rem,2.4vw,2.2rem); font-weight:700; line-height:1.12;
+  letter-spacing:-0.025em; max-width:800px; margin:0 auto 12px; color:var(--text);
 }
 .hero h1 .hl { color:var(--accent); }
 .hero-sub {
-  font-size:1rem; color:var(--text-2);
-  line-height:1.6; max-width:640px; margin:0 auto;
+  font-size:0.95rem; color:var(--text-2);
+  line-height:1.55; max-width:640px; margin:0 auto;
 }
 
 .trust-row {
@@ -208,12 +208,12 @@ header {
   background:rgba(196,168,130,0.08); border-radius:100px; padding:5px 11px;
 }
 
-.hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-top:28px; }
+.hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-top:18px; }
 
 /* VSL */
 .vsl-frame {
   position:relative; max-width:none; margin:0 auto;
-  aspect-ratio:16/9; border-radius:18px; overflow:hidden;
+  aspect-ratio:16/9; max-height:42vh; border-radius:18px; overflow:hidden;
   background:linear-gradient(155deg, #1A1410 0%, #120F0C 55%, #0D0B09 100%);
   border:1px solid rgba(196,168,130,0.12);
   box-shadow:0 28px 72px rgba(0,0,0,0.6), 0 0 60px rgba(196,168,130,0.04);
@@ -645,7 +645,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
         <p class="hero-sub" style="margin-bottom:0;">
           Done-for-you Meta ads, instant follow-up, booked appointments on your calendar. Flat rate. You own the ad account.
         </p>
-        <div class="hero-cta-block" style="margin-top:28px;">
+        <div class="hero-cta-block" style="margin-top:16px;">
           <a class="cta-btn" href="/survey">Book a Free Strategy Call</a>
         </div>
       </div>

@@ -34,7 +34,7 @@ You don't have a care problem. You have a 'nobody knows you exist' problem. And 
 
 **Step one, the reach.** We run targeted paid ads to the families actively searching for care for an aging parent right now. Not a broad blast, the specific people making this decision this week.
 
-**Step two, the filter.** They hit a page that pre-qualifies them before they ever reach you. So you're not wasting your team's time on tyre-kickers, only families who actually fit.
+**Step two, the filter.** They hit a page that pre-qualifies them before they ever reach you. So you're not wasting your team's time on time-wasters, only families who actually fit.
 
 **Step three, the lock-in.** Every single lead gets contacted within minutes, while the intent is still hot, and booked straight onto your calendar. Reminders go out automatically so they actually show.
 

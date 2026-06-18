@@ -2,70 +2,111 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  html, body { width:1920px; height:1080px; overflow:hidden; background:#000; }
-  .bg {
-    width:1920px;
-    height:1080px;
-    position:relative;
-    background: radial-gradient(ellipse 80% 70% at 68% 38%, #2a2420 0%, #161310 45%, #0a0806 100%);
-  }
-  .glow-orange {
-    position:absolute;
-    top:-120px;
-    right:-80px;
-    width:680px;
-    height:680px;
-    border-radius:50%;
-    background: radial-gradient(circle, rgba(255,122,0,0.13) 0%, rgba(255,122,0,0.04) 45%, transparent 72%);
-    filter: blur(40px);
-  }
-  .glow-warm {
-    position:absolute;
-    bottom:-100px;
-    left:60px;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background: radial-gradient(circle, rgba(196,168,130,0.06) 0%, transparent 70%);
-    filter: blur(60px);
-  }
-  .logo {
-    position:absolute;
-    bottom:52px;
-    left:64px;
+  html, body { width:100%; height:100%; background:#0a0806; font-family:system-ui,sans-serif; }
+
+  .page {
     display:flex;
+    flex-direction:column;
     align-items:center;
-    gap:14px;
-    opacity:0.18;
+    justify-content:center;
+    min-height:100vh;
+    gap:24px;
+    padding:32px;
   }
-  .sv {
-    font-family:Georgia, serif;
-    font-size:38px;
+
+  canvas {
+    width:100%;
+    max-width:860px;
+    height:auto;
+    border-radius:8px;
+    display:block;
+  }
+
+  .dl-btn {
+    display:inline-block;
+    background:#FF7A00;
+    color:#0a0806;
+    font-size:1rem;
     font-weight:700;
-    color:#C4A882;
-    letter-spacing:-0.03em;
+    letter-spacing:0.04em;
+    padding:16px 40px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
   }
-  .wordmark {
-    font-family:Georgia, serif;
-    font-size:22px;
-    font-weight:400;
+  .dl-btn:hover { opacity:0.88; }
+  .label {
     color:#C4A882;
-    letter-spacing:0.12em;
+    font-size:0.82rem;
+    letter-spacing:0.08em;
     text-transform:uppercase;
+    opacity:0.5;
   }
-  .wordmark span { color:#FF7A00; }
 </style>
 </head>
 <body>
-<div class="bg">
-  <div class="glow-orange"></div>
-  <div class="glow-warm"></div>
-  <div class="logo">
-    <div class="sv">SV</div>
-    <div class="wordmark">scale<span>vertise</span></div>
-  </div>
+<div class="page">
+  <div class="label">VSL Background — 1920 × 1080</div>
+  <canvas id="c" width="1920" height="1080"></canvas>
+  <a class="dl-btn" id="dl">Download Image</a>
 </div>
+
+<script>
+var c = document.getElementById('c');
+var ctx = c.getContext('2d');
+var W = 1920, H = 1080;
+
+// Base dark gradient
+var base = ctx.createRadialGradient(W*0.68, H*0.38, 0, W*0.68, H*0.38, W*0.72);
+base.addColorStop(0, '#2a2420');
+base.addColorStop(0.45, '#161310');
+base.addColorStop(1, '#0a0806');
+ctx.fillStyle = base;
+ctx.fillRect(0, 0, W, H);
+
+// Orange glow top-right
+var og = ctx.createRadialGradient(W+80, -120, 0, W+80, -120, 680);
+og.addColorStop(0, 'rgba(255,122,0,0.18)');
+og.addColorStop(0.45, 'rgba(255,122,0,0.06)');
+og.addColorStop(1, 'rgba(255,122,0,0)');
+ctx.fillStyle = og;
+ctx.fillRect(0, 0, W, H);
+
+// Warm gold glow bottom-left
+var wg = ctx.createRadialGradient(60, H+100, 0, 60, H+100, 500);
+wg.addColorStop(0, 'rgba(196,168,130,0.09)');
+wg.addColorStop(1, 'rgba(196,168,130,0)');
+ctx.fillStyle = wg;
+ctx.fillRect(0, 0, W, H);
+
+// Logo watermark bottom-left
+ctx.globalAlpha = 0.18;
+ctx.font = 'bold 52px Georgia, serif';
+ctx.fillStyle = '#C4A882';
+ctx.fillText('SV', 64, H - 52);
+
+ctx.font = '400 30px Georgia, serif';
+ctx.letterSpacing = '4px';
+ctx.fillStyle = '#C4A882';
+ctx.fillText('scale', 136, H - 52);
+
+ctx.fillStyle = '#FF7A00';
+ctx.fillText('vertise', 136 + ctx.measureText('scale').width, H - 52);
+
+ctx.globalAlpha = 1;
+
+// Wire up download
+var dl = document.getElementById('dl');
+dl.addEventListener('click', function() {
+  var link = document.createElement('a');
+  link.download = 'scalevertise-vsl-background.png';
+  link.href = c.toDataURL('image/png');
+  link.click();
+});
+</script>
 </body>
 </html>

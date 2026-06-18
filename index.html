@@ -164,7 +164,9 @@ header {
 }
 .header-brand { display:flex; flex-direction:column !important; align-items:center; gap:0; }
 .header-brand img { height:64px; width:auto; display:block; margin-bottom:-6px; }
-.brand-wordmark { font-family:var(--mono); font-size:0.62rem; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; line-height:1; display:block; background:linear-gradient(90deg, var(--accent-h), var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.brand-wordmark { font-family:var(--mono); font-size:0.62rem; font-weight:400; letter-spacing:0.22em; text-transform:uppercase; line-height:1; display:block; }
+.bw-white { color:var(--text); }
+.bw-accent { color:var(--accent); }
 .brand-wordmark .accent { color:var(--accent); }
 
 /* ════ HERO ════ */
@@ -559,7 +561,7 @@ footer .legal a:hover { color:var(--accent); }
   .sticky-pill { display:flex; }
 }
 @media (max-width:640px) {
-  .hero { padding:96px 0 32px; min-height:100svh; }
+  .hero { padding:108px 0 32px; min-height:100svh; }
   .hero-inner { gap:10px; }
   .hero-text { text-align:center; }
   .hero-callout { margin-bottom:6px; font-size:9px; }
@@ -620,7 +622,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 <header>
   <div class="header-brand">
     <img src="/assets/sv-logo.png" alt="SV">
-    <span class="brand-wordmark">Scalevertise</span>
+    <span class="brand-wordmark"><span class="bw-white">Scale</span><span class="bw-accent">vertise</span></span>
   </div>
 </header>
 
@@ -638,7 +640,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
         </div>
 
         <h1 class="enter" style="animation-delay:0.1s;">
-          We get <span class="hl">care homes</span> 20–30 qualified resident appointments in 30 days. Or you don't pay our fee.
+          We get <span class="hl">care homes</span> 20–30 qualified resident appointments in 30 days.<br>Or you don't pay our fee.
         </h1>
 
         <p class="hero-sub enter" style="animation-delay:0.18s;">

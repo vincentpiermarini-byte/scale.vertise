@@ -99,13 +99,12 @@ ctx.fillText('vertise', 136 + ctx.measureText('scale').width, H - 52);
 
 ctx.globalAlpha = 1;
 
-// Wire up download
+// Wire up download — open as image in new tab (works on mobile Safari)
 var dl = document.getElementById('dl');
 dl.addEventListener('click', function() {
-  var link = document.createElement('a');
-  link.download = 'scalevertise-vsl-background.png';
-  link.href = c.toDataURL('image/png');
-  link.click();
+  var dataUrl = c.toDataURL('image/png');
+  var win = window.open();
+  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');
 });
 </script>
 </body>

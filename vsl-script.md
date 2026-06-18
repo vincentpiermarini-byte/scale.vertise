@@ -1,4 +1,4 @@
-# Scalevertise — VSL Script
+# Scalevertise - VSL Script
 
 Built from the agency's VSL brief (offer + unique mechanism + real client results) and structured on Hormozi's flow: **Hook → Callout → Problem/Agitate → Mechanism → Proof → Offer → Risk Reversal → Scarcity → CTA**, with the positioning formula from "Nailing Your Market Positioning" baked in.
 
@@ -8,15 +8,15 @@ Built from the agency's VSL brief (offer + unique mechanism + real client result
 
 ---
 
-### [HOOK — 0:00–0:12]
+### [HOOK - 0:00–0:12]
 
 "If you own a care home and you've got empty beds right now, give me the next three minutes. I'm going to show you how to fill them without waiting on a single referral, and why we'll guarantee it."
 
-### [CALLOUT — 0:12–0:25]
+### [CALLOUT - 0:12–0:25]
 
 "This is specifically for care home owners and administrators. The ones who have beds to fill right now and are tired of occupancy that goes up and down with no control over it. If that's you, this is going to be the most useful three minutes of your week."
 
-### [PROBLEM + AGITATE — 0:25–1:05]
+### [PROBLEM + AGITATE - 0:25–1:05]
 
 "Here's the truth most people in this industry won't say out loud.
 
@@ -24,11 +24,11 @@ Your beds aren't empty because of the quality of your care. They're empty becaus
 
 Think about how you get residents today. Referrals from hospitals and social workers. Directory listings where you're one of ten homes. Word of mouth. All three have the same problem: they're slow, they're unpredictable, and they're shared with every competitor in your area.
 
-So you wait. You hope this month is better than last. And every week a bed sits empty, that's roughly four thousand pounds in revenue you never get back. Three empty beds is twelve thousand a month, gone.
+So you wait. You hope this month is better than last. And every week a bed sits empty, that's roughly four thousand dollars in revenue you never get back. Three empty beds is twelve thousand a month, gone.
 
 You don't have a care problem. You have a 'nobody knows you exist' problem. And that one is fixable."
 
-### [MECHANISM / POSITIONING — 1:05–1:55]
+### [MECHANISM / POSITIONING - 1:05–1:55]
 
 "My name is [NAME], I run Scalevertise. We do one thing: we build care homes their own predictable pipeline of resident appointments. Here's exactly how it works, three steps.
 
@@ -40,15 +40,15 @@ You don't have a care problem. You have a 'nobody knows you exist' problem. And 
 
 That's the difference. Instead of being one of ten listings someone might stumble across, you get a controlled pipeline you own. Predictable input, predictable output."
 
-### [PROOF — 1:55–2:30]
+### [PROOF - 1:55–2:30]
 
 "Now, I'll be straight with you, because that matters in this business.
 
-We're a focused, hungry operation, and the care home homes we're onboarding now are our priority clients. But the system isn't theoretical. We've already built these funnels from scratch in other industries and gotten them producing qualified leads for as little as twenty to twenty-four pounds each, from a standing start.
+We're a focused, hungry operation, and the care home homes we're onboarding now are our priority clients. But the system isn't theoretical. We've already built these funnels from scratch in other industries and gotten them producing qualified leads for as little as twenty to twenty-four dollars each, from a standing start.
 
 That's the engine. Same engine, now pointed entirely at filling care home beds. And because I'd rather earn your trust than oversell you, that's exactly why the next part exists."
 
-### [OFFER — 2:30–2:55]
+### [OFFER - 2:30–2:55]
 
 "Here's what you get when you work with us.
 
@@ -58,7 +58,7 @@ Not leads. Not names in a spreadsheet. Booked, qualified appointments with famil
 
 You own the ad account the whole way through. Everything's transparent."
 
-### [RISK REVERSAL — 2:55–3:15]
+### [RISK REVERSAL - 2:55–3:15]
 
 "And here's the part that makes this easy.
 
@@ -66,7 +66,7 @@ If we don't deliver those 20 to 30 appointments in 30 days, you don't pay our fe
 
 We put our fee on the line because we're confident in the system. You take no risk on whether it works, we carry that."
 
-### [SCARCITY — 3:15–3:35]
+### [SCARCITY - 3:15–3:35]
 
 "One important thing. We only work with one care home per area. Ever.
 
@@ -74,7 +74,7 @@ We will not run ads for your competitor down the road while we're working with y
 
 So if you're watching this, your area may still be open. I can't promise that stays true for long."
 
-### [CTA — 3:35–4:00]
+### [CTA - 3:35–4:00]
 
 "So here's your next step. Click the button below this video. You'll answer a few quick questions about your home, how many beds you have open, and your area. Takes about two minutes.
 
@@ -95,6 +95,6 @@ Click below, check if your area is open, and let's go fill those beds."
 ## WHAT TO SEND THE AGENCY
 
 When they ask for the doc, this is your filled-in brief:
-- **Offer:** care homes, 20–30 qualified resident appointments in 30 days or you don't pay our fee.
+- **Offer:** care homes, 20 to 30 qualified resident appointments in 30 days or you don't pay our fee.
 - **Mechanism:** controlled, predictable appointment pipeline via paid traffic we run + instant qualified follow-up, vs slow shared referrals/directories.
-- **Proof:** early-stage funnel + lead-cost wins (~$20 QuackQuotes, ~$24 Subutai AI, Blue Wave from scratch) — framed as process proof, to be upgraded with care-home results as they land.
+- **Proof:** early-stage funnel + lead-cost wins (~$20 QuackQuotes, ~$24 Subutai AI, Blue Wave from scratch) - framed as process proof, to be upgraded with care-home results as they land.

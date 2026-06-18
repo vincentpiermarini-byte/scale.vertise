@@ -1,20 +1,20 @@
-# Scalevertise — Meta Ad Copy
+# Scalevertise - Meta Ad Copy
 
 Built on Hormozi's GOATed Ads framework (50 hooks across awareness levels × meat × CTA) and the agency's "Building The Ads System" doc (direct response hook → proof → educational angle, optimize for booked calls).
 
 **Audience:** Care home owners / administrators, UK & US. Mostly **Problem-Aware** (they know beds are empty, don't know paid ads fix it) and **Solution-Aware** (know marketing exists, haven't found one that works for care homes).
 
-**Core offer (in every ad's body):** We get care homes 20–30 qualified resident appointments in 30 days, or you don't pay our fee.
+**Core offer (in every ad's body):** We get care homes 20 to 30 qualified resident appointments in 30 days, or you don't pay our fee.
 
-**Proof to lean on (honest, early-stage process proof):** funnels built from scratch generating qualified leads at ~$20 (QuackQuotes) and ~$24 (Subutai AI). Frame as "the system already produces cheap, qualified leads" — never claim care-home revenue we don't have yet.
+**Proof to lean on (honest, early-stage process proof):** funnels built from scratch generating qualified leads at ~$20 (QuackQuotes) and ~$24 (Subutai AI). Frame as "the system already produces cheap, qualified leads" - never claim care-home revenue we don't have yet.
 
 ---
 
-## PART 1 — 50 HOOKS (sorted by awareness level)
+## PART 1 - 50 HOOKS (sorted by awareness level)
 
 Run these as the first line / on-screen text / thumbnail line. Test broad. Hormozi's rule: 80% of your effort goes here.
 
-### Problem-Aware (pain-driven) — your bread and butter, start here
+### Problem-Aware (pain-driven) - your bread and butter, start here
 
 1. Care home owners: every empty bed is costing you about $4,000 a month.
 2. Your beds aren't empty because of your home. They're empty because nobody knows it exists.
@@ -32,7 +32,7 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 14. Every week a bed stays empty is revenue you never get back.
 15. Care home owners: you're one system away from never worrying about occupancy again.
 
-### Solution-Aware (promise-driven) — introduce the outcome
+### Solution-Aware (promise-driven) - introduce the outcome
 
 16. We get care homes 20 to 30 qualified resident appointments in 30 days.
 17. The fastest way to fill empty care home beds: stop waiting for referrals.
@@ -47,7 +47,7 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 26. Stop competing as one of ten listings on a directory. Own your own pipeline.
 27. We turn "we have empty beds" into "we have a waiting list."
 
-### Product-Aware (proof-driven) — for warmer audiences / retargeting
+### Product-Aware (proof-driven) - for warmer audiences / retargeting
 
 28. We build the funnel, run the ads, and book the tours. You just show up.
 29. Our funnels already pull qualified leads for under $25. Now we do it for care homes.
@@ -57,7 +57,7 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 33. Every lead called within minutes, qualified, and booked before they go cold.
 34. One home per area. Once your catchment is taken, it's closed to competitors.
 
-### Curiosity-driven — for the coldest, broadest reach (test sparingly)
+### Curiosity-driven - for the coldest, broadest reach (test sparingly)
 
 35. There's a reason the care home down the road fills beds faster than you.
 36. The quiet math behind every empty care home bed (it's worse than you think).
@@ -66,7 +66,7 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 39. What if filling beds had nothing to do with referrals at all?
 40. The one number every care home owner should calculate today.
 
-### Self-qualifying / callout hooks — repel the wrong, attract the right
+### Self-qualifying / callout hooks - repel the wrong, attract the right
 
 41. For established care homes with empty beds to fill.
 42. This is only for care homes that can actually take new residents this month.
@@ -74,7 +74,7 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 44. If your home is full, ignore this. If you have empty beds, keep reading.
 45. Care home owners who are tired of unpredictable occupancy, this is for you.
 
-### Risk-reversal hooks — lead with the guarantee
+### Risk-reversal hooks - lead with the guarantee
 
 46. 20 to 30 resident appointments in 30 days, or you don't pay our fee. Simple.
 47. We only get paid if we fill your calendar with qualified appointments.
@@ -84,11 +84,11 @@ Run these as the first line / on-screen text / thumbnail line. Test broad. Hormo
 
 ---
 
-## PART 2 — THE MEAT (3 full ad scripts)
+## PART 2 - THE MEAT (3 full ad scripts)
 
 Pair any hook above with one of these bodies. Keep them direct-to-camera or simple text-on-screen.
 
-### Ad #1 — Story / Problem-Solution (best all-rounder)
+### Ad #1 - Story / Problem-Solution (best all-rounder)
 
 > [HOOK] Your beds aren't empty because of your home. They're empty because the families looking for care right now can't find you.
 >
@@ -100,7 +100,7 @@ Pair any hook above with one of these bodies. Keep them direct-to-camera or simp
 >
 > We only work with one home per area. [CTA]
 
-### Ad #2 — Education / Mechanism (for skeptical, "tried agencies before" owners)
+### Ad #2 - Education / Mechanism (for skeptical, "tried agencies before" owners)
 
 > [HOOK] Most care homes fill beds with referrals, directories, and word of mouth. Slow, unpredictable, and shared with every competitor in your area.
 >
@@ -110,7 +110,7 @@ Pair any hook above with one of these bodies. Keep them direct-to-camera or simp
 >
 > We're so confident it works, we guarantee 20 to 30 appointments in 30 days or you don't pay our fee. [CTA]
 
-### Ad #3 — Direct Offer (for warm / retargeting audiences)
+### Ad #3 - Direct Offer (for warm / retargeting audiences)
 
 > [HOOK] We get care homes 20 to 30 qualified resident appointments in 30 days. Or you don't pay our fee.
 >
@@ -122,7 +122,7 @@ Pair any hook above with one of these bodies. Keep them direct-to-camera or simp
 
 ---
 
-## PART 3 — CTAs (clear > clever)
+## PART 3 - CTAs (clear > clever)
 
 Test these on identical hook+meat combos, change only the CTA.
 
@@ -131,7 +131,7 @@ Test these on identical hook+meat combos, change only the CTA.
 3. **Click below to see if we can fill your beds. 24-hour response, no long sales pitch.**
 4. **Check your area now, before a competing home takes it.**
 
-**Show-and-tell version (Hormozi's upgrade):** end the video by literally showing the next screen — "you'll land here, answer five quick questions about your home, and we'll come back to you within a day." Congruence lifts conversion.
+**Show-and-tell version (Hormozi's upgrade):** end the video by literally showing the next screen - "you'll land here, answer five quick questions about your home, and we'll come back to you within a day." Congruence lifts conversion.
 
 ---
 

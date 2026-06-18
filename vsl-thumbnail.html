@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:100%; background:#0a0806; font-family:system-ui,sans-serif; }
+  .page {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    gap:24px;
+    padding:32px;
+  }
+  canvas { width:100%; max-width:860px; height:auto; border-radius:8px; display:block; }
+  .dl-btn {
+    background:#FF7A00;
+    color:#0a0806;
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+    padding:16px 40px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+  }
+  .dl-btn:hover { opacity:0.88; }
+  .label { color:#C4A882; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.5; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="label">VSL Thumbnail — 1280 × 720</div>
+  <canvas id="c" width="1280" height="720"></canvas>
+  <button class="dl-btn" id="dl">Download Thumbnail</button>
+</div>
+
+<script>
+var c = document.getElementById('c');
+var ctx = c.getContext('2d');
+var W = 1280, H = 720;
+
+// Dark base
+var base = ctx.createRadialGradient(W*0.65, H*0.4, 0, W*0.65, H*0.4, W*0.75);
+base.addColorStop(0, '#252018');
+base.addColorStop(0.5, '#141210');
+base.addColorStop(1, '#080706');
+ctx.fillStyle = base;
+ctx.fillRect(0, 0, W, H);
+
+// Orange glow top-right
+var og = ctx.createRadialGradient(W, 0, 0, W, 0, 700);
+og.addColorStop(0, 'rgba(255,122,0,0.22)');
+og.addColorStop(0.4, 'rgba(255,122,0,0.07)');
+og.addColorStop(1, 'rgba(255,122,0,0)');
+ctx.fillStyle = og;
+ctx.fillRect(0, 0, W, H);
+
+// Orange accent bar on left edge
+ctx.fillStyle = '#FF7A00';
+ctx.fillRect(0, 0, 7, H);
+
+// Eyebrow text
+ctx.globalAlpha = 1;
+ctx.font = '600 22px system-ui, sans-serif';
+ctx.fillStyle = '#FF7A00';
+ctx.letterSpacing = '3px';
+ctx.fillText('CARE HOME OWNERS', 60, 120);
+
+// Reset letterSpacing for rest
+ctx.letterSpacing = '0px';
+
+// Main headline — line 1
+ctx.font = 'bold 96px Georgia, serif';
+ctx.fillStyle = '#F6F2E8';
+ctx.fillText('20–30 Resident', 60, 240);
+
+// Main headline — line 2
+ctx.fillText('Appointments', 60, 350);
+
+// Main headline — line 3 in orange
+ctx.fillStyle = '#FF7A00';
+ctx.fillText('in 30 Days.', 60, 460);
+
+// Subline
+ctx.font = '400 28px system-ui, sans-serif';
+ctx.fillStyle = 'rgba(246,242,232,0.55)';
+ctx.fillText('Or you don\'t pay our fee.  Watch to see how.', 60, 530);
+
+// Bottom branding
+ctx.font = 'bold 24px Georgia, serif';
+ctx.fillStyle = '#C4A882';
+ctx.globalAlpha = 0.4;
+ctx.fillText('SCALEVERTISE', 60, H - 40);
+
+ctx.globalAlpha = 1;
+
+// Play button hint — circle on right side
+var cx = W - 200, cy = H / 2;
+ctx.beginPath();
+ctx.arc(cx, cy, 72, 0, Math.PI * 2);
+ctx.fillStyle = 'rgba(255,122,0,0.15)';
+ctx.fill();
+
+ctx.beginPath();
+ctx.arc(cx, cy, 72, 0, Math.PI * 2);
+ctx.strokeStyle = 'rgba(255,122,0,0.5)';
+ctx.lineWidth = 3;
+ctx.stroke();
+
+// Play triangle
+ctx.beginPath();
+ctx.moveTo(cx - 22, cy - 30);
+ctx.lineTo(cx - 22, cy + 30);
+ctx.lineTo(cx + 36, cy);
+ctx.closePath();
+ctx.fillStyle = '#FF7A00';
+ctx.fill();
+
+// Download
+document.getElementById('dl').addEventListener('click', function() {
+  var dataUrl = c.toDataURL('image/png');
+  var win = window.open();
+  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');
+});
+</script>
+</body>
+</html>

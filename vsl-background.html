@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1920px; height:1080px; overflow:hidden; background:#000; }
+  .bg {
+    width:1920px;
+    height:1080px;
+    position:relative;
+    background: radial-gradient(ellipse 80% 70% at 68% 38%, #2a2420 0%, #161310 45%, #0a0806 100%);
+  }
+  .glow-orange {
+    position:absolute;
+    top:-120px;
+    right:-80px;
+    width:680px;
+    height:680px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255,122,0,0.13) 0%, rgba(255,122,0,0.04) 45%, transparent 72%);
+    filter: blur(40px);
+  }
+  .glow-warm {
+    position:absolute;
+    bottom:-100px;
+    left:60px;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(196,168,130,0.06) 0%, transparent 70%);
+    filter: blur(60px);
+  }
+  .logo {
+    position:absolute;
+    bottom:52px;
+    left:64px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    opacity:0.18;
+  }
+  .sv {
+    font-family:Georgia, serif;
+    font-size:38px;
+    font-weight:700;
+    color:#C4A882;
+    letter-spacing:-0.03em;
+  }
+  .wordmark {
+    font-family:Georgia, serif;
+    font-size:22px;
+    font-weight:400;
+    color:#C4A882;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .wordmark span { color:#FF7A00; }
+</style>
+</head>
+<body>
+<div class="bg">
+  <div class="glow-orange"></div>
+  <div class="glow-warm"></div>
+  <div class="logo">
+    <div class="sv">SV</div>
+    <div class="wordmark">scale<span>vertise</span></div>
+  </div>
+</div>
+</body>
+</html>

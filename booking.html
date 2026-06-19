@@ -56,45 +56,50 @@
   }
 
   /* Main */
-  main { padding:44px 0 64px; }
-  .lead { text-align:center; margin-bottom:32px; }
-  .lead .eyebrow { font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:10px; }
-  .lead h1 { font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:10px; }
-  .lead p { color:var(--ink-2); font-size:1rem; max-width:520px; margin:0 auto; }
-  .lead .name-tag { color:var(--green-d); font-weight:600; }
+  main { padding:40px 0 64px; }
+  .lead { text-align:center; margin-bottom:28px; }
+  .lead .eyebrow { display:inline-flex; align-items:center; gap:8px; font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:10px; }
+  .lead .eyebrow::before, .lead .eyebrow::after { content:''; width:20px; height:1px; background:var(--gold); opacity:0.5; }
+  .lead h1 { font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:8px; }
+  .lead p { color:var(--ink-2); font-size:0.97rem; max-width:480px; margin:0 auto; }
 
-  .card { background:#fff; border:1px solid var(--line); border-radius:14px; padding:28px 26px; box-shadow:0 16px 44px rgba(44,42,38,0.07); }
-  .card-label { font-size:0.74rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-2); margin-bottom:14px; }
+  /* Booking card — dark premium */
+  .card { background:var(--green-d); border-radius:20px; padding:32px 30px; box-shadow:0 32px 64px -20px rgba(36,74,64,0.55), 0 0 0 1px rgba(255,255,255,0.06); }
+  .card-section { margin-bottom:26px; }
+  .card-section:last-child { margin-bottom:0; }
+  .card-label { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+  .card-label::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.08); }
 
   /* Date picker */
-  .dates { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:28px; }
+  .dates { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
   @media (max-width:560px) { .dates { grid-template-columns:repeat(2,1fr); } }
-  .date-btn { background:var(--cream); border:1.5px solid var(--line); border-radius:10px; padding:12px 6px; text-align:center; cursor:pointer; transition:border-color 0.15s, background 0.15s, transform 0.12s; }
-  .date-btn:hover { border-color:var(--gold-l); transform:translateY(-2px); }
-  .date-btn .dow { font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-2); font-weight:600; }
-  .date-btn .dnum { font-family:var(--serif); font-size:1.5rem; color:var(--ink); margin:2px 0; }
-  .date-btn .mon { font-size:0.7rem; color:var(--ink-2); }
-  .date-btn.sel { background:var(--green); border-color:var(--green); }
+  .date-btn { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:14px 6px; text-align:center; cursor:pointer; transition:all 0.2s cubic-bezier(0.22,1,0.36,1); }
+  .date-btn:hover { background:rgba(255,255,255,0.12); border-color:rgba(217,184,113,0.4); transform:translateY(-2px); }
+  .date-btn .dow { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.45); font-weight:600; }
+  .date-btn .dnum { font-family:var(--serif); font-size:1.55rem; font-weight:500; color:#fff; margin:3px 0 2px; }
+  .date-btn .mon { font-size:0.65rem; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:0.08em; }
+  .date-btn.sel { background:var(--gold); border-color:var(--gold); box-shadow:0 8px 24px -8px rgba(194,147,63,0.7); }
   .date-btn.sel .dow, .date-btn.sel .dnum, .date-btn.sel .mon { color:#fff; }
 
   /* Time slots */
   .times-wrap { display:none; }
-  .times-wrap.show { display:block; }
-  .times { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .times-wrap.show { display:block; animation:fadeUp 0.35s cubic-bezier(0.22,1,0.36,1); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+  .times { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
   @media (max-width:560px) { .times { grid-template-columns:repeat(2,1fr); } }
-  .time-btn { background:#fff; border:1.5px solid var(--line); border-radius:9px; padding:12px 8px; text-align:center; cursor:pointer; font-size:0.94rem; font-weight:600; color:var(--ink); transition:border-color 0.15s, background 0.15s, color 0.15s, transform 0.12s; }
-  .time-btn:hover { border-color:var(--gold-l); transform:translateY(-2px); }
-  .time-btn.sel { background:var(--gold); border-color:var(--gold); color:#fff; }
+  .time-btn { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:13px 8px; text-align:center; cursor:pointer; font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.8); font-family:var(--sans); transition:all 0.18s cubic-bezier(0.22,1,0.36,1); }
+  .time-btn:hover { background:rgba(255,255,255,0.13); border-color:rgba(217,184,113,0.4); color:#fff; transform:translateY(-2px); }
+  .time-btn.sel { background:var(--gold); border-color:var(--gold); color:#fff; box-shadow:0 6px 18px -6px rgba(194,147,63,0.7); }
 
-  .confirm-bar { display:none; margin-top:26px; padding-top:22px; border-top:1px solid var(--line); align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
-  .confirm-bar.show { display:flex; }
-  .confirm-summary { font-size:0.95rem; color:var(--ink-2); }
-  .confirm-summary strong { color:var(--green-d); }
-  .confirm-btn { background:var(--gold); color:#fff; border:none; cursor:pointer; font-size:1rem; font-weight:700; font-family:var(--sans); padding:14px 32px; border-radius:8px; transition:background 0.18s, transform 0.18s; }
-  .confirm-btn:hover { background:#a87c2e; transform:translateY(-1px); }
+  /* Confirm bar */
+  .confirm-bar { display:none; margin-top:24px; padding-top:20px; border-top:1px solid rgba(255,255,255,0.1); align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
+  .confirm-bar.show { display:flex; animation:fadeUp 0.3s ease; }
+  .confirm-summary { font-size:0.92rem; color:rgba(255,255,255,0.75); }
+  .confirm-summary strong { color:#fff; }
+  .confirm-btn { background:var(--gold); color:#fff; border:none; cursor:pointer; font-size:0.97rem; font-weight:700; font-family:var(--sans); padding:14px 28px; border-radius:10px; transition:background 0.18s, transform 0.18s, box-shadow 0.18s; box-shadow:0 8px 22px -6px rgba(194,147,63,0.55); }
+  .confirm-btn:hover { background:#a87c2e; transform:translateY(-2px); box-shadow:0 14px 28px -8px rgba(194,147,63,0.65); }
 
-  .reassure { text-align:center; margin-top:22px; font-size:0.84rem; color:var(--ink-2); }
-  .reassure strong { color:var(--green-d); }
+  .reassure { text-align:center; margin-top:18px; font-size:0.82rem; color:var(--ink-2); }
 
   /* Reserving overlay */
   .reserving { display:none; text-align:center; padding:70px 20px; }
@@ -169,11 +174,13 @@
       </div>
 
       <div class="card">
-        <div class="card-label">1. Choose a day</div>
-        <div class="dates" id="dates"></div>
+        <div class="card-section">
+          <div class="card-label">Choose a day</div>
+          <div class="dates" id="dates"></div>
+        </div>
 
-        <div class="times-wrap" id="timesWrap">
-          <div class="card-label">2. Choose a time</div>
+        <div class="times-wrap card-section" id="timesWrap">
+          <div class="card-label">Choose a time</div>
           <div class="times" id="times"></div>
         </div>
 
@@ -183,7 +190,7 @@
         </div>
       </div>
 
-      <p class="reassure">🔒 <strong>No obligation.</strong> A care advisor will call to confirm and answer any questions before your visit.</p>
+      <p class="reassure">🔒 No obligation. A care advisor will call to confirm and answer any questions before your visit.</p>
     </div>
 
     <!-- STEP 3: CONFIRMATION -->

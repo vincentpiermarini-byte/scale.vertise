@@ -9,25 +9,25 @@
   .page { display:flex; flex-direction:column; align-items:center; min-height:100vh; gap:48px; padding:48px 32px; }
   .thumb-block { display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; max-width:860px; }
   canvas { width:100%; height:auto; border-radius:8px; display:block; }
-  .dl-btn { background:#FF7A00; color:#0a0806; font-size:1rem; font-weight:700; letter-spacing:0.04em; padding:14px 36px; border-radius:100px; border:none; cursor:pointer; }
+  .dl-btn { background:#FF7A00; color:#0a0806; font-size:1rem; font-weight:700; padding:14px 36px; border-radius:100px; border:none; cursor:pointer; }
   .dl-btn:hover { opacity:0.88; }
-  h2 { color:#F6F2E8; font-size:0.95rem; font-weight:600; letter-spacing:0.04em; opacity:0.5; text-transform:uppercase; }
+  h2 { color:#F6F2E8; font-size:0.9rem; font-weight:600; letter-spacing:0.05em; opacity:0.4; text-transform:uppercase; }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="thumb-block">
-    <h2>Option A — Bed Icon</h2>
+    <h2>Option A — Glow</h2>
     <canvas id="cA" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cA')">Download A</button>
   </div>
   <div class="thumb-block">
-    <h2>Option B — Care Home</h2>
+    <h2>Option B — Dot Grid</h2>
     <canvas id="cB" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cB')">Download B</button>
   </div>
   <div class="thumb-block">
-    <h2>Option C — Bed Row</h2>
+    <h2>Option C — Frame</h2>
     <canvas id="cC" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cC')">Download C</button>
   </div>
@@ -41,347 +41,123 @@ function dl(id) {
   w.document.write('<img src="'+u+'" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold, then Save to Photos</p>');
 }
 
-function darkBase(ctx) {
-  ctx.fillStyle = '#0d0b09';
-  ctx.fillRect(0,0,W,H);
-}
-
-function accentLines(ctx) {
-  var ln = ctx.createLinearGradient(0,0,W,0);
-  ln.addColorStop(0,'rgba(255,122,0,0)');
-  ln.addColorStop(0.35,'rgba(255,122,0,0.5)');
-  ln.addColorStop(0.65,'rgba(255,122,0,0.5)');
-  ln.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=ln;
-  ctx.fillRect(0,0,W,2);
-  ctx.fillRect(0,H-2,W,2);
-}
-
-function vignette(ctx) {
-  var v = ctx.createRadialGradient(W/2,H/2,100,W/2,H/2,W*0.68);
-  v.addColorStop(0,'rgba(13,11,9,0)');
-  v.addColorStop(1,'rgba(13,11,9,0.92)');
-  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
-}
-
-function playBtn(ctx, cx, cy, r) {
-  // glow halo
-  var g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.6);
-  g.addColorStop(0,'rgba(255,122,0,0.25)');
+function playBtn(ctx, r) {
+  var cx = W/2, cy = H/2;
+  // outer glow
+  var g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.8);
+  g.addColorStop(0,'rgba(255,122,0,0.28)');
   g.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,r*2.6,0,Math.PI*2); ctx.fill();
-  // filled circle
+  ctx.fillStyle=g;
+  ctx.beginPath(); ctx.arc(cx,cy,r*2.8,0,Math.PI*2); ctx.fill();
+  // dark fill inside ring
   ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
-  ctx.fillStyle='rgba(20,16,12,0.75)'; ctx.fill();
+  ctx.fillStyle='rgba(14,11,8,0.72)'; ctx.fill();
   // ring
   ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.strokeStyle='#FF7A00'; ctx.lineWidth=5; ctx.stroke();
-  // triangle
-  var t=r*0.38;
+  // triangle — optically centred (nudged right)
+  var t = r * 0.38;
   ctx.beginPath();
-  ctx.moveTo(cx-t*0.65, cy-t*1.1);
-  ctx.lineTo(cx-t*0.65, cy+t*1.1);
-  ctx.lineTo(cx+t*1.55, cy);
+  ctx.moveTo(cx - t*0.65, cy - t*1.1);
+  ctx.lineTo(cx - t*0.65, cy + t*1.1);
+  ctx.lineTo(cx + t*1.55, cy);
   ctx.closePath();
   ctx.fillStyle='#FF7A00'; ctx.fill();
 }
 
-function brandTop(ctx) {
-  ctx.font='300 19px Georgia, serif';
-  ctx.letterSpacing='6px';
-  ctx.fillStyle='rgba(196,168,130,0.5)';
-  ctx.textAlign='center';
-  ctx.textBaseline='top';
-  ctx.fillText('SCALEVERTISE', W/2, 36);
-  ctx.letterSpacing='0px';
-  ctx.textBaseline='alphabetic';
-}
-
-/* ============================================
-   OPTION A — CLEAR BED ICON
-   Looks exactly like the universal "bed" icon
-   ============================================ */
-function drawClearBed(ctx, cx, cy, w, col, alpha) {
-  ctx.save();
-  ctx.globalAlpha = alpha;
-  ctx.strokeStyle = col;
-  ctx.fillStyle = col;
-  ctx.lineJoin = 'round';
-  ctx.lineCap = 'round';
-
-  var h = w * 0.48;
-  var lw = w * 0.055; // line weight relative to size
-
-  // === Mattress base — long horizontal slab ===
-  ctx.lineWidth = lw;
-  ctx.beginPath();
-  // bottom rail
-  ctx.moveTo(cx - w/2, cy + h*0.22);
-  ctx.lineTo(cx + w/2, cy + h*0.22);
-  // right leg down
-  ctx.lineTo(cx + w/2, cy + h*0.55);
-  ctx.lineTo(cx - w/2, cy + h*0.55);
-  // left leg down
-  ctx.closePath();
-  ctx.fillStyle = col;
-  ctx.fill();
-
-  // === Headboard — tall slab on left ===
-  var hbW = w * 0.1;
-  var hbH = h * 1.05;
-  ctx.beginPath();
-  ctx.roundRect(cx - w/2, cy - hbH*0.48, hbW, hbH, lw*0.8);
-  ctx.fill();
-
-  // === Footboard — shorter slab on right ===
-  var fbW = w * 0.1;
-  var fbH = h * 0.78;
-  ctx.beginPath();
-  ctx.roundRect(cx + w/2 - fbW, cy - fbH*0.35, fbW, fbH, lw*0.8);
-  ctx.fill();
-
-  // === Pillow — rounded rect upper left of mattress ===
-  var pw = w * 0.22, ph = h * 0.38;
-  ctx.beginPath();
-  ctx.roundRect(cx - w/2 + hbW + w*0.04, cy - h*0.42, pw, ph, lw*1.2);
-  ctx.fillStyle = col;
-  ctx.fill();
-  // pillow inner shadow line to separate it from blanket
-  ctx.strokeStyle = 'rgba(13,11,9,0.5)';
-  ctx.lineWidth = lw * 0.5;
-  ctx.stroke();
-
-  // === Blanket — covers rest of mattress top ===
-  ctx.fillStyle = col;
-  ctx.globalAlpha = alpha * 0.65;
-  ctx.beginPath();
-  ctx.roundRect(cx - w/2 + hbW + w*0.04 + pw + w*0.025, cy - h*0.42, w - hbW - pw - fbW - w*0.09, ph, lw*0.8);
-  ctx.fill();
-
-  ctx.restore();
-}
-
+/* ===== A: WARM GLOW ===== */
 (function(){
   var c=document.getElementById('cA'), ctx=c.getContext('2d');
-  darkBase(ctx);
-
-  // warm centre glow
-  var glow=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,480);
-  glow.addColorStop(0,'rgba(255,122,0,0.08)');
-  glow.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=glow; ctx.fillRect(0,0,W,H);
-
-  // giant ghost bed behind everything
-  drawClearBed(ctx, W/2, H*0.54, 900, '#FF7A00', 0.06);
-
-  vignette(ctx);
-  accentLines(ctx);
-
-  // visible bed, clearly readable
-  drawClearBed(ctx, W/2, H*0.58, 560, '#FF7A00', 0.38);
-
-  // play button centred above the bed
-  playBtn(ctx, W/2, H*0.36, 90);
-
-  brandTop(ctx);
+  // Very dark base
+  ctx.fillStyle='#0d0a07'; ctx.fillRect(0,0,W,H);
+  // Orange radial glow — centred
+  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.55);
+  og.addColorStop(0,'rgba(255,122,0,0.18)');
+  og.addColorStop(0.5,'rgba(255,122,0,0.07)');
+  og.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
+  // Edge vignette
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.2,W/2,H/2,W*0.72);
+  v.addColorStop(0,'rgba(13,10,7,0)');
+  v.addColorStop(1,'rgba(13,10,7,0.94)');
+  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
+  // Play button
+  playBtn(ctx, 100);
+  // Single line below — small, understated
+  ctx.font='400 24px system-ui, sans-serif';
+  ctx.letterSpacing='4px';
+  ctx.fillStyle='rgba(246,242,232,0.32)';
+  ctx.textAlign='center';
+  ctx.fillText('FILL BEDS. GUARANTEED.', W/2, H/2 + 160);
+  ctx.letterSpacing='0px';
 })();
 
-/* ============================================
-   OPTION B — CARE HOME BUILDING
-   Classic house silhouette with lit windows
-   ============================================ */
-function drawCareHome(ctx, cx, cy, scale, col, alpha) {
-  ctx.save();
-  ctx.globalAlpha = alpha;
-
-  var bw = 360*scale, bh = 240*scale;
-
-  // Main body rectangle
-  ctx.fillStyle = col;
-  ctx.beginPath();
-  ctx.roundRect(cx - bw/2, cy - bh/2, bw, bh, 6*scale);
-  ctx.fill();
-
-  // Roof — triangle sitting on top of body
-  ctx.beginPath();
-  ctx.moveTo(cx - bw/2 - 24*scale, cy - bh/2 + 4*scale); // left eave
-  ctx.lineTo(cx, cy - bh/2 - 180*scale);                   // peak
-  ctx.lineTo(cx + bw/2 + 24*scale, cy - bh/2 + 4*scale); // right eave
-  ctx.closePath();
-  ctx.fill();
-
-  // Chimney — small rect from roof
-  ctx.fillRect(cx + 80*scale, cy - bh/2 - 200*scale, 36*scale, 110*scale);
-
-  // Door — centred bottom
-  ctx.fillStyle = 'rgba(13,11,9,0.75)';
-  var dw=60*scale, dh=100*scale;
-  ctx.beginPath();
-  ctx.roundRect(cx - dw/2, cy + bh/2 - dh, dw, dh, [8*scale, 8*scale, 0, 0]);
-  ctx.fill();
-
-  // Windows — 2, one each side, warm glow
-  var ww=72*scale, wh=58*scale, wy=cy - 30*scale;
-  // left window
-  ctx.fillStyle='rgba(13,11,9,0.7)';
-  ctx.beginPath();
-  ctx.roundRect(cx - bw/2 + 44*scale, wy - wh/2, ww, wh, 6*scale);
-  ctx.fill();
-  // window pane cross
-  ctx.strokeStyle=col; ctx.lineWidth=3*scale; ctx.globalAlpha=alpha*0.5;
-  ctx.beginPath();
-  ctx.moveTo(cx - bw/2 + 44*scale + ww/2, wy - wh/2);
-  ctx.lineTo(cx - bw/2 + 44*scale + ww/2, wy + wh/2);
-  ctx.moveTo(cx - bw/2 + 44*scale, wy);
-  ctx.lineTo(cx - bw/2 + 44*scale + ww, wy);
-  ctx.stroke();
-  ctx.globalAlpha=alpha;
-
-  // right window
-  ctx.fillStyle='rgba(13,11,9,0.7)';
-  ctx.beginPath();
-  ctx.roundRect(cx + bw/2 - 44*scale - ww, wy - wh/2, ww, wh, 6*scale);
-  ctx.fill();
-  ctx.strokeStyle=col; ctx.lineWidth=3*scale; ctx.globalAlpha=alpha*0.5;
-  ctx.beginPath();
-  ctx.moveTo(cx + bw/2 - 44*scale - ww/2, wy - wh/2);
-  ctx.lineTo(cx + bw/2 - 44*scale - ww/2, wy + wh/2);
-  ctx.moveTo(cx + bw/2 - 44*scale - ww, wy);
-  ctx.lineTo(cx + bw/2 - 44*scale, wy);
-  ctx.stroke();
-
-  ctx.restore();
-}
-
+/* ===== B: DOT GRID ===== */
 (function(){
   var c=document.getElementById('cB'), ctx=c.getContext('2d');
-  darkBase(ctx);
-
-  // warm glow from centre-bottom (like lights on inside)
-  var glow=ctx.createRadialGradient(W/2,H*0.78,0,W/2,H*0.78,600);
-  glow.addColorStop(0,'rgba(255,122,0,0.12)');
-  glow.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=glow; ctx.fillRect(0,0,W,H);
-
-  // huge ghost building
-  drawCareHome(ctx, W/2, H*0.64, 2.8, '#FF7A00', 0.055);
-
-  vignette(ctx);
-  accentLines(ctx);
-
-  // clear readable building
-  drawCareHome(ctx, W/2, H*0.68, 1.55, '#FF7A00', 0.35);
-
-  // window warm glow overlays (makes it feel lit from inside)
-  var wg = ctx.createRadialGradient(W/2 - 90, H*0.62, 0, W/2 - 90, H*0.62, 80);
-  wg.addColorStop(0,'rgba(255,180,60,0.18)');
-  wg.addColorStop(1,'rgba(255,180,60,0)');
-  ctx.fillStyle=wg; ctx.fillRect(0,0,W,H);
-  var wg2 = ctx.createRadialGradient(W/2 + 90, H*0.62, 0, W/2 + 90, H*0.62, 80);
-  wg2.addColorStop(0,'rgba(255,180,60,0.18)');
-  wg2.addColorStop(1,'rgba(255,180,60,0)');
-  ctx.fillStyle=wg2; ctx.fillRect(0,0,W,H);
-
-  // play button above the building
-  playBtn(ctx, W/2, H*0.3, 90);
-
-  brandTop(ctx);
+  // Dark base
+  ctx.fillStyle='#141414'; ctx.fillRect(0,0,W,H);
+  // Dot grid — same as VSL background
+  ctx.fillStyle='rgba(255,255,255,0.07)';
+  for(var x=48;x<W;x+=48) for(var y=48;y<H;y+=48){
+    ctx.beginPath(); ctx.arc(x,y,1.2,0,Math.PI*2); ctx.fill();
+  }
+  // Vignette
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.18,W/2,H/2,W*0.75);
+  v.addColorStop(0,'rgba(20,20,20,0)');
+  v.addColorStop(0.6,'rgba(20,20,20,0.5)');
+  v.addColorStop(1,'rgba(20,20,20,0.96)');
+  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
+  // Accent lines top + bottom (same as bg)
+  var ln=ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.25,'rgba(255,122,0,0.7)');
+  ln.addColorStop(0.75,'rgba(255,122,0,0.7)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=ln;
+  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+  // Play button
+  playBtn(ctx, 100);
+  // SV mark — small, top centre
+  ctx.font='bold 30px Georgia, serif';
+  ctx.fillStyle='rgba(255,122,0,0.55)';
+  ctx.textAlign='center';
+  ctx.fillText('SV', W/2, 58);
 })();
 
-/* ============================================
-   OPTION C — ROW OF BEDS
-   4 filled (orange) + 1 empty (dim) beds in a row
-   ============================================ */
-function drawSmallBed(ctx, cx, cy, bw, col, alpha) {
-  ctx.save();
-  ctx.globalAlpha = alpha;
-  ctx.fillStyle = col;
-
-  var bh = bw * 0.52;
-  var hbw = bw * 0.12; // headboard width
-  var fbw = bw * 0.1;  // footboard width
-  var lw = Math.max(2, bw * 0.045);
-
-  // mattress base
-  ctx.beginPath();
-  ctx.roundRect(cx - bw/2 + hbw, cy - bh*0.18, bw - hbw - fbw, bh*0.56, lw);
-  ctx.fill();
-
-  // headboard
-  ctx.beginPath();
-  ctx.roundRect(cx - bw/2, cy - bh*0.46, hbw, bh*0.84, lw*0.7);
-  ctx.fill();
-
-  // footboard
-  ctx.beginPath();
-  ctx.roundRect(cx + bw/2 - fbw, cy - bh*0.28, fbw, bh*0.66, lw*0.7);
-  ctx.fill();
-
-  // pillow
-  ctx.globalAlpha = alpha * 0.9;
-  ctx.beginPath();
-  ctx.roundRect(cx - bw/2 + hbw + bw*0.04, cy - bh*0.46, bw*0.24, bh*0.36, lw*0.8);
-  ctx.fill();
-
-  ctx.restore();
-}
-
+/* ===== C: FRAME ===== */
 (function(){
   var c=document.getElementById('cC'), ctx=c.getContext('2d');
-  darkBase(ctx);
-
-  // warm glow
-  var glow=ctx.createRadialGradient(W/2,H*0.6,0,W/2,H*0.6,500);
-  glow.addColorStop(0,'rgba(255,122,0,0.1)');
-  glow.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=glow; ctx.fillRect(0,0,W,H);
-
-  vignette(ctx);
-  accentLines(ctx);
-
-  // 5 beds in a row
-  var n = 5;
-  var bedW = 180;
-  var gap = 30;
-  var totalW = n * bedW + (n-1) * gap;
-  var startX = W/2 - totalW/2 + bedW/2;
-  var bedY = H * 0.64;
-
-  for(var i=0; i<n; i++){
-    var bx = startX + i*(bedW+gap);
-    if(i < 4){
-      drawSmallBed(ctx, bx, bedY, bedW, '#FF7A00', 0.75);
-      // filled indicator dot above
-      ctx.save();
-      ctx.globalAlpha = 0.85;
-      ctx.beginPath();
-      ctx.arc(bx, bedY - bedW*0.42, 9, 0, Math.PI*2);
-      ctx.fillStyle='#FF7A00'; ctx.fill();
-      ctx.restore();
-    } else {
-      drawSmallBed(ctx, bx, bedY, bedW, '#C4A882', 0.18);
-      // empty indicator
-      ctx.save();
-      ctx.globalAlpha = 0.22;
-      ctx.beginPath();
-      ctx.arc(bx, bedY - bedW*0.42, 9, 0, Math.PI*2);
-      ctx.strokeStyle='#C4A882'; ctx.lineWidth=2; ctx.stroke();
-      ctx.restore();
-    }
-  }
-
-  // label under beds
-  ctx.font='400 22px system-ui, sans-serif';
-  ctx.letterSpacing='3px';
-  ctx.fillStyle='rgba(246,242,232,0.3)';
-  ctx.textAlign='center';
-  ctx.fillText('WATCH HOW WE FILL YOURS', W/2, H*0.64 + bedW*0.58 + 40);
-  ctx.letterSpacing='0px';
-
-  // play button above beds
-  playBtn(ctx, W/2, H*0.3, 88);
-
-  brandTop(ctx);
+  // Dark base
+  ctx.fillStyle='#0c0a08'; ctx.fillRect(0,0,W,H);
+  // Subtle centre glow
+  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.5);
+  og.addColorStop(0,'rgba(255,122,0,0.09)');
+  og.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
+  // Vignette
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.15,W/2,H/2,W*0.7);
+  v.addColorStop(0,'rgba(12,10,8,0)');
+  v.addColorStop(1,'rgba(12,10,8,0.9)');
+  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
+  // Thin orange border frame inset from edges
+  var pad=40;
+  ctx.strokeStyle='rgba(255,122,0,0.35)';
+  ctx.lineWidth=2;
+  ctx.strokeRect(pad, pad, W-pad*2, H-pad*2);
+  // Corner accents — small bright squares at each corner
+  var clen=32, cw=3;
+  ctx.fillStyle='#FF7A00';
+  // top-left
+  ctx.fillRect(pad, pad, clen, cw); ctx.fillRect(pad, pad, cw, clen);
+  // top-right
+  ctx.fillRect(W-pad-clen, pad, clen, cw); ctx.fillRect(W-pad-cw, pad, cw, clen);
+  // bottom-left
+  ctx.fillRect(pad, H-pad-cw, clen, cw); ctx.fillRect(pad, H-pad-clen, cw, clen);
+  // bottom-right
+  ctx.fillRect(W-pad-clen, H-pad-cw, clen, cw); ctx.fillRect(W-pad-cw, H-pad-clen, cw, clen);
+  // Play button
+  playBtn(ctx, 100);
 })();
 </script>
 </body>

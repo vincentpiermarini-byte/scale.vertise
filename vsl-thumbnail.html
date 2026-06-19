@@ -6,250 +6,295 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:100%; background:#0a0806; font-family:system-ui,sans-serif; }
-  .page {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    min-height:100vh;
-    gap:48px;
-    padding:48px 32px;
-  }
-  .thumb-block {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:16px;
-    width:100%;
-    max-width:860px;
-  }
+  .page { display:flex; flex-direction:column; align-items:center; min-height:100vh; gap:48px; padding:48px 32px; }
+  .thumb-block { display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; max-width:860px; }
   canvas { width:100%; height:auto; border-radius:8px; display:block; }
-  .dl-btn {
-    background:#FF7A00;
-    color:#0a0806;
-    font-size:1rem;
-    font-weight:700;
-    letter-spacing:0.04em;
-    padding:14px 36px;
-    border-radius:100px;
-    border:none;
-    cursor:pointer;
-  }
+  .dl-btn { background:#FF7A00; color:#0a0806; font-size:1rem; font-weight:700; letter-spacing:0.04em; padding:14px 36px; border-radius:100px; border:none; cursor:pointer; }
   .dl-btn:hover { opacity:0.88; }
   h2 { color:#F6F2E8; font-size:0.95rem; font-weight:600; letter-spacing:0.04em; opacity:0.5; text-transform:uppercase; }
 </style>
 </head>
 <body>
 <div class="page">
-
   <div class="thumb-block">
-    <h2>Option A — Monogram</h2>
+    <h2>Option A — The Bed</h2>
     <canvas id="cA" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cA')">Download A</button>
   </div>
-
   <div class="thumb-block">
-    <h2>Option B — Ghost Stat</h2>
+    <h2>Option B — Care Home</h2>
     <canvas id="cB" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cB')">Download B</button>
   </div>
-
   <div class="thumb-block">
-    <h2>Option C — Orange Slash</h2>
+    <h2>Option C — Filled Beds</h2>
     <canvas id="cC" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cC')">Download C</button>
   </div>
-
 </div>
 <script>
 var W = 1280, H = 720;
 
 function dl(id) {
-  var dataUrl = document.getElementById(id).toDataURL('image/png');
-  var win = window.open();
-  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold, then Save to Photos</p>');
+  var u = document.getElementById(id).toDataURL('image/png');
+  var w = window.open();
+  w.document.write('<img src="'+u+'" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold, then Save to Photos</p>');
+}
+
+function vignette(ctx, alpha) {
+  var v = ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.72);
+  v.addColorStop(0,'rgba(8,6,5,0)');
+  v.addColorStop(1,'rgba(8,6,5,'+alpha+')');
+  ctx.fillStyle = v; ctx.fillRect(0,0,W,H);
+}
+
+function accentLines(ctx) {
+  var ln = ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.35,'rgba(255,122,0,0.55)');
+  ln.addColorStop(0.65,'rgba(255,122,0,0.55)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle = ln;
+  ctx.fillRect(0,0,W,2);
+  ctx.fillRect(0,H-2,W,2);
 }
 
 function playBtn(ctx, cx, cy, r) {
-  // glow
-  var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 2.5);
-  g.addColorStop(0, 'rgba(255,122,0,0.2)');
-  g.addColorStop(1, 'rgba(255,122,0,0)');
-  ctx.fillStyle = g;
-  ctx.beginPath(); ctx.arc(cx, cy, r * 2.5, 0, Math.PI*2); ctx.fill();
-  // fill
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
-  ctx.fillStyle = 'rgba(255,122,0,0.18)'; ctx.fill();
-  // ring
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
-  ctx.strokeStyle = '#FF7A00'; ctx.lineWidth = 4; ctx.stroke();
-  // triangle — nudge right so it looks centered optically
-  var t = r * 0.36;
+  var g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.4);
+  g.addColorStop(0,'rgba(255,122,0,0.22)');
+  g.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,r*2.4,0,Math.PI*2); ctx.fill();
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.fillStyle='rgba(255,122,0,0.16)'; ctx.fill();
+  ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
+  ctx.strokeStyle='#FF7A00'; ctx.lineWidth=4; ctx.stroke();
+  var t=r*0.36;
   ctx.beginPath();
-  ctx.moveTo(cx - t * 0.7, cy - t * 1.1);
-  ctx.lineTo(cx - t * 0.7, cy + t * 1.1);
-  ctx.lineTo(cx + t * 1.5, cy);
+  ctx.moveTo(cx-t*0.7, cy-t*1.1);
+  ctx.lineTo(cx-t*0.7, cy+t*1.1);
+  ctx.lineTo(cx+t*1.5, cy);
   ctx.closePath();
-  ctx.fillStyle = '#FF7A00'; ctx.fill();
+  ctx.fillStyle='#FF7A00'; ctx.fill();
 }
 
-/* ===== A: MONOGRAM ===== */
-/* Big faded "SV" behind the play button — the logo IS the graphic */
+// Draw a stylised bed icon centred at (cx,cy), scaled by s
+function drawBed(ctx, cx, cy, s, col) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.fillStyle = col;
+  ctx.strokeStyle = col;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+
+  // Base frame — horizontal rectangle
+  var fw = 420*s, fh = 90*s;
+  roundRect(ctx, -fw/2, -fh/2 + 40*s, fw, fh, 18*s, col, null);
+
+  // Headboard — tall rect on left
+  roundRect(ctx, -fw/2, -110*s, 52*s, 170*s, 14*s, col, null);
+
+  // Footboard — shorter rect on right
+  roundRect(ctx, fw/2 - 52*s, -60*s, 52*s, 120*s, 14*s, col, null);
+
+  // Pillow
+  roundRect(ctx, -fw/2 + 62*s, -80*s, 120*s, 68*s, 16*s, null, col);
+
+  // Blanket / covers — slightly lighter fill
+  ctx.globalAlpha *= 0.7;
+  roundRect(ctx, -fw/2 + 62*s, -12*s, fw - 114*s, 52*s, 12*s, col, null);
+  ctx.globalAlpha = 1;
+
+  ctx.restore();
+}
+
+function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y);
+  ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+  ctx.lineTo(x+w, y+h-r);
+  ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+  ctx.lineTo(x+r, y+h);
+  ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+  ctx.lineTo(x, y+r);
+  ctx.quadraticCurveTo(x, y, x+r, y);
+  ctx.closePath();
+  if (fill) { ctx.fillStyle=fill; ctx.fill(); }
+  if (stroke) { ctx.strokeStyle=stroke; ctx.lineWidth=4; ctx.stroke(); }
+}
+
+// Draw a care-home building silhouette centred at (cx, cy), scale s
+function drawBuilding(ctx, cx, cy, s, col) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.fillStyle = col;
+
+  // Main body
+  ctx.fillRect(-200*s, -100*s, 400*s, 220*s);
+
+  // Roof — triangle
+  ctx.beginPath();
+  ctx.moveTo(-230*s, -100*s);
+  ctx.lineTo(0, -270*s);
+  ctx.lineTo(230*s, -100*s);
+  ctx.closePath();
+  ctx.fill();
+
+  // Chimney
+  ctx.fillRect(80*s, -260*s, 40*s, 100*s);
+
+  // Door cutout (darker)
+  ctx.fillStyle = 'rgba(8,6,5,0.6)';
+  roundRect(ctx, -30*s, 20*s, 60*s, 100*s, 8*s, 'rgba(8,6,5,0.6)', null);
+
+  // Windows x2
+  ctx.fillStyle = 'rgba(8,6,5,0.6)';
+  roundRect(ctx, -160*s, -60*s, 70*s, 60*s, 6*s, 'rgba(8,6,5,0.6)', null);
+  roundRect(ctx, 90*s, -60*s, 70*s, 60*s, 6*s, 'rgba(8,6,5,0.6)', null);
+
+  ctx.restore();
+}
+
+/* ===== A: THE BED ===== */
 (function(){
   var c = document.getElementById('cA'), ctx = c.getContext('2d');
 
-  // Base
-  var base = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W*0.7);
-  base.addColorStop(0, '#221c13');
-  base.addColorStop(1, '#070605');
-  ctx.fillStyle = base; ctx.fillRect(0,0,W,H);
+  // Dark warm base
+  var base = ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.7);
+  base.addColorStop(0,'#1d1610'); base.addColorStop(1,'#070504');
+  ctx.fillStyle=base; ctx.fillRect(0,0,W,H);
 
   // Dot grid
-  ctx.fillStyle = 'rgba(255,255,255,0.04)';
-  for (var x=56;x<W;x+=56) for (var y=56;y<H;y+=56) {
+  ctx.fillStyle='rgba(255,255,255,0.04)';
+  for(var x=56;x<W;x+=56) for(var y=56;y<H;y+=56){
     ctx.beginPath(); ctx.arc(x,y,1.1,0,Math.PI*2); ctx.fill();
   }
 
-  // Vignette
-  var vig = ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.68);
-  vig.addColorStop(0,'rgba(7,6,5,0)'); vig.addColorStop(1,'rgba(7,6,5,0.9)');
-  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
+  // Giant ghost bed centred — very faint
+  ctx.globalAlpha = 0.07;
+  drawBed(ctx, W/2, H/2 + 30, 2.2, '#FF7A00');
+  ctx.globalAlpha = 1;
 
-  // Giant ghost "SV" centered
-  ctx.save();
-  ctx.font = 'bold 520px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.07)';
-  ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('SV', W/2, H/2 + 30);
-  ctx.restore();
+  vignette(ctx, 0.82);
+  accentLines(ctx);
 
-  // Thin orange top + bottom lines
-  var ln = ctx.createLinearGradient(0,0,W,0);
-  ln.addColorStop(0,'rgba(255,122,0,0)');
-  ln.addColorStop(0.4,'rgba(255,122,0,0.55)');
-  ln.addColorStop(0.6,'rgba(255,122,0,0.55)');
-  ln.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle = ln;
-  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+  // Medium opacity bed slightly above centre — the main graphic
+  ctx.globalAlpha = 0.22;
+  drawBed(ctx, W/2, H/2 + 20, 1.3, '#FF7A00');
+  ctx.globalAlpha = 1;
 
-  // Play button on top
-  playBtn(ctx, W/2, H/2, 96);
+  // Play button on top of bed
+  playBtn(ctx, W/2, H/2 - 30, 88);
 
-  // "scalevertise" small centered above top line — sits above Vimeo controls
-  ctx.font = '300 22px Georgia, serif';
-  ctx.letterSpacing = '6px';
+  // Brand — top centre, clear of Vimeo controls zone
+  ctx.font = '300 20px Georgia, serif';
+  ctx.letterSpacing = '5px';
   ctx.fillStyle = 'rgba(196,168,130,0.45)';
   ctx.textAlign = 'center';
-  ctx.textBaseline = 'alphabetic';
-  ctx.fillText('SCALEVERTISE', W/2, 68);
+  ctx.fillText('SCALEVERTISE', W/2, 64);
   ctx.letterSpacing = '0px';
 })();
 
-/* ===== B: GHOST STAT ===== */
-/* "30" in enormous faded text, play button sits on it, one short line below */
+/* ===== B: CARE HOME BUILDING ===== */
 (function(){
   var c = document.getElementById('cB'), ctx = c.getContext('2d');
 
-  // Base
-  ctx.fillStyle = '#090807'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#080605'; ctx.fillRect(0,0,W,H);
 
-  // Warm glow center-left
-  var glow = ctx.createRadialGradient(W*0.42,H*0.48,0,W*0.42,H*0.48,W*0.55);
-  glow.addColorStop(0,'rgba(255,122,0,0.1)');
+  // Warm glow from bottom-centre (light through windows feel)
+  var glow = ctx.createRadialGradient(W/2, H*0.9, 0, W/2, H*0.9, W*0.65);
+  glow.addColorStop(0,'rgba(255,122,0,0.12)');
   glow.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle = glow; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle=glow; ctx.fillRect(0,0,W,H);
 
-  // Ghost "30"
-  ctx.save();
-  ctx.font = 'bold 640px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.09)';
+  // Ghost building
+  ctx.globalAlpha = 0.08;
+  drawBuilding(ctx, W/2, H*0.62, 1.6, '#FF7A00');
+  ctx.globalAlpha = 1;
+
+  vignette(ctx, 0.78);
+  accentLines(ctx);
+
+  // Slightly visible building
+  ctx.globalAlpha = 0.18;
+  drawBuilding(ctx, W/2, H*0.62, 1.1, '#FF7A00');
+  ctx.globalAlpha = 1;
+
+  // Play button above building roof line
+  playBtn(ctx, W/2, H*0.34, 90);
+
+  // Brand top centre
+  ctx.font = '300 20px Georgia, serif';
+  ctx.letterSpacing = '5px';
+  ctx.fillStyle = 'rgba(196,168,130,0.45)';
   ctx.textAlign = 'center';
-  ctx.textBaseline = 'middle';
-  ctx.fillText('30', W/2, H/2);
-  ctx.restore();
-
-  // Edge vignette
-  var vig = ctx.createRadialGradient(W/2,H/2,H*0.05,W/2,H/2,W*0.65);
-  vig.addColorStop(0,'rgba(9,8,7,0)'); vig.addColorStop(1,'rgba(9,8,7,0.85)');
-  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
-
-  // Left orange bar
-  ctx.fillStyle = '#FF7A00'; ctx.fillRect(0,0,6,H);
-
-  // Play button slightly above center
-  playBtn(ctx, W/2, H/2 - 30, 90);
-
-  // Single line below play
-  ctx.font = '400 26px system-ui, sans-serif';
-  ctx.letterSpacing = '3px';
-  ctx.fillStyle = 'rgba(246,242,232,0.4)';
-  ctx.textAlign = 'center';
-  ctx.fillText('BEDS FILLED IN 30 DAYS', W/2, H/2 + 110);
+  ctx.fillText('SCALEVERTISE', W/2, 64);
   ctx.letterSpacing = '0px';
-
-  // Brand top right — clear of Vimeo overlay zone (bottom)
-  ctx.font = 'bold 20px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.5)';
-  ctx.textAlign = 'right';
-  ctx.fillText('SV', W - 48, 60);
-  ctx.font = '300 18px Georgia, serif';
-  ctx.fillStyle = 'rgba(196,168,130,0.4)';
-  ctx.fillText('scalevertise', W - 48, 84);
 })();
 
-/* ===== C: ORANGE SLASH ===== */
-/* Diagonal orange band across the frame, play button sits centered on it */
+/* ===== C: FILLED BEDS ===== */
+/* Row of bed icons — some lit (filled), some dark (empty) */
 (function(){
   var c = document.getElementById('cC'), ctx = c.getContext('2d');
 
-  // Dark base
-  ctx.fillStyle = '#0c0a08'; ctx.fillRect(0,0,W,H);
+  var base = ctx.createRadialGradient(W/2,H*0.4,0,W/2,H*0.4,W*0.7);
+  base.addColorStop(0,'#191410'); base.addColorStop(1,'#060504');
+  ctx.fillStyle=base; ctx.fillRect(0,0,W,H);
 
   // Dot grid
-  ctx.fillStyle = 'rgba(255,255,255,0.035)';
-  for (var x=52;x<W;x+=52) for (var y=52;y<H;y+=52) {
+  ctx.fillStyle='rgba(255,255,255,0.04)';
+  for(var x=56;x<W;x+=56) for(var y=56;y<H;y+=56){
     ctx.beginPath(); ctx.arc(x,y,1.1,0,Math.PI*2); ctx.fill();
   }
 
-  // Diagonal slash — orange band
-  ctx.save();
-  ctx.translate(W/2, H/2);
-  ctx.rotate(-14 * Math.PI / 180);
-  var slash = ctx.createLinearGradient(0, -160, 0, 160);
-  slash.addColorStop(0,   'rgba(255,122,0,0)');
-  slash.addColorStop(0.2, 'rgba(255,122,0,0.18)');
-  slash.addColorStop(0.5, 'rgba(255,122,0,0.28)');
-  slash.addColorStop(0.8, 'rgba(255,122,0,0.18)');
-  slash.addColorStop(1,   'rgba(255,122,0,0)');
-  ctx.fillStyle = slash;
-  ctx.fillRect(-W, -160, W*2, 320);
-  ctx.restore();
+  vignette(ctx, 0.72);
 
-  // Vignette
-  var vig = ctx.createRadialGradient(W/2,H/2,H*0.12,W/2,H/2,W*0.7);
-  vig.addColorStop(0,'rgba(12,10,8,0)'); vig.addColorStop(1,'rgba(12,10,8,0.88)');
-  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
+  // Row of 5 beds: first 4 lit (filled), last 1 dark (empty)
+  var bedSpacing = 220;
+  var startX = W/2 - bedSpacing*2;
+  var bedY = H*0.56;
+  var bedS = 0.52;
 
-  // Thin accent lines top + bottom
-  var ln = ctx.createLinearGradient(0,0,W,0);
-  ln.addColorStop(0,'rgba(255,122,0,0)');
-  ln.addColorStop(0.35,'rgba(255,122,0,0.5)');
-  ln.addColorStop(0.65,'rgba(255,122,0,0.5)');
-  ln.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle = ln;
-  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+  for(var i=0; i<5; i++){
+    var bx = startX + i * bedSpacing;
+    if(i < 4){
+      // Filled bed — orange
+      ctx.globalAlpha = 0.55;
+      drawBed(ctx, bx, bedY, bedS, '#FF7A00');
+      // Small filled dot above
+      ctx.globalAlpha = 0.7;
+      ctx.beginPath(); ctx.arc(bx, bedY - 145*bedS, 10, 0, Math.PI*2);
+      ctx.fillStyle = '#FF7A00'; ctx.fill();
+    } else {
+      // Empty bed — muted
+      ctx.globalAlpha = 0.14;
+      drawBed(ctx, bx, bedY, bedS, '#C4A882');
+      ctx.globalAlpha = 0.2;
+      ctx.beginPath(); ctx.arc(bx, bedY - 145*bedS, 10, 0, Math.PI*2);
+      ctx.fillStyle = '#C4A882'; ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+  }
 
-  // Play button dead center
-  playBtn(ctx, W/2, H/2, 96);
+  accentLines(ctx);
 
-  // Brand top center — above Vimeo controls zone
-  ctx.font = 'bold 22px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.55)';
+  // Play button centred, above the bed row
+  playBtn(ctx, W/2, H*0.3, 84);
+
+  // "4 of 5 beds filled" caption
+  ctx.font = '400 24px system-ui, sans-serif';
+  ctx.letterSpacing = '2px';
+  ctx.fillStyle = 'rgba(246,242,232,0.35)';
   ctx.textAlign = 'center';
-  ctx.fillText('SV', W/2 - 52, 64);
+  ctx.fillText('WATCH HOW WE FILL YOURS', W/2, H*0.56 + 145);
+  ctx.letterSpacing = '0px';
+
+  // Brand top centre
   ctx.font = '300 20px Georgia, serif';
-  ctx.fillStyle = 'rgba(196,168,130,0.4)';
-  ctx.fillText('scalevertise', W/2 + 28, 64);
+  ctx.letterSpacing = '5px';
+  ctx.fillStyle = 'rgba(196,168,130,0.45)';
+  ctx.fillText('SCALEVERTISE', W/2, 64);
+  ctx.letterSpacing = '0px';
 })();
 </script>
 </body>

@@ -70,14 +70,22 @@ function playBtn(ctx, cx, cy, r) {
   v.addColorStop(1,'rgba(17,16,16,0.96)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
 
-  // One clean white line — light weight sans, all lowercase
+  // Center the text+button group as a unit
+  var btnR = 80;
+  var gap = 48;
+  var textH = 72; // approximate cap height
+  var groupH = textH + gap + btnR * 2;
+  var groupTop = H/2 - groupH/2;
+
+  // Text — centered horizontally, top of group
   ctx.font='300 72px system-ui, sans-serif';
   ctx.fillStyle='rgba(255,255,255,0.88)';
   ctx.textAlign='center';
-  ctx.textBaseline='alphabetic';
-  ctx.fillText('watch before you book.', W/2, H/2 - 80);
+  ctx.textBaseline='top';
+  ctx.fillText('watch before you book.', W/2, groupTop);
 
-  playBtn(ctx, W/2, H/2 + 80, 80);
+  // Play button below text
+  playBtn(ctx, W/2, groupTop + textH + gap + btnR, btnR);
 })();
 
 /* B — Orange solid bar behind white text, play button below */

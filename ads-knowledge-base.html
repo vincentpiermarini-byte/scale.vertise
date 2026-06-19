@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 15mm 14mm 15mm;
+    @bottom-center {
+      content: "Scalevertise Ads Knowledge Base · Confidential";
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 7.5px;
+      color: #9aa0a6;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 7.5px;
+      color: #9aa0a6;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #16181d; font-size: 10px; line-height: 1.55; margin: 0; }
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; margin: 0; }
+
+  .cover {
+    page-break-after: always;
+    height: 245mm;
+    display: flex; flex-direction: column; justify-content: center;
+    background: #0a0a0a; color: #fff;
+    margin: -16mm -15mm 0 -15mm;
+    padding: 0 20mm;
+  }
+  .cover .eyebrow { color: #FF7A00; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+  .cover h1 { font-size: 34px; margin: 0 0 16px 0; line-height: 1.1; }
+  .cover .sub { font-size: 12px; color: #b0b0b0; max-width: 130mm; line-height: 1.65; }
+  .cover .rule { width: 50px; height: 4px; background: #FF7A00; margin: 0 0 22px 0; }
+  .cover .toc { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+  .cover .toc-item { font-size: 9px; color: #888; padding: 4px 0; border-top: 1px solid #222; }
+  .cover .toc-item span { color: #FF7A00; font-weight: 700; margin-right: 6px; }
+
+  .pb { page-break-before: always; }
+  .block { page-break-inside: avoid; }
+
+  .sec-head { border-bottom: 2px solid #0a0a0a; padding-bottom: 7px; margin-bottom: 12px; }
+  .sec-num { color: #FF7A00; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+  h2.sec { font-size: 17px; color: #0a0a0a; }
+
+  p { margin: 0 0 8px 0; }
+  ul, ol { margin: 0 0 9px 0; padding-left: 15px; }
+  li { margin-bottom: 4px; font-size: 9.8px; }
+  strong { color: #0a0a0a; }
+
+  .box { border: 1px solid #e2e5ea; border-radius: 7px; padding: 11px 13px; margin: 0 0 10px 0; page-break-inside: avoid; background: #fafbfc; }
+  .box.dark { background: #0a0a0a; color: #e8e8e8; border-color: #0a0a0a; }
+  .box.dark .lbl { color: #FF7A00; }
+  .box.orange { background: #fff8f2; border-left: 4px solid #FF7A00; }
+  .box.grey { background: #f4f5f6; border-left: 4px solid #555; }
+  .lbl { font-size: 8px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: #6b7280; margin-bottom: 5px; }
+
+  .rule-card { border: 1px solid #e2e5ea; border-left: 4px solid #0a0a0a; border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; page-break-inside: avoid; }
+  .rule-card .r-num { font-size: 18px; font-weight: 700; color: #FF7A00; line-height: 1; margin-bottom: 3px; }
+  .rule-card h4 { font-size: 11px; margin: 0 0 4px 0; }
+  .rule-card p { font-size: 9.5px; margin: 0; color: #3c4149; }
+
+  .formula { background: #0a0a0a; color: #fff; border-radius: 8px; padding: 13px 15px; margin: 0 0 10px 0; page-break-inside: avoid; }
+  .formula .f-label { font-size: 8px; letter-spacing: 2px; text-transform: uppercase; color: #FF7A00; font-weight: 700; margin-bottom: 8px; }
+  .formula .f-steps { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .formula .f-step { background: #1a1a1a; border: 1px solid #333; border-radius: 5px; padding: 5px 9px; font-size: 9.5px; font-weight: 600; white-space: nowrap; }
+  .formula .f-arrow { color: #FF7A00; font-size: 12px; font-weight: 700; }
+
+  .script { border: 1px solid #dde2ea; border-left: 4px solid #FF7A00; border-radius: 6px; padding: 11px 13px; margin-bottom: 10px; page-break-inside: avoid; background: #fafbfc; }
+  .script .s-type { font-size: 8px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: #FF7A00; margin-bottom: 7px; }
+  .script .beat { font-size: 7.5px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: #9aa0a6; margin: 7px 0 2px 0; }
+  .script p { font-size: 9.5px; margin: 0 0 3px 0; }
+
+  .two-col { display: flex; gap: 10px; margin-bottom: 10px; }
+  .two-col > div { flex: 1; }
+
+  table { width: 100%; border-collapse: collapse; margin: 4px 0 12px 0; font-size: 9px; }
+  th { background: #0a0a0a; color: #fff; text-align: left; padding: 6px 8px; font-size: 8px; letter-spacing: 0.5px; text-transform: uppercase; }
+  td { padding: 6px 8px; border-bottom: 1px solid #e8eaee; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f8fa; }
+
+  .hook-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 10px; }
+  .hook-card { border: 1px solid #e2e5ea; border-radius: 6px; padding: 9px 11px; background: #fafbfc; page-break-inside: avoid; }
+  .hook-card .h-type { font-size: 7.5px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: #FF7A00; margin-bottom: 4px; }
+  .hook-card p { font-size: 9px; margin: 0 0 3px 0; color: #3c4149; }
+  .hook-card .example { font-size: 8.5px; color: #0a0a0a; font-style: italic; border-left: 2px solid #FF7A00; padding-left: 6px; margin-top: 4px; }
+
+  .big-quote { font-size: 12.5px; font-weight: 600; line-height: 1.5; color: #0a0a0a; border-left: 4px solid #FF7A00; padding-left: 12px; margin: 8px 0; }
+
+  .awareness-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 9px; }
+  .awareness-table th { background: #0a0a0a; color: #fff; padding: 6px 8px; text-align: left; font-size: 8px; }
+  .awareness-table td { padding: 6px 8px; border-bottom: 1px solid #e8eaee; vertical-align: top; }
+  .awareness-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .level-1 td:first-child { color: #1f8a3b; }
+  .level-2 td:first-child { color: #3a7fc1; }
+  .level-3 td:first-child { color: #c97a00; }
+  .level-4 td:first-child { color: #d95f2b; }
+  .level-5 td:first-child { color: #d12a16; }
+
+  .small { font-size: 8.5px; color: #6b7280; }
+  .tag { display: inline-block; background: #0a0a0a; color: #fff; font-size: 7.5px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-right: 4px; }
+  .tag.orange { background: #FF7A00; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">Scalevertise · Internal Knowledge Base</div>
+  <div class="rule"></div>
+  <h1>The Complete Meta Ads<br>Playbook</h1>
+  <div class="sub">Everything from the agency strategy call + Alex Hormozi's $100M frameworks, applied to how Scalevertise runs ads for clients. Use this as the master reference before writing any ad, script, or strategy doc.</div>
+  <div class="toc">
+    <div class="toc-item"><span>01</span> The 8 Agency Rules</div>
+    <div class="toc-item"><span>02</span> The Ad Formula</div>
+    <div class="toc-item"><span>03</span> Hormozi: Hooks</div>
+    <div class="toc-item"><span>04</span> Hormozi: GOATed Ads</div>
+    <div class="toc-item"><span>05</span> Awareness Levels</div>
+    <div class="toc-item"><span>06</span> UGC Script Structure</div>
+    <div class="toc-item"><span>07</span> The Offer Formula</div>
+    <div class="toc-item"><span>08</span> Static Ad Formats</div>
+    <div class="toc-item"><span>09</span> Lead Follow-Up System</div>
+    <div class="toc-item"><span>10</span> Real Script Examples</div>
+  </div>
+</div>
+
+<!-- SECTION 01 -->
+<div class="block">
+  <div class="sec-head">
+    <div class="sec-num">Section 01</div>
+    <h2 class="sec">The 8 Agency Rules (From the Strategy Call)</h2>
+  </div>
+  <p>These came directly from an agency spending $40k+/month on Meta. Every single one of these applies to every client campaign we run.</p>
+
+  <div class="rule-card">
+    <div class="r-num">1</div>
+    <h4>The creative is everything. The creative does the targeting.</h4>
+    <p>Broad targeting, max audience, age 21-50, zero interests. Meta finds the right person. The creative is what qualifies them. If the wrong people are clicking, the problem is the creative, not the audience settings. Never narrow targeting to compensate for weak creative.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">2</div>
+    <h4>Every ad opens with a hyper-specific niche call-out.</h4>
+    <p>The very first words must name exactly who this is for. Not "small business owners." Not "service businesses." The specific niche. "If you run an HVAC company." "If you own a home in Cary and Apex." "If you run an AI automation agency." The wrong person should scroll past instantly. The right person should stop immediately.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">3</div>
+    <h4>One niche per campaign. Multiple ads, one niche.</h4>
+    <p>On lower budgets you do not split across niches. Each niche needs its own funnel, its own landing page, its own creative. Pick the best niche for that client and go all in. Two similar niches is okay (like HVAC and plumbing) but they are nearly the same person. Adding a completely different niche requires a separate campaign and more spend.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">4</div>
+    <h4>CBO, one ad set, broad targeting.</h4>
+    <p>CBO = Campaign Budget Optimization. One campaign, one ad set, all your creatives inside it. Broad targeting means max audience, age 21-50, no interest targeting. Let Meta allocate the budget. When one ad eats most of the spend, that is the system working, not a bug. Meta is a better tester than any human.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">5</div>
+    <h4>One primary text. One headline. On every ad.</h4>
+    <p>Primary text has minimal impact on performance. Do not test multiple primary texts or headlines. Write one strong version and use it on every creative in the campaign. The only variable you test is the creative itself. Testing copy variables wastes budget and muddies the data.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">6</div>
+    <h4>Never pause the account.</h4>
+    <p>Every time an account goes dark for any reason (payment failure, manual pause, anything) Meta's learning phase resets. It takes 7 to 14 days of uninterrupted spend to re-optimize. A 4-day pause can cost you 2 weeks of performance. Keep the card up to date. Do not pause campaigns to "test" anything. Never pause a winning ad.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">7</div>
+    <h4>UGC video first, statics second.</h4>
+    <p>Video always gets better quality leads than static for B2C and local services. The agency runs mostly UGC with one or two statics alongside. The best static they ever ran was a screenshot from the Notes app that took 3 minutes to make. Do not over-design static ads. The lo-fi look stops the scroll better than polished graphics for most niches.</p>
+  </div>
+
+  <div class="rule-card">
+    <div class="r-num">8</div>
+    <h4>Find a winner and repeat it. Do not chase novelty.</h4>
+    <p>The agency has been running the same ad since November 2024 and it is still their best performer. Once you find a winning hook and creative format, make more of the same. 70% of effort goes to repeating proven winners, 20% to variations on winners, 10% to brand new experiments. Most people never find a winner because they keep changing things before anything can optimize.</p>
+  </div>
+</div>
+
+<!-- SECTION 02 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 02</div>
+    <h2 class="sec">The Ad Formula (Agency + Hormozi Combined)</h2>
+  </div>
+  <p>This is the exact structure every ad should follow, in this order. Do not rearrange it. The call-out comes first. Always.</p>
+
+  <div class="formula">
+    <div class="f-label">UGC Video Formula</div>
+    <div class="f-steps">
+      <div class="f-step">Niche Call-Out</div>
+      <div class="f-arrow">+</div>
+      <div class="f-step">Result + Offer</div>
+      <div class="f-arrow">+</div>
+      <div class="f-step">How It Works</div>
+      <div class="f-arrow">+</div>
+      <div class="f-step">Proof / Credibility</div>
+      <div class="f-arrow">+</div>
+      <div class="f-step">Guarantee</div>
+      <div class="f-arrow">+</div>
+      <div class="f-step">CTA</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th style="width:20%">Part</th><th style="width:35%">What it does</th><th>Example (HVAC)</th></tr>
+    <tr><td><strong>Niche Call-Out</strong></td><td>Makes the right person stop. Makes the wrong person scroll past. The creative does the targeting.</td><td>"If you run an HVAC business..."</td></tr>
+    <tr><td><strong>Result + Offer</strong></td><td>The dream outcome they want + the specific deal. Comes immediately after the call-out. Not buried at the end.</td><td>"...we will book you 10 extra jobs this month and save you $150 when you sign up today."</td></tr>
+    <tr><td><strong>How It Works</strong></td><td>3 bullets max. What the service actually does. Answers the "but how?" in their head.</td><td>"Answers every call in 2 seconds. Qualifies the job. Books straight into your calendar."</td></tr>
+    <tr><td><strong>Proof / Credibility</strong></td><td>Real number, real result, real client. Makes the claim believable.</td><td>"One HVAC company recovered $14,000 in missed installs in the first 11 days."</td></tr>
+    <tr><td><strong>Guarantee</strong></td><td>Removes risk. Makes the decision easy. Must be specific and bold.</td><td>"10 extra booked jobs in 30 days or you don't pay until it does."</td></tr>
+    <tr><td><strong>CTA</strong></td><td>One action. Tell them exactly what to do. Spell it out.</td><td>"Tap the link below. Free quote in 60 seconds."</td></tr>
+  </table>
+
+  <div class="box orange">
+    <div class="lbl">The agency's exact wording on this</div>
+    <p style="margin:0;">"It's result, result, call-out, call-out, and then we explain the mechanism. Call out the niche by name. Tell them the exact result they want. Name your mechanism. Then guarantee." The offer and the result come before the explanation every time.</p>
+  </div>
+</div>
+
+<!-- SECTION 03 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 03</div>
+    <h2 class="sec">Hormozi: Hooks ($100M Hooks Playbook)</h2>
+  </div>
+
+  <div class="big-quote">"After you've written your headline, you've spent eighty cents of your advertising dollar." -- David Ogilvy. If you have ten hours to advertise, spend eight of them on the hook.</div>
+
+  <p>A hook has two parts: a <strong>call-out</strong> (this is for me) and a <strong>promise of value</strong> (if I keep watching I get something). The hook sells the person on paying attention. Nothing else matters if the hook fails.</p>
+
+  <p><strong>Distribution of Hormozi's 121 best-performing hooks:</strong></p>
+  <div class="two-col">
+    <div>
+      <table>
+        <tr><th>Hook Type</th><th>% of Winners</th></tr>
+        <tr><td>Statements</td><td><strong>47.9%</strong></td></tr>
+        <tr><td>Commands</td><td>21.5%</td></tr>
+        <tr><td>Questions</td><td>9.9%</td></tr>
+        <tr><td>Exclamations</td><td>9.1%</td></tr>
+        <tr><td>Lists / Steps</td><td>5.8%</td></tr>
+        <tr><td>Stories</td><td>3%</td></tr>
+        <tr><td>Conditionals</td><td>2.5%</td></tr>
+      </table>
+    </div>
+    <div class="box" style="margin:0;">
+      <div class="lbl">Key insight</div>
+      <p>Almost half of all winning hooks are simple statements. Not questions. Not stories. A declarative sentence that makes the right person think "that's me" or "wait, what?" Write statements first. Questions second. Everything else is secondary.</p>
+    </div>
+  </div>
+
+  <div class="hook-grid">
+    <div class="hook-card">
+      <div class="h-type">Labels (Call-Outs)</div>
+      <p>Name your avatar directly. Works like hearing your own name in a noisy room.</p>
+      <div class="example">"Local business owners, I have a gift for you."</div>
+      <div class="example">"If you run an HVAC company..."</div>
+      <div class="example">"Homeowners in Cary and Apex..."</div>
+    </div>
+    <div class="hook-card">
+      <div class="h-type">Statements</div>
+      <p>The #1 performing type. Make a bold, specific claim. Let it land.</p>
+      <div class="example">"Your driveway is making your house look older than it is."</div>
+      <div class="example">"The smartest thing you can do today..."</div>
+      <div class="example">"How to get ahead of 99% of people."</div>
+    </div>
+    <div class="hook-card">
+      <div class="h-type">Questions</div>
+      <p>Two types: yes questions (lead them to agree) and open questions (create curiosity).</p>
+      <div class="example">"When's the last time you actually looked at your driveway?"</div>
+      <div class="example">"Would you pay $1,000 to have the business of your dreams in 30 days?"</div>
+    </div>
+    <div class="hook-card">
+      <div class="h-type">Conditionals</div>
+      <p>"If you [condition], then [result/reward]." Self-selects the audience and promises value in one sentence.</p>
+      <div class="example">"If you own a home in Cary and Apex, here's exactly what we'll do for you."</div>
+      <div class="example">"If you're working all the time and your business isn't growing, you're working on the wrong stuff."</div>
+    </div>
+    <div class="hook-card">
+      <div class="h-type">Commands</div>
+      <p>Direct instruction. Works well when paired with a strong benefit.</p>
+      <div class="example">"Read this if you're tired of being broke."</div>
+      <div class="example">"Watch this if you want to fill your empty beds."</div>
+    </div>
+    <div class="hook-card">
+      <div class="h-type">Hormozi's Best Ad Hooks (Actual)</div>
+      <p>From his own highest-performing paid ads:</p>
+      <div class="example">"Real quick question... Can I have your email?"</div>
+      <div class="example">"Local business owners, I have a gift for you."</div>
+      <div class="example">"Business owners: Do you ever wonder if you're working on the wrong stuff?"</div>
+      <div class="example">"Real quick. The reason for this ad is because..."</div>
+    </div>
+  </div>
+
+  <div class="box dark">
+    <div class="lbl">The 70/20/10 Hook Rule</div>
+    <p><strong>70%</strong> of hooks should be proven winners you already know work. Reuse and remix your best-performing hooks. <strong>20%</strong> should be adjacent to winners -- the same formula applied to a new angle. <strong>10%</strong> should be brand new experiments. Most businesses do 100% new every time and wonder why nothing sticks.</p>
+  </div>
+</div>
+
+<!-- SECTION 04 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 04</div>
+    <h2 class="sec">Hormozi: GOATed Ads System</h2>
+  </div>
+
+  <p>The GOATed Ads framework is how you scale creative without burning out. You stop thinking of ads as one piece and start assembling them in parts.</p>
+
+  <div class="formula">
+    <div class="f-label">Ad Assembly Formula</div>
+    <div class="f-steps">
+      <div class="f-step">50 Hooks</div>
+      <div class="f-arrow">x</div>
+      <div class="f-step">3-5 Meats</div>
+      <div class="f-arrow">x</div>
+      <div class="f-step">1-3 CTAs</div>
+      <div class="f-arrow">=</div>
+      <div class="f-step">150-750 Ads Per Week</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="box orange">
+        <div class="lbl">Time allocation for recording sessions</div>
+        <ul style="margin:0;">
+          <li><strong>80% of prep time on hooks.</strong> If they don't make it through the hook, nothing else matters.</li>
+          <li><strong>20% on the meat.</strong> The body gets seen by fewer people so it burns out slower.</li>
+          <li><strong>Almost no time on CTAs.</strong> One or two that work, keep using them.</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box">
+        <div class="lbl">5 types of "meat" (the body)</div>
+        <ol style="margin:0;">
+          <li><strong>Demonstration</strong> - before/after, unboxing, product in use</li>
+          <li><strong>Testimonial</strong> - UGC, raw iPhone, walk-and-talk rant</li>
+          <li><strong>Education</strong> - explainer, how-to, whiteboard</li>
+          <li><strong>Story</strong> - storytelling, lifestyle, problem-solution</li>
+          <li><strong>Faceless</strong> - screenshots, text only, slideshows</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="lbl">The CTA formula (show AND tell)</div>
+    <p>A good CTA tells: <strong>what to do</strong>, <strong>how to do it</strong>, <strong>when to do it</strong>, <strong>what they get</strong>, and optionally <strong>what happens next</strong>. Most ads only do one of these. Do all five. Then physically demonstrate clicking the button or filling out the form if possible.</p>
+    <p style="margin:0;font-style:italic;font-size:9px;">"Tap the link below [what + how], right now [when], to get your free quote in 60 seconds [what they get], and we'll call you back same day [what happens next]."</p>
+  </div>
+</div>
+
+<!-- SECTION 05 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 05</div>
+    <h2 class="sec">Awareness Levels (Eugene Schwartz via Hormozi)</h2>
+  </div>
+  <p>The audience's awareness level determines what type of hook and body you use. Most cold Meta traffic sits at level 4 (problem-aware). Ads start profitably at the bottom and become less profitable as you go colder. Better creative lets you convert colder audiences profitably.</p>
+
+  <table class="awareness-table">
+    <tr><th>Level</th><th>Awareness State</th><th>Hook Style</th><th>Body Style</th><th>Example Hook</th></tr>
+    <tr class="level-1"><td>1. Most Aware</td><td>Knows you and just needs the deal</td><td>Offer-driven</td><td>Just make the offer</td><td>"50% off this month only."</td></tr>
+    <tr class="level-2"><td>2. Product-Aware</td><td>Knows what you sell, unsure about you</td><td>Proof-driven</td><td>Show results and credibility</td><td>"Why 500 homeowners chose Blue Wave last year."</td></tr>
+    <tr class="level-3"><td>3. Solution-Aware</td><td>Knows solutions exist, doesn't know yours</td><td>Promise-driven</td><td>Introduce your mechanism as the best path</td><td>"The fastest way to get your home pressure washed right."</td></tr>
+    <tr class="level-4"><td>4. Problem-Aware</td><td>Knows they have a problem, no solution yet</td><td>Pain-driven</td><td>Agitate the problem, then present solution</td><td>"Your driveway is making your house look older than it is."</td></tr>
+    <tr class="level-5"><td>5. Unaware</td><td>Doesn't know they have a problem</td><td>Curiosity-driven</td><td>Create awareness of the hidden problem</td><td>"The hidden thing that's draining your home value every month."</td></tr>
+  </table>
+
+  <div class="box orange">
+    <div class="lbl">Where Meta cold traffic usually sits</div>
+    <p style="margin:0;">For local home services (pressure washing, HVAC, etc.) most cold Facebook traffic is at <strong>Level 4 (Problem-Aware)</strong>. They know their driveway is dirty. They know they need it done. They just haven't acted. Your hook should name the problem or the result, not the product. For B2B services like AI receptionist or care home marketing, the audience is often at <strong>Level 3</strong> -- they know they're losing leads or missing calls, they just don't know your specific solution.</p>
+  </div>
+</div>
+
+<!-- SECTION 06 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 06</div>
+    <h2 class="sec">UGC Script Structure</h2>
+  </div>
+  <p>A UGC script is not three sentences. It is 60 to 90 seconds of structured talking. The person filming does not need to be the founder. The tone is casual and direct, like they are telling a neighbor, not performing for a camera. Every script follows the same skeleton.</p>
+
+  <div class="script">
+    <div class="s-type">Master UGC Script Template</div>
+
+    <div class="beat">1. Niche Call-Out (first 3 seconds -- this is the hook)</div>
+    <p>Name the exact audience. Be hyper-specific. The wrong person should scroll past. Right person stops. Include location for local services. Include revenue/size qualifier for B2B.</p>
+    <p class="example" style="font-style:italic;color:#555;font-size:9px;">B2C example: "If you own a home in Cary, Apex, Raleigh, or Pittsboro..."<br>B2B example: "If you run an HVAC company and you're missing calls while your guys are on jobs..."</p>
+
+    <div class="beat">2. Result + Offer (immediately after the call-out)</div>
+    <p>Tell them the exact thing you will do for them and the offer. Do not make them wait for this. It comes right after the call-out, not at the end.</p>
+    <p class="example" style="font-style:italic;color:#555;font-size:9px;">"...here's exactly what we'll do. We will come out one time, wash your house and driveway, and have both looking brand new by the end of the day. And right now if you book both together you save $150."</p>
+
+    <div class="beat">3. How It Works (the mechanism, 2-3 sentences max)</div>
+    <p>Explain the process simply. What happens, in what order, how long it takes. Answers the "but how does it actually work?" in their head.</p>
+
+    <div class="beat">4. Proof / Credibility (a real number or result)</div>
+    <p>A specific number. A client result. A before/after shown on camera. Something that makes the claim believable. "We've done this for X homes" or "here's what last week looked like" with visual.</p>
+
+    <div class="beat">5. Guarantee (risk removal)</div>
+    <p>Remove the last objection. Make it specific. "If you're not happy, we come back and redo it free" or "10 jobs in 30 days or you don't pay."</p>
+
+    <div class="beat">6. CTA (one action, spelled out)</div>
+    <p>One thing to do. Tap below, link in bio, comment a word. Tell them what they get when they do it and how fast. "Tap the link below, free quote in 60 seconds, I'll get back to you same day."</p>
+  </div>
+
+  <div class="two-col">
+    <div class="box grey">
+      <div class="lbl">Filming tips</div>
+      <ul style="margin:0;">
+        <li>Phone camera is fine, no studio needed</li>
+        <li>Film on location at a job site</li>
+        <li>Casual tone, like telling a neighbor</li>
+        <li>Hold up phone to show before/after during proof section</li>
+        <li>No need to memorize word for word, know the beats</li>
+        <li>Film multiple takes of the hook separately</li>
+      </ul>
+    </div>
+    <div class="box grey">
+      <div class="lbl">Common mistakes</div>
+      <ul style="margin:0;">
+        <li>Leading with the company name instead of a call-out</li>
+        <li>Burying the offer at the end</li>
+        <li>No proof or credibility section</li>
+        <li>Too short (under 45 seconds = not enough to sell)</li>
+        <li>Sounding like an ad instead of a person talking</li>
+        <li>Founder-focused language ("I built this company...") instead of customer-focused</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 07 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 07</div>
+    <h2 class="sec">The Offer Formula (Hormozi Value Equation)</h2>
+  </div>
+
+  <div class="big-quote">Sell the result, not the tool. Sell the outcome, not the service. Nobody wants an AI receptionist. They want booked jobs. Nobody wants a pressure wash. They want a home that looks new.</div>
+
+  <div class="box dark">
+    <div class="lbl">Hormozi's Value Equation</div>
+    <p>Value = (Dream Outcome x Perceived Likelihood of Success) / (Time Delay x Effort and Sacrifice)</p>
+    <p style="margin:0;">A great offer maximizes the dream outcome and how believable it is, while minimizing how long it takes and how hard it is for the customer. Hit all four or your offer is weak.</p>
+  </div>
+
+  <table>
+    <tr><th style="width:22%">Offer Element</th><th style="width:38%">Weak Version</th><th>Strong Version</th></tr>
+    <tr><td><strong>Dream Outcome</strong></td><td>"An AI receptionist for your business"</td><td>"10 extra booked HVAC jobs this month"</td></tr>
+    <tr><td><strong>Likelihood</strong></td><td>"Results may vary"</td><td>"10 jobs in 30 days or you don't pay until it happens"</td></tr>
+    <tr><td><strong>Time Delay</strong></td><td>"See results over time"</td><td>"Live in 48 hours. Results in 30 days."</td></tr>
+    <tr><td><strong>Effort</strong></td><td>"Set it up yourself"</td><td>"Done for you. You just show up to the jobs."</td></tr>
+  </table>
+
+  <p><strong>Rules for building the offer:</strong></p>
+  <ul>
+    <li>Include a specific number. "More leads" is not an offer. "20-30 qualified appointments" is an offer.</li>
+    <li>Include a time frame. "In 30 days" is concrete. "Over time" is not.</li>
+    <li>Include a guarantee that removes risk. "Or you don't pay" is the gold standard.</li>
+    <li>For local services where pricing varies, use a discount bundle instead of a fixed price. "$150 off when you book both" is concrete even when the total varies.</li>
+    <li>Name the mechanism. "Our Resident Acquisition System" sounds more proprietary than "our service."</li>
+  </ul>
+
+  <div class="box orange">
+    <div class="lbl">Offer examples by client</div>
+    <p><strong>Scalevertise (care homes):</strong> "20-30 qualified resident appointments in 30 days or your management fee is waived. Done for you. One home per area."</p>
+    <p><strong>Subutai AI (HVAC):</strong> "We install an AI receptionist that books you 10 extra jobs from missed calls in your first 30 days, or you don't pay until it does. First 50 calls free."</p>
+    <p style="margin:0;"><strong>Blue Wave Pro Wash:</strong> "We come out one time, wash your house and driveway, and have both looking brand new same day. Book the bundle and save $150. Limited spots per month."</p>
+  </div>
+</div>
+
+<!-- SECTION 08 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 08</div>
+    <h2 class="sec">Static Ad Formats</h2>
+  </div>
+  <p>Run statics alongside UGC. Never instead of. Two formats consistently outperform everything else for local and B2B services.</p>
+
+  <div class="two-col">
+    <div class="script">
+      <div class="s-type">Format 1: Notes App Screenshot (Top Performer)</div>
+      <div class="beat">What it is</div>
+      <p>A screenshot of a plain text note from your phone. Black text on white. One or two emojis max. No design. No branding. No graphic.</p>
+      <div class="beat">Why it works</div>
+      <p>Looks organic. Stops the scroll because it doesn't look like an ad. The agency said their single best-performing ad of all time is this format and took 3 minutes to make.</p>
+      <div class="beat">Formula</div>
+      <p>EMOJI + AUDIENCE CALL-OUT IN CAPS<br>
+      One sentence: what you'll do for them + the offer.<br>
+      One sentence: urgency (limited spots, this month only).<br>
+      CTA with emoji.</p>
+    </div>
+    <div class="script">
+      <div class="s-type">Format 2: Before/After Split Image</div>
+      <div class="beat">What it is</div>
+      <p>Full-width image split vertically. Dirty/bad state on the left. Clean/good state on the right. Bold text overlay.</p>
+      <div class="beat">Why it works</div>
+      <p>The transformation is the entire ad. For any visual service (pressure washing, cleaning, renovation, landscaping) the before/after does more selling than any copy.</p>
+      <div class="beat">Rules</div>
+      <p>Use the most dramatic before/after you have. The bigger the visual gap, the better it performs. Bold text on the image: "SAME DRIVEWAY. 2 HOURS." Caption below explains the offer.</p>
+    </div>
+  </div>
+
+  <div class="box grey">
+    <div class="lbl">Notes app example (Blue Wave Pro Wash)</div>
+    <p style="margin:0; font-size:10px;">🏠 CARY, APEX, RALEIGH and PITTSBORO HOMEOWNERS<br><br>Book your house wash + driveway as a package this month and save $150.<br><br>One visit. Done the same day. Limited spots available.<br><br>👇 Get your free quote in 60 seconds.</p>
+  </div>
+</div>
+
+<!-- SECTION 09 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 09</div>
+    <h2 class="sec">Lead Follow-Up System</h2>
+  </div>
+  <p>The ads get the lead. The follow-up speed decides whether that lead becomes a job. This is the most ignored part of the funnel and the most expensive mistake a client can make.</p>
+
+  <div class="two-col">
+    <div class="box" style="text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#d12a16;">21x</div>
+      <div style="font-size:9px; color:#555; margin-top:3px;">More likely to close if contacted within 5 minutes vs. 30 minutes</div>
+    </div>
+    <div class="box" style="text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#d12a16;">80%</div>
+      <div style="font-size:9px; color:#555; margin-top:3px;">Drop in conversion rate when follow-up happens after 30 minutes</div>
+    </div>
+    <div class="box" style="text-align:center;">
+      <div style="font-size:28px; font-weight:700; color:#d12a16;">60 sec</div>
+      <div style="font-size:9px; color:#555; margin-top:3px;">How long a motivated lead stays hot before scrolling to the next ad</div>
+    </div>
+  </div>
+
+  <p><strong>What actually happens to a slow lead:</strong> They fill out the form. They keep scrolling Facebook. A competitor's ad shows up. That company texts them in 30 seconds. By the time your client calls an hour later, the homeowner does not even remember filling out the form and has already booked with someone else. The lead was not bad. It went cold.</p>
+
+  <div class="box orange">
+    <div class="lbl">The fix: instant automated SMS</div>
+    <p>The second someone submits the lead form, an automated text fires. This is set up through Zapier connecting Facebook Lead Ads to GoHighLevel or any SMS tool. Takes about 20 minutes to configure. Once live, every lead feels taken care of immediately even when the owner is on a job.</p>
+    <p style="margin:0;font-style:italic;">"Hey [First Name]! This is Josh from Blue Wave Pro Wash. Just saw your request come through and I'm pulling together your quote now. I'll give you a call shortly. Feel free to reply here with any questions."</p>
+  </div>
+
+  <div class="box dark">
+    <div class="lbl">Rule for every client</div>
+    <p style="margin:0;">Instant automated follow-up is non-negotiable before scaling spend. Running ads without it is like filling a bucket with a hole in it. The ads can be perfect and the client will still say the leads are bad quality. They are not bad. They are cold. Fix the follow-up first.</p>
+  </div>
+</div>
+
+<!-- SECTION 10 -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Section 10</div>
+    <h2 class="sec">Real Script Examples (Reference)</h2>
+  </div>
+  <p>These are working scripts built using the framework in this document. Use them as reference when writing new ones for any client.</p>
+
+  <div class="script">
+    <div class="s-type">Scalevertise (Care Homes) -- Based on Jeremy's Performing Scripts</div>
+    <div class="beat">Call-out + Result + Offer</div>
+    <p>"If you're a care home owner, here's exactly what I'll do for you. I will install our Resident Acquisition System into your business and get you 20 to 30 qualified family tours booked in the next 30 days, or you don't pay our management fee."</p>
+    <div class="beat">How it works</div>
+    <p>"We run targeted Meta ads, build a landing page branded to your home, and set up the booking system so families go straight from seeing the ad to picking a tour time. You just show up to the tours."</p>
+    <div class="beat">Proof</div>
+    <p>"We only work with one home per area so whoever moves first locks out the competition in their market."</p>
+    <div class="beat">Guarantee + CTA</div>
+    <p>"20 to 30 qualified appointments in 30 days or you don't pay. Tap below to check if your area is still open."</p>
+  </div>
+
+  <div class="script">
+    <div class="s-type">Subutai AI (HVAC Niche)</div>
+    <div class="beat">Call-out + Result + Offer</div>
+    <p>"If you run an HVAC business, here's exactly what we'll do. We will install an AI receptionist that answers every call in under two seconds and books you at least 10 extra jobs in the next 30 days from calls you're currently sending to voicemail. Or you don't pay until it does."</p>
+    <div class="beat">How it works</div>
+    <p>"It answers every call 24/7, qualifies the job, and books the appointment straight into your calendar. Day, night, weekends, holidays. Your first 50 calls are completely free."</p>
+    <div class="beat">Proof + Guarantee</div>
+    <p>"One HVAC company recovered $14,000 in missed installs in the first 11 days. We guarantee 10 extra booked jobs in 30 days or you don't pay. Tap below to see if your area is open."</p>
+  </div>
+
+  <div class="script">
+    <div class="s-type">Blue Wave Pro Wash (Cary/Apex Homeowners)</div>
+    <div class="beat">Call-out + Result + Offer</div>
+    <p>"If you own a home in Cary, Apex, Raleigh, or Pittsboro, here's exactly what we'll do for you. We will come out one time, wash your full house exterior and your driveway, and have both looking brand new by the end of the day. And right now if you book both together, we take $150 off the total."</p>
+    <div class="beat">How it works</div>
+    <p>"We soft wash the siding so nothing gets damaged, high pressure on the concrete where it needs it, and we're in and out in two to three hours. One visit. Done the same day."</p>
+    <div class="beat">Proof + Guarantee</div>
+    <p>"We've transformed hundreds of homes across the area." [pan to clean job] "Not happy with the result, we come back and redo it free. Tap the link below, free quote in 60 seconds."</p>
+  </div>
+</div>
+
+<!-- QUICK REFERENCE -->
+<div class="block pb">
+  <div class="sec-head">
+    <div class="sec-num">Quick Reference</div>
+    <h2 class="sec">Checklist Before Launching Any Campaign</h2>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="box orange">
+        <div class="lbl">Ads checklist</div>
+        <ul style="margin:0;">
+          <li>Niche call-out is the very first thing said or seen</li>
+          <li>Result + offer come immediately after the call-out</li>
+          <li>Mechanism is explained in 2-3 sentences max</li>
+          <li>Proof or credibility number is included</li>
+          <li>Guarantee is specific and bold</li>
+          <li>CTA tells them exactly what to do</li>
+          <li>No em dashes anywhere in the copy</li>
+          <li>No founder-centered language unless it adds credibility</li>
+          <li>UGC video is at least 45 seconds</li>
+          <li>Static notes-app ad created alongside video</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="box dark">
+        <div class="lbl">Campaign setup checklist</div>
+        <ul style="margin:0;">
+          <li>CBO campaign, one ad set</li>
+          <li>Broad targeting, age 21-50, no interests</li>
+          <li>One primary text across all ads</li>
+          <li>One headline across all ads</li>
+          <li>Testing creatives only, not copy</li>
+          <li>One niche targeted per campaign</li>
+          <li>Payment method confirmed before launch</li>
+          <li>Instant SMS follow-up live before launch</li>
+          <li>Let campaign run minimum 7 days before judging</li>
+          <li>Do not pause unless absolutely necessary</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

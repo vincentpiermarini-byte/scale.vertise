@@ -6,7 +6,6 @@
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   html, body { width:100%; height:100%; background:#0a0806; font-family:system-ui,sans-serif; }
-
   .page {
     display:flex;
     flex-direction:column;
@@ -16,15 +15,7 @@
     gap:24px;
     padding:32px;
   }
-
-  canvas {
-    width:100%;
-    max-width:860px;
-    height:auto;
-    border-radius:8px;
-    display:block;
-  }
-
+  canvas { width:100%; max-width:860px; height:auto; border-radius:8px; display:block; }
   .dl-btn {
     display:inline-block;
     background:#FF7A00;
@@ -39,13 +30,7 @@
     text-decoration:none;
   }
   .dl-btn:hover { opacity:0.88; }
-  .label {
-    color:#C4A882;
-    font-size:0.82rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    opacity:0.5;
-  }
+  .label { color:#C4A882; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.5; }
 </style>
 </head>
 <body>
@@ -60,48 +45,81 @@ var c = document.getElementById('c');
 var ctx = c.getContext('2d');
 var W = 1920, H = 1080;
 
-// Base dark gradient
-var base = ctx.createRadialGradient(W*0.68, H*0.38, 0, W*0.68, H*0.38, W*0.72);
-base.addColorStop(0, '#2a2420');
-base.addColorStop(0.45, '#161310');
-base.addColorStop(1, '#0a0806');
-ctx.fillStyle = base;
+// Base — deep charcoal, not black
+ctx.fillStyle = '#1c1612';
 ctx.fillRect(0, 0, W, H);
 
-// Orange glow top-right
-var og = ctx.createRadialGradient(W+80, -120, 0, W+80, -120, 680);
-og.addColorStop(0, 'rgba(255,122,0,0.18)');
-og.addColorStop(0.45, 'rgba(255,122,0,0.06)');
-og.addColorStop(1, 'rgba(255,122,0,0)');
+// Center warm lift so it doesn't look flat
+var center = ctx.createRadialGradient(W*0.52, H*0.5, 0, W*0.52, H*0.5, W*0.6);
+center.addColorStop(0, 'rgba(58,44,30,0.9)');
+center.addColorStop(0.5, 'rgba(36,28,18,0.6)');
+center.addColorStop(1, 'rgba(0,0,0,0)');
+ctx.fillStyle = center;
+ctx.fillRect(0, 0, W, H);
+
+// Big orange glow — top right, much stronger
+var og = ctx.createRadialGradient(W*0.92, H*0.08, 0, W*0.92, H*0.08, W*0.55);
+og.addColorStop(0,   'rgba(255,122,0,0.55)');
+og.addColorStop(0.3, 'rgba(255,122,0,0.22)');
+og.addColorStop(0.6, 'rgba(255,100,0,0.07)');
+og.addColorStop(1,   'rgba(255,80,0,0)');
 ctx.fillStyle = og;
 ctx.fillRect(0, 0, W, H);
 
-// Warm gold glow bottom-left
-var wg = ctx.createRadialGradient(60, H+100, 0, 60, H+100, 500);
-wg.addColorStop(0, 'rgba(196,168,130,0.09)');
-wg.addColorStop(1, 'rgba(196,168,130,0)');
-ctx.fillStyle = wg;
+// Secondary orange glow — bottom left, softer
+var og2 = ctx.createRadialGradient(W*0.08, H*0.92, 0, W*0.08, H*0.92, W*0.38);
+og2.addColorStop(0,   'rgba(255,122,0,0.2)');
+og2.addColorStop(0.4, 'rgba(255,100,0,0.06)');
+og2.addColorStop(1,   'rgba(255,80,0,0)');
+ctx.fillStyle = og2;
 ctx.fillRect(0, 0, W, H);
 
-// Logo watermark bottom-left
-ctx.globalAlpha = 0.18;
-ctx.font = 'bold 52px Georgia, serif';
-ctx.fillStyle = '#C4A882';
-ctx.fillText('SV', 64, H - 52);
+// Thin orange accent line across top
+var lineGrad = ctx.createLinearGradient(0, 0, W, 0);
+lineGrad.addColorStop(0,   'rgba(255,122,0,0)');
+lineGrad.addColorStop(0.3, 'rgba(255,122,0,0.6)');
+lineGrad.addColorStop(0.7, 'rgba(255,122,0,0.6)');
+lineGrad.addColorStop(1,   'rgba(255,122,0,0)');
+ctx.fillStyle = lineGrad;
+ctx.fillRect(0, 0, W, 3);
 
-ctx.font = '400 30px Georgia, serif';
-ctx.letterSpacing = '4px';
-ctx.fillStyle = '#C4A882';
-ctx.fillText('scale', 136, H - 52);
+// Thin orange accent line across bottom
+ctx.fillStyle = lineGrad;
+ctx.fillRect(0, H - 3, W, 3);
+
+// Logo — bottom right, much more visible
+var logoX = W - 420;
+var logoY = H - 56;
+
+// SV mark
+ctx.globalAlpha = 0.75;
+ctx.font = 'bold 58px Georgia, serif';
+ctx.fillStyle = '#FF7A00';
+ctx.fillText('SV', logoX, logoY);
+
+// Divider
+ctx.fillStyle = 'rgba(196,168,130,0.5)';
+ctx.fillRect(logoX + 80, logoY - 44, 2, 52);
+
+// scalevertise wordmark
+ctx.font = '300 28px Georgia, serif';
+ctx.letterSpacing = '6px';
+ctx.fillStyle = '#F6F2E8';
+ctx.fillText('scale', logoX + 96, logoY - 16);
 
 ctx.fillStyle = '#FF7A00';
-ctx.fillText('vertise', 136 + ctx.measureText('scale').width, H - 52);
+ctx.fillText('vertise', logoX + 96 + ctx.measureText('scale').width + 2, logoY - 16);
+
+// Tagline under wordmark
+ctx.font = '300 16px system-ui, sans-serif';
+ctx.letterSpacing = '3px';
+ctx.fillStyle = 'rgba(196,168,130,0.6)';
+ctx.fillText('META ADS FOR CARE HOMES', logoX + 96, logoY + 14);
 
 ctx.globalAlpha = 1;
 
-// Wire up download — open as image in new tab (works on mobile Safari)
-var dl = document.getElementById('dl');
-dl.addEventListener('click', function() {
+// Download
+document.getElementById('dl').addEventListener('click', function() {
   var dataUrl = c.toDataURL('image/png');
   var win = window.open();
   win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');

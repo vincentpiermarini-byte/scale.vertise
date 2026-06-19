@@ -35,299 +35,221 @@
     cursor:pointer;
   }
   .dl-btn:hover { opacity:0.88; }
-  .label { color:#C4A882; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.6; }
   h2 { color:#F6F2E8; font-size:0.95rem; font-weight:600; letter-spacing:0.04em; opacity:0.5; text-transform:uppercase; }
 </style>
 </head>
 <body>
 <div class="page">
 
-  <!-- Option A: Pure Play -->
   <div class="thumb-block">
-    <h2>Option A — Pure Play</h2>
+    <h2>Option A — Monogram</h2>
     <canvas id="cA" width="1280" height="720"></canvas>
-    <button class="dl-btn" onclick="download('cA','thumbnail-A')">Download A</button>
+    <button class="dl-btn" onclick="dl('cA')">Download A</button>
   </div>
 
-  <!-- Option B: Bold Stat -->
   <div class="thumb-block">
-    <h2>Option B — Bold Number</h2>
+    <h2>Option B — Ghost Stat</h2>
     <canvas id="cB" width="1280" height="720"></canvas>
-    <button class="dl-btn" onclick="download('cB','thumbnail-B')">Download B</button>
+    <button class="dl-btn" onclick="dl('cB')">Download B</button>
   </div>
 
-  <!-- Option C: Split / Face Side -->
   <div class="thumb-block">
-    <h2>Option C — Clean Split</h2>
+    <h2>Option C — Orange Slash</h2>
     <canvas id="cC" width="1280" height="720"></canvas>
-    <button class="dl-btn" onclick="download('cC','thumbnail-C')">Download C</button>
+    <button class="dl-btn" onclick="dl('cC')">Download C</button>
   </div>
 
 </div>
-
 <script>
 var W = 1280, H = 720;
 
-function download(id, name) {
+function dl(id) {
   var dataUrl = document.getElementById(id).toDataURL('image/png');
   var win = window.open();
-  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');
+  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold, then Save to Photos</p>');
 }
 
-function drawBase(ctx, glowX, glowY) {
-  var base = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, W*0.85);
-  base.addColorStop(0, '#1e1a14');
-  base.addColorStop(0.6, '#111009');
-  base.addColorStop(1, '#060504');
-  ctx.fillStyle = base;
-  ctx.fillRect(0, 0, W, H);
-}
-
-function drawPlayBtn(ctx, cx, cy, radius) {
-  // Outer ring glow
-  var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 2.2);
-  glow.addColorStop(0, 'rgba(255,122,0,0.18)');
-  glow.addColorStop(1, 'rgba(255,122,0,0)');
-  ctx.fillStyle = glow;
+function playBtn(ctx, cx, cy, r) {
+  // glow
+  var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 2.5);
+  g.addColorStop(0, 'rgba(255,122,0,0.2)');
+  g.addColorStop(1, 'rgba(255,122,0,0)');
+  ctx.fillStyle = g;
+  ctx.beginPath(); ctx.arc(cx, cy, r * 2.5, 0, Math.PI*2); ctx.fill();
+  // fill
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.fillStyle = 'rgba(255,122,0,0.18)'; ctx.fill();
+  // ring
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2);
+  ctx.strokeStyle = '#FF7A00'; ctx.lineWidth = 4; ctx.stroke();
+  // triangle — nudge right so it looks centered optically
+  var t = r * 0.36;
   ctx.beginPath();
-  ctx.arc(cx, cy, radius * 2.2, 0, Math.PI * 2);
-  ctx.fill();
-
-  // Circle bg
-  ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.fillStyle = 'rgba(255,122,0,0.14)';
-  ctx.fill();
-
-  // Circle border
-  ctx.beginPath();
-  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-  ctx.strokeStyle = '#FF7A00';
-  ctx.lineWidth = 4;
-  ctx.stroke();
-
-  // Triangle
-  var t = radius * 0.38;
-  ctx.beginPath();
-  ctx.moveTo(cx - t * 0.8, cy - t * 1.1);
-  ctx.lineTo(cx - t * 0.8, cy + t * 1.1);
-  ctx.lineTo(cx + t * 1.4, cy);
+  ctx.moveTo(cx - t * 0.7, cy - t * 1.1);
+  ctx.lineTo(cx - t * 0.7, cy + t * 1.1);
+  ctx.lineTo(cx + t * 1.5, cy);
   ctx.closePath();
-  ctx.fillStyle = '#FF7A00';
-  ctx.fill();
+  ctx.fillStyle = '#FF7A00'; ctx.fill();
 }
 
-function drawBrandMark(ctx, x, y, alpha) {
-  ctx.globalAlpha = alpha;
-  ctx.font = 'bold 28px Georgia, serif';
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillText('SV', x, y);
-  ctx.font = '300 18px Georgia, serif';
-  ctx.fillStyle = '#C4A882';
-  ctx.fillText('scalevertise', x + 44, y);
-  ctx.globalAlpha = 1;
-}
+/* ===== A: MONOGRAM ===== */
+/* Big faded "SV" behind the play button — the logo IS the graphic */
+(function(){
+  var c = document.getElementById('cA'), ctx = c.getContext('2d');
 
-/* ====== OPTION A: Pure Play ====== */
-(function() {
-  var c = document.getElementById('cA');
-  var ctx = c.getContext('2d');
+  // Base
+  var base = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W*0.7);
+  base.addColorStop(0, '#221c13');
+  base.addColorStop(1, '#070605');
+  ctx.fillStyle = base; ctx.fillRect(0,0,W,H);
 
-  drawBase(ctx, W * 0.5, H * 0.5);
-
-  // Dot grid (subtle)
-  ctx.fillStyle = 'rgba(255,255,255,0.045)';
-  for (var x = 52; x < W; x += 52) {
-    for (var y = 52; y < H; y += 52) {
-      ctx.beginPath();
-      ctx.arc(x, y, 1.2, 0, Math.PI * 2);
-      ctx.fill();
-    }
+  // Dot grid
+  ctx.fillStyle = 'rgba(255,255,255,0.04)';
+  for (var x=56;x<W;x+=56) for (var y=56;y<H;y+=56) {
+    ctx.beginPath(); ctx.arc(x,y,1.1,0,Math.PI*2); ctx.fill();
   }
 
   // Vignette
-  var vig = ctx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, W*0.72);
-  vig.addColorStop(0, 'rgba(10,8,6,0)');
-  vig.addColorStop(1, 'rgba(10,8,6,0.88)');
-  ctx.fillStyle = vig;
-  ctx.fillRect(0, 0, W, H);
+  var vig = ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.68);
+  vig.addColorStop(0,'rgba(7,6,5,0)'); vig.addColorStop(1,'rgba(7,6,5,0.9)');
+  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
 
-  // Top accent line
-  var topLine = ctx.createLinearGradient(0, 0, W, 0);
-  topLine.addColorStop(0, 'rgba(255,122,0,0)');
-  topLine.addColorStop(0.3, 'rgba(255,122,0,0.6)');
-  topLine.addColorStop(0.7, 'rgba(255,122,0,0.6)');
-  topLine.addColorStop(1, 'rgba(255,122,0,0)');
-  ctx.fillStyle = topLine;
-  ctx.fillRect(0, 0, W, 2);
-  ctx.fillRect(0, H - 2, W, 2);
-
-  // Big play button — true center
-  drawPlayBtn(ctx, W / 2, H / 2, 110);
-
-  // "4 MIN" badge — measure and center exactly
-  ctx.font = '600 20px system-ui, sans-serif';
-  ctx.letterSpacing = '4px';
-  ctx.fillStyle = 'rgba(246,242,232,0.45)';
+  // Giant ghost "SV" centered
+  ctx.save();
+  ctx.font = 'bold 520px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.07)';
   ctx.textAlign = 'center';
-  ctx.fillText('4 MIN', W / 2, H / 2 - 150);
-  ctx.letterSpacing = '0px';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('SV', W/2, H/2 + 30);
+  ctx.restore();
 
-  // Brand bottom — centered as a unit
-  ctx.globalAlpha = 0.45;
-  ctx.font = 'bold 22px Georgia, serif';
-  ctx.fillStyle = '#FF7A00';
-  var svW = ctx.measureText('SV').width;
-  ctx.font = '300 20px Georgia, serif';
-  ctx.fillStyle = '#C4A882';
-  var tagW = ctx.measureText('scalevertise').width;
-  var gap = 8;
-  var totalW = svW + gap + tagW;
-  var startX = W / 2 - totalW / 2;
-  ctx.font = 'bold 22px Georgia, serif';
-  ctx.fillStyle = '#FF7A00';
-  ctx.textAlign = 'left';
-  ctx.fillText('SV', startX, H - 44);
-  ctx.font = '300 20px Georgia, serif';
-  ctx.fillStyle = '#C4A882';
-  ctx.fillText('scalevertise', startX + svW + gap, H - 44);
-  ctx.globalAlpha = 1;
-  ctx.textAlign = 'left';
+  // Thin orange top + bottom lines
+  var ln = ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.4,'rgba(255,122,0,0.55)');
+  ln.addColorStop(0.6,'rgba(255,122,0,0.55)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle = ln;
+  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+
+  // Play button on top
+  playBtn(ctx, W/2, H/2, 96);
+
+  // "scalevertise" small centered above top line — sits above Vimeo controls
+  ctx.font = '300 22px Georgia, serif';
+  ctx.letterSpacing = '6px';
+  ctx.fillStyle = 'rgba(196,168,130,0.45)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'alphabetic';
+  ctx.fillText('SCALEVERTISE', W/2, 68);
+  ctx.letterSpacing = '0px';
 })();
 
-/* ====== OPTION B: Bold Number ====== */
-(function() {
-  var c = document.getElementById('cB');
-  var ctx = c.getContext('2d');
+/* ===== B: GHOST STAT ===== */
+/* "30" in enormous faded text, play button sits on it, one short line below */
+(function(){
+  var c = document.getElementById('cB'), ctx = c.getContext('2d');
 
-  drawBase(ctx, W * 0.3, H * 0.45);
+  // Base
+  ctx.fillStyle = '#090807'; ctx.fillRect(0,0,W,H);
 
-  // Orange glow left side
-  var og = ctx.createRadialGradient(0, H*0.5, 0, 0, H*0.5, 700);
-  og.addColorStop(0, 'rgba(255,122,0,0.14)');
-  og.addColorStop(0.5, 'rgba(255,122,0,0.04)');
-  og.addColorStop(1, 'rgba(255,122,0,0)');
-  ctx.fillStyle = og;
-  ctx.fillRect(0, 0, W, H);
+  // Warm glow center-left
+  var glow = ctx.createRadialGradient(W*0.42,H*0.48,0,W*0.42,H*0.48,W*0.55);
+  glow.addColorStop(0,'rgba(255,122,0,0.1)');
+  glow.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle = glow; ctx.fillRect(0,0,W,H);
+
+  // Ghost "30"
+  ctx.save();
+  ctx.font = 'bold 640px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.09)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('30', W/2, H/2);
+  ctx.restore();
+
+  // Edge vignette
+  var vig = ctx.createRadialGradient(W/2,H/2,H*0.05,W/2,H/2,W*0.65);
+  vig.addColorStop(0,'rgba(9,8,7,0)'); vig.addColorStop(1,'rgba(9,8,7,0.85)');
+  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
 
   // Left orange bar
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillRect(0, 0, 7, H);
+  ctx.fillStyle = '#FF7A00'; ctx.fillRect(0,0,6,H);
 
-  // Eyebrow
-  ctx.font = '600 24px system-ui, sans-serif';
-  ctx.letterSpacing = '4px';
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillText('FOR CARE HOMES', 60, 118);
+  // Play button slightly above center
+  playBtn(ctx, W/2, H/2 - 30, 90);
+
+  // Single line below play
+  ctx.font = '400 26px system-ui, sans-serif';
+  ctx.letterSpacing = '3px';
+  ctx.fillStyle = 'rgba(246,242,232,0.4)';
+  ctx.textAlign = 'center';
+  ctx.fillText('BEDS FILLED IN 30 DAYS', W/2, H/2 + 110);
   ctx.letterSpacing = '0px';
 
-  // Big number
-  ctx.font = 'bold 200px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.12)';
-  ctx.fillText('30', 44, 400);
-
-  ctx.font = 'bold 200px Georgia, serif';
-  ctx.fillStyle = 'rgba(255,122,0,0.06)';
-  ctx.fillText('30', 46, 402);
-
-  // Overlay text on number
-  ctx.font = 'bold 72px Georgia, serif';
-  ctx.fillStyle = '#F6F2E8';
-  ctx.fillText('30 Booked', 60, 260);
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillText('Appointments.', 60, 352);
-
-  ctx.font = '400 28px system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(246,242,232,0.5)';
-  ctx.fillText('Or we work for free. Watch how.', 60, 430);
-
-  // Play button right side
-  drawPlayBtn(ctx, W - 220, H / 2, 80);
-
-  // Brand
-  ctx.globalAlpha = 0.4;
-  ctx.font = 'bold 22px Georgia, serif';
-  ctx.fillStyle = '#C4A882';
-  ctx.fillText('SCALEVERTISE', 60, H - 40);
-  ctx.globalAlpha = 1;
+  // Brand top right — clear of Vimeo overlay zone (bottom)
+  ctx.font = 'bold 20px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.5)';
+  ctx.textAlign = 'right';
+  ctx.fillText('SV', W - 48, 60);
+  ctx.font = '300 18px Georgia, serif';
+  ctx.fillStyle = 'rgba(196,168,130,0.4)';
+  ctx.fillText('scalevertise', W - 48, 84);
 })();
 
-/* ====== OPTION C: Clean Split ====== */
-(function() {
-  var c = document.getElementById('cC');
-  var ctx = c.getContext('2d');
+/* ===== C: ORANGE SLASH ===== */
+/* Diagonal orange band across the frame, play button sits centered on it */
+(function(){
+  var c = document.getElementById('cC'), ctx = c.getContext('2d');
 
   // Dark base
-  ctx.fillStyle = '#0d0b09';
-  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#0c0a08'; ctx.fillRect(0,0,W,H);
 
-  // Left panel warm tint
-  var lp = ctx.createLinearGradient(0, 0, W * 0.55, 0);
-  lp.addColorStop(0, 'rgba(255,122,0,0.07)');
-  lp.addColorStop(1, 'rgba(255,122,0,0)');
-  ctx.fillStyle = lp;
-  ctx.fillRect(0, 0, W, H);
+  // Dot grid
+  ctx.fillStyle = 'rgba(255,255,255,0.035)';
+  for (var x=52;x<W;x+=52) for (var y=52;y<H;y+=52) {
+    ctx.beginPath(); ctx.arc(x,y,1.1,0,Math.PI*2); ctx.fill();
+  }
 
-  // Right panel — slightly lighter so a face/photo pops
-  var rp = ctx.createLinearGradient(W * 0.5, 0, W, 0);
-  rp.addColorStop(0, 'rgba(30,26,20,0)');
-  rp.addColorStop(1, 'rgba(30,26,20,1)');
-  ctx.fillStyle = rp;
-  ctx.fillRect(0, 0, W, H);
+  // Diagonal slash — orange band
+  ctx.save();
+  ctx.translate(W/2, H/2);
+  ctx.rotate(-14 * Math.PI / 180);
+  var slash = ctx.createLinearGradient(0, -160, 0, 160);
+  slash.addColorStop(0,   'rgba(255,122,0,0)');
+  slash.addColorStop(0.2, 'rgba(255,122,0,0.18)');
+  slash.addColorStop(0.5, 'rgba(255,122,0,0.28)');
+  slash.addColorStop(0.8, 'rgba(255,122,0,0.18)');
+  slash.addColorStop(1,   'rgba(255,122,0,0)');
+  ctx.fillStyle = slash;
+  ctx.fillRect(-W, -160, W*2, 320);
+  ctx.restore();
 
-  // Vertical divider line
-  ctx.strokeStyle = 'rgba(255,122,0,0.25)';
-  ctx.lineWidth = 1;
-  ctx.setLineDash([6, 10]);
-  ctx.beginPath();
-  ctx.moveTo(W * 0.54, 60);
-  ctx.lineTo(W * 0.54, H - 60);
-  ctx.stroke();
-  ctx.setLineDash([]);
+  // Vignette
+  var vig = ctx.createRadialGradient(W/2,H/2,H*0.12,W/2,H/2,W*0.7);
+  vig.addColorStop(0,'rgba(12,10,8,0)'); vig.addColorStop(1,'rgba(12,10,8,0.88)');
+  ctx.fillStyle = vig; ctx.fillRect(0,0,W,H);
 
-  // Left orange bar
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillRect(0, 0, 6, H);
+  // Thin accent lines top + bottom
+  var ln = ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.35,'rgba(255,122,0,0.5)');
+  ln.addColorStop(0.65,'rgba(255,122,0,0.5)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle = ln;
+  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
 
-  // Eyebrow
-  ctx.font = '600 22px system-ui, sans-serif';
-  ctx.letterSpacing = '3px';
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillText('CARE HOMES', 60, 110);
-  ctx.letterSpacing = '0px';
+  // Play button dead center
+  playBtn(ctx, W/2, H/2, 96);
 
-  // Headline
-  ctx.font = 'bold 78px Georgia, serif';
-  ctx.fillStyle = '#F6F2E8';
-  ctx.fillText('Fill Your', 60, 230);
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillText('Empty Beds.', 60, 326);
-
-  // Subline
-  ctx.font = '400 26px system-ui, sans-serif';
-  ctx.fillStyle = 'rgba(246,242,232,0.5)';
-  ctx.fillText('Watch. 4 minutes.', 60, 400);
-
-  // Right side: play button centered in right panel
-  var rpx = W * 0.54 + (W * 0.46) / 2;
-  var rpy = H / 2;
-  drawPlayBtn(ctx, rpx, rpy, 75);
-
-  // "Your face here" ghost placeholder
-  ctx.globalAlpha = 0.06;
-  ctx.strokeStyle = '#F6F2E8';
-  ctx.lineWidth = 2;
-  ctx.setLineDash([8, 8]);
-  ctx.strokeRect(W * 0.57, 60, W * 0.39, H - 120);
-  ctx.setLineDash([]);
-  ctx.globalAlpha = 1;
-
-  // Brand bottom left
-  ctx.globalAlpha = 0.4;
-  ctx.font = 'bold 20px Georgia, serif';
-  ctx.fillStyle = '#C4A882';
-  ctx.fillText('SCALEVERTISE', 60, H - 40);
-  ctx.globalAlpha = 1;
+  // Brand top center — above Vimeo controls zone
+  ctx.font = 'bold 22px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.55)';
+  ctx.textAlign = 'center';
+  ctx.fillText('SV', W/2 - 52, 64);
+  ctx.font = '300 20px Georgia, serif';
+  ctx.fillStyle = 'rgba(196,168,130,0.4)';
+  ctx.fillText('scalevertise', W/2 + 28, 64);
 })();
 </script>
 </body>

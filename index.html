@@ -304,24 +304,43 @@ header {
 
 /* ════ PIPELINE ════ */
 .pipeline {
-  display:grid; grid-template-columns:repeat(3,1fr);
-  margin-top:clamp(44px,5vw,64px);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  margin-top:clamp(44px,5vw,64px); position:relative;
 }
-.pipe-step { padding:0 clamp(16px,3vw,40px); }
-.pipe-step + .pipe-step { border-left:1px solid var(--line); }
+.pipe-step {
+  position:relative; padding:36px 30px 34px;
+  background:linear-gradient(160deg, rgba(196,168,130,0.055), rgba(196,168,130,0.012));
+  border:1px solid var(--line); border-radius:18px;
+  transition:transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease, box-shadow 0.28s ease;
+}
+.pipe-step:hover {
+  transform:translateY(-5px);
+  border-color:rgba(255,122,0,0.35);
+  box-shadow:0 20px 52px rgba(0,0,0,0.42), 0 0 0 1px rgba(255,122,0,0.08);
+}
+/* flow arrow connecting cards */
+.pipe-step:not(:last-child)::after {
+  content:''; position:absolute; top:56px; right:-15px; z-index:3;
+  width:9px; height:9px; border-top:2px solid rgba(255,122,0,0.55);
+  border-right:2px solid rgba(255,122,0,0.55); transform:rotate(45deg);
+}
 .pipe-num {
-  font-family:var(--display); font-size:clamp(2.8rem,5vw,4.2rem); font-weight:400;
-  color:transparent; -webkit-text-stroke:1px rgba(196,168,130,0.3);
-  line-height:1; margin-bottom:20px; display:block;
+  display:inline-flex; align-items:center; justify-content:center;
+  width:58px; height:58px; border-radius:50%;
+  font-family:var(--display); font-size:1.55rem; font-weight:500;
+  color:var(--accent); line-height:1; margin-bottom:24px;
+  background:rgba(255,122,0,0.08);
+  border:1px solid rgba(255,122,0,0.32);
+  box-shadow:0 0 0 6px rgba(255,122,0,0.03);
 }
 .pipe-step h3 {
-  font-family:var(--display); font-size:1.1rem; font-weight:400;
+  font-family:var(--display); font-size:1.18rem; font-weight:400;
   margin-bottom:12px; color:var(--text); line-height:1.3;
 }
 .pipe-step h3 .tag {
   display:block; font-family:var(--mono); font-size:10px; font-weight:600;
   letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
-  opacity:0.9; margin-bottom:8px;
+  opacity:0.9; margin-bottom:10px;
 }
 .pipe-step p { font-size:0.92rem; line-height:1.65; color:var(--text-2); }
 .pipe-step p strong { color:var(--text); font-weight:600; }
@@ -546,8 +565,11 @@ footer .legal a:hover { color:var(--accent); }
 @media (max-width:880px) {
   .pain-grid { grid-template-columns:1fr 1fr; gap:14px; }
   .pipeline { grid-template-columns:1fr; }
-  .pipe-step { padding:28px 0; }
-  .pipe-step + .pipe-step { border-left:none; border-top:1px solid var(--line); }
+  .pipe-step { padding:30px 26px; }
+  /* point the connector arrow down between stacked cards */
+  .pipe-step:not(:last-child)::after {
+    top:auto; bottom:-16px; right:50%; transform:translateX(50%) rotate(135deg);
+  }
   .guarantee-card { grid-template-columns:1fr; gap:24px; }
   .proof-bar { grid-template-columns:1fr 1fr; }
   .proof-stat:nth-child(2) { border-right:none; }
@@ -587,7 +609,7 @@ footer .legal a:hover { color:var(--accent); }
   .section-sub { font-size:0.92rem; line-height:1.7; }
   .eyebrow { font-size:10px; }
 
-  .pipe-num { font-size:clamp(2.2rem,7vw,3rem); margin-bottom:10px; }
+  .pipe-num { width:50px; height:50px; font-size:1.35rem; margin-bottom:18px; }
   .pipe-step h3 { font-size:1.05rem; margin-bottom:8px; }
   .pipe-step p { font-size:0.88rem; line-height:1.7; }
 

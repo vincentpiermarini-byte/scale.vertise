@@ -67,7 +67,8 @@
 
   /* ── Hero ── */
   .hero { position:relative; overflow:hidden; color:#fff; isolation:isolate; }
-  .hero-bg { position:absolute; inset:0; z-index:-2; background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat; transform:scale(1.04); }
+  .hero-bg { position:absolute; inset:0; z-index:-2; overflow:hidden; }
+  .hero-bg video { width:100%; height:100%; object-fit:cover; transform:scale(1.04); }
   .hero::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg, rgba(28,46,40,0.96) 0%, rgba(36,74,64,0.9) 42%, rgba(47,93,80,0.62) 100%); }
   .hero::after { content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 78% 18%, rgba(217,184,113,0.22), transparent 50%); pointer-events:none; }
   .hero .wrap { display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; padding-top:40px; padding-bottom:40px; position:relative; z-index:1; }
@@ -283,7 +284,11 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="hero-bg.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="wrap">
     <div class="hero-text">
       <div class="avail-badge"><span class="pulse"></span> 4 beds available this month</div>

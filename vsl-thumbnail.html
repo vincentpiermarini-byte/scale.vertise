@@ -10,119 +10,319 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
     min-height:100vh;
-    gap:24px;
-    padding:32px;
+    gap:48px;
+    padding:48px 32px;
   }
-  canvas { width:100%; max-width:860px; height:auto; border-radius:8px; display:block; }
+  .thumb-block {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    width:100%;
+    max-width:860px;
+  }
+  canvas { width:100%; height:auto; border-radius:8px; display:block; }
   .dl-btn {
     background:#FF7A00;
     color:#0a0806;
     font-size:1rem;
     font-weight:700;
     letter-spacing:0.04em;
-    padding:16px 40px;
+    padding:14px 36px;
     border-radius:100px;
     border:none;
     cursor:pointer;
   }
   .dl-btn:hover { opacity:0.88; }
-  .label { color:#C4A882; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.5; }
+  .label { color:#C4A882; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.6; }
+  h2 { color:#F6F2E8; font-size:0.95rem; font-weight:600; letter-spacing:0.04em; opacity:0.5; text-transform:uppercase; }
 </style>
 </head>
 <body>
 <div class="page">
-  <div class="label">VSL Thumbnail — 1280 × 720</div>
-  <canvas id="c" width="1280" height="720"></canvas>
-  <button class="dl-btn" id="dl">Download Thumbnail</button>
+
+  <!-- Option A: Pure Play -->
+  <div class="thumb-block">
+    <h2>Option A — Pure Play</h2>
+    <canvas id="cA" width="1280" height="720"></canvas>
+    <button class="dl-btn" onclick="download('cA','thumbnail-A')">Download A</button>
+  </div>
+
+  <!-- Option B: Bold Stat -->
+  <div class="thumb-block">
+    <h2>Option B — Bold Number</h2>
+    <canvas id="cB" width="1280" height="720"></canvas>
+    <button class="dl-btn" onclick="download('cB','thumbnail-B')">Download B</button>
+  </div>
+
+  <!-- Option C: Split / Face Side -->
+  <div class="thumb-block">
+    <h2>Option C — Clean Split</h2>
+    <canvas id="cC" width="1280" height="720"></canvas>
+    <button class="dl-btn" onclick="download('cC','thumbnail-C')">Download C</button>
+  </div>
+
 </div>
 
 <script>
-var c = document.getElementById('c');
-var ctx = c.getContext('2d');
 var W = 1280, H = 720;
 
-// Dark base
-var base = ctx.createRadialGradient(W*0.65, H*0.4, 0, W*0.65, H*0.4, W*0.75);
-base.addColorStop(0, '#252018');
-base.addColorStop(0.5, '#141210');
-base.addColorStop(1, '#080706');
-ctx.fillStyle = base;
-ctx.fillRect(0, 0, W, H);
-
-// Orange glow top-right
-var og = ctx.createRadialGradient(W, 0, 0, W, 0, 700);
-og.addColorStop(0, 'rgba(255,122,0,0.22)');
-og.addColorStop(0.4, 'rgba(255,122,0,0.07)');
-og.addColorStop(1, 'rgba(255,122,0,0)');
-ctx.fillStyle = og;
-ctx.fillRect(0, 0, W, H);
-
-// Orange accent bar on left edge
-ctx.fillStyle = '#FF7A00';
-ctx.fillRect(0, 0, 7, H);
-
-// Eyebrow text
-ctx.globalAlpha = 1;
-ctx.font = '600 22px system-ui, sans-serif';
-ctx.fillStyle = '#FF7A00';
-ctx.letterSpacing = '3px';
-ctx.fillText('CARE HOME OWNERS', 60, 120);
-
-// Reset letterSpacing for rest
-ctx.letterSpacing = '0px';
-
-// Main headline — line 1
-ctx.font = 'bold 96px Georgia, serif';
-ctx.fillStyle = '#F6F2E8';
-ctx.fillText('The Exact System', 60, 250);
-
-// Main headline — line 2 in orange
-ctx.fillStyle = '#FF7A00';
-ctx.fillText('That Fills Beds.', 60, 360);
-
-// Subline
-ctx.font = '400 30px system-ui, sans-serif';
-ctx.fillStyle = 'rgba(246,242,232,0.55)';
-ctx.fillText('Watch this before booking a call. 4 min.', 60, 440);
-
-// Bottom branding
-ctx.font = 'bold 24px Georgia, serif';
-ctx.fillStyle = '#C4A882';
-ctx.globalAlpha = 0.4;
-ctx.fillText('SCALEVERTISE', 60, H - 40);
-
-ctx.globalAlpha = 1;
-
-// Play button hint — circle on right side
-var cx = W - 200, cy = H / 2;
-ctx.beginPath();
-ctx.arc(cx, cy, 72, 0, Math.PI * 2);
-ctx.fillStyle = 'rgba(255,122,0,0.15)';
-ctx.fill();
-
-ctx.beginPath();
-ctx.arc(cx, cy, 72, 0, Math.PI * 2);
-ctx.strokeStyle = 'rgba(255,122,0,0.5)';
-ctx.lineWidth = 3;
-ctx.stroke();
-
-// Play triangle
-ctx.beginPath();
-ctx.moveTo(cx - 22, cy - 30);
-ctx.lineTo(cx - 22, cy + 30);
-ctx.lineTo(cx + 36, cy);
-ctx.closePath();
-ctx.fillStyle = '#FF7A00';
-ctx.fill();
-
-// Download
-document.getElementById('dl').addEventListener('click', function() {
-  var dataUrl = c.toDataURL('image/png');
+function download(id, name) {
+  var dataUrl = document.getElementById(id).toDataURL('image/png');
   var win = window.open();
-  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');
-});
+  win.document.write('<img src="' + dataUrl + '" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold the image, then tap Save to Photos</p>');
+}
+
+function drawBase(ctx, glowX, glowY) {
+  var base = ctx.createRadialGradient(glowX, glowY, 0, glowX, glowY, W*0.85);
+  base.addColorStop(0, '#1e1a14');
+  base.addColorStop(0.6, '#111009');
+  base.addColorStop(1, '#060504');
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawPlayBtn(ctx, cx, cy, radius) {
+  // Outer ring glow
+  var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 2.2);
+  glow.addColorStop(0, 'rgba(255,122,0,0.18)');
+  glow.addColorStop(1, 'rgba(255,122,0,0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius * 2.2, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Circle bg
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,122,0,0.14)';
+  ctx.fill();
+
+  // Circle border
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+  ctx.strokeStyle = '#FF7A00';
+  ctx.lineWidth = 4;
+  ctx.stroke();
+
+  // Triangle
+  var t = radius * 0.38;
+  ctx.beginPath();
+  ctx.moveTo(cx - t * 0.8, cy - t * 1.1);
+  ctx.lineTo(cx - t * 0.8, cy + t * 1.1);
+  ctx.lineTo(cx + t * 1.4, cy);
+  ctx.closePath();
+  ctx.fillStyle = '#FF7A00';
+  ctx.fill();
+}
+
+function drawBrandMark(ctx, x, y, alpha) {
+  ctx.globalAlpha = alpha;
+  ctx.font = 'bold 28px Georgia, serif';
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillText('SV', x, y);
+  ctx.font = '300 18px Georgia, serif';
+  ctx.fillStyle = '#C4A882';
+  ctx.fillText('scalevertise', x + 44, y);
+  ctx.globalAlpha = 1;
+}
+
+/* ====== OPTION A: Pure Play ====== */
+(function() {
+  var c = document.getElementById('cA');
+  var ctx = c.getContext('2d');
+
+  drawBase(ctx, W * 0.5, H * 0.5);
+
+  // Dot grid (subtle)
+  ctx.fillStyle = 'rgba(255,255,255,0.045)';
+  for (var x = 52; x < W; x += 52) {
+    for (var y = 52; y < H; y += 52) {
+      ctx.beginPath();
+      ctx.arc(x, y, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Vignette
+  var vig = ctx.createRadialGradient(W/2, H/2, H*0.18, W/2, H/2, W*0.72);
+  vig.addColorStop(0, 'rgba(10,8,6,0)');
+  vig.addColorStop(1, 'rgba(10,8,6,0.88)');
+  ctx.fillStyle = vig;
+  ctx.fillRect(0, 0, W, H);
+
+  // Left orange bar
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillRect(0, 0, 6, H);
+
+  // Top accent line
+  var topLine = ctx.createLinearGradient(0, 0, W, 0);
+  topLine.addColorStop(0, 'rgba(255,122,0,0)');
+  topLine.addColorStop(0.3, 'rgba(255,122,0,0.6)');
+  topLine.addColorStop(0.7, 'rgba(255,122,0,0.6)');
+  topLine.addColorStop(1, 'rgba(255,122,0,0)');
+  ctx.fillStyle = topLine;
+  ctx.fillRect(0, 0, W, 2);
+
+  // Big play button center
+  drawPlayBtn(ctx, W / 2, H / 2, 110);
+
+  // "4 MIN" badge above play
+  ctx.font = '600 20px system-ui, sans-serif';
+  ctx.letterSpacing = '4px';
+  ctx.fillStyle = 'rgba(246,242,232,0.45)';
+  var badge = '4 MIN';
+  var bw = ctx.measureText(badge).width;
+  ctx.fillText(badge, W/2 - bw/2, H/2 - 150);
+  ctx.letterSpacing = '0px';
+
+  // Brand bottom center
+  ctx.globalAlpha = 0.5;
+  ctx.font = 'bold 22px Georgia, serif';
+  ctx.fillStyle = '#FF7A00';
+  var sv = 'SV';
+  ctx.fillText(sv, W/2 - 40, H - 44);
+  ctx.font = '300 20px Georgia, serif';
+  ctx.fillStyle = '#C4A882';
+  ctx.fillText('scalevertise', W/2 - 10, H - 44);
+  ctx.globalAlpha = 1;
+})();
+
+/* ====== OPTION B: Bold Number ====== */
+(function() {
+  var c = document.getElementById('cB');
+  var ctx = c.getContext('2d');
+
+  drawBase(ctx, W * 0.3, H * 0.45);
+
+  // Orange glow left side
+  var og = ctx.createRadialGradient(0, H*0.5, 0, 0, H*0.5, 700);
+  og.addColorStop(0, 'rgba(255,122,0,0.14)');
+  og.addColorStop(0.5, 'rgba(255,122,0,0.04)');
+  og.addColorStop(1, 'rgba(255,122,0,0)');
+  ctx.fillStyle = og;
+  ctx.fillRect(0, 0, W, H);
+
+  // Left orange bar
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillRect(0, 0, 7, H);
+
+  // Eyebrow
+  ctx.font = '600 24px system-ui, sans-serif';
+  ctx.letterSpacing = '4px';
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillText('FOR CARE HOMES', 60, 118);
+  ctx.letterSpacing = '0px';
+
+  // Big number
+  ctx.font = 'bold 200px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.12)';
+  ctx.fillText('30', 44, 400);
+
+  ctx.font = 'bold 200px Georgia, serif';
+  ctx.fillStyle = 'rgba(255,122,0,0.06)';
+  ctx.fillText('30', 46, 402);
+
+  // Overlay text on number
+  ctx.font = 'bold 72px Georgia, serif';
+  ctx.fillStyle = '#F6F2E8';
+  ctx.fillText('30 Booked', 60, 260);
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillText('Appointments.', 60, 352);
+
+  ctx.font = '400 28px system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(246,242,232,0.5)';
+  ctx.fillText('Or we work for free. Watch how.', 60, 430);
+
+  // Play button right side
+  drawPlayBtn(ctx, W - 220, H / 2, 80);
+
+  // Brand
+  ctx.globalAlpha = 0.4;
+  ctx.font = 'bold 22px Georgia, serif';
+  ctx.fillStyle = '#C4A882';
+  ctx.fillText('SCALEVERTISE', 60, H - 40);
+  ctx.globalAlpha = 1;
+})();
+
+/* ====== OPTION C: Clean Split ====== */
+(function() {
+  var c = document.getElementById('cC');
+  var ctx = c.getContext('2d');
+
+  // Dark base
+  ctx.fillStyle = '#0d0b09';
+  ctx.fillRect(0, 0, W, H);
+
+  // Left panel warm tint
+  var lp = ctx.createLinearGradient(0, 0, W * 0.55, 0);
+  lp.addColorStop(0, 'rgba(255,122,0,0.07)');
+  lp.addColorStop(1, 'rgba(255,122,0,0)');
+  ctx.fillStyle = lp;
+  ctx.fillRect(0, 0, W, H);
+
+  // Right panel — slightly lighter so a face/photo pops
+  var rp = ctx.createLinearGradient(W * 0.5, 0, W, 0);
+  rp.addColorStop(0, 'rgba(30,26,20,0)');
+  rp.addColorStop(1, 'rgba(30,26,20,1)');
+  ctx.fillStyle = rp;
+  ctx.fillRect(0, 0, W, H);
+
+  // Vertical divider line
+  ctx.strokeStyle = 'rgba(255,122,0,0.25)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([6, 10]);
+  ctx.beginPath();
+  ctx.moveTo(W * 0.54, 60);
+  ctx.lineTo(W * 0.54, H - 60);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Left orange bar
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillRect(0, 0, 6, H);
+
+  // Eyebrow
+  ctx.font = '600 22px system-ui, sans-serif';
+  ctx.letterSpacing = '3px';
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillText('CARE HOMES', 60, 110);
+  ctx.letterSpacing = '0px';
+
+  // Headline
+  ctx.font = 'bold 78px Georgia, serif';
+  ctx.fillStyle = '#F6F2E8';
+  ctx.fillText('Fill Your', 60, 230);
+  ctx.fillStyle = '#FF7A00';
+  ctx.fillText('Empty Beds.', 60, 326);
+
+  // Subline
+  ctx.font = '400 26px system-ui, sans-serif';
+  ctx.fillStyle = 'rgba(246,242,232,0.5)';
+  ctx.fillText('Watch. 4 minutes.', 60, 400);
+
+  // Right side: play button centered in right panel
+  var rpx = W * 0.54 + (W * 0.46) / 2;
+  var rpy = H / 2;
+  drawPlayBtn(ctx, rpx, rpy, 75);
+
+  // "Your face here" ghost placeholder
+  ctx.globalAlpha = 0.06;
+  ctx.strokeStyle = '#F6F2E8';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([8, 8]);
+  ctx.strokeRect(W * 0.57, 60, W * 0.39, H - 120);
+  ctx.setLineDash([]);
+  ctx.globalAlpha = 1;
+
+  // Brand bottom left
+  ctx.globalAlpha = 0.4;
+  ctx.font = 'bold 20px Georgia, serif';
+  ctx.fillStyle = '#C4A882';
+  ctx.fillText('SCALEVERTISE', 60, H - 40);
+  ctx.globalAlpha = 1;
+})();
 </script>
 </body>
 </html>

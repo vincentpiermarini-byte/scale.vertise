@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 16mm 16mm 16mm;
+    @bottom-center {
+      content: "Blue Wave Pro Wash  ·  Meta Ads Strategy  ·  Prepared by Scalevertise";
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      color: #9aa0a6;
+    }
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 8px;
+      color: #9aa0a6;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #16181d;
+    font-size: 10.5px;
+    line-height: 1.5;
+    margin: 0;
+  }
+  h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+  .accent { color: #0057B8; }
+
+  .cover {
+    page-break-after: always;
+    height: 245mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #001f5c;
+    color: #fff;
+    margin: -18mm -16mm 0 -16mm;
+    padding: 0 22mm;
+  }
+  .cover .kicker { color: #4da6ff; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  .cover h1 { font-size: 38px; margin: 0 0 18px 0; letter-spacing: -0.5px; }
+  .cover .sub { font-size: 14px; color: #c4d4e8; max-width: 130mm; line-height: 1.6; }
+  .cover .meta { margin-top: 40px; font-size: 10px; color: #7a9cc0; line-height: 1.9; }
+  .cover .meta strong { color: #fff; }
+  .cover .rule { width: 60px; height: 4px; background: #4da6ff; margin: 0 0 26px 0; }
+
+  h2.section { font-size: 19px; margin: 0 0 4px 0; color: #0e1116; padding-top: 4px; }
+  .section-num { color: #0057B8; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+  .section-head { border-bottom: 2px solid #001f5c; padding-bottom: 8px; margin-bottom: 14px; }
+  .block { page-break-inside: avoid; }
+  .pagebreak { page-break-before: always; }
+
+  p { margin: 0 0 9px 0; }
+  ul { margin: 0 0 10px 0; padding-left: 16px; }
+  li { margin-bottom: 5px; }
+
+  .box { border: 1px solid #e2e5ea; border-radius: 8px; padding: 13px 15px; margin: 0 0 12px 0; page-break-inside: avoid; background: #fafbfc; }
+  .box.dark { background: #001f5c; color: #eef0f3; border-color: #001f5c; }
+  .box.dark .label { color: #4da6ff; }
+  .box.red { background: #fff4f4; border-left: 4px solid #d12a16; }
+  .box.blue { background: #f0f6ff; border-left: 4px solid #0057B8; }
+  .label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; color: #6b7280; margin-bottom: 6px; }
+  .big-quote { font-size: 13px; font-weight: 600; line-height: 1.5; }
+
+  table { width: 100%; border-collapse: collapse; margin: 4px 0 14px 0; font-size: 9.5px; }
+  th { background: #001f5c; color: #fff; text-align: left; padding: 7px 9px; font-size: 8.5px; letter-spacing: 0.5px; text-transform: uppercase; }
+  td { padding: 7px 9px; border-bottom: 1px solid #e8eaee; vertical-align: top; }
+  tr:nth-child(even) td { background: #f7f8fa; }
+  .grade { font-weight: 700; white-space: nowrap; }
+  .g-bad { color: #d12a16; }
+  .g-mid { color: #c97a00; }
+  .g-good { color: #1f8a3b; }
+
+  .script { border: 1px solid #e2e5ea; border-left: 4px solid #001f5c; border-radius: 6px; padding: 12px 14px; margin-bottom: 11px; page-break-inside: avoid; background: #fafbfc; }
+  .script .stype { font-size: 8.5px; letter-spacing: 1px; text-transform: uppercase; font-weight: 700; color: #0057B8; margin-bottom: 6px; }
+  .script .sline { margin: 0 0 7px 0; font-size: 9.8px; line-height: 1.55; }
+
+  .stat-row { display: flex; gap: 10px; margin-bottom: 12px; }
+  .stat-box { flex: 1; border: 1px solid #e2e5ea; border-radius: 8px; padding: 12px; text-align: center; background: #fafbfc; }
+  .stat-box .num { font-size: 22px; font-weight: 700; color: #d12a16; }
+  .stat-box .desc { font-size: 8.5px; color: #555; margin-top: 2px; }
+
+  .takeaway { background: #001f5c; color: #fff; border-radius: 8px; padding: 14px 16px; margin: 8px 0 0 0; page-break-inside: avoid; }
+  .takeaway h3 { color: #4da6ff; font-size: 12px; margin: 0 0 8px 0; letter-spacing: 1px; text-transform: uppercase; }
+  .takeaway ol { margin: 0; padding-left: 16px; }
+  .takeaway li { margin-bottom: 6px; font-size: 10px; }
+
+  .two-col { display: flex; gap: 12px; margin-bottom: 12px; }
+  .two-col > div { flex: 1; }
+  .small { font-size: 9px; color: #6b7280; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="kicker">Meta Ads · Strategy &amp; New Creative Direction</div>
+  <div class="rule"></div>
+  <h1>Blue Wave Pro Wash<br>Ad Overhaul Plan</h1>
+  <div class="sub">A full breakdown of why the current ads are costing $70 per lead, exactly what needs to change, and the new creative scripts ready to film. Plus the one system change that will cut the cost per booked job in half regardless of what the ads do.</div>
+  <div class="meta">
+    Prepared by <strong>Scalevertise</strong><br>
+    Serving: Cary, Apex, Raleigh &amp; Pittsboro, NC<br>
+    Status: <strong>Ready to implement. Needs your approval to proceed.</strong>
+  </div>
+</div>
+
+<!-- SECTION 1: WHAT'S WRONG -->
+<div class="block">
+  <div class="section-head">
+    <div class="section-num">Section 01</div>
+    <h2 class="section">Why We're Paying $70 Per Lead</h2>
+  </div>
+
+  <p>$70 per lead for a local power washing business is 3 to 4x what it should be. There are three separate problems happening at the same time, and all three need to be fixed together. Fixing just one doesn't move the number enough.</p>
+
+  <table>
+    <tr><th style="width:28%">Problem</th><th style="width:12%">Impact</th><th>What's happening</th></tr>
+    <tr>
+      <td><strong>Ad creative</strong></td>
+      <td class="grade g-bad">High</td>
+      <td>Static before/after images with no niche call-out and no UGC video. Power washing is one of the most visual, satisfying categories on social media. Running only static images here leaves the best-performing format completely unused. Nobody stops scrolling for a split-screen sidewalk photo.</td>
+    </tr>
+    <tr>
+      <td><strong>The offer</strong></td>
+      <td class="grade g-bad">High</td>
+      <td>"Free sidewalk wash with every house wash" is a discount, not an outcome. People don't want a free sidewalk wash. They want their home to look good. The offer needs to lead with the result and create genuine urgency, not a red "JUNE ONLY" badge.</td>
+    </tr>
+    <tr>
+      <td><strong>Lead follow-up speed</strong></td>
+      <td class="grade g-bad">Highest</td>
+      <td>This is the biggest variable. See Section 02 for the data. Leads are not bad. They are going cold before anyone calls them.</td>
+    </tr>
+    <tr>
+      <td><strong>Account pause (4 days)</strong></td>
+      <td class="grade g-mid">Medium</td>
+      <td>When a Meta account is paused for payment failure, the learning phase resets. Meta's algorithm has to re-learn who to show the ads to. Expect 1 to 2 weeks of elevated CPL while it re-optimizes. This is a real effect and it is happening right now on top of everything else.</td>
+    </tr>
+    <tr>
+      <td><strong>No UGC video</strong></td>
+      <td class="grade g-bad">High</td>
+      <td>Video always outperforms static for consumer home services. Power washing specifically has one of the highest organic engagement rates of any trade category because the transformation is so visual. Not running UGC video for this client is the single biggest missed opportunity.</td>
+    </tr>
+    <tr>
+      <td><strong>Copy has no call-out</strong></td>
+      <td class="grade g-mid">Medium</td>
+      <td>"Cary and Apex homeowners" is buried in the copy, not the first word on screen. The ad needs to open by calling out exactly who it's for so the right person stops scrolling within the first second.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SECTION 2: FOLLOW-UP -->
+<div class="block pagebreak">
+  <div class="section-head">
+    <div class="section-num">Section 02</div>
+    <h2 class="section">The Follow-Up Problem (Most Important Section)</h2>
+  </div>
+
+  <p>This is not an ad quality problem. The ads can be perfect and it won't matter if the follow-up is slow. Here is what the data actually shows:</p>
+
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="num">21x</div>
+      <div class="desc">More likely to qualify a lead if contacted within 5 minutes vs. 30 minutes</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">80%</div>
+      <div class="desc">Drop in conversion rate when follow-up happens after 30 minutes</div>
+    </div>
+    <div class="stat-box">
+      <div class="num">~60s</div>
+      <div class="desc">How long a motivated lead stays "hot" on social media before scrolling to the next ad</div>
+    </div>
+  </div>
+
+  <div class="box red">
+    <div class="label">What is actually happening with the "bad" leads</div>
+    <p style="margin:0;">When someone fills out a lead form for power washing, they are in a decision-making moment. They just saw the ad, they thought "yes I want this," and they submitted. At that exact moment they are the hottest they will ever be. If a competitor's ad shows up in their feed 10 minutes later and that company texts them instantly, the job is gone. The lead didn't go cold because they were low quality. The lead went cold because nobody reached out while they were still thinking about it.</p>
+  </div>
+
+  <p><strong>The fix — automated instant follow-up:</strong></p>
+  <p>The moment a lead submits the form, they need to receive an automated SMS within 60 seconds. This keeps them warm, demonstrates professionalism, and buys time until you can call. Here is the exact text to send:</p>
+
+  <div class="box blue">
+    <div class="label">Instant auto-SMS (sent the second the form submits)</div>
+    <p style="margin:0; font-size: 11px;">"Hey [First Name]! This is Josh from Blue Wave Pro Wash. Got your request and I'm putting together your quote now. I'll give you a call shortly to go over the details. If you need anything sooner just reply to this text."</p>
+  </div>
+
+  <p>This is set up through Facebook's lead ad integration with a tool like GoHighLevel, Zapier, or even the free Meta lead notification system. It takes about 30 minutes to configure and it is the single highest-ROI change we can make right now, before changing a single ad.</p>
+
+  <div class="takeaway">
+    <h3>Bottom line on leads</h3>
+    <ol>
+      <li>The 3 leads that did not pick up were not low-quality leads. They were warm leads that went cold during the delay.</li>
+      <li>No amount of ad optimization fixes a slow follow-up problem. The two have to work together.</li>
+      <li>Instant automated SMS is non-negotiable before we scale spend further.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- SECTION 3: NEW OFFER -->
+<div class="block pagebreak">
+  <div class="section-head">
+    <div class="section-num">Section 03</div>
+    <h2 class="section">The New Offer</h2>
+  </div>
+
+  <p>The "free sidewalk / driveway / porch wash" bundle is a discount offer. It attracts price-shoppers and makes people wonder what the catch is. The new offer leads with a specific, visual result for a specific homeowner, backed by real urgency.</p>
+
+  <div class="box blue">
+    <div class="label">Recommended offer — house wash + driveway</div>
+    <p style="margin:0; font-size: 11.5px; font-weight: 600;">"Cary and Apex homeowners: get your house AND driveway professionally washed in one visit. We only take 8 new clients a month in your area to make sure every job is done right. Spots for July are going fast."</p>
+  </div>
+
+  <p>Why this is stronger:</p>
+  <ul>
+    <li><strong>Leads with the result</strong> (clean house + driveway) not the discount (free sidewalk)</li>
+    <li><strong>Real scarcity</strong> (8 clients/month) is believable and defensible. A red "JUNE ONLY" badge is not.</li>
+    <li><strong>Both services</strong> (house wash + driveway) in one visit is genuinely convenient and increases job value</li>
+    <li><strong>Geographic call-out first</strong> so the right homeowner stops immediately</li>
+  </ul>
+
+  <p><strong>The guarantee option</strong> (if the owner is comfortable):</p>
+  <div class="box">
+    <div class="label">Optional guarantee to add</div>
+    <p style="margin:0;">"If you're not completely happy with the results, we'll come back and re-wash it at no charge. Simple as that." A satisfaction guarantee on a power wash is essentially zero risk for the business and dramatically increases click-through rate.</p>
+  </div>
+</div>
+
+<!-- SECTION 4: CAMPAIGN STRUCTURE -->
+<div class="block pagebreak">
+  <div class="section-head">
+    <div class="section-num">Section 04</div>
+    <h2 class="section">Campaign Structure</h2>
+  </div>
+
+  <div class="two-col">
+    <div class="box">
+      <div class="label">Stop doing</div>
+      <ul style="margin-bottom:0;">
+        <li>Multiple separate static ads testing different copy</li>
+        <li>Cutting ads early after the account restart</li>
+        <li>Testing different headlines and primary texts</li>
+        <li>Running ads without instant lead follow-up in place</li>
+      </ul>
+    </div>
+    <div class="box dark">
+      <div class="label">Start doing</div>
+      <ul style="margin-bottom:0;">
+        <li><strong>CBO</strong>, one ad set, broad targeting (age 25-65, homeowners implied by creative)</li>
+        <li>Let Meta find the winner — trust the algorithm</li>
+        <li>One primary text + one headline across all ads</li>
+        <li>Test only the <strong>creative</strong> (3 UGC videos + 2 statics)</li>
+        <li>Instant SMS follow-up live before scaling spend</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box">
+    <div class="label">Shared primary text — use on every ad</div>
+    <p style="margin-bottom:6px;">If you own a home in Cary, Apex, Raleigh, or Pittsboro, your driveway and house exterior are losing curb appeal every month they go unwashed.</p>
+    <p style="margin-bottom:6px;">Blue Wave Pro Wash gets your home looking brand new in one visit. House wash and driveway, done the same day. We only take 8 new clients per month in your area, and July spots are filling up.</p>
+    <p style="margin-bottom:0;">Tap below to claim your spot and get your free quote in under 60 seconds.</p>
+    <p style="margin:10px 0 0 0;"><strong>Headline:</strong> Your Home Could Look Like This By This Weekend</p>
+  </div>
+</div>
+
+<!-- SECTION 5: UGC SCRIPTS -->
+<div class="block pagebreak">
+  <div class="section-head">
+    <div class="section-num">Section 05</div>
+    <h2 class="section">UGC Video Scripts (Film These First)</h2>
+  </div>
+  <p>Power washing is the perfect category for UGC. The transformation is visual, emotional, and satisfying. These scripts are written to be filmed by the owner or a team member, on location, phone camera is fine. Formula: <strong>call-out → problem → agitate → mechanism → transformation/proof → offer → CTA.</strong></p>
+
+  <div class="script">
+    <div class="stype">Script 1 · UGC — straight call-out (film in front of a job site, before or after) — approx. 75 sec</div>
+    <p class="sline"><strong>[HOOK — first 3 seconds, say directly to camera]</strong><br>
+    "If you own a home in Cary, Apex, Raleigh, or Pittsboro, I'm going to show you exactly how we get your house looking brand new in one visit, and why your neighbors are already booking."</p>
+
+    <p class="sline"><strong>[PROBLEM]</strong><br>
+    "Here's what most homeowners don't think about. Your driveway, your siding, your walkways — they're collecting mold, algae, dirt, and grime every single month. And it happens so slowly you stop seeing it. But your neighbors see it. Your guests see it. And it's quietly destroying the curb appeal of your home."</p>
+
+    <p class="sline"><strong>[AGITATE]</strong><br>
+    "The problem with trying to handle it yourself is the equipment doesn't cut it, you end up spending a Saturday doing a mediocre job, and three months later it looks the same as before. Professional-grade pressure washing isn't just stronger — the cleaning solutions we use actually kill the algae at the root so it doesn't come back in six weeks."</p>
+
+    <p class="sline"><strong>[MECHANISM]</strong><br>
+    "So here's what we do. We come out in one visit, we wash your full house exterior, we wash your driveway, and we leave. Most jobs take two to three hours. Your home looks completely transformed, the same day. We serve Cary, Apex, Raleigh, and Pittsboro and we only take 8 new clients a month so every job gets done properly."</p>
+
+    <p class="sline"><strong>[PROOF — point camera at the result or show split screen]</strong><br>
+    "This is what we did for a home right here in Cary last week. Before, the driveway was almost black. After one visit it looks like it was just poured. That's one treatment. Same day."</p>
+
+    <p class="sline"><strong>[OFFER + GUARANTEE]</strong><br>
+    "Right now we're taking new clients for July. House wash and driveway in one visit. If you're not happy with the result, we come back and redo it at no charge. No questions asked."</p>
+
+    <p class="sline"><strong>[CTA]</strong><br>
+    "Tap the link below to claim your spot. Takes about 60 seconds to fill out, and we'll get back to you the same day with your quote. Spots are filling up fast."</p>
+  </div>
+
+  <div class="script">
+    <div class="stype">Script 2 · UGC — before/after reaction (film during or right after a job) — approx. 70 sec</div>
+    <p class="sline"><strong>[HOOK — open on the dirty surface, then pan to clean]</strong><br>
+    "Cary and Apex homeowners, look at this driveway. This is what it looked like when we showed up this morning. And this" — [pan to clean side] — "is what it looks like right now. Same driveway. Two hours."</p>
+
+    <p class="sline"><strong>[PROBLEM]</strong><br>
+    "The thing about driveways and home exteriors is they get dirty so gradually you genuinely stop noticing. But the second you see a clean one next to yours, you feel it. Your home is one of the biggest investments you'll ever make and the outside is the first thing anyone sees."</p>
+
+    <p class="sline"><strong>[AGITATE]</strong><br>
+    "And here's what most homeowners get wrong — they either ignore it for years until it's actually damaging the surface, or they rent a pressure washer from Home Depot and end up with streaks and missed spots because consumer equipment just isn't the same. One wrong pressure setting on the wrong surface and you've etched the concrete permanently."</p>
+
+    <p class="sline"><strong>[MECHANISM]</strong><br>
+    "We use professional-grade equipment and the right cleaning solution for every surface. Soft wash for the siding so we don't damage anything, high pressure for the concrete where it's needed. House and driveway in one visit, and we only work in Cary, Apex, Raleigh, and Pittsboro so we can be responsive and actually stand behind the work."</p>
+
+    <p class="sline"><strong>[OFFER]</strong><br>
+    "We're booking July appointments now. We take a maximum of 8 new clients per month to keep quality high. If you've been putting this off, now's the time."</p>
+
+    <p class="sline"><strong>[CTA]</strong><br>
+    "Tap the link below, take 60 seconds to fill out the form, and we'll get your quote back to you the same day. If you're not happy with the result we'll come back and redo it free. Link's right there."</p>
+  </div>
+
+  <div class="script">
+    <div class="stype">Script 3 · UGC — objection handler / skeptic (talking head, conversational) — approx. 75 sec</div>
+    <p class="sline"><strong>[HOOK]</strong><br>
+    "If you've been thinking about getting your home pressure washed but you're not sure it's worth it or you're worried about damage, let me clear that up right now. I'm Josh from Blue Wave Pro Wash and this comes up constantly."</p>
+
+    <p class="sline"><strong>[OBJECTION 1]</strong><br>
+    "First objection: 'Can't I just rent a pressure washer?' You can. But here's the issue. Consumer pressure washers top out at about 2,000 PSI. Ours runs at 4,000 with commercial-grade rotating nozzles. The result isn't even in the same category. And if you use too much pressure on vinyl siding, you can actually force water behind it and cause mold inside the wall. We've fixed that mistake for homeowners before and it's not cheap."</p>
+
+    <p class="sline"><strong>[OBJECTION 2]</strong><br>
+    "Second: 'Will it actually last or does it just look good for a month?' The algae and mold we're removing? We treat it with a cleaning solution that kills it at the root. You're looking at six to twelve months before it needs another treatment, not six weeks."</p>
+
+    <p class="sline"><strong>[MECHANISM]</strong><br>
+    "What we do is a full house wash and driveway in one visit. Two to three hours, we're in and out, your home looks completely different. We cover Cary, Apex, Raleigh, and Pittsboro. Most customers have us back once a year."</p>
+
+    <p class="sline"><strong>[GUARANTEE]</strong><br>
+    "And if you're not completely happy with the result, we come back and redo it at no charge. That's how confident we are in the work."</p>
+
+    <p class="sline"><strong>[CTA]</strong><br>
+    "We're booking for July right now and we only take 8 new clients per month in your area. Tap the link, get your free quote in 60 seconds. See you soon."</p>
+  </div>
+</div>
+
+<!-- SECTION 6: STATICS -->
+<div class="block pagebreak">
+  <div class="section-head">
+    <div class="section-num">Section 06</div>
+    <h2 class="section">Static Ads (Test Alongside UGC)</h2>
+  </div>
+
+  <div class="script">
+    <div class="stype">Static 1 — the "notes app" format (plain text, no design, highest engagement)</div>
+    <p class="sline">🏠 CARY &amp; APEX HOMEOWNERS</p>
+    <p class="sline">Your house wash AND driveway, done in one visit, by a local pro who guarantees the result.</p>
+    <p class="sline">We only take 8 new clients per month in your area. July spots are going.</p>
+    <p class="sline">👉 Tap below for your free quote — takes 60 seconds.</p>
+    <p class="small">Format: black text on white background, house emoji. Do not over-design. This is the format that consistently outperforms polished graphics.</p>
+  </div>
+
+  <div class="script">
+    <div class="stype">Static 2 — dramatic before/after split</div>
+    <p class="sline"><strong>Image:</strong> Full-width vertical split. Left half: dark, stained driveway. Right half: bright clean concrete. Large text overlay at the top: "SAME DRIVEWAY. 2 HOURS."</p>
+    <p class="sline"><strong>Subtext on image:</strong> Blue Wave Pro Wash — Cary, Apex, Raleigh, Pittsboro</p>
+    <p class="sline"><strong>Caption below:</strong> "If your driveway looks like the left side, we can have it looking like the right side by this weekend. House wash included. 8 spots left for July."</p>
+    <p class="small">Use the most dramatic before/after from an actual job. The bigger the visual difference, the better it performs. The transformation IS the ad.</p>
+  </div>
+
+  <div class="takeaway">
+    <h3>Action checklist — in this order</h3>
+    <ol>
+      <li><strong>Set up instant SMS follow-up today.</strong> This is more important than any ad change.</li>
+      <li><strong>Film the 3 UGC videos this week.</strong> Phone camera on a job site. No studio needed.</li>
+      <li><strong>Build the dramatic before/after static</strong> from the best job photo you have.</li>
+      <li><strong>Write the notes-app static</strong> — takes 3 minutes in the phone Notes app, screenshot it.</li>
+      <li><strong>Launch CBO campaign</strong> with all 5 creatives, one ad set, one primary text, one headline. Let Meta run for at least 7 days before judging performance.</li>
+      <li><strong>Do not pause the account again.</strong> Every pause resets the learning phase and costs 1 to 2 weeks of optimization.</li>
+    </ol>
+  </div>
+  <p class="small" style="margin-top:10px;">Everything above is ready to implement immediately pending your approval. The UGC videos are the only piece that requires filming time — everything else can go live this week.</p>
+</div>
+
+</body>
+</html>

@@ -59,172 +59,94 @@ function playBtn(ctx, cx, cy, r) {
   ctx.fillStyle='#FF7A00'; ctx.fill();
 }
 
-/* ===== A =====
-   Layout: eyebrow top-left, two-line headline left, play button right-centre
-   Feels like a real talking-head thumbnail without needing a face
-*/
+/* A — White sans-serif, one line above play, dark background */
 (function(){
   var c=document.getElementById('cA'), ctx=c.getContext('2d');
 
-  // Background — dark warm gradient
-  var bg=ctx.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,'#1a1410');
-  bg.addColorStop(1,'#080604');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#111010'; ctx.fillRect(0,0,W,H);
 
-  // Orange glow bottom-left
-  var og=ctx.createRadialGradient(0,H,0,0,H,800);
-  og.addColorStop(0,'rgba(255,122,0,0.14)');
-  og.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
+  var v=ctx.createRadialGradient(W/2,H/2,80,W/2,H/2,W*0.7);
+  v.addColorStop(0,'rgba(17,16,16,0)');
+  v.addColorStop(1,'rgba(17,16,16,0.96)');
+  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
 
-  // Left orange bar
-  ctx.fillStyle='#FF7A00';
-  ctx.fillRect(0,0,8,H);
-
-  // Eyebrow
-  ctx.font='600 26px system-ui, sans-serif';
-  ctx.letterSpacing='3px';
-  ctx.fillStyle='#FF7A00';
-  ctx.textAlign='left';
+  // One clean white line — light weight sans, all lowercase
+  ctx.font='300 72px system-ui, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.88)';
+  ctx.textAlign='center';
   ctx.textBaseline='alphabetic';
-  ctx.fillText('FOR CARE HOMES', 60, 140);
-  ctx.letterSpacing='0px';
+  ctx.fillText('watch before you book.', W/2, H/2 - 80);
 
-  // Main headline — two lines, big serif
-  ctx.font='bold 112px Georgia, serif';
-  ctx.fillStyle='#F6F2E8';
-  ctx.fillText('Watch This', 56, 310);
-  ctx.fillStyle='#FF7A00';
-  ctx.fillText('Before You', 56, 430);
-  ctx.fillStyle='#F6F2E8';
-  ctx.fillText('Book a Call.', 56, 550);
-
-  // Scalevertise brand bottom left
-  ctx.globalAlpha=0.45;
-  ctx.font='300 20px Georgia, serif';
-  ctx.letterSpacing='5px';
-  ctx.fillStyle='#C4A882';
-  ctx.fillText('SCALEVERTISE', 60, H-44);
-  ctx.letterSpacing='0px';
-  ctx.globalAlpha=1;
-
-  // Play button — right side, vertically centred
-  playBtn(ctx, W*0.78, H*0.5, 96);
+  playBtn(ctx, W/2, H/2 + 80, 80);
 })();
 
-/* ===== B =====
-   Layout: centred, stacked — small label, big "4 Minutes.", play below
-   Clean and direct about the time commitment
-*/
+/* B — Orange solid bar behind white text, play button below */
 (function(){
   var c=document.getElementById('cB'), ctx=c.getContext('2d');
 
-  var bg=ctx.createRadialGradient(W/2,H*0.4,0,W/2,H*0.4,W*0.75);
-  bg.addColorStop(0,'#1c1710');
-  bg.addColorStop(1,'#070503');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#0e0c0a'; ctx.fillRect(0,0,W,H);
 
-  // Vignette
-  var v=ctx.createRadialGradient(W/2,H/2,H*0.15,W/2,H/2,W*0.7);
-  v.addColorStop(0,'rgba(7,5,3,0)');
-  v.addColorStop(1,'rgba(7,5,3,0.88)');
+  var v=ctx.createRadialGradient(W/2,H/2,100,W/2,H/2,W*0.68);
+  v.addColorStop(0,'rgba(14,12,10,0)');
+  v.addColorStop(1,'rgba(14,12,10,0.94)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
 
-  // Accent lines top + bottom
-  var ln=ctx.createLinearGradient(0,0,W,0);
-  ln.addColorStop(0,'rgba(255,122,0,0)');
-  ln.addColorStop(0.3,'rgba(255,122,0,0.6)');
-  ln.addColorStop(0.7,'rgba(255,122,0,0.6)');
-  ln.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=ln;
-  ctx.fillRect(0,0,W,3); ctx.fillRect(0,H-3,W,3);
-
-  ctx.textAlign='center';
-
-  // Small label
-  ctx.font='600 24px system-ui, sans-serif';
-  ctx.letterSpacing='5px';
-  ctx.fillStyle='rgba(255,122,0,0.7)';
-  ctx.textBaseline='alphabetic';
-  ctx.fillText('CARE HOME OWNERS', W/2, 130);
-  ctx.letterSpacing='0px';
-
-  // Big headline
-  ctx.font='bold 148px Georgia, serif';
-  ctx.fillStyle='#F6F2E8';
-  ctx.fillText('See Exactly', W/2, 320);
+  // Orange pill/bar behind the text
+  var barH=90, barY=H/2-160;
+  var barPad=60;
+  ctx.font='700 64px system-ui, sans-serif';
+  var textW=ctx.measureText('4 minutes.').width;
   ctx.fillStyle='#FF7A00';
-  ctx.fillText('How It Works.', W/2, 470);
+  ctx.beginPath();
+  ctx.roundRect(W/2 - textW/2 - barPad, barY - barH*0.78, textW + barPad*2, barH, barH/2);
+  ctx.fill();
 
-  // Play button below headline
-  playBtn(ctx, W/2, 590, 64);
+  // White text on bar
+  ctx.fillStyle='#ffffff';
+  ctx.textAlign='center';
+  ctx.textBaseline='alphabetic';
+  ctx.fillText('4 minutes.', W/2, barY);
 
-  // Brand
-  ctx.globalAlpha=0.4;
-  ctx.font='300 18px Georgia, serif';
-  ctx.letterSpacing='5px';
-  ctx.fillStyle='#C4A882';
-  ctx.fillText('SCALEVERTISE', W/2, H-44);
-  ctx.letterSpacing='0px';
-  ctx.globalAlpha=1;
+  // Subtext below bar
+  ctx.font='300 32px system-ui, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.4)';
+  ctx.fillText('That\'s all it takes to understand.', W/2, barY + 72);
+
+  playBtn(ctx, W/2, H/2 + 120, 76);
 })();
 
-/* ===== C =====
-   Layout: top eyebrow + big guarantee stat centred + play below
-   The "or you don't pay" hook
-*/
+/* C — Left-aligned, thin white text, orange accent dot, play right side */
 (function(){
   var c=document.getElementById('cC'), ctx=c.getContext('2d');
 
-  var bg=ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,'#161210');
-  bg.addColorStop(1,'#060504');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#0f0d0b'; ctx.fillRect(0,0,W,H);
 
-  // Orange glow top-centre
-  var og=ctx.createRadialGradient(W/2,0,0,W/2,0,700);
-  og.addColorStop(0,'rgba(255,122,0,0.16)');
+  // Subtle warm glow left
+  var og=ctx.createRadialGradient(180,H/2,0,180,H/2,600);
+  og.addColorStop(0,'rgba(255,122,0,0.1)');
   og.addColorStop(1,'rgba(255,122,0,0)');
   ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
 
-  // Vignette
-  var v=ctx.createRadialGradient(W/2,H*0.35,H*0.1,W/2,H*0.35,W*0.7);
-  v.addColorStop(0,'rgba(6,5,4,0)');
-  v.addColorStop(1,'rgba(6,5,4,0.9)');
+  var v=ctx.createRadialGradient(W/2,H/2,100,W/2,H/2,W*0.72);
+  v.addColorStop(0,'rgba(15,13,11,0)');
+  v.addColorStop(1,'rgba(15,13,11,0.95)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
 
-  ctx.textAlign='center'; ctx.textBaseline='alphabetic';
+  // Orange dot accent
+  ctx.beginPath(); ctx.arc(72, H/2 - 10, 10, 0, Math.PI*2);
+  ctx.fillStyle='#FF7A00'; ctx.fill();
 
-  // Eyebrow
-  ctx.font='600 24px system-ui, sans-serif';
-  ctx.letterSpacing='4px';
-  ctx.fillStyle='rgba(255,122,0,0.65)';
-  ctx.fillText('FOR CARE HOME OWNERS', W/2, 118);
-  ctx.letterSpacing='0px';
+  // Two short lines, left aligned, white, light weight
+  ctx.textAlign='left'; ctx.textBaseline='alphabetic';
+  ctx.font='300 68px system-ui, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.85)';
+  ctx.fillText('How we fill beds', 108, H/2 - 20);
+  ctx.font='300 68px system-ui, sans-serif';
+  ctx.fillStyle='rgba(255,255,255,0.85)';
+  ctx.fillText('in 30 days.', 108, H/2 + 70);
 
-  // Headline
-  ctx.font='bold 124px Georgia, serif';
-  ctx.fillStyle='#F6F2E8';
-  ctx.fillText('20–30 Resident', W/2, 284);
-  ctx.fillText('Appointments.', W/2, 408);
-
-  // Subline
-  ctx.font='400 36px system-ui, sans-serif';
-  ctx.fillStyle='rgba(246,242,232,0.45)';
-  ctx.fillText('Or you don\'t pay. Here\'s how.', W/2, 484);
-
-  // Play button
-  playBtn(ctx, W/2, 594, 66);
-
-  // Brand
-  ctx.globalAlpha=0.4;
-  ctx.font='300 18px Georgia, serif';
-  ctx.letterSpacing='5px';
-  ctx.fillStyle='#C4A882';
-  ctx.fillText('SCALEVERTISE', W/2, H-44);
-  ctx.letterSpacing='0px';
-  ctx.globalAlpha=1;
+  // Play button right side
+  playBtn(ctx, W - 200, H/2 + 24, 80);
 })();
 </script>
 </body>

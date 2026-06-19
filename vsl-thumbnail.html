@@ -17,17 +17,17 @@
 <body>
 <div class="page">
   <div class="thumb-block">
-    <h2>Option A — Glow</h2>
+    <h2>Option A — Fill Beds</h2>
     <canvas id="cA" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cA')">Download A</button>
   </div>
   <div class="thumb-block">
-    <h2>Option B — Dot Grid</h2>
+    <h2>Option B — 30 Days</h2>
     <canvas id="cB" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cB')">Download B</button>
   </div>
   <div class="thumb-block">
-    <h2>Option C — Frame</h2>
+    <h2>Option C — Split</h2>
     <canvas id="cC" width="1280" height="720"></canvas>
     <button class="dl-btn" onclick="dl('cC')">Download C</button>
   </div>
@@ -41,22 +41,19 @@ function dl(id) {
   w.document.write('<img src="'+u+'" style="width:100%;display:block;background:#000;"><p style="font-family:sans-serif;text-align:center;padding:12px;color:#666;">Press and hold, then Save to Photos</p>');
 }
 
-function playBtn(ctx, r) {
-  var cx = W/2, cy = H/2;
-  // outer glow
-  var g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.8);
-  g.addColorStop(0,'rgba(255,122,0,0.28)');
+function playBtn(ctx, cx, cy, r) {
+  var g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.6);
+  g.addColorStop(0,'rgba(255,122,0,0.3)');
   g.addColorStop(1,'rgba(255,122,0,0)');
-  ctx.fillStyle=g;
-  ctx.beginPath(); ctx.arc(cx,cy,r*2.8,0,Math.PI*2); ctx.fill();
-  // dark fill inside ring
+  ctx.fillStyle=g; ctx.beginPath(); ctx.arc(cx,cy,r*2.6,0,Math.PI*2); ctx.fill();
+
   ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
-  ctx.fillStyle='rgba(14,11,8,0.72)'; ctx.fill();
-  // ring
+  ctx.fillStyle='rgba(14,11,8,0.8)'; ctx.fill();
+
   ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2);
   ctx.strokeStyle='#FF7A00'; ctx.lineWidth=5; ctx.stroke();
-  // triangle — optically centred (nudged right)
-  var t = r * 0.38;
+
+  var t = r*0.38;
   ctx.beginPath();
   ctx.moveTo(cx - t*0.65, cy - t*1.1);
   ctx.lineTo(cx - t*0.65, cy + t*1.1);
@@ -65,99 +62,189 @@ function playBtn(ctx, r) {
   ctx.fillStyle='#FF7A00'; ctx.fill();
 }
 
-/* ===== A: WARM GLOW ===== */
+/* ===== A: "FILL BEDS." — big type, play on top ===== */
 (function(){
   var c=document.getElementById('cA'), ctx=c.getContext('2d');
-  // Very dark base
-  ctx.fillStyle='#0d0a07'; ctx.fillRect(0,0,W,H);
-  // Orange radial glow — centred
-  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.55);
-  og.addColorStop(0,'rgba(255,122,0,0.18)');
-  og.addColorStop(0.5,'rgba(255,122,0,0.07)');
+
+  ctx.fillStyle='#0e0b08'; ctx.fillRect(0,0,W,H);
+
+  // Warm centre glow
+  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.6);
+  og.addColorStop(0,'rgba(255,122,0,0.13)');
   og.addColorStop(1,'rgba(255,122,0,0)');
   ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
-  // Edge vignette
-  var v=ctx.createRadialGradient(W/2,H/2,H*0.2,W/2,H/2,W*0.72);
-  v.addColorStop(0,'rgba(13,10,7,0)');
-  v.addColorStop(1,'rgba(13,10,7,0.94)');
-  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
-  // Play button
-  playBtn(ctx, 100);
-  // Single line below — small, understated
-  ctx.font='400 24px system-ui, sans-serif';
-  ctx.letterSpacing='4px';
-  ctx.fillStyle='rgba(246,242,232,0.32)';
-  ctx.textAlign='center';
-  ctx.fillText('FILL BEDS. GUARANTEED.', W/2, H/2 + 160);
-  ctx.letterSpacing='0px';
-})();
 
-/* ===== B: DOT GRID ===== */
-(function(){
-  var c=document.getElementById('cB'), ctx=c.getContext('2d');
-  // Dark base
-  ctx.fillStyle='#141414'; ctx.fillRect(0,0,W,H);
-  // Dot grid — same as VSL background
-  ctx.fillStyle='rgba(255,255,255,0.07)';
-  for(var x=48;x<W;x+=48) for(var y=48;y<H;y+=48){
-    ctx.beginPath(); ctx.arc(x,y,1.2,0,Math.PI*2); ctx.fill();
-  }
-  // Vignette
-  var v=ctx.createRadialGradient(W/2,H/2,H*0.18,W/2,H/2,W*0.75);
-  v.addColorStop(0,'rgba(20,20,20,0)');
-  v.addColorStop(0.6,'rgba(20,20,20,0.5)');
-  v.addColorStop(1,'rgba(20,20,20,0.96)');
+  // Edge vignette
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.72);
+  v.addColorStop(0,'rgba(14,11,8,0)');
+  v.addColorStop(1,'rgba(14,11,8,0.95)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
-  // Accent lines top + bottom (same as bg)
+
+  // Big type — "FILL" white, "BEDS." orange, centred
+  ctx.textAlign='center';
+  ctx.textBaseline='middle';
+
+  // ghost version behind for depth
+  ctx.globalAlpha=0.06;
+  ctx.font='bold 280px Georgia, serif';
+  ctx.fillStyle='#FF7A00';
+  ctx.fillText('FILL BEDS.', W/2, H/2);
+  ctx.globalAlpha=1;
+
+  // readable version
+  ctx.font='bold 148px Georgia, serif';
+  ctx.fillStyle='#F6F2E8';
+  // measure "FILL " to split colour
+  var fillW = ctx.measureText('FILL ').width;
+  var bedsW = ctx.measureText('BEDS.').width;
+  var totalW = fillW + bedsW;
+  ctx.fillText('FILL ', W/2 - bedsW/2, H/2);
+  ctx.fillStyle='#FF7A00';
+  ctx.fillText('BEDS.', W/2 + fillW/2, H/2);
+
+  // Accent lines
   var ln=ctx.createLinearGradient(0,0,W,0);
   ln.addColorStop(0,'rgba(255,122,0,0)');
-  ln.addColorStop(0.25,'rgba(255,122,0,0.7)');
-  ln.addColorStop(0.75,'rgba(255,122,0,0.7)');
+  ln.addColorStop(0.35,'rgba(255,122,0,0.55)');
+  ln.addColorStop(0.65,'rgba(255,122,0,0.55)');
   ln.addColorStop(1,'rgba(255,122,0,0)');
   ctx.fillStyle=ln;
   ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
-  // Play button
-  playBtn(ctx, 100);
-  // SV mark — small, top centre
-  ctx.font='bold 30px Georgia, serif';
-  ctx.fillStyle='rgba(255,122,0,0.55)';
-  ctx.textAlign='center';
-  ctx.fillText('SV', W/2, 58);
+
+  // Play button dead centre over text
+  playBtn(ctx, W/2, H/2, 82);
+
+  // Brand bottom — well above Vimeo bar
+  ctx.globalAlpha=0.4;
+  ctx.font='300 18px Georgia, serif';
+  ctx.letterSpacing='5px';
+  ctx.fillStyle='#C4A882';
+  ctx.textBaseline='alphabetic';
+  ctx.fillText('SCALEVERTISE', W/2, H - 56);
+  ctx.letterSpacing='0px';
+  ctx.globalAlpha=1;
 })();
 
-/* ===== C: FRAME ===== */
+/* ===== B: "30" — big stat, play on top ===== */
 (function(){
-  var c=document.getElementById('cC'), ctx=c.getContext('2d');
-  // Dark base
-  ctx.fillStyle='#0c0a08'; ctx.fillRect(0,0,W,H);
-  // Subtle centre glow
-  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.5);
-  og.addColorStop(0,'rgba(255,122,0,0.09)');
+  var c=document.getElementById('cB'), ctx=c.getContext('2d');
+
+  ctx.fillStyle='#0c0a07'; ctx.fillRect(0,0,W,H);
+
+  // Orange glow
+  var og=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,W*0.55);
+  og.addColorStop(0,'rgba(255,122,0,0.15)');
   og.addColorStop(1,'rgba(255,122,0,0)');
   ctx.fillStyle=og; ctx.fillRect(0,0,W,H);
+
   // Vignette
-  var v=ctx.createRadialGradient(W/2,H/2,H*0.15,W/2,H/2,W*0.7);
-  v.addColorStop(0,'rgba(12,10,8,0)');
-  v.addColorStop(1,'rgba(12,10,8,0.9)');
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.7);
+  v.addColorStop(0,'rgba(12,10,7,0)');
+  v.addColorStop(1,'rgba(12,10,7,0.95)');
   ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
-  // Thin orange border frame inset from edges
-  var pad=40;
-  ctx.strokeStyle='rgba(255,122,0,0.35)';
-  ctx.lineWidth=2;
-  ctx.strokeRect(pad, pad, W-pad*2, H-pad*2);
-  // Corner accents — small bright squares at each corner
-  var clen=32, cw=3;
+
+  // Giant ghost "30"
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.globalAlpha=0.08;
+  ctx.font='bold 600px Georgia, serif';
   ctx.fillStyle='#FF7A00';
-  // top-left
-  ctx.fillRect(pad, pad, clen, cw); ctx.fillRect(pad, pad, cw, clen);
-  // top-right
-  ctx.fillRect(W-pad-clen, pad, clen, cw); ctx.fillRect(W-pad-cw, pad, cw, clen);
-  // bottom-left
-  ctx.fillRect(pad, H-pad-cw, clen, cw); ctx.fillRect(pad, H-pad-clen, cw, clen);
-  // bottom-right
-  ctx.fillRect(W-pad-clen, H-pad-cw, clen, cw); ctx.fillRect(W-pad-cw, H-pad-clen, cw, clen);
-  // Play button
-  playBtn(ctx, 100);
+  ctx.fillText('30', W/2, H/2);
+  ctx.globalAlpha=1;
+
+  // Visible "30" — sized so play button sits nicely on it
+  ctx.globalAlpha=0.22;
+  ctx.font='bold 340px Georgia, serif';
+  ctx.fillStyle='#FF7A00';
+  ctx.fillText('30', W/2, H/2 + 20);
+  ctx.globalAlpha=1;
+
+  // Accent lines
+  var ln=ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.35,'rgba(255,122,0,0.55)');
+  ln.addColorStop(0.65,'rgba(255,122,0,0.55)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=ln;
+  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+
+  // "DAYS" label above, small
+  ctx.font='600 22px system-ui, sans-serif';
+  ctx.letterSpacing='6px';
+  ctx.fillStyle='rgba(255,122,0,0.55)';
+  ctx.textBaseline='alphabetic';
+  ctx.fillText('DAYS', W/2, H/2 - 155);
+  ctx.letterSpacing='0px';
+
+  // Play button dead centre
+  playBtn(ctx, W/2, H/2, 86);
+
+  // Brand
+  ctx.globalAlpha=0.4;
+  ctx.font='300 18px Georgia, serif';
+  ctx.letterSpacing='5px';
+  ctx.fillStyle='#C4A882';
+  ctx.fillText('SCALEVERTISE', W/2, H - 56);
+  ctx.letterSpacing='0px';
+  ctx.globalAlpha=1;
+})();
+
+/* ===== C: DIAGONAL SPLIT ===== */
+(function(){
+  var c=document.getElementById('cC'), ctx=c.getContext('2d');
+
+  ctx.fillStyle='#0d0b08'; ctx.fillRect(0,0,W,H);
+
+  // Left half — dark warm
+  var lp=ctx.createLinearGradient(0,0,W*0.55,0);
+  lp.addColorStop(0,'rgba(255,122,0,0.13)');
+  lp.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=lp; ctx.fillRect(0,0,W,H);
+
+  // Diagonal dividing band
+  ctx.save();
+  ctx.translate(W/2, H/2);
+  ctx.rotate(-12 * Math.PI/180);
+  var band=ctx.createLinearGradient(-60,0,60,0);
+  band.addColorStop(0,'rgba(255,122,0,0)');
+  band.addColorStop(0.3,'rgba(255,122,0,0.22)');
+  band.addColorStop(0.5,'rgba(255,122,0,0.38)');
+  band.addColorStop(0.7,'rgba(255,122,0,0.22)');
+  band.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=band;
+  ctx.fillRect(-120, -H, 240, H*2);
+  // thin bright line on centre of band
+  ctx.fillStyle='rgba(255,122,0,0.55)';
+  ctx.fillRect(-1.5, -H, 3, H*2);
+  ctx.restore();
+
+  // Vignette
+  var v=ctx.createRadialGradient(W/2,H/2,H*0.1,W/2,H/2,W*0.72);
+  v.addColorStop(0,'rgba(13,11,8,0)');
+  v.addColorStop(1,'rgba(13,11,8,0.92)');
+  ctx.fillStyle=v; ctx.fillRect(0,0,W,H);
+
+  // Top + bottom accent lines
+  var ln=ctx.createLinearGradient(0,0,W,0);
+  ln.addColorStop(0,'rgba(255,122,0,0)');
+  ln.addColorStop(0.35,'rgba(255,122,0,0.55)');
+  ln.addColorStop(0.65,'rgba(255,122,0,0.55)');
+  ln.addColorStop(1,'rgba(255,122,0,0)');
+  ctx.fillStyle=ln;
+  ctx.fillRect(0,0,W,2); ctx.fillRect(0,H-2,W,2);
+
+  // Play button dead centre, sits on the diagonal line
+  playBtn(ctx, W/2, H/2, 90);
+
+  // Brand
+  ctx.globalAlpha=0.4;
+  ctx.font='300 18px Georgia, serif';
+  ctx.letterSpacing='5px';
+  ctx.fillStyle='#C4A882';
+  ctx.textAlign='center';
+  ctx.textBaseline='alphabetic';
+  ctx.fillText('SCALEVERTISE', W/2, H - 56);
+  ctx.letterSpacing='0px';
+  ctx.globalAlpha=1;
 })();
 </script>
 </body>

@@ -283,7 +283,7 @@
         <h2>Check Availability &amp; Schedule a Visit</h2>
         <p class="sub">We respond within minutes. A care advisor, not a call center, will reach out personally.</p>
       </div>
-      <form action="#" method="post" onsubmit="handleSubmit(event);">
+      <form id="leadForm" action="booking.html" method="get" onsubmit="return handleSubmit(event);">
         <div class="row2">
           <div class="field">
             <label for="name">Your name</label>
@@ -524,18 +524,11 @@
 <script>
 function handleSubmit(e) {
   e.preventDefault();
-  var timeline = document.getElementById('timeline').value;
-  var msg = 'Thank you! A care advisor will call you within minutes.';
-  if (timeline === 'urgent') {
-    msg = "We'll call you within the next few minutes. Your situation is our priority.";
-  }
-  var card = document.querySelector('.form-card');
-  card.innerHTML = '<div style="text-align:center;padding:40px 20px;">'
-    + '<div style="font-size:2.5rem;margin-bottom:16px;">✓</div>'
-    + '<h2 style="font-size:1.5rem;margin-bottom:12px;color:#244A40;">Your visit request is confirmed.</h2>'
-    + '<p style="color:#5A554C;font-size:1rem;line-height:1.6;">' + msg + '</p>'
-    + '<p style="color:#5A554C;font-size:0.88rem;margin-top:16px;">Questions? Call us now: <strong><a href="tel:+12024951232" style="color:#2F5D50;">(202) 495-1232</a></strong></p>'
-    + '</div>';
+  var name = encodeURIComponent(document.getElementById('name').value.trim());
+  var timeline = encodeURIComponent(document.getElementById('timeline').value);
+  // Forward to the booking step (calendar) with details to personalize it.
+  window.location.href = 'booking.html?name=' + name + '&timeline=' + timeline;
+  return false;
 }
 </script>
 

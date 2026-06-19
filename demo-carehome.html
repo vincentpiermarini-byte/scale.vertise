@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cedar Grove Senior Living | Assisted Living & Memory Care</title>
+<meta name="description" content="Compassionate assisted living and memory care for your loved one. Schedule a private visit to Cedar Grove Senior Living today.">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-2: #F1EBE0;
+    --ink: #2C2A26;
+    --ink-2: #5A554C;
+    --green: #2F5D50;
+    --green-d: #244A40;
+    --gold: #C2933F;
+    --gold-l: #D9B871;
+    --line: rgba(44,42,38,0.12);
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.6; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3 { font-family:var(--serif); font-weight:400; line-height:1.2; color:var(--ink); }
+  img { max-width:100%; display:block; }
+  a { color:inherit; }
+  .wrap { max-width:1140px; margin:0 auto; padding:0 24px; }
+
+  /* ── Top bar ── */
+  .topbar { background:var(--green-d); color:#fff; font-size:0.86rem; }
+  .topbar .wrap { display:flex; justify-content:space-between; align-items:center; padding:8px 24px; flex-wrap:wrap; gap:6px; }
+  .topbar a { text-decoration:none; font-weight:600; }
+  .topbar .phone { color:var(--gold-l); }
+
+  /* ── Header ── */
+  header { position:sticky; top:0; z-index:50; background:rgba(250,247,242,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+  header .wrap { display:flex; justify-content:space-between; align-items:center; padding:16px 24px; }
+  .brand { display:flex; align-items:center; gap:12px; }
+  .brand-mark { width:42px; height:42px; border-radius:50%; background:var(--green); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:1.3rem; flex-shrink:0; }
+  .brand-name { font-family:var(--serif); font-size:1.2rem; line-height:1.1; }
+  .brand-name small { display:block; font-family:var(--sans); font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-2); margin-top:2px; }
+  .nav-cta { background:var(--gold); color:#fff; text-decoration:none; font-weight:600; font-size:0.92rem; padding:11px 22px; border-radius:6px; transition:background 0.18s; }
+  .nav-cta:hover { background:#a87c2e; }
+
+  /* ── Hero ── */
+  .hero { position:relative; overflow:hidden; background:linear-gradient(135deg, #2F5D50 0%, #244A40 100%); color:#fff; }
+  .hero::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 75% 20%, rgba(217,184,113,0.18), transparent 55%); pointer-events:none; }
+  .hero .wrap { display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center; padding-top:64px; padding-bottom:64px; position:relative; z-index:1; }
+  .hero-eyebrow { font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-l); font-weight:600; margin-bottom:18px; }
+  .hero h1 { color:#fff; font-size:clamp(2rem,4.2vw,3.1rem); margin-bottom:20px; }
+  .hero p { font-size:1.1rem; color:rgba(255,255,255,0.88); margin-bottom:30px; max-width:520px; }
+  .hero-trust { display:flex; gap:24px; flex-wrap:wrap; margin-top:28px; font-size:0.88rem; color:rgba(255,255,255,0.8); }
+  .hero-trust span { display:flex; align-items:center; gap:8px; }
+  .hero-trust .dot { width:7px; height:7px; border-radius:50%; background:var(--gold-l); }
+
+  /* ── Form card ── */
+  .form-card { background:var(--cream); color:var(--ink); border-radius:14px; padding:30px 28px; box-shadow:0 24px 60px rgba(0,0,0,0.28); }
+  .form-card h2 { font-size:1.5rem; margin-bottom:6px; }
+  .form-card .sub { font-size:0.9rem; color:var(--ink-2); margin-bottom:20px; }
+  .field { margin-bottom:14px; }
+  .field label { display:block; font-size:0.78rem; font-weight:600; letter-spacing:0.02em; color:var(--ink-2); margin-bottom:5px; }
+  .field input, .field select {
+    width:100%; padding:11px 13px; font-size:0.95rem; font-family:var(--sans);
+    border:1px solid var(--line); border-radius:7px; background:#fff; color:var(--ink);
+  }
+  .field input:focus, .field select:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 3px rgba(47,93,80,0.12); }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .submit-btn {
+    width:100%; background:var(--gold); color:#fff; border:none; cursor:pointer;
+    font-size:1.02rem; font-weight:700; font-family:var(--sans); padding:15px; border-radius:8px;
+    margin-top:6px; transition:background 0.18s, transform 0.18s;
+  }
+  .submit-btn:hover { background:#a87c2e; transform:translateY(-1px); }
+  .form-micro { text-align:center; font-size:0.76rem; color:var(--ink-2); margin-top:12px; }
+
+  /* ── Sections ── */
+  section.block { padding:72px 0; }
+  .section-head { text-align:center; max-width:720px; margin:0 auto 48px; }
+  .section-head .eyebrow { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px; }
+  .section-head h2 { font-size:clamp(1.7rem,3.2vw,2.4rem); margin-bottom:14px; }
+  .section-head p { color:var(--ink-2); font-size:1.05rem; }
+
+  /* Empathy band */
+  .empathy { background:var(--cream-2); }
+  .empathy .wrap { max-width:760px; text-align:center; }
+  .empathy h2 { font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:18px; }
+  .empathy p { font-size:1.12rem; color:var(--ink-2); }
+
+  /* Care types */
+  .care-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .care-card { background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:transform 0.22s, box-shadow 0.22s; }
+  .care-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(44,42,38,0.1); }
+  .care-photo { height:170px; background:linear-gradient(135deg,#cdd9d2,#aebfb6); display:flex; align-items:center; justify-content:center; color:var(--green-d); font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.9; }
+  .care-photo.b { background:linear-gradient(135deg,#e4d8c2,#d3c3a3); }
+  .care-photo.c { background:linear-gradient(135deg,#d6cfc4,#c0b6a6); }
+  .care-body { padding:22px 22px 26px; }
+  .care-body h3 { font-size:1.25rem; margin-bottom:8px; color:var(--green-d); }
+  .care-body p { font-size:0.94rem; color:var(--ink-2); }
+
+  /* Why us */
+  .why { background:var(--green); color:#fff; }
+  .why .section-head h2 { color:#fff; }
+  .why .section-head .eyebrow { color:var(--gold-l); }
+  .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+  .why-item { text-align:center; }
+  .why-num { font-family:var(--serif); font-size:2.4rem; color:var(--gold-l); margin-bottom:8px; }
+  .why-item h3 { color:#fff; font-size:1.1rem; margin-bottom:8px; }
+  .why-item p { font-size:0.9rem; color:rgba(255,255,255,0.82); }
+
+  /* Testimonials */
+  .quotes { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  .quote { background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:10px; padding:26px; }
+  .quote p { font-size:1.02rem; font-style:italic; color:var(--ink); margin-bottom:14px; }
+  .quote .who { font-size:0.86rem; font-weight:600; color:var(--ink-2); font-style:normal; }
+  .quote .stars { color:var(--gold); letter-spacing:2px; margin-bottom:12px; }
+
+  /* Final CTA */
+  .final { background:linear-gradient(135deg,#244A40,#2F5D50); color:#fff; text-align:center; }
+  .final h2 { color:#fff; font-size:clamp(1.8rem,3.4vw,2.6rem); margin-bottom:16px; }
+  .final p { color:rgba(255,255,255,0.85); font-size:1.1rem; max-width:560px; margin:0 auto 30px; }
+  .final .big-cta { display:inline-block; background:var(--gold); color:#fff; text-decoration:none; font-weight:700; font-size:1.1rem; padding:17px 44px; border-radius:8px; transition:background 0.18s, transform 0.18s; }
+  .final .big-cta:hover { background:#a87c2e; transform:translateY(-2px); }
+  .final .phone-line { margin-top:22px; font-size:1rem; color:rgba(255,255,255,0.8); }
+  .final .phone-line strong { color:var(--gold-l); }
+
+  /* Footer */
+  footer { background:#1d3b33; color:rgba(255,255,255,0.7); font-size:0.86rem; padding:40px 0; }
+  footer .wrap { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; align-items:center; }
+  footer .demo-note { font-size:0.74rem; color:rgba(255,255,255,0.4); }
+
+  /* ── Responsive ── */
+  @media (max-width:880px) {
+    .hero .wrap { grid-template-columns:1fr; gap:36px; padding-top:44px; padding-bottom:48px; }
+    .care-grid { grid-template-columns:1fr; }
+    .why-grid { grid-template-columns:1fr 1fr; gap:24px 20px; }
+    .quotes { grid-template-columns:1fr; }
+    .nav-cta { display:none; }
+    section.block { padding:52px 0; }
+  }
+  @media (max-width:480px) {
+    .row2 { grid-template-columns:1fr; }
+    .why-grid { grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DEMO FUNNEL — fictional home for screen-recording + client #1 template. Not a live business. -->
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Now accepting new residents · Private tours available 7 days a week</span>
+    <a class="phone" href="tel:+15550000000">Call us: (555) 000-0000</a>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark">CG</div>
+      <div class="brand-name">Cedar Grove<small>Senior Living</small></div>
+    </div>
+    <a class="nav-cta" href="#book">Schedule a Visit</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Assisted Living &amp; Memory Care</div>
+      <h1>A warm, caring home for the people who raised you.</h1>
+      <p>Finding the right place for Mom or Dad is one of the hardest decisions a family makes. We make it easier — with attentive care, a welcoming community, and a team that treats your loved one like our own.</p>
+      <div class="hero-trust">
+        <span><span class="dot"></span> State licensed</span>
+        <span><span class="dot"></span> 24/7 on-site care team</span>
+        <span><span class="dot"></span> Family owned</span>
+      </div>
+    </div>
+
+    <!-- LEAD / TOUR FORM -->
+    <div class="form-card" id="book">
+      <h2>Schedule a Private Visit</h2>
+      <p class="sub">See the community, meet the team, and ask every question. We'll follow up within minutes.</p>
+      <!-- For a real client: point action to their CRM / Formspree / lead webhook -->
+      <form action="#" method="post" onsubmit="return false;">
+        <div class="row2">
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="First and last" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="relation">Who is the care for?</label>
+            <select id="relation" name="relation">
+              <option value="">Select…</option>
+              <option>My parent</option>
+              <option>My spouse</option>
+              <option>Myself</option>
+              <option>Another relative</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="care">Level of care</label>
+            <select id="care" name="care">
+              <option value="">Select…</option>
+              <option>Assisted living</option>
+              <option>Memory care</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="timeline">When are you hoping to move in?</label>
+          <select id="timeline" name="timeline">
+            <option value="">Select…</option>
+            <option>Within 30 days</option>
+            <option>1–3 months</option>
+            <option>Just researching for now</option>
+          </select>
+        </div>
+        <button type="submit" class="submit-btn">Request My Visit →</button>
+        <p class="form-micro">No pressure, no obligation. A care advisor will call to find a time that works.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- EMPATHY -->
+<section class="block empathy">
+  <div class="wrap">
+    <h2>You shouldn't have to figure this out alone.</h2>
+    <p>The worry. The guilt. The endless tabs open at midnight comparing places you've never set foot in. We've walked hundreds of families through this exact moment — and the relief on their faces when they find the right fit is why we do this. Come see for yourself, and let us take some of the weight off your shoulders.</p>
+  </div>
+</section>
+
+<!-- CARE TYPES -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Our Care</div>
+      <h2>The right level of support, today and as needs change</h2>
+      <p>Your loved one's needs may evolve. Our care grows with them, so they never have to move again.</p>
+    </div>
+    <div class="care-grid">
+      <div class="care-card">
+        <div class="care-photo">Community photo</div>
+        <div class="care-body">
+          <h3>Assisted Living</h3>
+          <p>Help with daily living — dressing, medication, meals — delivered with dignity, while your loved one keeps their independence and friendships.</p>
+        </div>
+      </div>
+      <div class="care-card">
+        <div class="care-photo b">Community photo</div>
+        <div class="care-body">
+          <h3>Memory Care</h3>
+          <p>A secure, calming environment with specially trained staff for those living with Alzheimer's and dementia. Structured days, familiar comfort.</p>
+        </div>
+      </div>
+      <div class="care-card">
+        <div class="care-photo c">Community photo</div>
+        <div class="care-body">
+          <h3>Respite &amp; Short Stays</h3>
+          <p>Need care for a few weeks while you recover or travel? Short-term stays give your loved one full access to our community and care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="block why">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Why Families Choose Cedar Grove</div>
+      <h2>Care you can feel the moment you walk in</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-num">1:6</div><h3>Caregiver ratio</h3><p>More staff per resident than most communities, so help is always close.</p></div>
+      <div class="why-item"><div class="why-num">24/7</div><h3>On-site care</h3><p>Licensed nurses and aides on the floor around the clock, every day.</p></div>
+      <div class="why-item"><div class="why-num">★</div><h3>Chef-prepared meals</h3><p>Three fresh meals a day, made on site, served in a warm dining room.</p></div>
+      <div class="why-item"><div class="why-num">30+</div><h3>Activities weekly</h3><p>Music, outings, gardening, and visits that keep days full and joyful.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">From Our Families</div>
+      <h2>The decision they wish they'd made sooner</h2>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"Moving Mom to Cedar Grove was the first night I'd slept well in a year. The staff text me photos of her at bingo. She's happier than she's been since Dad passed."</p>
+        <div class="who">— Karen M., daughter of a resident</div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>"We toured five places. Cedar Grove was the only one that felt like a home instead of a facility. They walked us through every step and never once made us feel rushed."</p>
+        <div class="who">— David R., son of a resident</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="block final">
+  <div class="wrap">
+    <h2>Come see if Cedar Grove is the right home.</h2>
+    <p>Book a private visit at a time that works for you. Walk the halls, meet the team, and picture your loved one here. There's no obligation — just answers.</p>
+    <a class="big-cta" href="#book">Schedule Your Visit</a>
+    <div class="phone-line">Or call us directly: <strong>(555) 000-0000</strong></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div style="font-family:Georgia,serif;font-size:1.1rem;color:#fff;margin-bottom:4px;">Cedar Grove Senior Living</div>
+      <div>123 Cedar Grove Lane · Anytown, USA · (555) 000-0000</div>
+    </div>
+    <div class="demo-note">Demo funnel — fictional community for demonstration purposes.</div>
+  </div>
+</footer>
+
+</body>
+</html>

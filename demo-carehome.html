@@ -71,7 +71,8 @@
   .hero-bg video { width:100%; height:100%; object-fit:cover; transform:scale(1.04); }
   .hero::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg, rgba(28,46,40,0.96) 0%, rgba(36,74,64,0.9) 42%, rgba(47,93,80,0.62) 100%); }
   .hero::after { content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 78% 18%, rgba(217,184,113,0.22), transparent 50%); pointer-events:none; }
-  .hero .wrap { display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; padding-top:40px; padding-bottom:40px; position:relative; z-index:1; }
+  .hero { min-height:calc(100vh - 191px); display:flex; align-items:center; }
+  .hero .wrap { display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px; align-items:center; padding-top:36px; padding-bottom:36px; position:relative; z-index:1; width:100%; }
   .hero-eyebrow { font-size:0.76rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-l); font-weight:600; margin-bottom:14px; }
   .hero h1 { color:#fff; font-size:clamp(2rem,3.8vw,3rem); margin-bottom:16px; font-weight:500; text-shadow:0 2px 30px rgba(0,0,0,0.25); }
   .hero-sub { font-size:1.04rem; color:rgba(255,255,255,0.88); margin-bottom:24px; max-width:500px; line-height:1.6; }
@@ -356,14 +357,6 @@
         <button type="submit" class="submit-btn">Check Availability &amp; Book a Visit →</button>
         <p class="form-micro"><strong>No pressure, no obligation.</strong> A real person will call, not a robot. We respect your privacy and never sell your information.</p>
       </form>
-      <div class="what-next">
-        <div class="what-next-label">What happens after you submit</div>
-        <div class="next-steps">
-          <div class="next-step"><div class="next-num">1</div><span>A care advisor calls you within minutes to learn more about your situation</span></div>
-          <div class="next-step"><div class="next-num">2</div><span>We confirm availability and answer every question you have</span></div>
-          <div class="next-step"><div class="next-num">3</div><span>You schedule a private, no-obligation tour at a time that works for you</span></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>

@@ -152,10 +152,6 @@ function drawBrandMark(ctx, x, y, alpha) {
   ctx.fillStyle = vig;
   ctx.fillRect(0, 0, W, H);
 
-  // Left orange bar
-  ctx.fillStyle = '#FF7A00';
-  ctx.fillRect(0, 0, 6, H);
-
   // Top accent line
   var topLine = ctx.createLinearGradient(0, 0, W, 0);
   topLine.addColorStop(0, 'rgba(255,122,0,0)');
@@ -164,29 +160,39 @@ function drawBrandMark(ctx, x, y, alpha) {
   topLine.addColorStop(1, 'rgba(255,122,0,0)');
   ctx.fillStyle = topLine;
   ctx.fillRect(0, 0, W, 2);
+  ctx.fillRect(0, H - 2, W, 2);
 
-  // Big play button center
+  // Big play button — true center
   drawPlayBtn(ctx, W / 2, H / 2, 110);
 
-  // "4 MIN" badge above play
+  // "4 MIN" badge — measure and center exactly
   ctx.font = '600 20px system-ui, sans-serif';
   ctx.letterSpacing = '4px';
   ctx.fillStyle = 'rgba(246,242,232,0.45)';
-  var badge = '4 MIN';
-  var bw = ctx.measureText(badge).width;
-  ctx.fillText(badge, W/2 - bw/2, H/2 - 150);
+  ctx.textAlign = 'center';
+  ctx.fillText('4 MIN', W / 2, H / 2 - 150);
   ctx.letterSpacing = '0px';
 
-  // Brand bottom center
-  ctx.globalAlpha = 0.5;
+  // Brand bottom — centered as a unit
+  ctx.globalAlpha = 0.45;
   ctx.font = 'bold 22px Georgia, serif';
   ctx.fillStyle = '#FF7A00';
-  var sv = 'SV';
-  ctx.fillText(sv, W/2 - 40, H - 44);
+  var svW = ctx.measureText('SV').width;
   ctx.font = '300 20px Georgia, serif';
   ctx.fillStyle = '#C4A882';
-  ctx.fillText('scalevertise', W/2 - 10, H - 44);
+  var tagW = ctx.measureText('scalevertise').width;
+  var gap = 8;
+  var totalW = svW + gap + tagW;
+  var startX = W / 2 - totalW / 2;
+  ctx.font = 'bold 22px Georgia, serif';
+  ctx.fillStyle = '#FF7A00';
+  ctx.textAlign = 'left';
+  ctx.fillText('SV', startX, H - 44);
+  ctx.font = '300 20px Georgia, serif';
+  ctx.fillStyle = '#C4A882';
+  ctx.fillText('scalevertise', startX + svW + gap, H - 44);
   ctx.globalAlpha = 1;
+  ctx.textAlign = 'left';
 })();
 
 /* ====== OPTION B: Bold Number ====== */

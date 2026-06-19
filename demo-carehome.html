@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cedar Grove Senior Living | Assisted Living & Memory Care</title>
 <meta name="description" content="Compassionate assisted living and memory care for your loved one. Schedule a private visit to Cedar Grove Senior Living today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF7F2;
@@ -17,13 +20,18 @@
     --gold-l: #D9B871;
     --line: rgba(44,42,38,0.12);
     --red: #C0392B;
-    --serif: Georgia, 'Times New Roman', serif;
-    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   html { scroll-behavior:smooth; }
   body { font-family:var(--sans); color:var(--ink); background:var(--cream); line-height:1.6; -webkit-font-smoothing:antialiased; }
-  h1,h2,h3 { font-family:var(--serif); font-weight:400; line-height:1.2; color:var(--ink); }
+  h1,h2,h3 { font-family:var(--serif); font-weight:400; line-height:1.18; color:var(--ink); letter-spacing:-0.01em; }
+
+  /* Scroll reveal */
+  .reveal { opacity:0; transform:translateY(26px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce) { .reveal { opacity:1; transform:none; transition:none; } }
   img { max-width:100%; display:block; width:100%; }
   a { color:inherit; }
   .wrap { max-width:1140px; margin:0 auto; padding:0 24px; }
@@ -58,11 +66,13 @@
   .trust-icon { font-size:1rem; }
 
   /* ── Hero ── */
-  .hero { position:relative; overflow:hidden; background:linear-gradient(135deg, #2F5D50 0%, #244A40 100%); color:#fff; }
-  .hero::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at 75% 20%, rgba(217,184,113,0.15), transparent 55%); pointer-events:none; }
-  .hero .wrap { display:grid; grid-template-columns:1.1fr 0.9fr; gap:52px; align-items:start; padding-top:60px; padding-bottom:60px; position:relative; z-index:1; }
+  .hero { position:relative; overflow:hidden; color:#fff; isolation:isolate; }
+  .hero-bg { position:absolute; inset:0; z-index:-2; background:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat; transform:scale(1.04); }
+  .hero::before { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(115deg, rgba(28,46,40,0.96) 0%, rgba(36,74,64,0.9) 42%, rgba(47,93,80,0.62) 100%); }
+  .hero::after { content:''; position:absolute; inset:0; z-index:-1; background:radial-gradient(circle at 78% 18%, rgba(217,184,113,0.22), transparent 50%); pointer-events:none; }
+  .hero .wrap { display:grid; grid-template-columns:1.1fr 0.9fr; gap:52px; align-items:center; padding-top:72px; padding-bottom:72px; position:relative; z-index:1; }
   .hero-eyebrow { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-l); font-weight:600; margin-bottom:16px; }
-  .hero h1 { color:#fff; font-size:clamp(2rem,4vw,3rem); margin-bottom:18px; }
+  .hero h1 { color:#fff; font-size:clamp(2.1rem,4.4vw,3.4rem); margin-bottom:18px; font-weight:500; text-shadow:0 2px 30px rgba(0,0,0,0.25); }
   .hero-sub { font-size:1.08rem; color:rgba(255,255,255,0.88); margin-bottom:28px; max-width:500px; line-height:1.65; }
   .hero-proof { display:flex; gap:28px; flex-wrap:wrap; font-size:0.86rem; color:rgba(255,255,255,0.82); }
   .hero-proof span { display:flex; align-items:center; gap:7px; }
@@ -74,7 +84,7 @@
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
 
   /* ── Form card ── */
-  .form-card { background:var(--cream); color:var(--ink); border-radius:14px; padding:28px 26px 24px; box-shadow:0 28px 64px rgba(0,0,0,0.32); }
+  .form-card { background:rgba(255,255,255,0.98); color:var(--ink); border-radius:18px; padding:30px 28px 26px; box-shadow:0 40px 80px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.5); backdrop-filter:blur(2px); }
   .form-card-head { margin-bottom:18px; }
   .form-card-head h2 { font-size:1.42rem; margin-bottom:5px; }
   .form-card-head .sub { font-size:0.88rem; color:var(--ink-2); line-height:1.5; }
@@ -92,7 +102,8 @@
     font-size:1rem; font-weight:700; font-family:var(--sans); padding:15px; border-radius:8px;
     margin-top:8px; transition:background 0.18s, transform 0.18s; letter-spacing:0.01em;
   }
-  .submit-btn:hover { background:#a87c2e; transform:translateY(-1px); }
+  .submit-btn { box-shadow:0 8px 22px -6px rgba(194,147,63,0.6); }
+  .submit-btn:hover { background:#a87c2e; transform:translateY(-2px); box-shadow:0 14px 30px -8px rgba(194,147,63,0.7); }
   .form-micro { text-align:center; font-size:0.74rem; color:var(--ink-2); margin-top:10px; line-height:1.4; }
   .form-micro strong { color:var(--green-d); }
 
@@ -104,17 +115,23 @@
   .next-num { width:20px; height:20px; border-radius:50%; background:var(--green); color:#fff; font-size:0.65rem; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
 
   /* ── Sections ── */
-  section.block { padding:72px 0; }
-  .section-head { text-align:center; max-width:720px; margin:0 auto 48px; }
-  .section-head .eyebrow { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:12px; }
-  .section-head h2 { font-size:clamp(1.7rem,3.2vw,2.4rem); margin-bottom:14px; }
-  .section-head p { color:var(--ink-2); font-size:1.05rem; }
+  section.block { padding:84px 0; }
+  .section-head { text-align:center; max-width:720px; margin:0 auto 52px; }
+  .section-head .eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:0.76rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px; }
+  .section-head .eyebrow::before, .section-head .eyebrow::after { content:''; width:24px; height:1px; background:var(--gold); opacity:0.5; }
+  .section-head h2 { font-size:clamp(1.8rem,3.4vw,2.6rem); margin-bottom:14px; font-weight:500; }
+  .section-head p { color:var(--ink-2); font-size:1.06rem; }
 
   /* Empathy band */
   .empathy { background:var(--cream-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .empathy-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
-  .empathy-img { border-radius:12px; overflow:hidden; height:320px; }
-  .empathy-img img { width:100%; height:100%; object-fit:cover; }
+  .empathy-img { position:relative; border-radius:18px; overflow:hidden; height:380px; box-shadow:0 30px 60px -20px rgba(44,42,38,0.4); }
+  .empathy-img img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s ease; }
+  .empathy-img:hover img { transform:scale(1.05); }
+  .empathy-img::after { content:''; position:absolute; inset:0; border-radius:18px; box-shadow:inset 0 0 0 1px rgba(255,255,255,0.25); pointer-events:none; }
+  .empathy-img .badge-float { position:absolute; bottom:18px; left:18px; right:18px; background:rgba(36,74,64,0.92); backdrop-filter:blur(6px); color:#fff; border-radius:12px; padding:14px 18px; display:flex; align-items:center; gap:12px; }
+  .empathy-img .badge-float .qmark { font-family:var(--serif); font-size:2rem; color:var(--gold-l); line-height:1; }
+  .empathy-img .badge-float span { font-size:0.9rem; line-height:1.4; color:rgba(255,255,255,0.92); }
   .empathy-eyebrow { font-size:0.78rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:14px; }
   .empathy h2 { font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:18px; }
   .empathy p { font-size:1.05rem; color:var(--ink-2); margin-bottom:16px; line-height:1.72; }
@@ -129,15 +146,16 @@
   .proof-stat .label { font-size:0.8rem; color:rgba(255,255,255,0.75); margin-top:2px; }
 
   /* Care types */
-  .care-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  .care-card { background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:transform 0.22s, box-shadow 0.22s; }
-  .care-card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(44,42,38,0.12); }
-  .care-photo { height:190px; overflow:hidden; }
-  .care-photo img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
-  .care-card:hover .care-photo img { transform:scale(1.04); }
-  .care-body { padding:22px 22px 26px; }
-  .care-body h3 { font-size:1.2rem; margin-bottom:8px; color:var(--green-d); }
-  .care-body p { font-size:0.93rem; color:var(--ink-2); line-height:1.6; }
+  .care-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .care-card { background:#fff; border:1px solid var(--line); border-radius:18px; overflow:hidden; transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s; box-shadow:0 2px 10px rgba(44,42,38,0.04); }
+  .care-card:hover { transform:translateY(-8px); box-shadow:0 28px 56px -16px rgba(44,42,38,0.28); }
+  .care-photo { position:relative; height:210px; overflow:hidden; }
+  .care-photo img { width:100%; height:100%; object-fit:cover; transition:transform 0.55s ease; }
+  .care-photo::after { content:''; position:absolute; inset:0; background:linear-gradient(to top, rgba(36,74,64,0.45), transparent 55%); }
+  .care-card:hover .care-photo img { transform:scale(1.07); }
+  .care-body { padding:24px 24px 28px; }
+  .care-body h3 { font-size:1.3rem; margin-bottom:8px; color:var(--green-d); }
+  .care-body p { font-size:0.94rem; color:var(--ink-2); line-height:1.6; }
 
   /* Why us */
   .why { background:var(--green); color:#fff; }
@@ -145,8 +163,9 @@
   .why .section-head .eyebrow { color:var(--gold-l); }
   .why .section-head p { color:rgba(255,255,255,0.78); }
   .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
-  .why-item { text-align:center; padding:24px 16px; background:rgba(255,255,255,0.06); border-radius:12px; border:1px solid rgba(255,255,255,0.1); }
-  .why-num { font-family:var(--serif); font-size:2.4rem; color:var(--gold-l); margin-bottom:8px; }
+  .why-item { text-align:center; padding:28px 18px; background:rgba(255,255,255,0.06); border-radius:16px; border:1px solid rgba(255,255,255,0.1); transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), background 0.3s, border-color 0.3s; }
+  .why-item:hover { transform:translateY(-6px); background:rgba(255,255,255,0.1); border-color:rgba(217,184,113,0.4); }
+  .why-num { font-family:var(--serif); font-size:2.6rem; font-weight:500; color:var(--gold-l); margin-bottom:8px; }
   .why-item h3 { color:#fff; font-size:1rem; margin-bottom:8px; }
   .why-item p { font-size:0.88rem; color:rgba(255,255,255,0.78); line-height:1.55; }
 
@@ -264,6 +283,7 @@
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
   <div class="wrap">
     <div class="hero-text">
       <div class="avail-badge"><span class="pulse"></span> 4 beds available this month</div>
@@ -366,7 +386,8 @@
         <a class="empathy-cta" href="#book">Talk to a care advisor →</a>
       </div>
       <div class="empathy-img">
-        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&h=640&fit=crop" alt="Senior resident with caregiver at Cedar Grove" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=800&h=760&fit=crop" alt="Senior resident with caregiver at Cedar Grove" loading="lazy">
+        <div class="badge-float"><span class="qmark">&ldquo;</span><span>The relief on a family's face when they find the right home is why we do this.</span></div>
       </div>
     </div>
   </div>
@@ -530,6 +551,22 @@ function handleSubmit(e) {
   window.location.href = 'booking.html?name=' + name + '&timeline=' + timeline;
   return false;
 }
+
+// Scroll-reveal: fade sections up as they enter view
+(function(){
+  var targets = document.querySelectorAll('.section-head, .care-card, .why-item, .quote, .quote-full, .faq-item, .empathy-inner > div, .empathy-img');
+  if (!('IntersectionObserver' in window)) { targets.forEach(function(t){ t.classList.add('in'); }); return; }
+  targets.forEach(function(t, i){
+    t.classList.add('reveal');
+    t.style.transitionDelay = ((i % 4) * 70) + 'ms';
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+  targets.forEach(function(t){ io.observe(t); });
+})();
 </script>
 
 </body>

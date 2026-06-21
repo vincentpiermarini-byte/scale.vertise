@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuackQuotes Growth Strategy</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:#ffffff; color:#1a1a1a; -webkit-print-color-adjust:exact; print-color-adjust:exact; font-size:14px; line-height:1.7; }
+
+/* COVER */
+.cover {
+  background:#0a0a0a; min-height:100vh; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; text-align:center; padding:60px 40px;
+}
+.cover-eye { font-family:'JetBrains Mono',monospace; font-size:9px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:#F5C842; margin-bottom:22px; }
+.cover h1 { font-family:'Archivo',sans-serif; font-size:2.8rem; font-weight:800; color:#ffffff; letter-spacing:-0.03em; line-height:1.08; max-width:580px; margin-bottom:12px; }
+.cover h1 span { color:#F5C842; }
+.cover-sub { font-size:0.9rem; color:rgba(255,255,255,0.45); max-width:400px; margin-bottom:40px; }
+.cover-meta { display:flex; gap:32px; justify-content:center; }
+.cover-meta-item { text-align:center; }
+.cover-meta-label { font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:4px; }
+.cover-meta-val { font-size:0.9rem; font-weight:600; color:rgba(255,255,255,0.7); }
+
+/* PAGES */
+.page { padding:52px 56px; border-top:1px solid rgba(0,0,0,0.07); }
+.page-label { font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; letter-spacing:0.28em; text-transform:uppercase; color:#F5C842; margin-bottom:8px; }
+.page-title { font-family:'Archivo',sans-serif; font-size:1.7rem; font-weight:800; color:#111; letter-spacing:-0.025em; line-height:1.1; margin-bottom:6px; }
+.page-sub { font-size:0.88rem; color:#777; margin-bottom:36px; max-width:600px; }
+
+/* SECTION DIVIDER */
+.section-title { font-family:'Archivo',sans-serif; font-size:1.05rem; font-weight:700; color:#111; margin:32px 0 14px; padding-bottom:8px; border-bottom:2px solid #F5C842; display:inline-block; }
+
+/* NICHE GRID */
+.niche-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:28px; }
+.niche-card { border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:18px 20px; }
+.niche-card.top { border-color:#F5C842; background:#fffdf0; }
+.niche-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:10px; }
+.niche-name { font-family:'Archivo',sans-serif; font-weight:700; font-size:0.95rem; color:#111; }
+.niche-badge { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:3px 8px; border-radius:4px; }
+.badge-launch { background:#F5C842; color:#1a1a1a; }
+.badge-add { background:#e8f5e9; color:#2e7d32; }
+.badge-avoid { background:#fce4ec; color:#c62828; }
+.niche-stats { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:10px; }
+.niche-stat { }
+.niche-stat-label { font-family:'JetBrains Mono',monospace; font-size:7.5px; letter-spacing:0.15em; text-transform:uppercase; color:#aaa; margin-bottom:1px; }
+.niche-stat-val { font-size:0.82rem; font-weight:600; color:#222; }
+.niche-note { font-size:0.78rem; color:#666; line-height:1.5; }
+.niche-grade { font-family:'Archivo',sans-serif; font-size:1.4rem; font-weight:800; color:#F5C842; }
+
+/* TABLES */
+table { width:100%; border-collapse:collapse; margin-bottom:24px; font-size:0.83rem; }
+th { font-family:'JetBrains Mono',monospace; font-size:7.5px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#999; padding:8px 12px; text-align:left; border-bottom:2px solid #f0f0f0; }
+td { padding:10px 12px; border-bottom:1px solid #f5f5f5; color:#333; vertical-align:top; }
+tr:last-child td { border-bottom:none; }
+tr.highlight td { background:#fffdf0; font-weight:500; }
+.grade-cell { font-family:'Archivo',sans-serif; font-weight:800; font-size:1rem; }
+.grade-a { color:#2e7d32; }
+.grade-b { color:#F5C842; }
+.grade-c { color:#e65100; }
+
+/* OFFER CARDS */
+.offer-card { border:1px solid rgba(0,0,0,0.09); border-radius:14px; padding:22px 24px; margin-bottom:16px; }
+.offer-card.winner { border-color:#F5C842; border-width:2px; background:#fffdf0; }
+.offer-top { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.offer-num { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; }
+.offer-title { font-family:'Archivo',sans-serif; font-weight:700; font-size:1rem; color:#111; flex:1; }
+.offer-score { font-family:'Archivo',sans-serif; font-weight:800; font-size:1.5rem; }
+.offer-score.high { color:#2e7d32; }
+.offer-score.mid { color:#F5C842; }
+.offer-body { font-size:0.85rem; color:#444; line-height:1.7; }
+.offer-body strong { color:#111; }
+.offer-why { margin-top:10px; padding-top:10px; border-top:1px solid rgba(0,0,0,0.07); font-size:0.8rem; color:#777; }
+
+/* REVENUE ANALYSIS */
+.rev-tier { display:flex; align-items:center; gap:16px; padding:14px 0; border-bottom:1px solid #f0f0f0; }
+.rev-tier:last-child { border-bottom:none; }
+.rev-range { font-family:'Archivo',sans-serif; font-weight:700; font-size:0.95rem; color:#111; min-width:140px; }
+.rev-pct { font-family:'Archivo',sans-serif; font-weight:800; font-size:1.3rem; min-width:50px; }
+.rev-pct.good { color:#2e7d32; }
+.rev-pct.ok { color:#F5C842; }
+.rev-pct.high { color:#e65100; }
+.rev-detail { font-size:0.82rem; color:#666; line-height:1.55; }
+
+/* VERDICT BOX */
+.verdict { border-radius:14px; padding:20px 24px; margin:20px 0; }
+.verdict.green { background:#e8f5e9; border-left:4px solid #2e7d32; }
+.verdict.yellow { background:#fffde7; border-left:4px solid #F5C842; }
+.verdict.red { background:#fce4ec; border-left:4px solid #c62828; }
+.verdict-label { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#555; margin-bottom:6px; }
+.verdict-text { font-size:0.85rem; color:#333; line-height:1.65; }
+.verdict-text strong { color:#111; }
+
+/* AD SCRIPTS */
+.hook { margin-bottom:36px; }
+.hook:last-child { margin-bottom:0; }
+.hook-num { font-family:'JetBrains Mono',monospace; font-size:8.5px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#bbb; margin-bottom:8px; }
+.hook-text { font-size:1rem; color:#333; line-height:1.85; }
+.hook-text strong { color:#111; font-weight:700; }
+.hook-text .hl { color:#F5C842; font-weight:700; }
+
+.script-text { font-size:1rem; color:#333; line-height:1.85; }
+.script-text p { margin-bottom:16px; }
+.script-text p:last-child { margin-bottom:0; }
+.script-text strong { color:#111; font-weight:700; }
+.script-text .hl { color:#F5C842; font-weight:700; }
+.script-list { list-style:none; margin:4px 0 16px 0; display:flex; flex-direction:column; gap:9px; counter-reset:item; }
+.script-list li { padding-left:22px; position:relative; color:#333; }
+.script-list li::before { content:counter(item) "."; counter-increment:item; position:absolute; left:0; color:#F5C842; font-weight:700; }
+
+/* NOTES CARD (iPhone notes style) */
+.notes-card { background:#f7f7f5; border-radius:16px; padding:28px 32px; margin-bottom:20px; border:1px solid rgba(0,0,0,0.07); }
+.notes-card:last-child { margin-bottom:0; }
+.notes-header { display:flex; align-items:center; gap:10px; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(0,0,0,0.07); }
+.notes-icon { font-size:1.1rem; }
+.notes-title { font-family:'Archivo',sans-serif; font-weight:700; font-size:0.95rem; color:#111; }
+.notes-date { font-size:0.72rem; color:#aaa; margin-left:auto; }
+.notes-body { font-size:0.92rem; color:#444; line-height:1.85; }
+.notes-body p { margin-bottom:12px; }
+.notes-body p:last-child { margin-bottom:0; }
+.notes-body strong { color:#111; }
+.notes-body .hl { color:#c8960a; text-decoration:underline; text-decoration-color:rgba(200,150,10,0.4); }
+.notes-list { list-style:none; margin:4px 0 12px 0; display:flex; flex-direction:column; gap:7px; counter-reset:nitem; }
+.notes-list li { padding-left:20px; position:relative; }
+.notes-list li::before { content:counter(nitem) "."; counter-increment:nitem; position:absolute; left:0; color:#333; font-weight:600; }
+
+/* TARGETING */
+.vs-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+.vs-card { border:1px solid rgba(0,0,0,0.09); border-radius:12px; padding:18px 20px; }
+.vs-card.winner { border-color:#F5C842; border-width:2px; background:#fffdf0; }
+.vs-label { font-family:'JetBrains Mono',monospace; font-size:8px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:#aaa; margin-bottom:6px; }
+.vs-title { font-family:'Archivo',sans-serif; font-weight:700; font-size:0.95rem; color:#111; margin-bottom:8px; }
+.vs-pros { font-size:0.8rem; color:#444; line-height:1.65; }
+.vs-pros li { list-style:none; padding-left:14px; position:relative; margin-bottom:4px; }
+.vs-pros li::before { content:""; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background:#F5C842; }
+
+/* INFO BOX */
+.info-box { background:#f9f9f7; border-radius:12px; padding:18px 22px; margin-bottom:20px; border:1px solid rgba(0,0,0,0.07); }
+.info-box-title { font-family:'Archivo',sans-serif; font-weight:700; font-size:0.9rem; color:#111; margin-bottom:8px; }
+.info-box p { font-size:0.83rem; color:#555; line-height:1.65; }
+
+@media print {
+  .page { page-break-before: always; }
+  .cover { page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eye">QuackQuotes x Scalevertise</div>
+  <h1>Growth Strategy <span>Raleigh-Durham</span></h1>
+  <p class="cover-sub">Niche analysis, bulletproof offers, guarantees, ad scripts, and revenue model review for contractor onboarding.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Market</div>
+      <div class="cover-meta-val">Raleigh-Durham, NC</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Primary Niche</div>
+      <div class="cover-meta-val">Pest Control</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="cover-meta-label">Prepared By</div>
+      <div class="cover-meta-val">Scalevertise</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 1: NICHE ANALYSIS -->
+<div class="page">
+  <div class="page-label">Section 01</div>
+  <div class="page-title">Niche Analysis</div>
+  <p class="page-sub">Deep research on the top home service niches in Raleigh-Durham. Graded on search volume, ticket size, margin, competition, and year-round viability.</p>
+
+  <div class="section-title">Launch Immediately</div>
+  <div class="niche-grid">
+
+    <div class="niche-card top">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Pest Control</div>
+          <span class="niche-badge badge-launch">Launch First</span>
+        </div>
+        <div class="niche-grade">9/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$125-344</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">50-58%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">Year-Round</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">Moderate</div>
+        </div>
+      </div>
+      <div class="niche-note">74% of revenue is recurring. 90% annual customer retention. 27 providers in Raleigh means demand is real and proven. Contractors here are always looking for more jobs and hate paying per-lead upfront. Perfect fit for QuackQuotes model.</div>
+    </div>
+
+    <div class="niche-card top">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Gutter Cleaning</div>
+          <span class="niche-badge badge-launch">Launch Fast</span>
+        </div>
+        <div class="niche-grade">8/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$100-200</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">50-65%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">2x/Year Peak</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">Moderate</div>
+        </div>
+      </div>
+      <div class="niche-note">Raleigh's heavy tree coverage means most homes need cleaning twice a year. High margin, low overhead, easy to quote. Contractors bundle it with pressure washing and window cleaning creating natural upsell opportunities.</div>
+    </div>
+
+    <div class="niche-card top">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Junk Removal</div>
+          <span class="niche-badge badge-launch">Launch Fast</span>
+        </div>
+        <div class="niche-grade">8/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$150-300</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">45-55%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">Year-Round</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">Moderate</div>
+        </div>
+      </div>
+      <div class="niche-note">Year-round demand driven by moves, renovations, and estate cleanouts. National brands (1-800-GOT-JUNK) dominate but small local operators compete on price and speed. Low barrier, easy quoting process ideal for QuackQuotes auction model.</div>
+    </div>
+
+    <div class="niche-card top">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Pressure Washing</div>
+          <span class="niche-badge badge-launch">Launch Fast</span>
+        </div>
+        <div class="niche-grade">7/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$200-500</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">45-55%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">Spring-Fall</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">Moderate</div>
+        </div>
+      </div>
+      <div class="niche-note">High-volume searches in spring. Lots of small operators with no marketing strategy who would jump at free lead generation. Seasonal but long season in NC (March-October). Ticket size hits the sweet spot for QuackQuotes 25% tier.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Add Within 60 Days</div>
+  <div class="niche-grid">
+
+    <div class="niche-card">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Plumbing</div>
+          <span class="niche-badge badge-add">Add Next</span>
+        </div>
+        <div class="niche-grade">7/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$252-623</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">45-75%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">Year-Round</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">High</div>
+        </div>
+      </div>
+      <div class="niche-note">Second highest search volume of all home services. Emergency demand means high intent from homeowners. Licensing requirement limits competition slightly. Harder to onboard contractors due to established player dominance.</div>
+    </div>
+
+    <div class="niche-card">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Electrical</div>
+          <span class="niche-badge badge-add">Add Next</span>
+        </div>
+        <div class="niche-grade">7/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat">
+          <div class="niche-stat-label">Avg Ticket</div>
+          <div class="niche-stat-val">$845-1,005</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Gross Margin</div>
+          <div class="niche-stat-val">65-67%</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Seasonality</div>
+          <div class="niche-stat-val">Year-Round</div>
+        </div>
+        <div class="niche-stat">
+          <div class="niche-stat-label">Competition</div>
+          <div class="niche-stat-val">Moderate</div>
+        </div>
+      </div>
+      <div class="niche-note">Highest gross margins of any trade. Licensing barrier limits contractor pool but those who are licensed are actively looking for work. High ticket size means QuackQuotes 15% tier applies, making it attractive to contractors. EV charger installs are a growing demand driver.</div>
+    </div>
+
+  </div>
+
+  <div class="section-title">Avoid for Now</div>
+  <div class="niche-grid">
+    <div class="niche-card">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Lawn Care</div>
+          <span class="niche-badge badge-avoid">Avoid</span>
+        </div>
+        <div class="niche-grade">4/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat"><div class="niche-stat-label">Avg Ticket</div><div class="niche-stat-val">$40-80/visit</div></div>
+        <div class="niche-stat"><div class="niche-stat-label">Competition</div><div class="niche-stat-val">Extremely High</div></div>
+      </div>
+      <div class="niche-note">Highly seasonal, extremely saturated, low ticket size, and price-sensitive customers. Most jobs fall under $200 putting QuackQuotes at the 35% tier which will feel too steep to contractors for low-margin work.</div>
+    </div>
+    <div class="niche-card">
+      <div class="niche-top">
+        <div>
+          <div class="niche-name">Roofing</div>
+          <span class="niche-badge badge-avoid">Avoid</span>
+        </div>
+        <div class="niche-grade">4/10</div>
+      </div>
+      <div class="niche-stats">
+        <div class="niche-stat"><div class="niche-stat-label">Avg Ticket</div><div class="niche-stat-val">$5,890-12,800</div></div>
+        <div class="niche-stat"><div class="niche-stat-label">Seasonality</div><div class="niche-stat-val">Storm-Dependent</div></div>
+      </div>
+      <div class="niche-note">Unpredictable demand, highly weather-dependent, long sales cycles. At 15% commission on a $8,000 job that is $1,200 to QuackQuotes per job which may face contractor pushback. Come back to this niche once the platform has proof of delivery.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2: REVENUE ANALYSIS -->
+<div class="page">
+  <div class="page-label">Section 02</div>
+  <div class="page-title">Revenue Split Analysis</div>
+  <p class="page-sub">An honest breakdown of whether QuackQuotes' current pricing tiers work for contractors and the business.</p>
+
+  <div style="margin-bottom:28px;">
+    <div class="rev-tier">
+      <div class="rev-range">Under $200</div>
+      <div class="rev-pct high">35%</div>
+      <div class="rev-detail">
+        <strong>Verdict: Too high for this tier.</strong> On a $150 pest control treatment, QuackQuotes takes $52.50 and the contractor keeps $97.50. For a job that costs them gas, time, and supplies, that margin will feel painful. This is the tier most likely to cause contractor churn or complaints. Compare to Thumbtack charging $15-75 per lead upfront regardless of win. The no-upfront-cost advantage softens it, but 35% is still aggressive on small jobs.
+        <br><strong style="color:#c62828;">Recommendation: Drop to 28-30% for sub-$200 jobs.</strong>
+      </div>
+    </div>
+    <div class="rev-tier">
+      <div class="rev-range">$200-$600</div>
+      <div class="rev-pct ok">25%</div>
+      <div class="rev-detail">
+        <strong>Verdict: Solid. This is the sweet spot.</strong> On a $400 pressure washing job, QuackQuotes takes $100 and the contractor pockets $300. That feels fair when they paid nothing upfront, faced no lead cost, and just showed up with a quote. This tier covers the majority of pest control, gutter cleaning, junk removal, and pressure washing jobs. Most contractors will accept this without pushback.
+        <br><strong style="color:#2e7d32;">Recommendation: Keep at 25%. This tier is well-positioned.</strong>
+      </div>
+    </div>
+    <div class="rev-tier">
+      <div class="rev-range">Over $600</div>
+      <div class="rev-pct good">15%</div>
+      <div class="rev-detail">
+        <strong>Verdict: Good, but consider adding a cap.</strong> On a $1,000 electrical job, 15% is $150 to QuackQuotes. That is reasonable. But if this tier reaches into roofing or HVAC replacement territory ($6,000-12,000 jobs), 15% becomes $900-1,800 per job which will face serious contractor resistance. Adding a maximum dollar cap ($300 max commission on any single job) would remove that friction while still protecting high-ticket revenue.
+        <br><strong style="color:#F5C842;">Recommendation: Add a $300 commission cap on any single job for jobs above $2,000.</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict green">
+    <div class="verdict-label">Overall Verdict</div>
+    <div class="verdict-text">The model is fundamentally strong. <strong>Paying only on a win is a genuinely better deal than Angi, HomeAdvisor, or Thumbtack for contractors.</strong> The percentage structure just needs small adjustments: lower the sub-$200 tier slightly and add a high-ticket cap. With those tweaks this becomes one of the most contractor-friendly pricing models in the home services space.</div>
+  </div>
+
+  <div class="section-title">Comparison to Competitors</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Platform</th>
+        <th>Cost to Contractor</th>
+        <th>Pay Only on Win?</th>
+        <th>Review Automation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Angi / HomeAdvisor</strong></td>
+        <td>$15-$100 per lead, win or lose</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><strong>Thumbtack</strong></td>
+        <td>$3-$75 per lead, win or lose</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><strong>Yelp Ads</strong></td>
+        <td>$300-$1,000/month upfront</td>
+        <td>No</td>
+        <td>No</td>
+      </tr>
+      <tr class="highlight">
+        <td><strong>QuackQuotes</strong></td>
+        <td>15-35% only when job is won and paid</td>
+        <td><strong>Yes</strong></td>
+        <td><strong>Yes</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PAGE 3: BULLETPROOF OFFERS -->
+<div class="page">
+  <div class="page-label">Section 03</div>
+  <div class="page-title">Bulletproof Offers</div>
+  <p class="page-sub">Five offer structures for onboarding contractors onto QuackQuotes. Graded on likelihood of success with small home service business owners in Raleigh-Durham.</p>
+
+  <div class="offer-card winner">
+    <div class="offer-top">
+      <div class="offer-num">Offer 01</div>
+      <div class="offer-title">Pay Only When You Win</div>
+      <div class="offer-score high">9/10</div>
+    </div>
+    <div class="offer-body">
+      <strong>The pitch:</strong> "Join QuackQuotes for free. We run ads in your area, collect quote requests from homeowners, and show them your profile, your price, and your reviews side by side with other local businesses. You only pay us a percentage of the job if and when the customer picks you and you get paid. If you don't win, you pay nothing."
+      <div class="offer-why">Why it works: Zero risk to the contractor. They have nothing to lose by joining and everything to gain. This is the strongest offer because it is the literal truth of how the model works. The guarantee is baked into the business model itself. Use this as the primary offer in all ads.</div>
+    </div>
+  </div>
+
+  <div class="offer-card winner">
+    <div class="offer-top">
+      <div class="offer-num">Offer 02</div>
+      <div class="offer-title">First 3 Jobs Zero Commission</div>
+      <div class="offer-score high">8/10</div>
+    </div>
+    <div class="offer-body">
+      <strong>The pitch:</strong> "Join QuackQuotes today and your first 3 jobs you win through our platform are completely commission-free. No fees on the first three. After that the normal percentage applies only when you win."
+      <div class="offer-why">Why it works: Removes all friction at signup. Contractors get to experience the platform delivering real jobs before they ever pay a cent in commission. Once they see it working on job 1, 2, and 3 they are already sold by the time commission kicks in. Cost to QuackQuotes is manageable especially on lower-ticket jobs. Best used as a launch incentive for the first wave of contractors in each niche.</div>
+    </div>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-num">Offer 03</div>
+      <div class="offer-title">5 Quote Opportunities Guaranteed in 30 Days</div>
+      <div class="offer-score mid">7/10</div>
+    </div>
+    <div class="offer-body">
+      <strong>The pitch:</strong> "We guarantee your profile will be shown to at least 5 homeowners in your niche and your area within the first 30 days. If we don't deliver 5 quote opportunities, your account is free for the next 30 days."
+      <div class="offer-why">Why it works: Gives contractors a concrete deliverable to expect. Since there are no upfront fees anyway the guarantee costs QuackQuotes nothing financially. The weakness is that delivery depends on ad performance and volume in that specific niche and area. Only use this offer once pest control ads are consistently producing leads in the Raleigh-Durham market.</div>
+    </div>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-num">Offer 04</div>
+      <div class="offer-title">We Handle Everything. You Just Show Up.</div>
+      <div class="offer-score mid">7/10</div>
+    </div>
+    <div class="offer-body">
+      <strong>The pitch:</strong> "You do the work. We handle the ads, the lead collection, the customer communication, the follow-up, and the review automation after the job. All you do is submit a quote and show up to the job if you win."
+      <div class="offer-why">Why it works: Speaks directly to the biggest pain point for small operators who have no time or budget for marketing. Positions QuackQuotes as a full back-office system, not just a lead marketplace. Works especially well for solo operators and small crews who are too busy doing the work to market themselves. Pair this offer with Offer 01 for maximum impact.</div>
+    </div>
+  </div>
+
+  <div class="offer-card">
+    <div class="offer-top">
+      <div class="offer-num">Offer 05</div>
+      <div class="offer-title">Build Your Reviews While You Work</div>
+      <div class="offer-score mid">6/10</div>
+    </div>
+    <div class="offer-body">
+      <strong>The pitch:</strong> "Every job you complete through QuackQuotes automatically triggers a review request to the customer. We send it for you. That means every job you win builds your reputation on autopilot."
+      <div class="offer-why">Why it works: Reviews are the biggest asset for any small home service business and most contractors are terrible at collecting them. This offer targets their long-term business growth, not just immediate jobs. Weaker as a standalone hook but very effective as a secondary benefit mentioned in the body of an ad after the main offer lands. Do not lead with this one.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4: GUARANTEES -->
+<div class="page">
+  <div class="page-label">Section 04</div>
+  <div class="page-title">Guarantee Options</div>
+  <p class="page-sub">Graded on risk to QuackQuotes, believability to contractors, and overall conversion power.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Guarantee</th>
+        <th>What It Says</th>
+        <th>Risk to QQ</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight">
+        <td><strong>Pay Only on Win</strong></td>
+        <td>You never pay unless you win a job and get paid by the customer.</td>
+        <td>Zero. This is the model.</td>
+        <td class="grade-cell grade-a">9/10</td>
+      </tr>
+      <tr>
+        <td><strong>Win in 30 Days or Free Month</strong></td>
+        <td>If you don't win at least 1 job through the platform in your first 30 days, your account is extended free for another 30 days.</td>
+        <td>Low. No upfront fees so "free month" costs nothing.</td>
+        <td class="grade-cell grade-a">8/10</td>
+      </tr>
+      <tr>
+        <td><strong>5 Quotes in 30 Days</strong></td>
+        <td>We will get your profile in front of at least 5 homeowners requesting quotes in your niche within 30 days.</td>
+        <td>Medium. Depends on ad volume.</td>
+        <td class="grade-cell grade-b">7/10</td>
+      </tr>
+      <tr>
+        <td><strong>More Jobs Than Angi in 60 Days</strong></td>
+        <td>We will get you more job opportunities in 60 days than you would get from Angi or HomeAdvisor for the same period, or your first 5 wins are commission-free.</td>
+        <td>Medium-High. Hard to track and verify.</td>
+        <td class="grade-cell grade-b">6/10</td>
+      </tr>
+      <tr>
+        <td><strong>Zero Upfront Lifetime Guarantee</strong></td>
+        <td>You will never pay QuackQuotes a dollar before you get paid. Guaranteed forever.</td>
+        <td>Zero. Again, this is the model.</td>
+        <td class="grade-cell grade-a">8/10</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="verdict green">
+    <div class="verdict-label">Recommended Combination</div>
+    <div class="verdict-text">Lead with <strong>Pay Only on Win</strong> in the hook and headline of every ad. Reinforce with <strong>Win in 30 Days or Free Month</strong> in the body as a secondary guarantee. These two together eliminate every objection a contractor could have about trying the platform.</div>
+  </div>
+</div>
+
+<!-- PAGE 5: TARGETING STRATEGY -->
+<div class="page">
+  <div class="page-label">Section 05</div>
+  <div class="page-title">Targeting Strategy</div>
+  <p class="page-sub">Broad targeting with a general landing page vs. niche-specific ads. Here is the honest answer.</p>
+
+  <div class="vs-grid">
+    <div class="vs-card">
+      <div class="vs-label">Option A</div>
+      <div class="vs-title">Broad "Home Service Businesses" Ad</div>
+      <ul class="vs-pros">
+        <li>Larger addressable audience in Meta</li>
+        <li>One ad to run instead of many</li>
+        <li>Landing page asks what niche they are in</li>
+        <li>Lower creative production cost</li>
+      </ul>
+      <div style="margin-top:10px; font-size:0.8rem; color:#c62828; font-weight:600;">The problem: A pest control owner scrolling Facebook stops when they see "pest control." They do not stop for "home service businesses." Generic ads get skipped. The landing page cannot fix a weak hook.</div>
+    </div>
+    <div class="vs-card winner">
+      <div class="vs-label">Option B (Recommended)</div>
+      <div class="vs-title">Niche-Specific Ads per Service Type</div>
+      <ul class="vs-pros">
+        <li>Hook speaks directly to the person watching</li>
+        <li>Far higher stop-rate and click-through</li>
+        <li>Lower CPL because relevance is high</li>
+        <li>Each ad goes to a niche-specific or general landing page</li>
+        <li>Easy to test which niche converts cheapest</li>
+      </ul>
+      <div style="margin-top:10px; font-size:0.8rem; color:#2e7d32; font-weight:600;">Start with pest control ads. Once that is converting, add gutter cleaning, then junk removal. Scale what works.</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="info-box-title">Landing Page Recommendation</div>
+    <p>One universal landing page is fine as long as the headline matches the niche in the ad. Use URL parameters or separate landing pages per niche. The form can ask "What type of home service do you provide?" as the first field so you capture the niche data without needing 10 separate pages. The critical thing is that the first thing they see on the landing page matches exactly what the ad told them they would find.</p>
+  </div>
+</div>
+
+<!-- PAGE 6: UGC AD SCRIPTS - PEST CONTROL -->
+<div class="page">
+  <div class="page-label">Section 06</div>
+  <div class="page-title">UGC Ad Scripts</div>
+  <p class="page-sub">Pest Control niche. Targeting pest control business owners in Raleigh-Durham on Meta. Hooks first, then body script.</p>
+
+  <div class="section-title">Hooks</div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 1</div>
+    <p class="hook-text">If you own a <strong>pest control company in Raleigh or Durham</strong>, here is how we are sending free job leads to local operators. You only pay us if you actually win the job.</p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 2</div>
+    <p class="hook-text">Stop paying for pest control leads that go nowhere.<br><br>There is a platform in Raleigh that only charges you <strong>when you win the job and the customer pays you</strong>.<br><br>No monthly fees. No lead cost upfront. Nothing.</p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 3</div>
+    <p class="hook-text">We run ads in Raleigh-Durham targeting homeowners who need pest control.<br><br>When someone submits a request, your profile, your price, and your reviews show up side by side with other local operators.<br><br>And <strong>you only pay if they choose you</strong>.</p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 4</div>
+    <p class="hook-text">Angi charges you $30, $50, sometimes $100 per lead. Win or lose.<br><br>QuackQuotes charges you <strong>nothing until you win</strong>.<br><br>If you own a pest control business in Raleigh, this changes everything.</p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 5</div>
+    <p class="hook-text">What if every new pest control customer you got this month cost you <strong>zero dollars upfront</strong>?<br><br>Because that is exactly what is happening for operators who joined QuackQuotes in Raleigh.</p>
+  </div>
+
+  <div class="section-title">Body Script</div>
+  <div class="script-text">
+    <p>Here is exactly how it works.</p>
+    <p>We run targeted Meta ads in the Raleigh-Durham area. When a homeowner needs pest control, they fill out a short form on our platform.</p>
+    <p>That request goes live instantly to every pest control operator in our network. You see the job. You submit your quote. And your profile shows up to the customer with:</p>
+    <ul class="script-list">
+      <li>Your price</li>
+      <li>Your reviews and Google rating</li>
+      <li>A personal note you write directly to that customer</li>
+    </ul>
+    <p>You are competing on more than just price. You are competing on reputation and trust.</p>
+    <p>If they choose you, you win the job. We handle all the follow-up and communication automatically. And when the customer pays you, we take a small percentage.</p>
+    <p>If they do not choose you, <strong>you pay absolutely nothing</strong>.</p>
+    <p>On top of that, once the job is done, we automatically send the customer a text asking for a review linked directly to your Google page. Every job you complete builds your reputation without you lifting a finger.</p>
+    <p>So if you are a pest control operator in Raleigh or Durham who is tired of paying upfront for leads that do not convert, this is your way in.</p>
+    <p><span class="hl">Click the link below and get your profile set up. It takes five minutes and costs you nothing until you win your first job.</span></p>
+  </div>
+</div>
+
+<!-- PAGE 7: GUTTER CLEANING SCRIPTS -->
+<div class="page">
+  <div class="page-label">Section 07</div>
+  <div class="page-title">UGC Ad Scripts</div>
+  <p class="page-sub">Gutter Cleaning niche. Targeting gutter cleaning and exterior service operators in Raleigh-Durham.</p>
+
+  <div class="section-title">Hooks</div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 1</div>
+    <p class="hook-text">If you do gutter cleaning in Raleigh or Durham, we are sending you job leads and <strong>you only pay when you win</strong>. No upfront cost. No monthly fee. Nothing.</p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 2</div>
+    <p class="hook-text">Every home in Raleigh needs their gutters cleaned at least twice a year.<br><br>That is thousands of jobs sitting out there every spring and every fall.<br><br>And we are running ads to send those homeowners directly to your profile. <strong>You pay nothing until they hire you.</strong></p>
+  </div>
+
+  <div class="hook">
+    <div class="hook-num">Hook 3</div>
+    <p class="hook-text">Gutter cleaning operators in Raleigh are getting booked through QuackQuotes without spending a dollar on advertising.<br><br>You submit a quote. You compete. <strong>You only pay if you win.</strong><br><br>And every job you complete automatically asks the customer for a Google review.</p>
+  </div>
+
+  <div class="section-title">Body Script</div>
+  <div class="script-text">
+    <p>Here is the deal.</p>
+    <p>Most gutter cleaning businesses in Raleigh rely on word of mouth or Google rankings to get jobs. If you are not on page one or you do not have a hundred five-star reviews, you are invisible.</p>
+    <p>QuackQuotes fixes that.</p>
+    <p>We run ads targeting homeowners in Raleigh-Durham who need their gutters cleaned. They submit a request. Your profile shows up to them with your price, your reviews, and a personal note from you to that specific customer.</p>
+    <p>You compete on a level playing field. <strong>And you only pay a percentage of the job if and when you win and the customer pays you.</strong></p>
+    <p>Nothing upfront. No monthly subscription. No paying for leads that go nowhere.</p>
+    <p>Plus every completed job triggers an automatic review request to the customer. Linked directly to your Google page. So while you are working, your reputation is growing on autopilot.</p>
+    <p>If you do gutter cleaning in Raleigh or Durham, <span class="hl">click below and get set up in five minutes</span>. It costs you nothing to join.</p>
+  </div>
+</div>
+
+<!-- PAGE 8: STATIC AD -->
+<div class="page">
+  <div class="page-label">Section 08</div>
+  <div class="page-title">Static Ad</div>
+  <p class="page-sub">iPhone Notes app format. One creative to run across all niches with minor text swaps.</p>
+
+  <div class="notes-card">
+    <div class="notes-header">
+      <span class="notes-icon">&#x1F4CB;</span>
+      <span class="notes-title">Pest Control Owners in Raleigh</span>
+      <span class="notes-date">QuackQuotes</span>
+    </div>
+    <div class="notes-body">
+      <p>We are sending <strong>free job leads to pest control operators in Raleigh</strong> and you <span class="hl">only pay if you win the job</span>.</p>
+      <p>No monthly fee. No upfront lead cost. Nothing until you get paid.</p>
+      <p>Here is how it works:</p>
+      <ul class="notes-list">
+        <li>We run ads targeting homeowners in your area who need pest control right now</li>
+        <li>Your profile, price, and reviews show up side by side with other local operators</li>
+        <li>Customer picks you, you win the job, then we take a small cut of what you made</li>
+        <li>Every completed job auto-requests a Google review for your business</li>
+      </ul>
+      <p><strong>Click Learn More to set up your free profile. Takes five minutes.</strong></p>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <div class="info-box-title">How to Adapt for Other Niches</div>
+    <p>Swap "pest control" for the niche you are targeting (gutter cleaning, junk removal, pressure washing). Everything else stays the same. Run one version per niche as a separate ad set so you can track which niche costs the least to onboard a contractor.</p>
+  </div>
+</div>
+
+</body>
+</html>

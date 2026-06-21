@@ -125,64 +125,56 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   .cta-btn { padding:16px 24px; width:100%; font-size:0.97rem; }
 }
 
-/* Lead modal */
-.modal-overlay {
-  position:fixed; inset:0; z-index:1000; background:rgba(10,8,6,0.85); backdrop-filter:blur(6px);
-  display:none; align-items:center; justify-content:center; padding:20px;
+/* Inline lead section */
+.lead-section { max-width:480px; margin:0 auto; padding:0 clamp(20px,5vw,48px) 32px; }
+.lead-step { display:none; }
+.lead-step.active { display:block; animation:fadeUp 0.22s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+.lead-card {
+  background:var(--bg-card); border:1px solid rgba(196,168,130,0.12);
+  border-radius:20px; padding:28px 24px 22px;
 }
-.modal-overlay.open { display:flex; animation:fadeIn 0.25s ease; }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.modal {
-  width:100%; max-width:440px;
-  background:var(--bg-card); border:1px solid rgba(196,168,130,0.14);
-  border-radius:22px; padding:36px 32px 28px;
-  box-shadow:0 40px 90px rgba(0,0,0,0.7), 0 0 0 1px rgba(196,168,130,0.06);
-  animation:rise 0.32s cubic-bezier(0.22,1,0.36,1);
+.lead-card h2 { font-family:var(--display); color:var(--text); font-size:1.25rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:4px; text-align:center; }
+.lead-card .l-sub { font-size:0.84rem; color:var(--text-2); text-align:center; margin-bottom:20px; line-height:1.55; }
+.l-field { margin-bottom:12px; }
+.l-field label { display:block; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3); margin-bottom:5px; }
+.l-field input {
+  width:100%; padding:13px 15px; font-size:0.95rem; font-family:var(--font);
+  background:rgba(0,0,0,0.25); border:1px solid rgba(196,168,130,0.16); border-radius:10px; color:var(--text);
+  transition:border-color 0.15s, box-shadow 0.15s; outline:none;
 }
-@keyframes rise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
-.modal-close { position:absolute; top:18px; right:22px; background:none; border:none; color:rgba(196,168,130,0.45); font-size:1.5rem; cursor:pointer; line-height:1; }
-.modal h2 { font-family:var(--display); color:var(--text); font-size:1.45rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:6px; text-align:center; }
-.modal .m-sub { font-size:0.88rem; color:var(--text-2); text-align:center; margin-bottom:24px; line-height:1.6; }
-.modal label { display:block; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3); margin-bottom:6px; }
-.modal .m-field { margin-bottom:14px; }
-.modal input {
-  width:100%; padding:13px 16px; font-size:0.96rem; font-family:var(--font);
-  background:rgba(0,0,0,0.3); border:1px solid rgba(196,168,130,0.18); border-radius:10px; color:var(--text);
-  transition:border-color 0.2s, box-shadow 0.2s; outline:none;
-}
-.modal input::placeholder { color:rgba(196,168,130,0.35); }
-.modal input:focus { border-color:rgba(255,122,0,0.5); box-shadow:0 0 0 3px rgba(255,122,0,0.08); }
-.modal .m-btn {
-  width:100%; margin-top:6px; background:var(--accent); color:#1A1714; border:none; cursor:pointer;
-  font-family:var(--font); font-weight:600; font-size:1rem; letter-spacing:-0.01em;
-  padding:16px; border-radius:100px;
+.l-field input::placeholder { color:rgba(196,168,130,0.32); }
+.l-field input:focus { border-color:rgba(255,122,0,0.45); box-shadow:0 0 0 3px rgba(255,122,0,0.07); }
+.l-btn {
+  width:100%; margin-top:8px; background:var(--accent); color:#1A1714; border:none; cursor:pointer;
+  font-family:var(--font); font-weight:700; font-size:1rem; letter-spacing:-0.01em;
+  padding:15px; border-radius:100px;
   box-shadow:0 0 0 1px rgba(255,122,0,0.35), 0 4px 20px rgba(255,122,0,0.2);
-  transition:background 0.15s ease, transform 0.15s cubic-bezier(0.22,1,0.36,1);
+  transition:background 0.15s ease, transform 0.15s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
 }
-.modal .m-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
-.modal .m-btn:active { transform:scale(0.99); }
-.modal .m-btn .m-spin { display:none; width:18px; height:18px; border:2px solid rgba(26,23,20,0.3); border-top-color:#1A1714; border-radius:50%; animation:spin 0.7s linear infinite; margin:0 auto; }
-.modal .m-btn.loading .m-label { display:none; }
-.modal .m-btn.loading .m-spin { display:block; }
+.l-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+.l-btn:active { transform:scale(0.99); }
+.l-spin { display:none; width:17px; height:17px; border:2px solid rgba(26,23,20,0.3); border-top-color:#1A1714; border-radius:50%; animation:spin 0.7s linear infinite; }
+.l-btn.loading .l-label { display:none; }
+.l-btn.loading .l-spin { display:block; }
 @keyframes spin { to { transform:rotate(360deg); } }
-.modal .m-micro { text-align:center; font-size:0.74rem; color:var(--text-3); margin-top:12px; }
+.l-micro { text-align:center; font-size:0.73rem; color:var(--text-3); margin-top:10px; }
 
-/* Multi-step modal */
-.modal-step { display:none; }
-.modal-step.active { display:block; }
+/* Checking */
+.check-anim { text-align:center; padding:36px 0; }
+.check-spinner { width:48px; height:48px; border:3px solid rgba(255,122,0,0.15); border-top-color:var(--accent); border-radius:50%; animation:spin 0.75s linear infinite; margin:0 auto 18px; }
+.check-title { font-family:var(--display); font-size:1.1rem; font-weight:700; color:var(--text); margin-bottom:6px; }
+.check-sub { font-size:0.85rem; color:var(--text-2); }
 
-/* Checking step */
-.check-anim { text-align:center; padding:32px 0 24px; }
-.check-spinner { width:52px; height:52px; border:3px solid rgba(255,122,0,0.2); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 20px; }
-.check-title { font-family:var(--display); font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:8px; }
-.check-sub { font-size:0.88rem; color:var(--text-2); }
-
-/* Available step */
-.avail-badge { width:56px; height:56px; border-radius:50%; background:rgba(255,122,0,0.12); border:2px solid rgba(255,122,0,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:1.5rem; }
-.avail-title { font-family:var(--display); font-size:1.25rem; font-weight:800; color:var(--text); margin-bottom:6px; text-align:center; }
-.avail-sub { font-size:0.85rem; color:var(--text-2); text-align:center; margin-bottom:20px; }
-.cal-frame { border-radius:12px; overflow:hidden; border:1px solid var(--border); }
-.cal-frame iframe { width:100%; height:520px; border:0; display:block; }
+/* Available */
+.avail-header { text-align:center; margin-bottom:16px; }
+.avail-badge { width:50px; height:50px; border-radius:50%; background:rgba(255,122,0,0.1); border:2px solid rgba(255,122,0,0.3); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; font-size:1.3rem; color:var(--accent); }
+.avail-title { font-family:var(--display); font-size:1.2rem; font-weight:800; color:var(--text); margin-bottom:4px; }
+.avail-sub { font-size:0.83rem; color:var(--text-2); }
+.cal-frame { border-radius:14px; overflow:hidden; border:1px solid var(--border); margin-top:14px; }
+.cal-frame iframe { width:100%; height:600px; border:0; display:block; }
 </style>
 </head>
 <body>
@@ -212,81 +204,62 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
 </div>
 
 <!-- CTA -->
-<div class="cta-block">
+<div class="cta-block" id="ctaBlock">
   <div class="wrap">
-    <a class="cta-btn" href="#" onclick="openLead();return false;">Check If Your Area Is Available <span class="arrow">&rarr;</span></a>
+    <a class="cta-btn" href="#lead-section" onclick="openLead();return false;">Check If Your Area Is Available <span class="arrow">&rarr;</span></a>
     <div class="cta-sub">One care home per area &nbsp;&bull;&nbsp; Guaranteed or you don't pay</div>
   </div>
 </div>
 
-<!-- LOGO MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-logo">Snootco</span>
-    <span class="marquee-logo">QuackQuotes</span>
-    <span class="marquee-logo">BlueWave</span>
-    <span class="marquee-logo">Subutai</span>
-    <!-- duplicate set for seamless loop -->
-    <span class="marquee-logo">Snootco</span>
-    <span class="marquee-logo">QuackQuotes</span>
-    <span class="marquee-logo">BlueWave</span>
-    <span class="marquee-logo">Subutai</span>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <img src="/assets/sv-logo-clear.png" alt="Scalevertise">
-  <div class="copy">Copyright 2025, Scalevertise. All Rights Reserved.</div>
-  <div class="disclaimer">This site is not a part of the Facebook&trade; website or Facebook&trade; Inc. Additionally, this site is NOT endorsed by Facebook&trade; in any way. FACEBOOK&trade; is a trademark of FACEBOOK&trade; Inc.</div>
-</footer>
-
-<!-- LEAD MODAL (multi-step) -->
-<div class="modal-overlay" id="leadOverlay" onclick="if(event.target===this)closeLead()">
-  <div class="modal" style="position:relative;">
-    <button class="modal-close" onclick="closeLead()" aria-label="Close">&times;</button>
+<!-- INLINE LEAD SECTION -->
+<div id="lead-section" style="display:none; padding-top:8px;">
+  <div class="lead-section">
 
     <!-- Step 1: Form -->
-    <div class="modal-step active" id="step-form">
-      <h2>Let's check your area</h2>
-      <p class="m-sub">Enter your details and we'll check if your area is still available.</p>
-      <form id="leadForm" onsubmit="return submitLead(event);">
-        <div class="m-field">
-          <label for="l-name">Full name</label>
-          <input type="text" id="l-name" placeholder="First and last" required>
-        </div>
-        <div class="m-field">
-          <label for="l-phone">Phone</label>
-          <input type="tel" id="l-phone" placeholder="(555) 555-5555" required>
-        </div>
-        <div class="m-field">
-          <label for="l-email">Email</label>
-          <input type="email" id="l-email" placeholder="you@email.com" required>
-        </div>
-        <div class="m-field">
-          <label for="l-zip">Care Home ZIP Code</label>
-          <input type="text" id="l-zip" placeholder="e.g. 90210" inputmode="numeric" pattern="[0-9]*" maxlength="10" required>
-        </div>
-        <button type="submit" class="m-btn" id="leadSubmit">
-          <span class="m-label">Check Availability &rarr;</span>
-          <span class="m-spin" aria-hidden="true"></span>
-        </button>
-        <p class="m-micro">We only work with one home per area. Takes 30 seconds.</p>
-      </form>
+    <div class="lead-step active" id="step-form">
+      <div class="lead-card">
+        <h2>Let's check your area</h2>
+        <p class="l-sub">Enter your details and we'll check if your ZIP code is still available.</p>
+        <form id="leadForm" onsubmit="return submitLead(event);">
+          <div class="l-field">
+            <label for="l-name">Full name</label>
+            <input type="text" id="l-name" placeholder="First and last" required>
+          </div>
+          <div class="l-field">
+            <label for="l-phone">Phone</label>
+            <input type="tel" id="l-phone" placeholder="(555) 555-5555" required>
+          </div>
+          <div class="l-field">
+            <label for="l-email">Email</label>
+            <input type="email" id="l-email" placeholder="you@email.com" required>
+          </div>
+          <div class="l-field">
+            <label for="l-zip">Care Home ZIP Code</label>
+            <input type="text" id="l-zip" placeholder="e.g. 90210" inputmode="numeric" maxlength="10" required>
+          </div>
+          <button type="submit" class="l-btn" id="leadSubmit">
+            <span class="l-label">Check Availability &rarr;</span>
+            <span class="l-spin" aria-hidden="true"></span>
+          </button>
+          <p class="l-micro">We only work with one home per area. Takes 30 seconds.</p>
+        </form>
+      </div>
     </div>
 
     <!-- Step 2: Checking -->
-    <div class="modal-step" id="step-checking">
-      <div class="check-anim">
-        <div class="check-spinner"></div>
-        <div class="check-title">Checking your area...</div>
-        <div class="check-sub" id="check-zip-label">Searching ZIP code availability</div>
+    <div class="lead-step" id="step-checking">
+      <div class="lead-card">
+        <div class="check-anim">
+          <div class="check-spinner"></div>
+          <div class="check-title">Checking your area...</div>
+          <div class="check-sub" id="check-zip-label">Searching ZIP code availability</div>
+        </div>
       </div>
     </div>
 
     <!-- Step 3: Available + Calendar -->
-    <div class="modal-step" id="step-calendar">
-      <div style="text-align:center;margin-bottom:18px;">
+    <div class="lead-step" id="step-calendar">
+      <div class="avail-header">
         <div class="avail-badge">&#10003;</div>
         <div class="avail-title">Your area is available!</div>
         <div class="avail-sub">Book your free strategy call below to lock in your spot.</div>
@@ -299,37 +272,51 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+  <img src="/assets/sv-logo-clear.png" alt="Scalevertise">
+  <div class="copy">Copyright 2025, Scalevertise. All Rights Reserved.</div>
+  <div class="disclaimer">This site is not a part of the Facebook&trade; website or Facebook&trade; Inc. Additionally, this site is NOT endorsed by Facebook&trade; in any way. FACEBOOK&trade; is a trademark of FACEBOOK&trade; Inc.</div>
+</footer>
+
 <script>
   var CALENDAR_URL = "https://cal.com/scalevertise.app/30min";
+  var leadOpen = false;
 
-  function openLead() {
-    showStep('step-form');
-    document.getElementById('leadOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(function(){ document.getElementById('l-name').focus(); }, 80);
-  }
-  function closeLead() {
-    document.getElementById('leadOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-    document.getElementById('calFrame').src = '';
-  }
   function showStep(id) {
     ['step-form','step-checking','step-calendar'].forEach(function(s){
       document.getElementById(s).classList.remove('active');
     });
     document.getElementById(id).classList.add('active');
   }
+
+  function openLead() {
+    if (leadOpen) {
+      document.getElementById('lead-section').scrollIntoView({ behavior:'smooth', block:'start' });
+      return;
+    }
+    leadOpen = true;
+    var sec = document.getElementById('lead-section');
+    sec.style.display = 'block';
+    showStep('step-form');
+    setTimeout(function(){
+      sec.scrollIntoView({ behavior:'smooth', block:'start' });
+      document.getElementById('l-name').focus();
+    }, 60);
+  }
+
   function submitLead(e) {
     e.preventDefault();
     var btn = document.getElementById('leadSubmit');
     btn.classList.add('loading');
     if (window.fbq) fbq('track', 'Lead');
+    var zip = document.getElementById('l-zip').value.trim();
+    document.getElementById('check-zip-label').textContent = 'Searching ZIP code ' + zip + '...';
+    showStep('step-checking');
+    document.getElementById('step-checking').scrollIntoView({ behavior:'smooth', block:'start' });
     var name  = document.getElementById('l-name').value.trim();
     var email = document.getElementById('l-email').value.trim();
     var phone = document.getElementById('l-phone').value.trim();
-    var zip   = document.getElementById('l-zip').value.trim();
-    document.getElementById('check-zip-label').textContent = 'Searching ZIP code ' + zip + '...';
-    showStep('step-checking');
     setTimeout(function(){
       var url = CALENDAR_URL
         + (CALENDAR_URL.indexOf('?') > -1 ? '&' : '?')
@@ -339,10 +326,10 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
       document.getElementById('calFrame').src = url;
       showStep('step-calendar');
       btn.classList.remove('loading');
+      document.getElementById('step-calendar').scrollIntoView({ behavior:'smooth', block:'start' });
     }, 2200);
     return false;
   }
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLead(); });
 </script>
 
 <script src="https://player.vimeo.com/api/player.js"></script>

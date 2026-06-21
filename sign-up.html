@@ -206,71 +206,11 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
 <!-- CTA -->
 <div class="cta-block" id="ctaBlock">
   <div class="wrap">
-    <a class="cta-btn" href="#lead-section" onclick="openLead();return false;">Check If Your Area Is Available <span class="arrow">&rarr;</span></a>
+    <a class="cta-btn" href="/check">Check If Your Area Is Available <span class="arrow">&rarr;</span></a>
     <div class="cta-sub">One care home per area &nbsp;&bull;&nbsp; Guaranteed or you don't pay</div>
   </div>
 </div>
 
-<!-- INLINE LEAD SECTION -->
-<div id="lead-section" style="display:none; padding-top:8px;">
-  <div class="lead-section">
-
-    <!-- Step 1: Form -->
-    <div class="lead-step active" id="step-form">
-      <div class="lead-card">
-        <h2>Let's check your area</h2>
-        <p class="l-sub">Enter your details and we'll check if your ZIP code is still available.</p>
-        <form id="leadForm" onsubmit="return submitLead(event);">
-          <div class="l-field">
-            <label for="l-name">Full name</label>
-            <input type="text" id="l-name" placeholder="First and last" required>
-          </div>
-          <div class="l-field">
-            <label for="l-phone">Phone</label>
-            <input type="tel" id="l-phone" placeholder="(555) 555-5555" required>
-          </div>
-          <div class="l-field">
-            <label for="l-email">Email</label>
-            <input type="email" id="l-email" placeholder="you@email.com" required>
-          </div>
-          <div class="l-field">
-            <label for="l-zip">Care Home ZIP Code</label>
-            <input type="text" id="l-zip" placeholder="e.g. 90210" inputmode="numeric" maxlength="10" required>
-          </div>
-          <button type="submit" class="l-btn" id="leadSubmit">
-            <span class="l-label">Check Availability &rarr;</span>
-            <span class="l-spin" aria-hidden="true"></span>
-          </button>
-          <p class="l-micro">We only work with one home per area. Takes 30 seconds.</p>
-        </form>
-      </div>
-    </div>
-
-    <!-- Step 2: Checking -->
-    <div class="lead-step" id="step-checking">
-      <div class="lead-card">
-        <div class="check-anim">
-          <div class="check-spinner"></div>
-          <div class="check-title">Checking your area...</div>
-          <div class="check-sub" id="check-zip-label">Searching ZIP code availability</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3: Available + Calendar -->
-    <div class="lead-step" id="step-calendar">
-      <div class="avail-header">
-        <div class="avail-badge">&#10003;</div>
-        <div class="avail-title">Your area is available!</div>
-        <div class="avail-sub">Book your free strategy call below to lock in your spot.</div>
-      </div>
-      <div class="cal-frame">
-        <iframe id="calFrame" src="" title="Book a Call"></iframe>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <!-- FOOTER -->
 <footer>
@@ -279,58 +219,6 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   <div class="disclaimer">This site is not a part of the Facebook&trade; website or Facebook&trade; Inc. Additionally, this site is NOT endorsed by Facebook&trade; in any way. FACEBOOK&trade; is a trademark of FACEBOOK&trade; Inc.</div>
 </footer>
 
-<script>
-  var CALENDAR_URL = "https://cal.com/scalevertise.app/30min";
-  var leadOpen = false;
-
-  function showStep(id) {
-    ['step-form','step-checking','step-calendar'].forEach(function(s){
-      document.getElementById(s).classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
-  }
-
-  function openLead() {
-    if (leadOpen) {
-      document.getElementById('lead-section').scrollIntoView({ behavior:'smooth', block:'start' });
-      return;
-    }
-    leadOpen = true;
-    var sec = document.getElementById('lead-section');
-    sec.style.display = 'block';
-    showStep('step-form');
-    setTimeout(function(){
-      sec.scrollIntoView({ behavior:'smooth', block:'start' });
-      document.getElementById('l-name').focus();
-    }, 60);
-  }
-
-  function submitLead(e) {
-    e.preventDefault();
-    var btn = document.getElementById('leadSubmit');
-    btn.classList.add('loading');
-    if (window.fbq) fbq('track', 'Lead');
-    var zip = document.getElementById('l-zip').value.trim();
-    document.getElementById('check-zip-label').textContent = 'Searching ZIP code ' + zip + '...';
-    showStep('step-checking');
-    document.getElementById('step-checking').scrollIntoView({ behavior:'smooth', block:'start' });
-    var name  = document.getElementById('l-name').value.trim();
-    var email = document.getElementById('l-email').value.trim();
-    var phone = document.getElementById('l-phone').value.trim();
-    setTimeout(function(){
-      var url = CALENDAR_URL
-        + (CALENDAR_URL.indexOf('?') > -1 ? '&' : '?')
-        + 'name=' + encodeURIComponent(name)
-        + '&email=' + encodeURIComponent(email)
-        + '&phone=' + encodeURIComponent(phone);
-      document.getElementById('calFrame').src = url;
-      showStep('step-calendar');
-      btn.classList.remove('loading');
-      document.getElementById('step-calendar').scrollIntoView({ behavior:'smooth', block:'start' });
-    }, 2200);
-    return false;
-  }
-</script>
 
 <script src="https://player.vimeo.com/api/player.js"></script>
 </body>

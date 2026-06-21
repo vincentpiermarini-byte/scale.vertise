@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1919445055416768');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0E0C0A">
+<title>Check Availability | Scalevertise</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:      #1A1714;
+  --bg-card: #221f1b;
+  --text:    #F6F2E8;
+  --text-2:  #C5C0C9;
+  --text-3:  #C4A882;
+  --border:  rgba(196,168,130,0.14);
+  --accent:  #FF7A00;
+  --accent-h:#FF9433;
+  --font:    'Inter', sans-serif;
+  --display: 'Archivo', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { background:var(--bg); -webkit-text-size-adjust:100%; }
+body {
+  font-family:var(--font); background:var(--bg); color:var(--text-2);
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+  display:flex; flex-direction:column; align-items:center;
+  padding:28px 20px 48px;
+}
+
+/* Logo */
+.logo { margin-bottom:4px; }
+.logo img { height:96px; width:auto; display:block; }
+
+/* Progress bar */
+.progress { display:flex; align-items:center; gap:6px; margin-bottom:28px; }
+.progress-step { width:28px; height:3px; border-radius:99px; background:rgba(196,168,130,0.15); transition:background 0.3s; }
+.progress-step.done { background:var(--accent); }
+.progress-step.active { background:rgba(255,122,0,0.5); }
+
+/* Card */
+.card {
+  width:100%; max-width:420px;
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:22px; padding:30px 26px 26px;
+}
+
+/* Step visibility */
+.step { display:none; }
+.step.active { display:block; }
+
+/* Form elements */
+.card-title {
+  font-family:var(--display); color:var(--text); font-size:1.35rem;
+  font-weight:800; letter-spacing:-0.02em; margin-bottom:5px; text-align:center;
+}
+.card-sub {
+  font-size:0.83rem; color:var(--text-3); text-align:center;
+  margin-bottom:22px; line-height:1.55;
+}
+.field { margin-bottom:13px; }
+.field label {
+  display:block; font-family:var(--mono); font-size:9px; font-weight:600;
+  letter-spacing:0.24em; text-transform:uppercase; color:var(--text-3); margin-bottom:5px;
+}
+.field input {
+  width:100%; padding:14px 16px; font-size:1rem; font-family:var(--font);
+  background:rgba(0,0,0,0.3); border:1px solid rgba(196,168,130,0.15);
+  border-radius:11px; color:var(--text); outline:none;
+  transition:border-color 0.15s, box-shadow 0.15s;
+  -webkit-appearance:none;
+}
+.field input::placeholder { color:rgba(196,168,130,0.3); }
+.field input:focus {
+  border-color:rgba(255,122,0,0.5);
+  box-shadow:0 0 0 3px rgba(255,122,0,0.07);
+}
+.submit-btn {
+  width:100%; margin-top:10px; padding:16px;
+  background:var(--accent); color:#1A1714; border:none; cursor:pointer;
+  font-family:var(--font); font-weight:700; font-size:1.02rem;
+  border-radius:100px; letter-spacing:-0.01em;
+  box-shadow:0 4px 22px rgba(255,122,0,0.28);
+  transition:background 0.15s, transform 0.15s;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+.submit-btn:hover { background:var(--accent-h); transform:translateY(-1px); }
+.submit-btn:active { transform:scale(0.99); }
+.spin {
+  display:none; width:18px; height:18px;
+  border:2px solid rgba(26,23,20,0.25); border-top-color:#1A1714;
+  border-radius:50%; animation:spin 0.7s linear infinite;
+}
+.submit-btn.loading .btn-label { display:none; }
+.submit-btn.loading .spin { display:block; }
+@keyframes spin { to { transform:rotate(360deg); } }
+.micro { text-align:center; font-size:0.73rem; color:rgba(196,168,130,0.45); margin-top:10px; }
+
+/* Checking step */
+.checking-wrap { text-align:center; padding:32px 0 28px; }
+.big-spinner {
+  width:56px; height:56px; margin:0 auto 20px;
+  border:3px solid rgba(255,122,0,0.12); border-top-color:var(--accent);
+  border-radius:50%; animation:spin 0.8s linear infinite;
+}
+.checking-title {
+  font-family:var(--display); color:var(--text); font-size:1.15rem;
+  font-weight:800; margin-bottom:6px;
+}
+.checking-sub { font-size:0.85rem; color:var(--text-3); }
+
+/* Available step */
+.avail-wrap { text-align:center; padding:8px 0 20px; }
+.check-icon {
+  width:54px; height:54px; border-radius:50%;
+  background:rgba(255,122,0,0.1); border:2px solid rgba(255,122,0,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; color:var(--accent); margin:0 auto 14px;
+}
+.avail-title {
+  font-family:var(--display); color:var(--text); font-size:1.3rem;
+  font-weight:800; margin-bottom:5px;
+}
+.avail-sub { font-size:0.84rem; color:var(--text-3); margin-bottom:20px; }
+.cal-wrap {
+  border-radius:14px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.cal-wrap iframe { width:100%; height:580px; border:0; display:block; }
+
+@media (max-width:460px) {
+  body { padding:20px 16px 40px; }
+  .logo img { height:80px; }
+  .card { padding:24px 18px 20px; border-radius:18px; }
+  .card-title { font-size:1.2rem; }
+  .cal-wrap iframe { height:520px; }
+}
+</style>
+</head>
+<body>
+
+<div class="logo">
+  <img src="/assets/sv-logo-clear.png" alt="Scalevertise">
+</div>
+
+<div class="progress" id="progressBar">
+  <div class="progress-step active" id="p1"></div>
+  <div class="progress-step" id="p2"></div>
+  <div class="progress-step" id="p3"></div>
+</div>
+
+<div class="card">
+
+  <!-- Step 1: Form -->
+  <div class="step active" id="step-form">
+    <div class="card-title">Check Your Area</div>
+    <div class="card-sub">One spot per area. Enter your details to see if yours is still open.</div>
+    <form id="leadForm" onsubmit="return submitLead(event);" novalidate>
+      <div class="field">
+        <label for="l-name">Full Name</label>
+        <input type="text" id="l-name" placeholder="First and last" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <label for="l-phone">Phone Number</label>
+        <input type="tel" id="l-phone" placeholder="+1 (555) 000-0000" autocomplete="tel" required>
+      </div>
+      <div class="field">
+        <label for="l-email">Email</label>
+        <input type="email" id="l-email" placeholder="you@email.com" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="l-zip">Care Home ZIP Code</label>
+        <input type="text" id="l-zip" placeholder="e.g. 90210" inputmode="numeric" maxlength="10" required>
+      </div>
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <span class="btn-label">Check Availability &rarr;</span>
+        <span class="spin"></span>
+      </button>
+      <p class="micro">We only work with one home per area. Takes 30 seconds.</p>
+    </form>
+  </div>
+
+  <!-- Step 2: Checking -->
+  <div class="step" id="step-checking">
+    <div class="checking-wrap">
+      <div class="big-spinner"></div>
+      <div class="checking-title">Checking your area...</div>
+      <div class="checking-sub" id="zip-label">Searching availability</div>
+    </div>
+  </div>
+
+  <!-- Step 3: Available + Calendar -->
+  <div class="step" id="step-calendar">
+    <div class="avail-wrap">
+      <div class="check-icon">&#10003;</div>
+      <div class="avail-title">Your area is available!</div>
+      <div class="avail-sub">Pick a time below to lock in your spot.</div>
+    </div>
+    <div class="cal-wrap">
+      <iframe id="calFrame" src="" title="Book a Call" loading="lazy"></iframe>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var CAL = "https://cal.com/scalevertise.app/30min";
+
+  function showStep(id, pStep) {
+    ['step-form','step-checking','step-calendar'].forEach(function(s){
+      document.getElementById(s).classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
+    [1,2,3].forEach(function(i){
+      var el = document.getElementById('p'+i);
+      el.classList.remove('active','done');
+      if (i < pStep) el.classList.add('done');
+      else if (i === pStep) el.classList.add('active');
+    });
+  }
+
+  function submitLead(e) {
+    e.preventDefault();
+    var name  = document.getElementById('l-name').value.trim();
+    var phone = document.getElementById('l-phone').value.trim();
+    var email = document.getElementById('l-email').value.trim();
+    var zip   = document.getElementById('l-zip').value.trim();
+    if (!name || !phone || !email || !zip) return false;
+
+    var btn = document.getElementById('submitBtn');
+    btn.classList.add('loading');
+    if (window.fbq) fbq('track', 'Lead');
+
+    document.getElementById('zip-label').textContent = 'Searching ZIP ' + zip + '...';
+    showStep('step-checking', 2);
+
+    setTimeout(function(){
+      var url = CAL + '?name=' + encodeURIComponent(name)
+        + '&email=' + encodeURIComponent(email)
+        + '&phone=' + encodeURIComponent(phone);
+      document.getElementById('calFrame').src = url;
+      showStep('step-calendar', 3);
+      btn.classList.remove('loading');
+    }, 2000);
+    return false;
+  }
+</script>
+
+</body>
+</html>

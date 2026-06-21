@@ -111,8 +111,35 @@ body {
 .cta-btn .arrow { font-size:1.1em; line-height:1; }
 .cta-sub { margin-top:10px; font-size:0.78rem; color:rgba(196,168,130,0.5); letter-spacing:0.03em; }
 
-/* Logo marquee — hidden, clutter */
-.marquee { display:none; }
+/* Client ticker */
+.ticker-wrap {
+  width:100%; overflow:hidden; padding:18px 0;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  margin:20px 0 0; position:relative; z-index:1;
+}
+.ticker-wrap::before, .ticker-wrap::after {
+  content:''; position:absolute; top:0; width:60px; height:100%; z-index:2;
+}
+.ticker-wrap::before { left:0; background:linear-gradient(to right, var(--bg), transparent); }
+.ticker-wrap::after  { right:0; background:linear-gradient(to left, var(--bg), transparent); }
+.ticker-track {
+  display:flex; width:max-content;
+  animation:ticker 18s linear infinite;
+}
+.ticker-track:hover { animation-play-state:paused; }
+.ticker-item {
+  display:flex; align-items:center; gap:10px;
+  padding:0 40px; white-space:nowrap;
+  font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase; color:rgba(196,168,130,0.5);
+}
+.ticker-item .dot {
+  width:5px; height:5px; border-radius:50%; background:var(--accent); opacity:0.6; flex-shrink:0;
+}
+@keyframes ticker {
+  0%   { transform:translateX(0); }
+  100% { transform:translateX(-50%); }
+}
 
 /* Footer */
 footer { text-align:center; padding:24px 20px 32px; position:relative; z-index:1; border-top:1px solid var(--line); margin-top:16px; }
@@ -211,6 +238,20 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   </div>
 </div>
 
+
+<!-- CLIENT TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item"><span class="dot"></span>BlueWave Pro Wash</div>
+    <div class="ticker-item"><span class="dot"></span>QuackQuotes</div>
+    <div class="ticker-item"><span class="dot"></span>SnootCo</div>
+    <div class="ticker-item"><span class="dot"></span>Subutai AI</div>
+    <div class="ticker-item"><span class="dot"></span>BlueWave Pro Wash</div>
+    <div class="ticker-item"><span class="dot"></span>QuackQuotes</div>
+    <div class="ticker-item"><span class="dot"></span>SnootCo</div>
+    <div class="ticker-item"><span class="dot"></span>Subutai AI</div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer>

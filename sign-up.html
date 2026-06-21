@@ -166,6 +166,23 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
 .modal .m-btn.loading .m-spin { display:block; }
 @keyframes spin { to { transform:rotate(360deg); } }
 .modal .m-micro { text-align:center; font-size:0.74rem; color:var(--text-3); margin-top:12px; }
+
+/* Multi-step modal */
+.modal-step { display:none; }
+.modal-step.active { display:block; }
+
+/* Checking step */
+.check-anim { text-align:center; padding:32px 0 24px; }
+.check-spinner { width:52px; height:52px; border:3px solid rgba(255,122,0,0.2); border-top-color:var(--accent); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 20px; }
+.check-title { font-family:var(--display); font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+.check-sub { font-size:0.88rem; color:var(--text-2); }
+
+/* Available step */
+.avail-badge { width:56px; height:56px; border-radius:50%; background:rgba(255,122,0,0.12); border:2px solid rgba(255,122,0,0.35); display:flex; align-items:center; justify-content:center; margin:0 auto 16px; font-size:1.5rem; }
+.avail-title { font-family:var(--display); font-size:1.25rem; font-weight:800; color:var(--text); margin-bottom:6px; text-align:center; }
+.avail-sub { font-size:0.85rem; color:var(--text-2); text-align:center; margin-bottom:20px; }
+.cal-frame { border-radius:12px; overflow:hidden; border:1px solid var(--border); }
+.cal-frame iframe { width:100%; height:520px; border:0; display:block; }
 </style>
 </head>
 <body>
@@ -224,39 +241,69 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   <div class="disclaimer">This site is not a part of the Facebook&trade; website or Facebook&trade; Inc. Additionally, this site is NOT endorsed by Facebook&trade; in any way. FACEBOOK&trade; is a trademark of FACEBOOK&trade; Inc.</div>
 </footer>
 
-<!-- LEAD MODAL (one-step, low friction) -->
+<!-- LEAD MODAL (multi-step) -->
 <div class="modal-overlay" id="leadOverlay" onclick="if(event.target===this)closeLead()">
   <div class="modal" style="position:relative;">
     <button class="modal-close" onclick="closeLead()" aria-label="Close">&times;</button>
-    <h2>Let's check your area</h2>
-    <p class="m-sub">Enter your details and we'll take you straight to the calendar to book your call.</p>
-    <form id="leadForm" onsubmit="return submitLead(event);">
-      <div class="m-field">
-        <label for="l-name">Full name</label>
-        <input type="text" id="l-name" placeholder="First and last" required>
+
+    <!-- Step 1: Form -->
+    <div class="modal-step active" id="step-form">
+      <h2>Let's check your area</h2>
+      <p class="m-sub">Enter your details and we'll check if your area is still available.</p>
+      <form id="leadForm" onsubmit="return submitLead(event);">
+        <div class="m-field">
+          <label for="l-name">Full name</label>
+          <input type="text" id="l-name" placeholder="First and last" required>
+        </div>
+        <div class="m-field">
+          <label for="l-phone">Phone</label>
+          <input type="tel" id="l-phone" placeholder="(555) 555-5555" required>
+        </div>
+        <div class="m-field">
+          <label for="l-email">Email</label>
+          <input type="email" id="l-email" placeholder="you@email.com" required>
+        </div>
+        <div class="m-field">
+          <label for="l-zip">Care Home ZIP Code</label>
+          <input type="text" id="l-zip" placeholder="e.g. 90210" inputmode="numeric" pattern="[0-9]*" maxlength="10" required>
+        </div>
+        <button type="submit" class="m-btn" id="leadSubmit">
+          <span class="m-label">Check Availability &rarr;</span>
+          <span class="m-spin" aria-hidden="true"></span>
+        </button>
+        <p class="m-micro">We only work with one home per area. Takes 30 seconds.</p>
+      </form>
+    </div>
+
+    <!-- Step 2: Checking -->
+    <div class="modal-step" id="step-checking">
+      <div class="check-anim">
+        <div class="check-spinner"></div>
+        <div class="check-title">Checking your area...</div>
+        <div class="check-sub" id="check-zip-label">Searching ZIP code availability</div>
       </div>
-      <div class="m-field">
-        <label for="l-phone">Phone</label>
-        <input type="tel" id="l-phone" placeholder="(555) 555-5555" required>
+    </div>
+
+    <!-- Step 3: Available + Calendar -->
+    <div class="modal-step" id="step-calendar">
+      <div style="text-align:center;margin-bottom:18px;">
+        <div class="avail-badge">&#10003;</div>
+        <div class="avail-title">Your area is available!</div>
+        <div class="avail-sub">Book your free strategy call below to lock in your spot.</div>
       </div>
-      <div class="m-field">
-        <label for="l-email">Email</label>
-        <input type="email" id="l-email" placeholder="you@email.com" required>
+      <div class="cal-frame">
+        <iframe id="calFrame" src="" title="Book a Call"></iframe>
       </div>
-      <button type="submit" class="m-btn" id="leadSubmit">
-        <span class="m-label">Continue To Calendar &rarr;</span>
-        <span class="m-spin" aria-hidden="true"></span>
-      </button>
-      <p class="m-micro">We only work with one home per area. Takes 30 seconds.</p>
-    </form>
+    </div>
+
   </div>
 </div>
 
 <script>
-  /* ===== Replace with your real booking calendar link (Calendly / GHL) ===== */
-  var CALENDAR_URL = "https://cal.com/scalevertise/strategy-call?locale=en-US";
+  var CALENDAR_URL = "https://cal.com/scalevertise.app/30min";
 
   function openLead() {
+    showStep('step-form');
     document.getElementById('leadOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(function(){ document.getElementById('l-name').focus(); }, 80);
@@ -264,21 +311,35 @@ footer .disclaimer { font-size:0.65rem; color:rgba(196,168,130,0.3); max-width:6
   function closeLead() {
     document.getElementById('leadOverlay').classList.remove('open');
     document.body.style.overflow = '';
+    document.getElementById('calFrame').src = '';
+  }
+  function showStep(id) {
+    ['step-form','step-checking','step-calendar'].forEach(function(s){
+      document.getElementById(s).classList.remove('active');
+    });
+    document.getElementById(id).classList.add('active');
   }
   function submitLead(e) {
     e.preventDefault();
     var btn = document.getElementById('leadSubmit');
     btn.classList.add('loading');
-    // Fire the Meta Pixel Lead event
     if (window.fbq) fbq('track', 'Lead');
-    // Pass details to the calendar so they prefill (Calendly + GHL both read these params)
-    var name = encodeURIComponent(document.getElementById('l-name').value.trim());
-    var email = encodeURIComponent(document.getElementById('l-email').value.trim());
-    var phone = encodeURIComponent(document.getElementById('l-phone').value.trim());
-    var url = CALENDAR_URL
-      + (CALENDAR_URL.indexOf('?') > -1 ? '&' : '?')
-      + 'name=' + name + '&email=' + email + '&phone=' + phone;
-    setTimeout(function(){ window.location.href = url; }, 600);
+    var name  = document.getElementById('l-name').value.trim();
+    var email = document.getElementById('l-email').value.trim();
+    var phone = document.getElementById('l-phone').value.trim();
+    var zip   = document.getElementById('l-zip').value.trim();
+    document.getElementById('check-zip-label').textContent = 'Searching ZIP code ' + zip + '...';
+    showStep('step-checking');
+    setTimeout(function(){
+      var url = CALENDAR_URL
+        + (CALENDAR_URL.indexOf('?') > -1 ? '&' : '?')
+        + 'name=' + encodeURIComponent(name)
+        + '&email=' + encodeURIComponent(email)
+        + '&phone=' + encodeURIComponent(phone);
+      document.getElementById('calFrame').src = url;
+      showStep('step-calendar');
+      btn.classList.remove('loading');
+    }, 2200);
     return false;
   }
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLead(); });

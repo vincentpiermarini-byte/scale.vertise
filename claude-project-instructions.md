@@ -789,7 +789,117 @@ Open Calendly (or booking system) while they answer. Book the soonest available 
 
 ---
 
-## PART 19: HOW TO USE THIS SYSTEM
+## PART 19: SCALING VOLUME — FINDING & REMOVING CONSTRAINTS (Agency Training — Leadscape)
+
+Goal: identify and remove the single biggest constraint in the business so you can profitably scale ad spend, increase booked calls, and grow MRR without breaking the business. "Simplicity scales, but it isn't easy" (Hormozi). This is the framework for getting from where you are to any revenue goal.
+
+### Why This Matters
+The only two ways to grow: (1) increase customers (volume), (2) increase LTGP (lifetime gross profit per customer). Your business grows only as far as its tightest constraint allows. So the first step in scaling is NOT spending more — it's finding and removing the bottleneck that's capping growth. Finding the constraint is 70% of the work; applying the right fix is the other 30%.
+
+### Step 1: Identify the Biggest Constraint
+Find the single biggest bottleneck between when someone clicks the ad and when they buy. Three tools:
+- **Questions** — talk to the sales team / yourself: what's happening on calls, with delivery, with retention?
+- **Tracking** — funnel data and metrics. The numbers almost always reveal the leak.
+- **QC (Quality Control)** — review assets, sales calls, funnels, ad copy, VSLs to spot what's breaking.
+
+### Example: Reading the Funnel Metrics
+A typical funnel with $10k ad spend:
+| Metric | Example | KPI Target |
+|--------|---------|-----------|
+| Total Bookings | 100 | — |
+| CPBC (Cost Per Booked Call) | $100 | <$250 |
+| No-Shows | 50 | <25–30% |
+| Show-Up Rate | 44% | 60–75%+ |
+| Close Rate | 12.5% | 25%+ |
+| CPA (Cost Per Acquisition) | $2k | <$4k (price-dependent) |
+| UF Cash % | 25% | 40–50% |
+| Cash ROAS | 1.8x | >2x |
+| Revenue ROAS | 7.5x | >6x |
+
+Here the obvious constraints are **show-up rate (44%, should be 75%+)** and **close rate (12.5%, should be 25%+)**. Fixing just these two — without touching ad spend — can 2–3x the cash collected, unlocking profitable scale.
+
+### Step 2: Ask Better Questions
+Numbers tell you what's wrong; context tells you why. Ask: Why aren't prospects closing? What are they saying at the end of the call? Are you collecting payment on the call or letting them "think about it"? If churn is high, are clients getting the result they paid for? The owner should ask daily: "Why can't I just double my ad spend?" The answer is your constraint.
+
+### Step 3: QC (Quality Control)
+With data + context, review: sales call recordings (are leads truly unqualified, or is it sales skill?), VSL and funnel copy (is messaging aligned?), ad creative (are we attracting the right market?), setting calls (are setters qualifying correctly?). Clients often can't see the real problem themselves — the agency's job is to be the guiding light.
+
+### Step 4: Fix the Constraint Using Checklists
+Common constraints and solutions:
+1. **High CPBC (>$250)** → check lead quality, ad targeting, creative-to-offer alignment.
+2. **Low Show Rate (<60%)** → implement setter system, follow-up flows, SMS/email reminders, call every booking within 5 minutes. This one is black-and-white: do the actions, the rate goes up.
+3. **Low Close Rate (<25%)** → review calls, refine the sales script, add objection handling, train closers. This is the hardest and most common constraint (cold/paid traffic closes very differently from organic).
+
+### Step 5: Re-Evaluate & Repeat
+After fixing the biggest constraint, look at the funnel again and find the NEXT biggest. Scaling is iterative: solve one bottleneck, move to the next.
+
+---
+
+## PART 20: THE SALES PROCESS — FULL CALL FRAMEWORK (Agency Training — Leadscape)
+
+This is the battle-tested process (thousands of calls) for repeatably converting strangers into high-ticket clients. Used as a FRAMEWORK, never read word-for-word (prospects can tell and it kills the sale). Internal KPI: 25%+ close rate. Sales is a skill, not a talent — anyone can learn it; it's a marathon, not a sprint.
+
+**The five phases:** (1) Rapport + Frame + Discovery, (2) Pitch, (3) Transition, (4) Price Drop, (5) Objection Handling. Every phase matters — you can't close without enough discovery, and you can't get paid on the call without handling objections instead of letting them "think about it."
+
+### Phase 1a: Building Rapport
+Show you're a human, not a robot. Join their rhythm (mirror + match). Don't ask about sports teams or weather — like a doctor seeing a broken arm, don't ask about favorite pasta. Use a **pattern interrupt**, not "How are you? Where are you based?" (categorization is death — never sound like the last rep). Example: "Hey [Name], what's going on? ... Awesome, I just got done doing X and saw we were on for 3pm so I wanted to jump on!" Then: "Where did you find out about [company]? ... I know we're slightly strapped on time, so are you ready to jump in?" (puts them in a buying state, indirectly confirms it's a good time).
+
+### Phase 1b: Setting the Frame (The Leadership Frame)
+You must lead the call to take the prospect down the specific path that leads to a sale. Get their permission (in their head) to ask discovery questions by promising you'll share what they came for — but you need context first to tailor it to them.
+
+Script: "So essentially, what we do for clients is [primary outcome / mechanism]... Now with that said, what are you looking to get out of the call specifically?" → they answer → "Awesome, for me to make this as productive as possible, I need some context on what your offer is and who's a qualified client to you, and from there if you're a good fit I can show you [what they said]. Cool?" Get the "cool"/agreement before moving on. You now have the leadership frame while the prospect feels in control.
+
+### Phase 1c: Discovery (The Most Important Part)
+Run discovery like a doctor diagnosing a patient. **No problem = no sale.** Ask questions to get ANSWERS, not because they're on the script — the prospect's own answers sell them on needing you. If one answer covers the next 10 questions, skip them. Tone = curious, not interrogative. The more they talk, the easier the close. Do discovery right and objections melt away.
+
+1. **Identify the Problem:** "Before I jump in, what's the biggest constraint you're facing right now?" If ego blocks ("I don't have problems"): "Gotcha, makes sense. What were you looking for help with then?" Whatever they say is the foundation of their pain. Always dig one level deeper ("I want more sales" → the real issue is no predictable acquisition system).
+2. **Dig Deeper:** Surface answers aren't enough. Prod until you understand the emotional cost: "What do you mean by that?" / "How so?" / "How's that impacting the business?" / "Could you expand on that?"
+3. **Context on the Business/Situation:** Get the facts you need to qualify. For an agency/DFY offer: their current offer/price/deliverables, their ideal client, how they currently get clients + volume, last month's revenue, and whether a partner needs to be on the call. (Build these questions by reverse-engineering what your best clients had that your worst didn't.)
+4. **Urgency Prep:** "How long have you been doing [current method]? Have you had [problem] that whole time? ... What's happened recently where you drew a line and said I can't keep operating like this?" If "I just saw your ad": "I'm sure you see tons of ads — do you book a call with every one? What about ours made you book?" Get a layer deeper. Nobody shows up without urgency.
+5. **Install Doubt:** Get them to admit they can't fix it alone. "Can I ask you an honest question? What's been keeping you from cracking [problem] on your own?" If vague: "Why haven't you just scaled your ad spend / sent more emails / done X?" Their answer is what's holding them back — use it in the pitch.
+6. **Prior Solutions:** "Outside of [current process], have you tried anything else or worked with anyone to solve [problem]?" Dig into what worked, what didn't, what they liked/hated. (Todd Brown: know what competitors say so you know what NOT to say.) This kills "I've tried this / been burned before" because you'll explain your solution in a way they haven't seen — they can't categorize you.
+7. **Desired Outcome (Future Pacing):** Switch from pain to desire. "Let's assume [problem] is solved — where do you want to grow the business to? ... Why's that number important to you? ... How soon do you want to hit it?" Makes the goal real and tangible.
+8. **Decision Structure:** Confirm decision-makers BEFORE pitching. B2B: "What does your leadership structure look like? Who's in charge of what?" B2C: "Do you have a partner? Is this a decision you'll make yourself or together?" Avoids the end-of-call "I need to ask my partner."
+9. **Transition Into Pitch:** "Based on everything we ran through, I 100% feel we can help you. So where do you want to go from here? I could walk you through exactly how we'd get you to [outcome]." They say "yes" → permission to pitch (more buy-in than just launching in).
+
+### Phase 2: The Pitch
+The pitch must do 4 things: (1) explain WHY what they tried failed and why yours is exponentially better, (2) create undeniable certainty this is the thing, (3) position you as different from anything they've seen, (4) position your offer as the path of least resistance to their goal via a logical step-by-step process. Make it FEEL custom using their own words ("Earlier you mentioned X didn't work, so here's what we do instead..."). What you say stays the same (your deliverables); HOW you say it is tailored.
+
+**Structure:** The pitch is the BRIDGE from Point A (where they are) to Point B (their goal). Open by naming A and B and saying your system is the bridge. The bridge = 3–5 **pillars**, each being a key step in fulfillment + why it's different from what they tried + why it's critical to the goal. Keep it high-level (outcomes, not weeds). Never monologue — create dialogue with prodding questions: "What are your thoughts on this?" / "How do you feel this helps you hit [goal]?" / "What questions do you have on that?" (ask "WHAT questions" not "DO you have questions").
+
+- **Flash Role** (from Oren Klaff): when selling to a market that thinks they can do it themselves, rapid-fire 5–10 technical specifics of what you do behind the scenes. They won't fully understand it, which positions you as the domain expert and as different/uncategorizable. Keep it short and sharp.
+- **Buying clients / buying scale epiphany** (Pillar 3 example): show them the math — cost per qualified call ÷ show rate ÷ close rate = CPA; vs price point = ROAS from day 1. "The easiest way to hit [goal] is a system you 100% control that lets you buy clients profitably." Close each pillar with: "In terms of that process specifically, how do you feel?"
+
+### Phase 3: Transition (Get Full Buy-In Before Price)
+You always get the TRUTH before you drop price. If they're not bought in, you'll get smokescreen objections later. Script: "On a scale of 1–10, where 1 is 'I hate this and want off the phone' and 10 is 'this is exactly what I need to hit [outcome]', where do you fall?" 8+ → move on. 7 or below → "What's stopping you from being a 9 or 10?" Only proceed once fully bought in. Then: "So you feel good about the process, no questions — what's next? Where do you want to go from here?" They'll ask the price.
+
+### Phase 4: Price Drop
+One job: say the price, then be quiet. Full confidence and certainty in tonality. "So the investment to get you to [outcome] is just $XX for [project period]..." Then silence.
+- **Collect more cash upfront (PIFs):** Never pitch a monthly figure. Pitch the multi-month total in full ("$20k for 4 months," not "$5k/month"). Many clients pay in full. 10 clients at $3k/month = $30k collected; same 10 with 50% PIF for 4 months = $75k collected. Huge for cash flow and ad spend. If they ask "is that all upfront?" the first time, hold: "Yeah, most clients just do it upfront." Many only ask for the sake of it. If genuinely bought in but blocked by the upfront amount, down-sell to a 2/3/4-pay (see finance objection).
+
+### Phase 5: Objection Handling
+**The goal of every call is a DECISION** — even a "no." The 3 valid outcomes: (1) Closed (invoice PAID — a signed contract without payment is NOT a close), (2) a Hard No (better than "I'll think about it"), (3) a Follow-up Call — only for genuine logistics (transferring money, real 50/50 partner not present, vacation), never for "I need to think about it."
+
+**The only 3 objections that exist:**
+1. **Uncertainty** — always masked by a smokescreen ("let me think about it," "do you have a guarantee?," "too risky," "too expensive"). All of these = uncertainty about the process or the timing.
+2. **Financial** — usually logistics (moving funds) in B2B; occasionally condition-based (genuinely can't afford it). Note: "too expensive" is NOT financial — it's uncertainty.
+3. **Partner** — should be handled before the pitch via discovery. If both partners are on, have them mute/discuss live ("I need to grab water for my next call, I'll give you 5 minutes" — then physically leave for 5–10 min).
+
+**Smokescreen framework:** "Let's pretend money is out of the equation — how do you feel about the process specifically? Do you feel it's what you need to get to [outcome]?" Listen to TONALITY, not words.
+- **Certainty response:** "Just so I'm clear, you're not in a SHOULD-I-do-this place, you're in a HOW-can-I-do-this place where you're 100% certain this is the route to [outcome], it's just making it work financially?" Yes → genuine finance objection. No → they reveal the real objection.
+- **Hesitancy response:** "I appreciate you being honest. Can I be honest? You just told me you were a 9, and now you seem nowhere near that certain. So what's really going on?"
+
+**Finance objection (if genuinely financial):** "So if we could break the $20k up, we'd move forward? Since it's your goal, here's what I'm willing to do: let's do a 2/3/4-pay, bringing the upfront to $X... So if I'm willing to do that, are you willing to move forward today? Perfect, what's your best email?" (Further versions: half now / half at month-end; or first month pay-per-result, e.g. $300/appointment after delivery.)
+
+**Uncertainty ("I need to think about it"):** "I hear you — you want to make the most informed decision, right? Can I be honest? The only way to make a more informed decision is via information, not time. I'm your only source of information here, so what's holding you back?"
+
+**"What if this doesn't work?":** "Just so I stay organized — despite the [7–10] results I've shown you plus the guarantee that limits your downside to zero, you're worried you'll be the one unlucky outlier? If that happens and you're our first client we don't deliver for, you'll receive [guarantee]."
+
+**"Too risky":** "When you say big risk, what do you mean specifically?" → "Is it riskier to 1) keep doing [current painful situation] with nothing to show, or 2) go slightly in the red for two weeks but get the same team that produced [results] for clients now hitting [outcome] in 3–4 months — worst case you receive [guarantee], zero downside. Which is riskier?"
+
+---
+
+## PART 21: HOW TO USE THIS SYSTEM
 
 When you receive a request, follow this process:
 

@@ -14,10 +14,12 @@ Scalevertise is a done-for-you Meta (Facebook/Instagram) advertising agency. We 
 ### The Scalevertise Offer
 "We get care homes 20 to 30 qualified resident appointments booked onto your calendar in 30 days. Done for you. Or you don't pay our management fee."
 
-- Price: $2,000/month flat management fee
+- Price: $2,000/month flat management fee (current; may move up or down as the business matures — anchor on value, see Part 22)
 - Client owns the ad account and funds ad spend directly (goes to Meta, not through us)
 - One care home per catchment area (exclusivity is a selling point)
 - Completely done for you — ads, follow-up, booking system
+
+**Stage note (pre-launch):** Scalevertise has no signed clients yet. The delivery process (Part 21) and guarantee/pricing mechanics (Part 22) are the default playbook to launch with, grounded in the Hormozi playbooks and the Leadscape agency training — refine them with real artifacts and results as clients come on. When real data exists, it overrides the defaults.
 
 ### Target Customer
 UK and US care home owners and administrators who:
@@ -899,7 +901,83 @@ One job: say the price, then be quiet. Full confidence and certainty in tonality
 
 ---
 
-## PART 21: HOW TO USE THIS SYSTEM
+## PART 21: SCALEVERTISE DELIVERY & FULFILLMENT SOP (Default Playbook — Hormozi + Agency)
+
+This is the default done-for-you delivery process to run for every care home client, built from the agency's ad system (Part 17), the Lead Nurture / follow-up data (Part 11), and Hormozi's principle that the offer must be **deliverable at scale** with a repeatable, consistent way to generate results (Part 15). No clients are signed yet, so this is the launch playbook — tighten it with real SOPs and timelines once you have live accounts.
+
+### The Promise We Are Delivering Against
+20–30 qualified resident appointments booked onto the client's calendar in 30 days, completely done for you, or the management fee is waived (see Part 22 for guarantee mechanics). Everything below exists to make that promise repeatable.
+
+### Phase 0: Onboarding (Day 0–2, immediately after payment)
+- Kickoff call: confirm goals, catchment area, and exclusivity (one home per area).
+- Get access: Meta Business Manager + ad account (client owns and funds it), Facebook page, Instagram, and payment method confirmed on the account before anything launches (Rule 6 — never let it pause for billing).
+- Install the **Meta Pixel** (ID `1919445055416768`) and set up custom conversions for Lead and booked appointment.
+- Stand up the follow-up stack: GoHighLevel (or equivalent), instant-SMS automation via Zapier firing on lead submission (Part 11), local-area-code dialer (Part 18), and the booking calendar (Cal.com — `cal.com/scalevertise.app/30min`).
+- Collect assets: facility photos/video, brand, real proof points, and any owner willingness to appear on camera.
+
+### Phase 1: Build (Day 1–5)
+- Dial the offer + positioning (Parts 15–16): the Resident Acquisition System is the named unique mechanism.
+- Write UGC scripts using the master structure (Part 8) and the proven Scalevertise hooks (Part 1). Produce one or two Notes-app statics (Part 10).
+- Build/confirm the funnel: `sign-up.html` (VSL) → `check.html` (availability + lead capture) → Cal.com booking. Preserve the pixel on every page.
+- Set up tracking end to end and test the full funnel before spending a dollar (Part 17, Step 1).
+
+### Phase 2: Launch (Day 5–7)
+- Campaign: CBO, one ad set, broad targeting age 21–50, plus one hyper-niche-interest ad set (Parts 3, 17). Optimize for **Leads** at the start, move to Schedule once qualified bookings flow.
+- One primary text, one headline, creatives are the only variable tested (Rule 5).
+- Confirm instant SMS is live BEFORE launch — running ads without it is filling a leaking bucket (Part 11).
+
+### Phase 3: Manage & Optimise (Ongoing)
+- Every lead contacted within 5 minutes (ideally under 1), double-dialed, from a local number (Part 18). This is the single biggest lever on show rate.
+- Let the campaign run a minimum 7 days; never pause a winner (Rules 6, 8). Refresh creative weekly to fight fatigue.
+- Watch the funnel metrics and KPI targets in Part 19. Optimize for Cash ROAS and the client's outcome, not CPC/CTR.
+- Find a winner and repeat it (70/20/10, Part 5).
+
+### Phase 4: Reporting & Retention
+- Weekly update to the client: spend, leads, CPBC, booked appointments, show rate, progress toward the 20–30 guarantee.
+- Solve the next constraint each cycle (Part 19). Retention is driven by results + set expectations (Part 15, pillar 2; Part 12 Retention).
+- Backend / next problem: once appointments are flowing, the care home's next bottleneck is usually tour-to-move-in conversion or staffing — note it as a future expansion of the relationship.
+
+### The Client's Responsibilities (Set These Expectations Upfront)
+The guarantee is conditional on the client doing their part (Part 22): funding the agreed ad spend, keeping the payment method live, responding to/showing up for booked tours, following the setter script (Part 18), and not pausing the account. If they don't hold up their side, the guarantee does not apply.
+
+---
+
+## PART 22: GUARANTEE & PRICING MECHANICS (Hormozi $100M Offers + Agency Offer Training)
+
+This defines exactly how the "or you don't pay" guarantee works and how pricing is framed, grounded in Hormozi's guarantee framework and the Leadscape offer + downsell training (Part 15). Defaults for pre-launch — adjust as you learn your real numbers.
+
+### Hormozi's 4 Guarantee Types
+1. **Unconditional** — full refund, no strings (strongest, riskiest). 
+2. **Conditional** — refund/waiver IF the client met defined requirements (best for service delivery — protects you from clients who self-sabotage). 
+3. **Anti-guarantee** — "all sales final," used when the offer or proof makes risk reversal unnecessary. 
+4. **Implied / performance** — you only win when they win (revenue share, pay-per-result).
+
+### Scalevertise Uses a CONDITIONAL Performance Guarantee
+"20–30 qualified resident appointments in 30 days, or your management fee is waived." This is conditional because the result depends on the client doing their part. Conditions (state them on the sales call and in the agreement, before the close):
+- Funds the agreed minimum ad spend for the full 30 days.
+- Keeps the payment method active — the account is never paused (resets Meta's learning).
+- Responds to and shows up for booked appointments; follows the setting/follow-up process.
+- Provides the assets and access needed during onboarding.
+
+Definitions to lock down (remove ambiguity — this is what bites you otherwise):
+- **"Qualified appointment"** = a family/decision-maker for a real prospective resident, in the catchment area, who books and confirms a tour/call slot. Define it precisely in the contract.
+- **The 30-day window** starts when ads go live and the funnel is fully tested — not on the day they pay (onboarding/build comes first).
+- **"Fee waived"** = the next month's management fee is not charged (or the current month is refunded). Pick one and put it in writing. Ad spend already paid to Meta is never refundable by us — the client owns that account.
+
+This mirrors the agency's "worst-case scenario" framing (Part 15): the bold guarantee requires a worst-case ad spend; if the client can only fund less, **downsell the guarantee** (fewer appointments or a longer window) rather than promising a number you can't hit.
+
+Why conditional and not unconditional: Hormozi's own data and the agency's ~1% refund rate both show that if you can deliver and you set conditions, you rarely pay out — but the bold guarantee still does the heavy lifting in the close (Part 12 Closing: the guarantee closes more than any pitch).
+
+### Pricing Framing
+- **Current price:** $2,000/month flat management fee. Client funds ad spend directly to Meta (it never flows through us).
+- **Anchor on value, never lead with price** (Part 15, Part 16). One filled bed is worth $3,000–$8,000/month to the care home. Frame: "One resident covers our entire fee several times over — everything after that is profit you weren't getting from word-of-mouth." Present the value (filled beds, occupancy, the cost of empty beds) before the number, so $2k looks small against the outcome.
+- **Accelerate cash with PIFs** (Part 20): where it fits, offer a multi-month paid-in-full at a slight discount to pull cash forward and lower churn, instead of pure month-to-month. Pitch the PIF total first; down-sell to a 2/3/4-pay only if needed.
+- **Use price as a premium filter** (Part 16): if no one ever pushes back on price, you're underpriced — raise it. Keep your close rate above ~25%. Raise the moment prospects say "I thought it'd cost more." A guaranteed outcome justifies a premium and makes higher prices easier to charge, not harder (Part 12 Pricing).
+- **Exclusivity as leverage:** one care home per catchment area creates real scarcity — use it to justify price and create urgency ("once this area is taken, it's gone").
+
+---
+
+## PART 23: HOW TO USE THIS SYSTEM
 
 When you receive a request, follow this process:
 
@@ -914,4 +992,8 @@ When you receive a request, follow this process:
 5. **Run it through the copy rules.** Check Part 13 before outputting anything. No em dashes. No vague claims. Call-out first. One CTA.
 
 6. **For new clients not covered in Part 2:** Ask for: niche, offer (specific result + timeframe + guarantee), proof points, locations (if local), and who is filming (owner, employee, or actor). Do not write scripts without these.
+
+7. **For sales, offers, pricing, fulfillment, or scaling questions:** Use the agency training (Parts 15–22). Offer creation → Part 15. Positioning/pricing → Parts 16, 22. Running/scaling ads → Parts 17, 19. Setting appointments → Part 18. Sales calls/objections → Part 20. Delivering for a Scalevertise client → Part 21. Guarantee mechanics → Part 22.
+
+8. **When the playbooks and the agency training overlap, use them hand in hand.** The Hormozi playbooks (`playbooks/`) are the principle; the Leadscape training is the applied process. If something isn't explicitly documented, default to what the relevant Hormozi playbook would prescribe, then apply it to the client's specifics. Scalevertise is pre-launch — where real client data exists, it overrides the default playbooks.
 

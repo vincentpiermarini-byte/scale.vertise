@@ -171,25 +171,27 @@ header {
 
 /* ════ HERO ════ */
 .hero {
-  padding:clamp(64px,5vw,76px) 0 clamp(28px,3vw,40px);
   position:relative; overflow:hidden;
+  height:100vh; min-height:620px;
+  display:flex; align-items:center; justify-content:center;
 }
-.hero::after {
-  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-  background:linear-gradient(90deg,transparent,var(--line),transparent);
+.hero-video {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center; z-index:0;
 }
-.hero .wrap { position:relative; z-index:2; }
-
-/* Single-col centered */
-.hero-inner { display:flex; flex-direction:column; align-items:center; gap:16px; }
-.hero-text { text-align:center; width:100%; }
-.hero-media { width:100%; max-width:560px; }
+.hero-overlay {
+  position:absolute; inset:0; z-index:1;
+  background:
+    linear-gradient(to bottom, rgba(26,23,20,0.72) 0%, rgba(26,23,20,0.38) 40%, rgba(26,23,20,0.72) 100%),
+    linear-gradient(to right, rgba(26,23,20,0.35) 0%, transparent 35%, transparent 65%, rgba(26,23,20,0.35) 100%);
+}
+.hero .wrap { position:relative; z-index:2; text-align:center; }
 
 .hero-callout {
   display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:10px; font-weight:500;
   letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
-  margin-bottom:10px;
+  margin-bottom:18px;
 }
 .hero-callout .dot {
   width:6px; height:6px; border-radius:50%;
@@ -200,84 +202,17 @@ header {
 
 .hero h1 {
   font-family:var(--display);
-  font-size:clamp(1.6rem,2.4vw,2.2rem); font-weight:700; line-height:1.12;
-  letter-spacing:-0.025em; max-width:800px; margin:0 auto 12px; color:var(--text);
+  font-size:clamp(2rem,4.5vw,3.8rem); font-weight:800; line-height:1.08;
+  letter-spacing:-0.03em; max-width:900px; margin:0 auto 20px; color:var(--text);
+  text-shadow:0 2px 24px rgba(0,0,0,0.4);
 }
 .hero h1 .hl { color:var(--accent); }
 .hero-sub {
-  font-size:0.95rem; color:var(--text-2);
-  line-height:1.55; max-width:640px; margin:0 auto;
+  font-size:clamp(1rem,1.6vw,1.15rem); color:rgba(246,242,232,0.82);
+  line-height:1.65; max-width:580px; margin:0 auto 32px;
+  text-shadow:0 1px 12px rgba(0,0,0,0.5);
 }
-
-.trust-row {
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
-  gap:14px 32px; margin-bottom:36px;
-}
-.proof-pill-ph {
-  display:inline-flex; align-items:center; gap:12px;
-  padding:9px 14px 9px 18px; border-radius:100px;
-  border:1px dashed rgba(196,168,130,0.25); background:rgba(196,168,130,0.04);
-}
-.proof-pill-stars { color:rgba(196,168,130,0.45); letter-spacing:1.5px; font-size:0.9rem; }
-.proof-pill-text { font-size:0.85rem; color:var(--text-2); font-weight:500; }
-.proof-pill-tag {
-  font-family:var(--mono); font-size:8.5px; font-weight:700;
-  letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
-  background:rgba(196,168,130,0.08); border-radius:100px; padding:5px 11px;
-}
-
-.hero-cta-block { display:flex; flex-direction:column; align-items:center; margin-top:18px; }
-
-/* VSL */
-.vsl-frame {
-  position:relative; max-width:none; margin:0 auto;
-  aspect-ratio:unset; border-radius:18px; overflow:hidden;
-  background:linear-gradient(155deg, #1A1410 0%, #120F0C 55%, #0D0B09 100%);
-  border:1px solid rgba(196,168,130,0.12);
-  box-shadow:0 28px 72px rgba(0,0,0,0.6), 0 0 60px rgba(196,168,130,0.04);
-}
-.vsl-topbar {
-  position:absolute; top:0; left:0; right:0; height:40px;
-  display:flex; align-items:center; gap:8px; padding:0 18px;
-  background:rgba(13,27,42,0.85); border-bottom:1px solid var(--line);
-  backdrop-filter:blur(8px);
-}
-.vsl-topbar i { width:10px; height:10px; border-radius:50%; background:rgba(196,168,130,0.2); }
-.vsl-topbar span {
-  margin-left:10px; font-family:var(--mono); font-size:10px;
-  letter-spacing:0.18em; text-transform:uppercase; color:var(--text-3);
-}
-.vsl-play {
-  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-  width:clamp(68px,9vw,88px); height:clamp(68px,9vw,88px); border-radius:50%;
-  background:linear-gradient(160deg, var(--accent-h), var(--accent));
-  display:flex; align-items:center; justify-content:center;
-  text-decoration:none; cursor:pointer;
-  box-shadow:0 0 0 8px rgba(196,168,130,0.1), 0 0 0 1px rgba(196,168,130,0.35), 0 8px 32px rgba(196,168,130,0.2);
-  transition:transform 0.2s cubic-bezier(0.22,1,0.36,1);
-}
-.vsl-play:hover { transform:translate(-50%,-50%) scale(1.07); }
-.vsl-play::after {
-  content:''; position:absolute; inset:-14px; border-radius:50%;
-  border:1px solid rgba(196,168,130,0.25);
-  animation:ringPulse 2.4s ease-out infinite;
-}
-@keyframes ringPulse {
-  0%   { transform:scale(0.85); opacity:1; }
-  100% { transform:scale(1.35); opacity:0; }
-}
-.vsl-play svg { margin-left:5px; }
-.vsl-ph {
-  position:absolute; bottom:0; left:0; right:0; padding:20px 24px;
-  background:linear-gradient(0deg, rgba(2,2,2,0.92) 0%, transparent 100%);
-  pointer-events:none;
-}
-.vsl-ph-label {
-  font-family:var(--mono); font-size:9px; font-weight:700;
-  letter-spacing:0.28em; text-transform:uppercase;
-  color:var(--accent); opacity:0.6; display:block; margin-bottom:4px;
-}
-.vsl-ph-text { font-family:var(--mono); font-size:0.75rem; color:var(--text-3); line-height:1.55; }
+.hero-cta-block { display:flex; flex-direction:column; align-items:center; }
 
 /* ════ PAIN GRID ════ */
 .pain-grid {
@@ -636,7 +571,6 @@ footer .legal a:hover { color:var(--accent); }
 section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
 /* Desktop section max line length */
-@media (min-width:641px) { .scroll-hint { display:none; } }
 @media (min-width:880px) {
   .section-sub { max-width:580px; }
 }
@@ -655,43 +589,34 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="/assets/care-team-photo.jpg">
+    <source src="/assets/hero-bg.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
   <div class="wrap">
-
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-callout enter" style="animation-delay:0.05s;font-size:16px;letter-spacing:0.18em;">
-          <span class="dot"></span>
-          Attention: Care Homes
-        </div>
-
-        <h1 class="enter" style="animation-delay:0.1s;">
-          We get <span class="hl">care homes</span> 20–30 qualified resident appointments in 30 days.<br>Or you don't pay our fee.
-        </h1>
-
-        <p class="hero-sub enter" style="animation-delay:0.18s;">
-          See exactly how we fill beds on a predictable schedule, and why we guarantee it.
-        </p>
-      </div>
-
-      <div class="hero-media enter" style="animation-delay:0.26s;">
-        <div class="vsl-frame">
-          <div class="vsl-topbar">
-            <i></i><i></i><i></i>
-          </div>
-          <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1202688675?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;title=0&amp;byline=0&amp;portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Scalevertise VSL"></iframe></div>
-        </div>
-      </div>
-
-      <div class="hero-text enter" style="animation-delay:0.34s; margin-top:0;">
-        <p class="hero-sub" style="margin-bottom:0;">
-          Done-for-you ads, instant follow-up, to get you qualified booked appointments.<br><strong style="color:var(--text);">One home per area. Once your catchment is taken, it's closed.</strong>
-        </p>
-        <div class="hero-cta-block" style="margin-top:16px;">
-          <a class="cta-btn" href="/survey">Check If Your Area Is Available</a>
-        </div>
-      </div>
+    <div class="hero-callout enter" style="animation-delay:0.05s;">
+      <span class="dot"></span>
+      Attention: Care Homes
     </div>
 
+    <h1 class="enter" style="animation-delay:0.12s;">
+      We get <span class="hl">care homes</span><br>20–30 qualified resident<br>appointments in 30 days.<br>Or you don't pay our fee.
+    </h1>
+
+    <p class="hero-sub enter" style="animation-delay:0.22s;">
+      Done-for-you Meta ads and instant follow-up that fill empty beds on a predictable schedule. One home per area — once your catchment is taken, it's closed.
+    </p>
+
+    <div class="hero-cta-block enter" style="animation-delay:0.32s;">
+      <a class="cta-btn" href="/sign-up">Check If Your Area Is Available</a>
+      <p class="cta-micro">No commitment. Takes 60 seconds.</p>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    Scroll
   </div>
 </section>
 
@@ -964,7 +889,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
   <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,#1A1714 0%,transparent 25%,transparent 75%,#1A1714 100%);pointer-events:none;"></div>
   <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px;min-height:clamp(420px,56vw,520px);padding:56px clamp(20px,5vw,48px);">
     <p style="font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--text);line-height:1.25;max-width:520px;margin:0;">Your area may still be open. Check now before a competitor does.</p>
-    <a class="cta-btn" href="/survey">Check If Your Area Is Available</a>
+    <a class="cta-btn" href="/sign-up">Check If Your Area Is Available</a>
   </div>
 </section>
 
@@ -1038,6 +963,5 @@ function toggleFaq(q) {
   <a class="sticky-pill-btn" href="/survey">Book a Call</a>
 </div>
 
-<script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>

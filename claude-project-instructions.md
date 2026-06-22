@@ -98,6 +98,44 @@ Hook 5 — Dream Outcome:
 
 **Follow-up issue:** Leads are going cold because Josh follows up 1 hour later. Fix = instant automated SMS via Zapier + GoHighLevel firing the second the lead form is submitted. Template: "Hey [First Name]! This is Josh from Blue Wave Pro Wash. Just saw your request come through and I'm pulling together your quote now. I'll give you a call shortly. Feel free to reply here with any questions."
 
+### Client 3: QuackQuotes
+**What they are:** A local home-services marketplace platform connecting homeowners with vetted local contractors in the Raleigh-Durham, North Carolina area. Not a lead seller. A quote marketplace.
+
+**Launch niche:** Pest control. Secondary niches in order: gutter cleaning, junk removal, pressure washing.
+
+**The model (this is the entire differentiator — get it right):**
+QuackQuotes does NOT sell leads. It does NOT charge per lead upfront. A contractor only pays a small commission AFTER they win the job AND the customer has already paid them. Zero upfront cost, zero monthly fee, zero subscription, zero risk.
+
+**How it works for the homeowner:**
+1. QuackQuotes runs paid ads in Raleigh-Durham targeting homeowners who need a service right now
+2. The homeowner submits one job request through the platform
+3. That request goes out to a small group of local contractors in that niche, who each submit a quote
+4. The homeowner receives ONE single form with every contractor's quote laid out side by side — each showing the contractor's photo, their price, a link to their Google reviews, and a personal note written to that homeowner
+5. The homeowner reads them at their own pace and picks the one they trust most
+6. Once chosen, QuackQuotes handles scheduling and payment end to end
+
+**How it works for the contractor (the pitch):**
+- You get to compete for jobs you would never have known about, on a level playing field
+- You are NOT racing to call first (Angi/Thumbtack model). You compete on trust, price, reviews, and your personal note
+- You pay nothing until you win the job and the customer has already paid you
+- First 3 jobs are commission-free
+- Every completed job automatically triggers a Google review request to the customer, linked to your profile, building your reputation on autopilot
+- One contractor per niche per zip code to keep competition fair
+
+**The villain / contrast (against Angi, Thumbtack, HomeAdvisor):**
+Those platforms charge $50–$100 per lead upfront. You pay whether you win or lose. The lead is blasted to multiple companies and the fastest caller wins, not the best company. QuackQuotes flips that: you only pay per win, after you've been paid. Google ranking does not give small operators a level playing field. QuackQuotes does, with no money spent on ads or other platforms by the contractor.
+
+**Target customer (who QuackQuotes recruits):** Local home-service contractors in Raleigh-Durham (pest control, gutter cleaning, junk removal, pressure washing) who do great work but cannot get found online, do not rank on Google, have few reviews, and have no ad budget. They are losing jobs to whoever markets best, not whoever works best.
+
+**QuackQuotes UGC Script Formula (recruiting contractors):**
+1. Call-out: Creative, situation-mirror style. Name the contractor and their situation, not a plain label. ("You run a pest control company in Raleigh and your phone should be ringing more than it is...")
+2. Pain / Villain: The pay-per-lead trap. Paying for leads that don't close, fastest-caller-wins, paying win or lose
+3. Mechanism: Homeowner picks from quotes side by side; you compete on merit; QuackQuotes handles scheduling and payment
+4. Risk reversal: You pay nothing until you win and the customer has paid you. First 3 jobs free.
+5. CTA: "Set up your profile in five minutes. Costs nothing until you win your first job."
+
+**Reference doc in repo:** `quackquotes-strategy.html` / `QuackQuotes-Strategy.pdf` (full niche analysis, offer grading, revenue model, hooks, body scripts, static ad).
+
 ---
 
 ## PART 3: THE 8 AGENCY RULES (From strategy call with agency spending $40k+/month)
@@ -578,7 +616,7 @@ Before launching any campaign for any client, confirm all of the following:
 
 When you receive a request, follow this process:
 
-1. **Identify the client and niche.** Scalevertise (care homes), Subutai AI (HVAC), Blue Wave (pressure washing Cary/NC), or a new client.
+1. **Identify the client and niche.** Scalevertise (care homes), Subutai AI (HVAC), Blue Wave (pressure washing Cary/NC), QuackQuotes (home-services marketplace, Raleigh-Durham), or a new client.
 
 2. **Identify the deliverable.** UGC script, static ad, hook list, strategy doc, campaign structure, offer refinement, or something else.
 

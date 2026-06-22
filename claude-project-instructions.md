@@ -706,7 +706,90 @@ Pricing is one of the most powerful positioning levers. The agency says no to cl
 
 ---
 
-## PART 17: HOW TO USE THIS SYSTEM
+## PART 17: BUILDING THE ADS SYSTEM (Agency Training — Leadscape)
+
+This is the agency's VSL-based acquisition system, the same one used to scale clients to $50M–$200M/month. It governs how the agency runs the front-end funnel and how the founder should think about ads, close rates, and scaling. Note: for Scalevertise's own client-facing offers (care homes, etc.) we use the direct UGC + booking funnel in Parts 4–8. This Part 17 system is for running and scaling an agency/coaching business on a VSL funnel — it applies to how Scalevertise itself acquires clients.
+
+### Philosophy on VSL Acquisition
+The goal is a VSL-based funnel (not a webinar or challenge funnel) that predictably books qualified calls onto the calendar, then closes them and scales profitably. Once the VSL funnel is built, closers take the calls, and the team runs marketing, the business becomes a machine. The founder's job becomes: lead the team, make decisions, watch the calls and clients roll in. That is a true asset generating revenue on autopilot. The catch: upfront effort is required, especially on the sales side, because your close rate determines everything.
+
+### The VSL Death Trap
+Most agencies fail here. The ads and VSL ARE working and generating calls, but:
+- **Scenario 1:** Calls are qualified, but you or your closer can't close them, so you assume the VSL/ads "don't work."
+- **Scenario 2:** You think the calls are unqualified, but on review the leads are fine and closeable — the sales process just isn't strong enough.
+
+In both cases the result is identical: it is a SALES issue, not a funnel issue. You never get a scalable acquisition asset because close rates aren't where they need to be. The funnel will generate qualified leads. Not every lead will be qualified (most will be), but if you believe the leads are bad and the funnel is broken, you are almost always missing that it is a sales problem.
+
+### Why Close Rates Are Everything
+Spend $30k on ads, get ~100 calls. Close rate determines business size:
+| Close Rate | Revenue Collected | Cash ROAS | Outcome |
+|-----------|-------------------|-----------|---------|
+| 10% | $60k | 2x | Double spend, slow growth |
+| 15% | $90k | 3x | Triple spend, solid growth |
+| 25% | $150k | 5x | Scalable money machine |
+
+Push every client to a 25%+ close rate on qualified calls. Below this, you can't scale because you're stuck at 2x ROAS or lower.
+
+### Step 1: Build the Foundations
+Before running ads, confirm: offer + positioning dialed in (Parts 15–16), VSL script finalized, tracking set up (pixel, events, custom conversions), funnel tested end to end.
+
+### Step 2: Launch the VSL Ads
+- **Campaign objective:** Optimize for **Leads** at the start (cheaper, more front-end volume, less spend to test). Later, once qualified bookings are flowing, optimize for Schedule/booked calls.
+- **Targeting (two ad sets):** (1) Broad / top-of-market audience — let Meta's AI find the ideal client via the ad script and messaging. Broad ad sets are often the best performers. (2) Hyper-niche interests based on what the specific niche cares about.
+- **Creatives:** Direct-response hook (great offer + great hook), proof-based (case studies, wins), and an educational/narrative angle.
+
+### Step 3: Optimise for Profitability
+Main metric: **% of ad spend on your P&L — should be 20–25%.** Below 20%, spend more. Above 25%, fix constraints: increase close rates, improve upfront cash per deal, adjust price point or terms. Optimize for **Cash ROAS and P&L health** — do NOT obsess over CPC or CTR; they don't matter here.
+
+### Step 4: Scale Aggressively
+Once the funnel hits KPI: duplicate winning ad sets, increase budget 20–30% per day (avoid fatigue and cost spikes), launch new creatives weekly to avoid ad fatigue, and expand TAM / move into adjacent niches when ready. This is how you go from $30k/month spend to $90k/month without losing profitability, scaling toward $1M/month+.
+
+### Step 5: Sales Enablement
+Even the best ads won't save a weak sales process. The founder must: take the first 2 weeks of calls themselves (if no proven closer), record and review calls (train closers on what works), show up to weekly group coaching calls, and get feedback on sales scripts, objection handling, and discovery. This is the only way to turn a good VSL into a true acquisition asset.
+
+---
+
+## PART 18: MASTERING APPOINTMENT SETTING (Agency Training — Leadscape)
+
+Goal: build an appointment-setting system that consistently turns leads into qualified, showed-up calls, lowering cost per booked call (CPBC), boosting close rates, and making ad spend far more profitable. The founder does the setting at the start; an appointment setter is brought in later (clients who call leads themselves first perform best).
+
+### Why Setting Matters
+Done right, setters: multiply conversion (5–6x more calls booked on the same ad spend), lower CPBC (more booked calls per dollar = higher ROAS), increase show-up rates (90%+ on setter-booked calls because the prospect already had a conversation), and boost close rates (30–50% more on setter-booked calls vs calls booked straight from the ad).
+
+### The 7 Levers of Setting
+When all 7 are stacked, expect: 15–30% lead-to-set ratio, 75%+ show rate, 25%+ close rate on setter calls.
+1. **Clean Data.** Leads must be real. Fake opt-ins exist but should stay below 10–20%.
+2. **Volume.** At least 3–5 leads per day per setter (ad-spend dependent). CPL ideally under $50 (niche-dependent).
+3. **Speed to Lead.** The most important lever. Call every lead within 5 minutes, ideally under 1 minute. Leads called quickly convert ~22x better than leads called after 24 hours. Within 5 minutes they still remember the ad and who you are.
+4. **Local Dialer.** Call from a number in the lead's local area code (GoHighLevel dialer recommended). Pickup rates skyrocket when calls look local.
+5. **Double Dial.** If no answer, hang up and immediately redial. The second call breaks through Do Not Disturb and dramatically increases answer rate (they assume it's important).
+6. **Quality.** Lightly qualify to keep time-wasters off the calendar, but do NOT over-qualify — the goal is to get them to the sales call, not to sell them on the product yet.
+7. **Script & Conversation Quality.** Genuine, curious, focused on booking the call — not pitching the offer. A great conversation pre-sells the sales call and lifts show and close rates.
+
+### The Setter Workflow (Speed-to-Lead System)
+New lead → instantly zapped into email → notifications ON, claim the lead immediately → culture is "dog mentality," whoever grabs the lead first wins → average speed-to-lead target under 60 seconds (aim for 30 seconds).
+
+### The Setter Script Framework
+**1. Opening & Pattern Interrupt**
+"Hey, is this [Name]?" (wait) "Perfect. I'm just reaching out because you recently inquired about [getting more clients / the result] for your [business type], does that ring a bell?" (If they don't remember, gently remind: "You might've seen one of our ads on Facebook about [offer].")
+
+**2. Business Discovery (Light Qualification)**
+"Do you currently run an [insert niche]?" (curious tone, wait) → "Awesome, how many clients are you currently working with right now?" (wait) → "Got it. And just so I know how we might be able to help, what exactly do you do? What's your niche or main service?" (wait) → "Perfect, and how are you currently getting clients right now?" (Listen carefully — are they running ads, referrals, outbound? This is insight for the closer later.)
+
+**3. Transition to Call Booking**
+"Awesome, thanks for sharing that. Based on what you've told me, I'd love to get you booked in for a quick strategy session with our Head of Fulfilment. On the call he'll walk you through how we can help you book [10+ new clients in the next 30 days] using the same system we've used to generate 7 figures for our clients. Are you available tomorrow for a quick 30-minute call?" (Pull up the calendar while they respond; aim for the earliest available time.)
+
+**4. Calendar Booking & Confirmation**
+Open Calendly (or booking system) while they answer. Book the soonest available slot. Confirm out loud: "Perfect, I've got you locked in for [day + time]. You'll get a confirmation email and a text reminder before the call. Sound good?" (Pause, get a verbal yes — this increases show rate.)
+
+**5. Soft Close & Show-Up Reinforcement**
+"Awesome, just make sure you're in a quiet place for the call and can give it your full attention, because we'll be showing you exactly how to scale your client acquisition. Fair?" (Get agreement — micro-commitment increases show rate.)
+
+**Application to Scalevertise's own funnel:** The lead flow on sign-up.html → check.html → Cal.com booking is the front end. These 7 levers and the setter script are how to convert those booked leads into showed-up, closed clients. Speed to lead under 5 minutes is non-negotiable (ties directly to Part 11's instant-SMS follow-up system).
+
+---
+
+## PART 19: HOW TO USE THIS SYSTEM
 
 When you receive a request, follow this process:
 

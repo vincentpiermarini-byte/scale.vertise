@@ -22,9 +22,9 @@ src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Scalevertise: 20–30 Qualified Resident Appointments in 30 Days, or You Don't Pay">
-<meta property="og:description" content="We build and run a complete Meta advertising system for care homes that delivers confirmed resident appointments on your calendar. Done for you, flat rate, guaranteed.">
+<meta property="og:description" content="We build and run a complete Meta advertising system for retirement homes that delivers confirmed resident appointments on your calendar. Done for you, flat rate, guaranteed.">
 <meta property="og:image" content="https://scalevertise.app/assets/og-logo.jpeg">
-<title>Scalevertise | Resident Acquisition for Care Homes</title>
+<title>Scalevertise | Resident Acquisition for Retirement Homes</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,6 +179,9 @@ header {
   height:100vh; min-height:620px;
   display:flex; align-items:center; justify-content:center;
 }
+@media (max-width:640px) {
+  .hero { align-items:flex-start; padding-top:clamp(100px,22vh,160px); }
+}
 .hero-video {
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; object-position:38% center; z-index:0;
@@ -279,22 +282,20 @@ header {
   background:var(--bg-card); border:1px solid var(--line);
   border-radius:22px; padding:clamp(32px,4vw,52px); align-items:center;
 }
-.incl-list { list-style:none; display:grid; gap:0; }
+.incl-list { list-style:none; }
 .incl-list li {
+  display:flex; align-items:center; gap:13px;
   font-size:0.94rem; line-height:1.5; color:var(--text-2);
-  padding:13px 0 13px 32px; border-bottom:1px solid var(--line);
-  position:relative;
+  padding:12px 0; border-bottom:1px solid var(--line);
 }
 .incl-list li:last-child { border-bottom:none; }
 .incl-list li::before {
-  content:''; position:absolute; left:0; top:15px;
-  width:18px; height:18px; border-radius:50%;
+  content:'✓';
+  flex-shrink:0;
+  width:22px; height:22px; border-radius:50%;
   background:rgba(255,122,0,0.12); border:1px solid rgba(255,122,0,0.4);
-}
-.incl-list li::after {
-  content:''; position:absolute; left:6px; top:19px;
-  width:6px; height:3px; border-left:1.5px solid var(--accent);
-  border-bottom:1.5px solid var(--accent); transform:rotate(-45deg);
+  color:var(--accent); font-size:11px; font-weight:700;
+  line-height:22px; text-align:center; display:inline-block;
 }
 
 @media (max-width:880px) {
@@ -678,32 +679,60 @@ footer .legal a:hover { color:var(--accent); }
 
 /* ════ SECTION NAV ════ */
 .section-nav {
-  position:sticky; top:0; z-index:20;
-  background:rgba(20,17,14,0.82); backdrop-filter:blur(14px);
+  position:sticky; top:0; z-index:25;
+  background:rgba(20,17,14,0.88); backdrop-filter:blur(16px);
   border-bottom:1px solid var(--line);
-  overflow-x:auto; -webkit-overflow-scrolling:touch;
-  scrollbar-width:none;
 }
-.section-nav::-webkit-scrollbar { display:none; }
-.section-nav-inner {
-  display:flex; align-items:center; gap:0;
+.section-nav-bar {
+  display:flex; align-items:center; justify-content:space-between;
   max-width:1120px; margin:0 auto;
   padding:0 clamp(16px,4vw,40px);
+  height:46px;
 }
-.section-nav a {
-  flex-shrink:0; padding:14px 18px;
+.section-nav-label {
+  font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
+}
+.section-nav-toggle {
+  background:none; border:1px solid var(--line); border-radius:8px;
+  padding:6px 12px; cursor:pointer; display:flex; align-items:center; gap:6px;
   font-family:var(--mono); font-size:9px; font-weight:600;
-  letter-spacing:0.2em; text-transform:uppercase;
+  letter-spacing:0.16em; text-transform:uppercase; color:var(--text-3);
+  transition:border-color 0.18s, color 0.18s;
+}
+.section-nav-toggle:hover { border-color:rgba(255,122,0,0.4); color:var(--accent); }
+.section-nav-toggle svg { transition:transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+.section-nav.open .section-nav-toggle svg { transform:rotate(180deg); }
+.section-nav-links {
+  overflow:hidden; max-height:0;
+  transition:max-height 0.38s cubic-bezier(0.22,1,0.36,1);
+  border-top:0px solid var(--line);
+}
+.section-nav.open .section-nav-links {
+  max-height:260px;
+  border-top:1px solid var(--line);
+}
+.section-nav-links-inner {
+  display:flex; flex-wrap:wrap; gap:0;
+  max-width:1120px; margin:0 auto;
+  padding:8px clamp(16px,4vw,40px);
+}
+.section-nav-links a {
+  flex-shrink:0; padding:9px 16px;
+  font-family:var(--mono); font-size:9px; font-weight:600;
+  letter-spacing:0.18em; text-transform:uppercase;
   color:var(--text-3); text-decoration:none;
-  border-bottom:2px solid transparent;
-  transition:color 0.18s ease, border-color 0.18s ease;
+  border-radius:8px;
+  transition:color 0.18s ease, background 0.18s ease;
   white-space:nowrap;
 }
-.section-nav a:hover { color:var(--accent); border-bottom-color:rgba(255,122,0,0.4); }
-.section-nav a.active { color:var(--accent); border-bottom-color:var(--accent); }
-@media (max-width:640px) {
-  .section-nav a { font-size:8px; padding:12px 13px; letter-spacing:0.15em; }
+.section-nav-links a:hover { color:var(--accent); background:rgba(255,122,0,0.06); }
+.section-nav-links a.active { color:var(--accent); }
+.section-nav-links a.book-link {
+  color:var(--accent); border:1px solid rgba(255,122,0,0.35);
+  margin-left:auto; margin-top:0;
 }
+.section-nav-links a.book-link:hover { background:rgba(255,122,0,0.1); }
 
 /* ════ TEAM 2-COL ════ */
 .team-grid-2 {
@@ -735,6 +764,28 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
 <main style="padding-bottom:0">
 
+<!-- ═══════════ SECTION NAV ═══════════ -->
+<nav class="section-nav" id="sectionNav">
+  <div class="section-nav-bar">
+    <span class="section-nav-label">Scalevertise</span>
+    <button class="section-nav-toggle" onclick="toggleSectionNav()" aria-expanded="false" id="navToggle">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      Menu
+    </button>
+  </div>
+  <div class="section-nav-links" id="sectionNavLinks">
+    <div class="section-nav-links-inner">
+      <a href="#pain">The Problem</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#team">The Team</a>
+      <a href="#included">What's Included</a>
+      <a href="#guarantee">Guarantee</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://cal.com/scalevertise.app/30min" class="book-link">Book a Call</a>
+    </div>
+  </div>
+</nav>
+
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline>
@@ -745,7 +796,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
   <div class="hero-center enter" style="animation-delay:0.15s;">
     <span class="hero-wordmark">Scalevertise</span>
-    <p class="hero-tagline">Resident Acquisition for Care Homes</p>
+    <p class="hero-tagline">Resident Acquisition for Retirement Homes</p>
     <div class="hero-trust-row">
       <div class="hero-trust-pill">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -773,18 +824,6 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 </section>
 
 <div class="rule"></div>
-
-<nav class="section-nav">
-  <div class="section-nav-inner">
-    <a href="#pain">The Problem</a>
-    <a href="#how-it-works">How It Works</a>
-    <a href="#team">The Team</a>
-    <a href="#included">What's Included</a>
-    <a href="#guarantee">Guarantee</a>
-    <a href="#faq">FAQ</a>
-    <a href="https://cal.com/scalevertise.app/30min" style="margin-left:auto;color:var(--accent);">Book a Call</a>
-  </div>
-</nav>
 
 <!-- ═══════════ PAIN ═══════════ -->
 <section id="pain">
@@ -875,7 +914,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 <section id="standard">
   <div class="wrap">
     <div class="center">
-      <div class="eyebrow reveal">Why Care Homes Trust Us</div>
+      <div class="eyebrow reveal">Why Retirement Homes Trust Us</div>
       <h2 class="section-h2 reveal">A Proven System, Run By People Who Answer the Phone</h2>
       <p class="section-sub reveal">We are not a faceless agency that takes a retainer and disappears. We run a single, repeatable resident acquisition system, we do it for one home per area, and we put our fee on the line to prove it works.</p>
     </div>
@@ -919,7 +958,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
     <div class="team-grid-2 reveal">
       <div class="team-card">
-        <div class="team-photo"><img src="/assets/founder.jpg" alt="Vincent" style="object-position:center 18%;"></div>
+        <div class="team-photo"><img src="/assets/founder.jpg" alt="Vincent" style="object-position:50% 22%;"></div>
         <div class="team-name">Vincent</div>
         <div class="team-role">Founder &amp; Strategy</div>
         <p class="team-bio">Builds your offer, your funnel, and your campaign strategy. Your direct point of contact from the first call onward.</p>
@@ -943,7 +982,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
       <div class="incl-left">
         <div class="eyebrow" style="margin-bottom:14px;">Done For You, Start to Finish</div>
         <h2 style="font-family:var(--display);font-size:clamp(1.5rem,2.6vw,2rem);font-weight:600;line-height:1.2;color:var(--text);margin-bottom:16px;">Everything that fills the bed. Handled.</h2>
-        <p style="font-size:0.96rem;line-height:1.75;color:var(--text-2);margin-bottom:18px;">You run a care home. You should not also have to run a marketing department. We build the entire occupancy system, manage it every day, and report back. Your only job is to welcome the families we book onto your calendar.</p>
+        <p style="font-size:0.96rem;line-height:1.75;color:var(--text-2);margin-bottom:18px;">You run a retirement home. You should not also have to run a marketing department. We build the entire occupancy system, manage it every day, and report back. Your only job is to welcome the families we book onto your calendar.</p>
         <p style="font-size:0.86rem;color:var(--text-3);line-height:1.7;">Flat $2,000/month. No setup fee, no per-lead charge, no long lock-in. Ad spend is paid by you, directly to Meta.</p>
       </div>
       <div class="incl-right">
@@ -1056,7 +1095,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span>Is Meta advertising appropriate for care homes? Will it reach the right families?</span>
+          <span>Is Meta advertising appropriate for retirement homes? Will it reach the right families?</span>
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
@@ -1107,7 +1146,7 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
 
       <div class="faq-item reveal">
         <div class="faq-q" onclick="toggleFaq(this)">
-          <span>Do you work with multiple care homes in the same area?</span>
+          <span>Do you work with multiple retirement homes in the same area?</span>
           <div class="faq-icon"></div>
         </div>
         <div class="faq-a">
@@ -1192,9 +1231,16 @@ function toggleFaq(q) {
   els.forEach(function(el) { io.observe(el); });
 })();
 
+function toggleSectionNav() {
+  var nav = document.getElementById('sectionNav');
+  var btn = document.getElementById('navToggle');
+  var isOpen = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+}
+
 // Section nav active highlight
 (function() {
-  var navLinks = document.querySelectorAll('.section-nav a[href^="#"]');
+  var navLinks = document.querySelectorAll('.section-nav-links a[href^="#"]');
   var sections = [];
   navLinks.forEach(function(a) {
     var id = a.getAttribute('href').slice(1);

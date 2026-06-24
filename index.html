@@ -158,29 +158,52 @@ section { padding:clamp(64px,7vw,100px) 0; position:relative; }
 
 /* ════ HEADER ════ */
 header {
-  position:absolute; top:0; left:0; right:0; z-index:10;
+  position:absolute; top:0; left:0; right:0; z-index:30;
   padding:18px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between;
 }
 .header-brand { display:flex; align-items:center; gap:0; }
 .header-brand img { height:36px; width:auto; display:block; }
-.header-cta {
-  display:inline-flex; align-items:center;
-  background:rgba(255,122,0,0.12); border:1px solid rgba(255,122,0,0.4);
-  color:var(--accent); font-size:0.8rem; font-weight:600;
-  padding:9px 20px; border-radius:100px; text-decoration:none;
-  letter-spacing:-0.01em; backdrop-filter:blur(8px);
-  transition:background 0.2s ease, border-color 0.2s ease;
+
+/* hamburger menu button */
+.nav-menu-btn {
+  background:none; border:none; cursor:pointer; padding:8px;
+  color:rgba(246,242,232,0.75); display:flex; align-items:center; justify-content:center;
+  transition:color 0.18s ease;
 }
-.header-cta:hover { background:rgba(255,122,0,0.22); border-color:rgba(255,122,0,0.7); }
+.nav-menu-btn:hover { color:var(--accent); }
+
+/* full-screen nav overlay */
+.nav-overlay {
+  position:fixed; inset:0; z-index:29;
+  background:rgba(14,11,9,0.97);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; pointer-events:none;
+  transition:opacity 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.nav-overlay.open { opacity:1; pointer-events:auto; }
+.nav-overlay-inner {
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  text-align:center;
+}
+.nav-overlay-inner a {
+  font-family:var(--display); font-size:clamp(1.5rem,4vw,2.2rem); font-weight:300;
+  color:rgba(246,242,232,0.65); text-decoration:none; letter-spacing:-0.01em;
+  padding:10px 24px; border-radius:12px;
+  transition:color 0.18s ease, background 0.18s ease;
+}
+.nav-overlay-inner a:hover { color:var(--text); background:rgba(255,122,0,0.06); }
+.nav-overlay-inner .nav-cta-link {
+  margin-top:20px; font-size:clamp(0.95rem,2vw,1.1rem); font-weight:600;
+  color:var(--accent); border:1px solid rgba(255,122,0,0.4);
+  padding:13px 32px; border-radius:100px; letter-spacing:-0.01em;
+}
+.nav-overlay-inner .nav-cta-link:hover { background:rgba(255,122,0,0.1); }
 
 /* ════ HERO ════ */
 .hero {
   position:relative; overflow:hidden;
   height:100vh; min-height:620px;
   display:flex; align-items:center; justify-content:center;
-}
-@media (max-width:640px) {
-  .hero { align-items:flex-start; padding-top:clamp(100px,22vh,160px); }
 }
 .hero-video {
   position:absolute; inset:0; width:100%; height:100%;
@@ -658,81 +681,7 @@ footer .legal a:hover { color:var(--accent); }
   .value-number { font-size:clamp(2.2rem,8vw,3rem); }
 }
 
-/* ════ HERO TRUST ROW ════ */
-.hero-trust-row {
-  display:flex; align-items:center; justify-content:center; gap:18px;
-  margin-top:22px; flex-wrap:wrap;
-}
-.hero-trust-pill {
-  display:flex; align-items:center; gap:7px;
-  font-family:var(--mono); font-size:10px; font-weight:500;
-  letter-spacing:0.14em; text-transform:uppercase;
-  color:rgba(246,242,232,0.65);
-}
-.hero-trust-divider {
-  width:1px; height:16px; background:rgba(196,168,130,0.2);
-}
-@media (max-width:640px) {
-  .hero-trust-divider { display:none; }
-  .hero-trust-row { gap:10px; }
-}
 
-/* ════ SECTION NAV ════ */
-.section-nav {
-  position:sticky; top:0; z-index:25;
-  background:rgba(20,17,14,0.88); backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--line);
-}
-.section-nav-bar {
-  display:flex; align-items:center; justify-content:space-between;
-  max-width:1120px; margin:0 auto;
-  padding:0 clamp(16px,4vw,40px);
-  height:46px;
-}
-.section-nav-label {
-  font-family:var(--mono); font-size:9px; font-weight:700;
-  letter-spacing:0.22em; text-transform:uppercase; color:var(--text-3);
-}
-.section-nav-toggle {
-  background:none; border:1px solid var(--line); border-radius:8px;
-  padding:6px 12px; cursor:pointer; display:flex; align-items:center; gap:6px;
-  font-family:var(--mono); font-size:9px; font-weight:600;
-  letter-spacing:0.16em; text-transform:uppercase; color:var(--text-3);
-  transition:border-color 0.18s, color 0.18s;
-}
-.section-nav-toggle:hover { border-color:rgba(255,122,0,0.4); color:var(--accent); }
-.section-nav-toggle svg { transition:transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-.section-nav.open .section-nav-toggle svg { transform:rotate(180deg); }
-.section-nav-links {
-  overflow:hidden; max-height:0;
-  transition:max-height 0.38s cubic-bezier(0.22,1,0.36,1);
-  border-top:0px solid var(--line);
-}
-.section-nav.open .section-nav-links {
-  max-height:260px;
-  border-top:1px solid var(--line);
-}
-.section-nav-links-inner {
-  display:flex; flex-wrap:wrap; gap:0;
-  max-width:1120px; margin:0 auto;
-  padding:8px clamp(16px,4vw,40px);
-}
-.section-nav-links a {
-  flex-shrink:0; padding:9px 16px;
-  font-family:var(--mono); font-size:9px; font-weight:600;
-  letter-spacing:0.18em; text-transform:uppercase;
-  color:var(--text-3); text-decoration:none;
-  border-radius:8px;
-  transition:color 0.18s ease, background 0.18s ease;
-  white-space:nowrap;
-}
-.section-nav-links a:hover { color:var(--accent); background:rgba(255,122,0,0.06); }
-.section-nav-links a.active { color:var(--accent); }
-.section-nav-links a.book-link {
-  color:var(--accent); border:1px solid rgba(255,122,0,0.35);
-  margin-left:auto; margin-top:0;
-}
-.section-nav-links a.book-link:hover { background:rgba(255,122,0,0.1); }
 
 /* ════ TEAM 2-COL ════ */
 .team-grid-2 {
@@ -759,32 +708,25 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
   <div class="header-brand">
     <img src="/assets/sv-logo.png" alt="SV">
   </div>
-  <a class="header-cta" href="https://cal.com/scalevertise.app/30min">Check Availability</a>
+  <button class="nav-menu-btn" onclick="toggleMenu()" id="menuBtn" aria-label="Menu">
+    <svg id="menuIconOpen" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg id="menuIconClose" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
 </header>
 
-<main style="padding-bottom:0">
+<div class="nav-overlay" id="navOverlay">
+  <div class="nav-overlay-inner">
+    <a href="#pain" onclick="closeMenu()">The Problem</a>
+    <a href="#how-it-works" onclick="closeMenu()">How It Works</a>
+    <a href="#team" onclick="closeMenu()">The Team</a>
+    <a href="#included" onclick="closeMenu()">What's Included</a>
+    <a href="#guarantee" onclick="closeMenu()">Guarantee</a>
+    <a href="#faq" onclick="closeMenu()">FAQ</a>
+    <a href="https://cal.com/scalevertise.app/30min" class="nav-cta-link">Book a Call</a>
+  </div>
+</div>
 
-<!-- ═══════════ SECTION NAV ═══════════ -->
-<nav class="section-nav" id="sectionNav">
-  <div class="section-nav-bar">
-    <span class="section-nav-label">Scalevertise</span>
-    <button class="section-nav-toggle" onclick="toggleSectionNav()" aria-expanded="false" id="navToggle">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-      Menu
-    </button>
-  </div>
-  <div class="section-nav-links" id="sectionNavLinks">
-    <div class="section-nav-links-inner">
-      <a href="#pain">The Problem</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#team">The Team</a>
-      <a href="#included">What's Included</a>
-      <a href="#guarantee">Guarantee</a>
-      <a href="#faq">FAQ</a>
-      <a href="https://cal.com/scalevertise.app/30min" class="book-link">Book a Call</a>
-    </div>
-  </div>
-</nav>
+<main style="padding-bottom:0">
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero">
@@ -797,24 +739,6 @@ section:nth-child(even) { background:rgba(255,255,255,0.015); }
   <div class="hero-center enter" style="animation-delay:0.15s;">
     <span class="hero-wordmark">Scalevertise</span>
     <p class="hero-tagline">Resident Acquisition for Retirement Homes</p>
-    <div class="hero-trust-row">
-      <div class="hero-trust-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        <span>Guaranteed or free</span>
-      </div>
-      <div class="hero-trust-divider"></div>
-      <div class="hero-trust-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-        <span>One home per area</span>
-      </div>
-      <div class="hero-trust-divider"></div>
-      <div class="hero-trust-pill">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
-        <span>$2,000/month flat</span>
-      </div>
-    </div>
-    <a class="hero-cta-inline cta-btn" href="https://cal.com/scalevertise.app/30min" style="margin-top:28px;pointer-events:auto;">Check If Your Area Is Available</a>
-    <p class="cta-micro" style="pointer-events:auto;">20-30 qualified resident appointments in 30 days or you don't pay</p>
   </div>
 
   <div class="scroll-hint" style="z-index:4;">
@@ -1231,34 +1155,20 @@ function toggleFaq(q) {
   els.forEach(function(el) { io.observe(el); });
 })();
 
-function toggleSectionNav() {
-  var nav = document.getElementById('sectionNav');
-  var btn = document.getElementById('navToggle');
-  var isOpen = nav.classList.toggle('open');
-  btn.setAttribute('aria-expanded', isOpen);
+function toggleMenu() {
+  var overlay = document.getElementById('navOverlay');
+  var open = overlay.classList.toggle('open');
+  document.getElementById('menuIconOpen').style.display = open ? 'none' : 'block';
+  document.getElementById('menuIconClose').style.display = open ? 'block' : 'none';
+  document.body.style.overflow = open ? 'hidden' : '';
 }
-
-// Section nav active highlight
-(function() {
-  var navLinks = document.querySelectorAll('.section-nav-links a[href^="#"]');
-  var sections = [];
-  navLinks.forEach(function(a) {
-    var id = a.getAttribute('href').slice(1);
-    var el = document.getElementById(id);
-    if (el) sections.push({ el: el, a: a });
-  });
-  var onScroll = function() {
-    var scrollY = window.scrollY + 120;
-    var active = null;
-    sections.forEach(function(s) {
-      if (s.el.offsetTop <= scrollY) active = s;
-    });
-    navLinks.forEach(function(a) { a.classList.remove('active'); });
-    if (active) active.a.classList.add('active');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
+function closeMenu() {
+  var overlay = document.getElementById('navOverlay');
+  overlay.classList.remove('open');
+  document.getElementById('menuIconOpen').style.display = 'block';
+  document.getElementById('menuIconClose').style.display = 'none';
+  document.body.style.overflow = '';
+}
 
 (function() {
   var pill = document.querySelector('.sticky-pill');

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QuackQuotes - Profile Icon Variations</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0E0F13; }
+  .tile { width: 1024px; height: 1024px; }
+  .tile svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<!-- V1: carousel duck silhouette, simplified and centered -->
+<div class="tile" id="v1">
+  <svg viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#1C1E25"/>
+    <g transform="translate(512,512) scale(0.75) translate(-415,-666)">
+      <path fill="#EBB83C" fill-rule="evenodd" d="M 305 248
+        C 395 248 458 318 458 405
+        C 458 460 433 504 393 532
+        C 520 556 640 600 700 690
+        C 735 645 770 615 795 620
+        C 800 700 775 760 735 800
+        C 755 995 615 1085 445 1085
+        C 300 1085 185 1010 160 880
+        C 143 795 175 725 245 690
+        C 205 645 190 590 196 535
+        C 160 562 55 562 30 508
+        C 52 468 100 452 138 428
+        C 152 318 218 248 305 248 Z
+        M 278 340 a 40 40 0 1 1 -0.1 0 Z"/>
+    </g>
+  </svg>
+</div>
+
+<!-- V2: zoomed duck head and bill, two tone -->
+<div class="tile" id="v2">
+  <svg viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#1C1E25"/>
+    <ellipse cx="300" cy="470" rx="180" ry="92" fill="#FAEBD0" transform="rotate(-10 300 470)"/>
+    <circle cx="590" cy="490" r="275" fill="#EBB83C"/>
+    <circle cx="480" cy="385" r="56" fill="#1C1E25"/>
+  </svg>
+</div>
+
+<!-- V3: minimal geometric duck mark -->
+<div class="tile" id="v3">
+  <svg viewBox="0 0 1024 1024">
+    <rect width="1024" height="1024" fill="#1C1E25"/>
+    <rect x="125" y="390" width="340" height="175" rx="87" fill="#EBB83C" transform="rotate(-8 295 477)"/>
+    <circle cx="545" cy="480" r="250" fill="#EBB83C"/>
+    <circle cx="468" cy="395" r="50" fill="#1C1E25"/>
+  </svg>
+</div>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080">
-<title>QuackQuotes - Cost Guide Carousel</title>
+<title>QuackQuotes - Red Flags Carousel</title>
 <style>
   /* Anton (latin subset) embedded as a data URI so the file is fully self-contained */
   @font-face {
@@ -71,7 +71,7 @@
     letter-spacing: 0.1em;
     line-height: 1.75;
     color: var(--muted);
-    max-width: 420px;
+    max-width: 440px;
   }
 
   .dots {
@@ -108,22 +108,26 @@
   }
   .next svg { width: 20px; height: 20px; stroke: var(--ink); stroke-width: 2.5; fill: none; opacity: 0.85; }
 
-  /* ---------- cover and CTA slides ---------- */
+  .artwrap {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .artwrap svg { width: 100%; height: 100%; display: block; }
 
-  .pill {
-    display: inline-block;
-    font-size: 22px;
+  /* ---------- headline block ---------- */
+
+  .label {
+    position: absolute;
+    top: 168px; left: 64px;
+    z-index: 2;
+    font-size: 25px;
     letter-spacing: 0.2em;
     color: var(--accent);
-    border: 2px solid var(--accent);
-    border-radius: 40px;
-    padding: 14px 28px 12px;
-    margin-bottom: 44px;
   }
   .hwrap {
     position: absolute;
-    top: 50%; left: 64px; right: 96px;
-    transform: translateY(-54%);
+    top: 218px; left: 64px; right: 150px;
     z-index: 2;
   }
   h1 {
@@ -133,46 +137,13 @@
     color: var(--ink);
     letter-spacing: 0.012em;
     line-height: 1.06;
-    font-size: 128px;
   }
+  .s1 h1 { font-size: 106px; }
+  .s2 h1, .s3 h1, .s4 h1 { font-size: 108px; }
+  .s5 h1 { font-size: 118px; }
 
-  /* ---------- stat slides ---------- */
-
-  .statwrap {
-    position: absolute;
-    top: 50%; left: 64px; right: 64px;
-    transform: translateY(-56%);
-    z-index: 2;
-  }
-  .label {
-    font-size: 27px;
-    letter-spacing: 0.22em;
-    color: var(--accent);
-    margin-bottom: 26px;
-  }
-  .rule {
-    width: 120px;
-    height: 4px;
-    background: var(--accent);
-    margin-bottom: 60px;
-  }
-  .price {
-    font-family: 'AntonEmbed', 'Arial Narrow', Impact, 'Helvetica Neue', sans-serif;
-    font-weight: 400;
-    font-size: 200px;
-    letter-spacing: 0.01em;
-    line-height: 1;
-    color: var(--ink);
-    margin-bottom: 56px;
-  }
-  .note {
-    font-size: 25px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    line-height: 1.8;
-    color: var(--muted);
-    max-width: 760px;
-  }
+  /* cover slide has no numbered label, headline sits a bit higher */
+  .s1 .hwrap { top: 196px; }
 
   /* ---------- animation ---------- */
 
@@ -181,44 +152,36 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes slamIn {
-    0%   { opacity: 0; transform: translateY(70px); }
+    0%   { opacity: 0; transform: translateY(72px); }
     62%  { opacity: 1; transform: translateY(-6px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  @keyframes drawrule {
-    from { transform: scaleX(0); }
-    to   { transform: scaleX(1); }
+  @keyframes artin {
+    from { opacity: 0; transform: translateY(30px) scale(1.03); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
   .js .slide:not(.in) .byline,
   .js .slide:not(.in) .meta,
-  .js .slide:not(.in) .pill,
-  .js .slide:not(.in) h1,
   .js .slide:not(.in) .label,
-  .js .slide:not(.in) .price,
-  .js .slide:not(.in) .note,
+  .js .slide:not(.in) h1,
   .js .slide:not(.in) .caption,
   .js .slide:not(.in) .dots,
-  .js .slide:not(.in) .next { opacity: 0; }
-  .js .slide:not(.in) .rule { transform: scaleX(0); }
-  .rule { transform-origin: left center; }
+  .js .slide:not(.in) .next,
+  .js .slide:not(.in) .artwrap { opacity: 0; }
 
-  .slide.in .byline { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 0ms both; }
-  .slide.in .meta   { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 120ms both; }
-  .slide.in .pill   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 200ms both; }
-  .slide.in .label  { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 200ms both; }
-  .slide.in .rule   { animation: drawrule 420ms cubic-bezier(0.19,0.9,0.32,1) 320ms both; }
-  .slide.in h1      { animation: slamIn 430ms cubic-bezier(0.19,0.9,0.32,1) 320ms both; }
-  .slide.in .price  { animation: slamIn 430ms cubic-bezier(0.19,0.9,0.32,1) 420ms both; }
-  .slide.in .note   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
-  .slide.in .caption{ animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
-  .slide.in .dots   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 760ms both; }
-  .slide.in .next   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 830ms both; }
+  .slide.in .byline  { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 0ms both; }
+  .slide.in .meta    { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 120ms both; }
+  .slide.in .label   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 220ms both; }
+  .slide.in h1       { animation: slamIn 430ms cubic-bezier(0.19,0.9,0.32,1) 320ms both; }
+  .slide.in .artwrap { animation: artin 450ms cubic-bezier(0.22,0.8,0.36,1) 420ms both; }
+  .slide.in .caption { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
+  .slide.in .dots    { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 760ms both; }
+  .slide.in .next    { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 830ms both; }
 
   @media (prefers-reduced-motion: reduce) {
-    .slide.in .byline, .slide.in .meta, .slide.in .pill, .slide.in h1,
-    .slide.in .label, .slide.in .rule, .slide.in .price, .slide.in .note,
-    .slide.in .caption, .slide.in .dots, .slide.in .next {
+    .slide.in .byline, .slide.in .meta, .slide.in .label, .slide.in h1,
+    .slide.in .artwrap, .slide.in .caption, .slide.in .dots, .slide.in .next {
       animation-duration: 1ms; animation-delay: 0ms;
     }
   }
@@ -227,72 +190,128 @@
 <body>
 <script>document.documentElement.classList.add('js');</script>
 
-<!-- SLIDE 1 - navy - cover -->
-<section class="slide navy">
+<!-- shared halftone dither defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="dith-yellow" width="11" height="16" patternUnits="userSpaceOnUse">
+      <rect x="0"   y="2.5"  width="6.5" height="3" fill="#EFC24C"/>
+      <rect x="5.5" y="10.5" width="6.5" height="3" fill="#EFC24C"/>
+    </pattern>
+    <pattern id="dith-orange" width="11" height="16" patternUnits="userSpaceOnUse">
+      <rect x="0"   y="2.5"  width="6.5" height="3" fill="#D5822F"/>
+      <rect x="5.5" y="10.5" width="6.5" height="3" fill="#D5822F"/>
+    </pattern>
+    <filter id="tex" x="-15%" y="-15%" width="130%" height="130%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" seed="11" result="n1"/>
+      <feComponentTransfer in="n1" result="n2">
+        <feFuncA type="gamma" amplitude="1.4" exponent="0.55" offset="0.16"/>
+      </feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="n2" operator="in" result="mott"/>
+      <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="2" seed="4" result="n3"/>
+      <feDisplacementMap in="mott" in2="n3" scale="10"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- SLIDE 1 - navy - cover: warning triangle -->
+<section class="slide navy s1">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">COST GUIDE &middot; 1/5</span>
-  <div class="hwrap">
-    <span class="pill">SAVE THIS</span>
-    <h1>What pressure washing actually costs around here.</h1>
+  <span class="meta">READ FIRST &middot; 1/5</span>
+  <div class="artwrap" style="right:-150px; bottom:-140px; width:760px; height:1045px; opacity:0.62;">
+    <svg viewBox="0 0 800 1100" aria-hidden="true">
+      <path filter="url(#tex)" fill="url(#dith-yellow)" fill-rule="evenodd" d="
+        M 490 300 L 800 870 Q 812 895 782 895 L 200 895 Q 170 895 182 870 L 490 300 Z
+        M 462 470 L 518 470 L 505 700 L 475 700 Z
+        M 460 750 L 520 750 L 520 810 L 460 810 Z"/>
+    </svg>
   </div>
-  <p class="caption">Real ranges from Raleigh &amp; Durham quotes.</p>
+  <div class="hwrap"><h1>3 red flags in any pressure washing quote.</h1></div>
+  <p class="caption">Save this before you book anyone.</p>
   <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 2 - blue - driveway -->
-<section class="slide blue">
+<!-- SLIDE 2 - blue - red flag 01: blind quote, eye with slash -->
+<section class="slide blue s2">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">COST GUIDE &middot; 2/5</span>
-  <div class="statwrap">
-    <div class="label">01 / DRIVEWAY</div>
-    <div class="rule"></div>
-    <div class="price">$100-$250</div>
-    <div class="note">Most 2-car driveways land around $180. Size and stain buildup move the number.</div>
+  <span class="meta">READ FIRST &middot; 2/5</span>
+  <span class="label">RED FLAG 01</span>
+  <div class="artwrap" style="right:-140px; bottom:-100px; width:760px; height:1045px; opacity:0.68;">
+    <svg viewBox="0 0 800 1100" aria-hidden="true">
+      <path filter="url(#tex)" fill="url(#dith-orange)" fill-rule="evenodd" d="
+        M 150 560 A 500 500 0 0 1 810 560 A 500 500 0 0 1 150 560 Z
+        M 480 560 a 105 105 0 1 0 0.1 0 Z"/>
+    </svg>
   </div>
-  <p class="caption">Typical range, standard concrete.</p>
+  <div class="hwrap"><h1>They quote you without seeing your house.</h1></div>
+  <p class="caption">Price depends on square footage and buildup. Not a guess over text.</p>
   <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 3 - navy - house siding -->
-<section class="slide navy">
+<!-- SLIDE 3 - navy - red flag 02: upfront payment, big dollar sign -->
+<section class="slide navy s3">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">COST GUIDE &middot; 3/5</span>
-  <div class="statwrap">
-    <div class="label">02 / HOUSE SIDING</div>
-    <div class="rule"></div>
-    <div class="price">$220-$480</div>
-    <div class="note">One story runs cheaper. Two stories and heavy mildew push you toward the top.</div>
+  <span class="meta">READ FIRST &middot; 3/5</span>
+  <span class="label">RED FLAG 02</span>
+  <div class="artwrap" style="right:-90px; bottom:-160px; width:700px; height:963px; opacity:0.6;">
+    <svg viewBox="0 0 800 1100" aria-hidden="true">
+      <text filter="url(#tex)" fill="url(#dith-yellow)"
+            font-family="AntonEmbed, Impact, sans-serif" font-size="820"
+            x="400" y="760" text-anchor="middle">$</text>
+    </svg>
   </div>
-  <p class="caption">Full exterior soft wash.</p>
+  <div class="hwrap"><h1>They want full payment before they show up.</h1></div>
+  <p class="caption">Real pros get paid after the job's done. Not before.</p>
   <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 4 - blue - deck and patio -->
-<section class="slide blue">
+<!-- SLIDE 4 - blue - red flag 03: broken shield, no insurance -->
+<section class="slide blue s4">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">COST GUIDE &middot; 4/5</span>
-  <div class="statwrap">
-    <div class="label">03 / DECK &amp; PATIO</div>
-    <div class="rule"></div>
-    <div class="price">$120-$300</div>
-    <div class="note">Wood needs low pressure. If a pro says otherwise, that's your cue to keep looking.</div>
+  <span class="meta">READ FIRST &middot; 4/5</span>
+  <span class="label">RED FLAG 03</span>
+  <div class="artwrap" style="right:-90px; bottom:-90px; width:640px; height:1058px; opacity:0.7;">
+    <svg viewBox="0 0 460 760" aria-hidden="true">
+      <g transform="translate(-34,0) rotate(-7 230 380)">
+        <path filter="url(#tex)" fill="url(#dith-orange)" d="
+          M 230 10 C 180 10 130 40 80 70 L 30 100 L 30 380
+          C 30 560 100 660 200 725 L 230 750
+          L 224 610 L 246 545 L 214 480 L 240 415
+          L 206 350 L 232 285 L 200 220 L 226 155 L 230 10 Z"/>
+      </g>
+      <g transform="translate(34,0) rotate(7 230 380)">
+        <path filter="url(#tex)" fill="url(#dith-orange)" d="
+          M 230 10 C 280 10 330 40 380 70 L 430 100 L 430 380
+          C 430 560 360 660 260 725 L 230 750
+          L 236 610 L 214 545 L 246 480 L 220 415
+          L 254 350 L 228 285 L 260 220 L 234 155 L 230 10 Z"/>
+      </g>
+    </svg>
   </div>
-  <p class="caption">Wood and stone surfaces.</p>
+  <div class="hwrap"><h1>They can't show proof of insurance.</h1></div>
+  <p class="caption">One cracked window and you're the one paying for it.</p>
   <div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 5 - navy - CTA -->
-<section class="slide navy">
+<!-- SLIDE 5 - navy - CTA: whole shield, verified checkmark -->
+<section class="slide navy s5">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">COST GUIDE &middot; 5/5</span>
-  <div class="hwrap">
-    <h1>Quotes on the same job vary by hundreds.</h1>
+  <span class="meta">READ FIRST &middot; 5/5</span>
+  <div class="artwrap" style="right:-70px; bottom:-90px; width:610px; height:1008px; opacity:0.78;">
+    <svg viewBox="0 0 460 760" aria-hidden="true">
+      <path filter="url(#tex)" fill="url(#dith-yellow)" d="
+        M 230 10 C 280 10 330 40 380 70 L 430 100 L 430 380
+        C 430 580 340 700 230 750
+        C 120 700 30 580 30 380 L 30 100 L 80 70
+        C 130 40 180 10 230 10 Z"/>
+      <path d="M 140 385 L 205 460 L 335 260" fill="none" stroke="#1C1E25" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
-  <p class="caption">Compare 5+ local quotes free. Link in bio.</p>
+  <div class="hwrap"><h1>Every QuackQuotes pro clears this bar first.</h1></div>
+  <p class="caption">Compare real quotes from vetted pros. Free. Link in bio.</p>
   <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
 </section>
 

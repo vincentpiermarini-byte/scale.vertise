@@ -915,7 +915,11 @@ footer { padding:40px 0 52px; }
   build('chartBW', 13, 8.1, 'bw');
 })();
 
-/* ── terrain: light topographic line field ── */
+/* ── hero backdrop: white perspective corridor, animated ──
+   Recreates the reference art as a living loop: ridged wave
+   walls left and right, streaming floor lines converging on a
+   bright vanishing point, two orange accent strands, and a
+   drifting halftone dot field in the upper right. */
 (function() {
   var canvas = document.getElementById('terrain');
   if (!canvas) return;
@@ -932,44 +936,122 @@ footer { padding:40px 0 52px; }
   window.addEventListener('resize', resize);
   resize();
 
+  var t = 0;
+
+  /* one sweeping wall curve: from a screen edge toward the vanishing point */
+  function wallCurve(side, i, n, phase) {
+    /* side: -1 left, +1 right. Returns start/ctrl/end for a quadratic. */
+    var vx = W * 0.52, vy = H * 0.62;              /* vanishing point */
+    var f = i / (n - 1);                            /* 0 top of wall .. 1 floor */
+    var sway = Math.sin(phase + f * 2.4) * 14;      /* breathing motion */
+    var x0 = side < 0 ? -40 : W + 40;
+    var y0 = H * (0.28 + f * 0.75) + sway;
+    var cx = side < 0 ? W * 0.22 : W * 0.78;
+    var cy = H * (0.34 + f * 0.62) + sway * 0.5;
+    return { x0:x0, y0:y0, cx:cx, cy:cy, x1:vx, y1:vy };
+  }
+
+  function fadingStroke(x0, y0, x1, y1, rgb, a) {
+    var grad = ctx.createLinearGradient(x0, y0, x1, y1);
+    grad.addColorStop(0, 'rgba(' + rgb + ',' + a + ')');
+    grad.addColorStop(0.72, 'rgba(' + rgb + ',' + (a * 0.4).toFixed(3) + ')');
+    grad.addColorStop(1, 'rgba(' + rgb + ',0)');
+    ctx.strokeStyle = grad;
+  }
+
+  function strokeWall(side, count, phase) {
+    for (var i = 0; i < count; i++) {
+      var c = wallCurve(side, i, count, phase + i * 0.22);
+      var a = 0.05 + (i / count) * 0.07;            /* denser ridges lower down */
+      ctx.beginPath();
+      ctx.moveTo(c.x0, c.y0);
+      ctx.quadraticCurveTo(c.cx, c.cy, c.x1, c.y1);
+      fadingStroke(c.x0, c.y0, c.x1, c.y1, '23,20,15', a.toFixed(3));
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  function accentStrand(side, phase, alpha) {
+    var c = wallCurve(side, 6, 16, phase);
+    ctx.beginPath();
+    ctx.moveTo(c.x0, c.y0);
+    ctx.quadraticCurveTo(c.cx, c.cy - 24, c.x1, c.y1);
+    var grad = ctx.createLinearGradient(c.x0, c.y0, c.x1, c.y1);
+    grad.addColorStop(0, 'rgba(240,112,0,' + alpha + ')');
+    grad.addColorStop(0.75, 'rgba(240,112,0,' + (alpha * 0.45).toFixed(3) + ')');
+    grad.addColorStop(1, 'rgba(240,112,0,0)');
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.6;
+    ctx.stroke();
+  }
+
   function hash(x, z) {
     var s = Math.sin(x * 127.1 + z * 311.7) * 43758.5453;
     return s - Math.floor(s);
   }
-  function noise(x, z) {
-    var xi = Math.floor(x), zi = Math.floor(z);
-    var xf = x - xi, zf = z - zi;
-    var u = xf * xf * (3 - 2 * xf), v = zf * zf * (3 - 2 * zf);
-    var a = hash(xi, zi), b = hash(xi + 1, zi), c = hash(xi, zi + 1), d = hash(xi + 1, zi + 1);
-    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
-  }
-
-  var LINES = 14, t = 0;
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    /* soft flowing contour lines drifting across the lower half */
-    for (var l = 0; l < LINES; l++) {
-      var yBase = H * 0.42 + (l / LINES) * H * 0.62;
-      var amp = 26 + l * 5;
-      var isAccent = (l === LINES - 5);
+
+    /* central glow at the vanishing point */
+    var g = ctx.createRadialGradient(W * 0.52, H * 0.6, 0, W * 0.52, H * 0.6, W * 0.5);
+    g.addColorStop(0, 'rgba(255,255,255,0.9)');
+    g.addColorStop(0.5, 'rgba(255,255,255,0.25)');
+    g.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    /* ridged wave walls */
+    strokeWall(-1, 16, t);
+    strokeWall( 1, 16, -t * 1.15);
+
+    /* floor lines streaming toward the center */
+    for (var fl = 0; fl < 9; fl++) {
+      var f = fl / 8;
+      var yEdge = H * (0.7 + f * 0.4);
+      var sway = Math.sin(t * 1.4 + fl) * 6;
+      var fa = (0.04 + f * 0.05).toFixed(3);
       ctx.beginPath();
-      for (var x = 0; x <= W; x += 8) {
-        var n = noise(x * 0.0025 + l * 0.6, t + l * 0.14);
-        var y = yBase + (n - 0.5) * amp * 2;
-        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      }
-      if (isAccent) {
-        ctx.strokeStyle = 'rgba(240,112,0,0.30)';
-        ctx.lineWidth = 1.4;
-      } else {
-        ctx.strokeStyle = 'rgba(23,20,15,' + (0.045 + l * 0.004).toFixed(3) + ')';
-        ctx.lineWidth = 1;
-      }
+      ctx.moveTo(-20, yEdge + sway);
+      ctx.quadraticCurveTo(W * 0.3, yEdge - H * 0.06, W * 0.52, H * 0.62);
+      fadingStroke(-20, yEdge, W * 0.52, H * 0.62, '23,20,15', fa);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(W + 20, yEdge - sway);
+      ctx.quadraticCurveTo(W * 0.7, yEdge - H * 0.06, W * 0.52, H * 0.62);
+      fadingStroke(W + 20, yEdge, W * 0.52, H * 0.62, '23,20,15', fa);
+      ctx.lineWidth = 1;
       ctx.stroke();
     }
+
+    /* orange accent strands, slowly pulsing */
+    var pulse = 0.26 + 0.1 * Math.sin(t * 1.8);
+    accentStrand(-1, t + 1.3, pulse.toFixed(3));
+    accentStrand( 1, -t * 1.15 + 0.6, (0.36 - (pulse - 0.26)).toFixed(3));
+
+    /* halftone dot field, upper right, drifting */
+    var drift = t * 18;
+    for (var r = 0; r < 12; r++) {
+      for (var c2 = 0; c2 < 22; c2++) {
+        var bx = W * 0.62 + c2 * 16 + ((r % 2) * 8);
+        var by = H * 0.1 + r * 15 + Math.sin(t * 0.9 + c2 * 0.4) * 3;
+        bx += Math.sin(drift * 0.02 + r) * 4;
+        if (bx > W - 10 || bx < W * 0.55) continue;
+        var fade = hash(r, c2);
+        var a2 = 0.05 + fade * 0.16;
+        /* dots dissolve toward the lower left of the field */
+        a2 *= Math.min(1, (c2 / 22) + (r / 12) * 0.4 + 0.15);
+        ctx.fillStyle = 'rgba(240,112,0,' + a2.toFixed(3) + ')';
+        ctx.beginPath();
+        ctx.arc(bx, by, 1.3 + fade * 0.9, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
     if (!reduced) {
-      t += 0.0022;
+      t += 0.004;
       requestAnimationFrame(draw);
     }
   }

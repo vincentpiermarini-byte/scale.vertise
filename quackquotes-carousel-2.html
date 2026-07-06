@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080">
-<title>QuackQuotes - Instagram Carousel No. 02</title>
+<title>QuackQuotes - Cost Guide Carousel</title>
 <style>
   /* Anton (latin subset) embedded as a data URI so the file is fully self-contained */
   @font-face {
@@ -39,10 +39,10 @@
     overflow: hidden;
     scroll-snap-align: start;
   }
-  .slide.blue { background: var(--blue); --ink: var(--navy); --accent: var(--orange); --muted: rgba(28,30,37,0.55);    --chip: rgba(28,30,37,0.1); }
+  .slide.blue { background: var(--blue); --ink: var(--navy); --accent: #C4681B;      --muted: rgba(28,30,37,0.55);    --chip: rgba(28,30,37,0.1); }
   .slide.navy { background: var(--navy); --ink: #D6E4F2;     --accent: var(--yellow); --muted: rgba(214,228,242,0.5); --chip: rgba(214,228,242,0.13); }
 
-  /* ---------- layout ---------- */
+  /* ---------- shared chrome ---------- */
 
   .byline {
     position: absolute;
@@ -60,31 +60,6 @@
     color: var(--muted);
     z-index: 3;
   }
-
-  .artwrap {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .artwrap svg { width: 100%; height: 100%; display: block; }
-
-  .hwrap {
-    position: absolute;
-    top: 196px; left: 64px; right: 130px;
-    z-index: 2;
-  }
-  h1 {
-    font-family: 'AntonEmbed', 'Arial Narrow', Impact, 'Helvetica Neue', sans-serif;
-    font-weight: 400;
-    text-transform: uppercase;
-    color: var(--ink);
-    letter-spacing: 0.012em;
-    line-height: 1.05;
-  }
-  .s1 h1, .s2 h1 { font-size: 130px; }
-  .s3 h1 { font-size: 140px; }
-  .s4 h1 { font-size: 148px; }
-  .s5 h1 { font-size: 164px; }
 
   .caption {
     position: absolute;
@@ -133,41 +108,117 @@
   }
   .next svg { width: 20px; height: 20px; stroke: var(--ink); stroke-width: 2.5; fill: none; opacity: 0.85; }
 
+  /* ---------- cover and CTA slides ---------- */
+
+  .pill {
+    display: inline-block;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    border-radius: 40px;
+    padding: 14px 28px 12px;
+    margin-bottom: 44px;
+  }
+  .hwrap {
+    position: absolute;
+    top: 50%; left: 64px; right: 96px;
+    transform: translateY(-54%);
+    z-index: 2;
+  }
+  h1 {
+    font-family: 'AntonEmbed', 'Arial Narrow', Impact, 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--ink);
+    letter-spacing: 0.012em;
+    line-height: 1.06;
+    font-size: 128px;
+  }
+
+  /* ---------- stat slides ---------- */
+
+  .statwrap {
+    position: absolute;
+    top: 50%; left: 64px; right: 64px;
+    transform: translateY(-56%);
+    z-index: 2;
+  }
+  .label {
+    font-size: 27px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    margin-bottom: 26px;
+  }
+  .rule {
+    width: 120px;
+    height: 4px;
+    background: var(--accent);
+    margin-bottom: 60px;
+  }
+  .price {
+    font-family: 'AntonEmbed', 'Arial Narrow', Impact, 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 200px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 56px;
+  }
+  .note {
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 760px;
+  }
+
   /* ---------- animation ---------- */
 
   @keyframes rise {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes slam {
-    0%   { opacity: 0; transform: translateY(80px); }
-    62%  { opacity: 1; transform: translateY(-7px); }
+  @keyframes slamIn {
+    0%   { opacity: 0; transform: translateY(70px); }
+    62%  { opacity: 1; transform: translateY(-6px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  @keyframes artin {
-    from { opacity: 0; transform: translateY(36px) scale(1.03); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+  @keyframes drawrule {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
   }
 
   .js .slide:not(.in) .byline,
   .js .slide:not(.in) .meta,
-  .js .slide:not(.in) .hwrap,
+  .js .slide:not(.in) .pill,
+  .js .slide:not(.in) h1,
+  .js .slide:not(.in) .label,
+  .js .slide:not(.in) .price,
+  .js .slide:not(.in) .note,
   .js .slide:not(.in) .caption,
   .js .slide:not(.in) .dots,
-  .js .slide:not(.in) .next,
-  .js .slide:not(.in) .artwrap { opacity: 0; }
+  .js .slide:not(.in) .next { opacity: 0; }
+  .js .slide:not(.in) .rule { transform: scaleX(0); }
+  .rule { transform-origin: left center; }
 
-  .slide.in .byline  { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 0ms both; }
-  .slide.in .meta    { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 120ms both; }
-  .slide.in .hwrap   { animation: slam 430ms cubic-bezier(0.19,0.9,0.32,1) 240ms both; }
-  .slide.in .artwrap { animation: artin 450ms cubic-bezier(0.22,0.8,0.36,1) 430ms both; }
-  .slide.in .caption { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
-  .slide.in .dots    { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 760ms both; }
-  .slide.in .next    { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 830ms both; }
+  .slide.in .byline { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 0ms both; }
+  .slide.in .meta   { animation: rise 320ms cubic-bezier(0.19,0.9,0.32,1) 120ms both; }
+  .slide.in .pill   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 200ms both; }
+  .slide.in .label  { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 200ms both; }
+  .slide.in .rule   { animation: drawrule 420ms cubic-bezier(0.19,0.9,0.32,1) 320ms both; }
+  .slide.in h1      { animation: slamIn 430ms cubic-bezier(0.19,0.9,0.32,1) 320ms both; }
+  .slide.in .price  { animation: slamIn 430ms cubic-bezier(0.19,0.9,0.32,1) 420ms both; }
+  .slide.in .note   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
+  .slide.in .caption{ animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 640ms both; }
+  .slide.in .dots   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 760ms both; }
+  .slide.in .next   { animation: rise 340ms cubic-bezier(0.19,0.9,0.32,1) 830ms both; }
 
   @media (prefers-reduced-motion: reduce) {
-    .slide.in .byline, .slide.in .meta, .slide.in .hwrap,
-    .slide.in .artwrap, .slide.in .caption, .slide.in .dots, .slide.in .next {
+    .slide.in .byline, .slide.in .meta, .slide.in .pill, .slide.in h1,
+    .slide.in .label, .slide.in .rule, .slide.in .price, .slide.in .note,
+    .slide.in .caption, .slide.in .dots, .slide.in .next {
       animation-duration: 1ms; animation-delay: 0ms;
     }
   }
@@ -176,132 +227,72 @@
 <body>
 <script>document.documentElement.classList.add('js');</script>
 
-<!-- shared texture defs -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <pattern id="dith-yellow" width="11" height="16" patternUnits="userSpaceOnUse">
-      <rect x="0"   y="2.5"  width="6.5" height="3" fill="#EFC24C"/>
-      <rect x="5.5" y="10.5" width="6.5" height="3" fill="#EFC24C"/>
-    </pattern>
-    <pattern id="dith-orange" width="11" height="16" patternUnits="userSpaceOnUse">
-      <rect x="0"   y="2.5"  width="6.5" height="3" fill="#D5822F"/>
-      <rect x="5.5" y="10.5" width="6.5" height="3" fill="#D5822F"/>
-    </pattern>
-    <filter id="tex" x="-15%" y="-15%" width="130%" height="130%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" seed="11" result="n1"/>
-      <feComponentTransfer in="n1" result="n2">
-        <feFuncA type="gamma" amplitude="1.4" exponent="0.55" offset="0.16"/>
-      </feComponentTransfer>
-      <feComposite in="SourceGraphic" in2="n2" operator="in" result="mott"/>
-      <feTurbulence type="turbulence" baseFrequency="0.025" numOctaves="2" seed="4" result="n3"/>
-      <feDisplacementMap in="mott" in2="n3" scale="10"/>
-    </filter>
-  </defs>
-</svg>
-
-<!-- SLIDE 1 - blue - duck silhouette -->
-<section class="slide blue s1">
+<!-- SLIDE 1 - navy - cover -->
+<section class="slide navy">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">NO. 02 &middot; 1/5</span>
-  <div class="artwrap" style="right:-170px; bottom:-190px; width:790px; height:1086px; opacity:0.75;">
-    <svg viewBox="0 0 800 1100" aria-hidden="true">
-      <path filter="url(#tex)" fill="url(#dith-yellow)" fill-rule="evenodd" d="M 305 248
-        C 395 248 458 318 458 405
-        C 458 460 433 504 393 532
-        C 520 556 640 600 700 690
-        C 735 645 770 615 795 620
-        C 800 700 775 760 735 800
-        C 755 995 615 1085 445 1085
-        C 300 1085 185 1010 160 880
-        C 143 795 175 725 245 690
-        C 205 645 190 590 196 535
-        C 160 562 55 562 30 508
-        C 52 468 100 452 138 428
-        C 152 318 218 248 305 248 Z
-        M 272 352 a 27 27 0 1 1 -0.1 0 Z"/>
-    </svg>
+  <span class="meta">COST GUIDE &middot; 1/5</span>
+  <div class="hwrap">
+    <span class="pill">SAVE THIS</span>
+    <h1>What pressure washing actually costs around here.</h1>
   </div>
-  <div class="hwrap"><h1>Never overpay for pressure washing again.</h1></div>
-  <p class="caption">The new way Raleigh &amp; Durham homeowners hire.</p>
+  <p class="caption">Real ranges from Raleigh &amp; Durham quotes.</p>
   <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 2 - navy - speech bubble stack -->
-<section class="slide navy s2">
+<!-- SLIDE 2 - blue - driveway -->
+<section class="slide blue">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">NO. 02 &middot; 2/5</span>
-  <div class="artwrap" style="right:-150px; bottom:-40px; width:780px; height:1073px; opacity:1;">
-    <svg viewBox="0 0 800 1100" aria-hidden="true">
-      <g opacity="0.2" transform="rotate(-5 290 435)">
-        <rect filter="url(#tex)" x="90" y="330" width="400" height="215" rx="56" fill="url(#dith-yellow)"/>
-      </g>
-      <g opacity="0.36" transform="rotate(3 485 620)">
-        <rect filter="url(#tex)" x="270" y="510" width="430" height="225" rx="58" fill="url(#dith-yellow)"/>
-      </g>
-      <g opacity="0.6">
-        <path filter="url(#tex)" fill="url(#dith-yellow)" d="M 262 700
-          h 356 a 62 62 0 0 1 62 62 v 126 a 62 62 0 0 1 -62 62 h -238
-          l -102 96 l 14 -96 h -30 a 62 62 0 0 1 -62 -62 v -126 a 62 62 0 0 1 62 -62 Z"/>
-      </g>
-    </svg>
+  <span class="meta">COST GUIDE &middot; 2/5</span>
+  <div class="statwrap">
+    <div class="label">01 / DRIVEWAY</div>
+    <div class="rule"></div>
+    <div class="price">$100-$250</div>
+    <div class="note">Most 2-car driveways land around $180. Size and stain buildup move the number.</div>
   </div>
-  <div class="hwrap"><h1>One request. 5+ quotes. Zero phone calls.</h1></div>
-  <p class="caption">Vetted local pros come to you.</p>
+  <p class="caption">Typical range, standard concrete.</p>
   <div class="dots"><i></i><i class="on"></i><i></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 3 - blue - bold checkmark -->
-<section class="slide blue s3">
+<!-- SLIDE 3 - navy - house siding -->
+<section class="slide navy">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">NO. 02 &middot; 3/5</span>
-  <div class="artwrap" style="right:-140px; bottom:-120px; width:760px; height:1045px; opacity:0.8;">
-    <svg viewBox="0 0 800 1100" aria-hidden="true">
-      <path filter="url(#tex)" fill="url(#dith-orange)" d="M 150 640
-        L 335 830 L 745 330 L 620 230 L 345 590 L 255 505 Z"/>
-    </svg>
+  <span class="meta">COST GUIDE &middot; 3/5</span>
+  <div class="statwrap">
+    <div class="label">02 / HOUSE SIDING</div>
+    <div class="rule"></div>
+    <div class="price">$220-$480</div>
+    <div class="note">One story runs cheaper. Two stories and heavy mildew push you toward the top.</div>
   </div>
-  <div class="hwrap"><h1>Pick the best price. Or pick nobody.</h1></div>
-  <p class="caption">No fees. No spam. No obligation.</p>
+  <p class="caption">Full exterior soft wash.</p>
   <div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 4 - navy - house silhouette -->
-<section class="slide navy s4">
+<!-- SLIDE 4 - blue - deck and patio -->
+<section class="slide blue">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">NO. 02 &middot; 4/5</span>
-  <div class="artwrap" style="right:-160px; bottom:-150px; width:790px; height:1086px; opacity:0.55;">
-    <svg viewBox="0 0 800 1100" aria-hidden="true">
-      <path filter="url(#tex)" fill="url(#dith-yellow)" fill-rule="evenodd" d="M 90 560
-        L 400 330 L 520 419 L 520 340 L 610 340 L 610 486 L 710 560
-        L 645 560 L 645 950 L 155 950 L 155 560 Z
-        M 330 950 L 330 770 L 460 770 L 460 950 Z"/>
-    </svg>
+  <span class="meta">COST GUIDE &middot; 4/5</span>
+  <div class="statwrap">
+    <div class="label">03 / DECK &amp; PATIO</div>
+    <div class="rule"></div>
+    <div class="price">$120-$300</div>
+    <div class="note">Wood needs low pressure. If a pro says otherwise, that's your cue to keep looking.</div>
   </div>
-  <div class="hwrap"><h1>Driveway. Siding. Roof. Deck.</h1></div>
-  <p class="caption">If it can be washed, they'll quote it.</p>
+  <p class="caption">Wood and stone surfaces.</p>
   <div class="dots"><i></i><i></i><i></i><i class="on"></i><i></i></div>
   <div class="next"><svg viewBox="0 0 24 24"><polyline points="9 5 16 12 9 19"/></svg></div>
 </section>
 
-<!-- SLIDE 5 - blue - map pin -->
-<section class="slide blue s5">
+<!-- SLIDE 5 - navy - CTA -->
+<section class="slide navy">
   <span class="byline">QUACKQUOTES</span>
-  <span class="meta">NO. 02 &middot; 5/5</span>
-  <div class="artwrap" style="right:-140px; bottom:-160px; width:760px; height:1045px; opacity:0.8;">
-    <svg viewBox="0 0 800 1100" aria-hidden="true">
-      <path filter="url(#tex)" fill="url(#dith-orange)" fill-rule="evenodd" d="M 420 170
-        C 585 170 705 295 705 455
-        C 705 640 500 830 420 1000
-        C 340 830 135 640 135 455
-        C 135 295 255 170 420 170 Z
-        M 420 345 a 110 110 0 1 1 -0.2 0 Z"/>
-    </svg>
+  <span class="meta">COST GUIDE &middot; 5/5</span>
+  <div class="hwrap">
+    <h1>Quotes on the same job vary by hundreds.</h1>
   </div>
-  <div class="hwrap"><h1>Your quotes are waiting.</h1></div>
-  <p class="caption">Free. Link in bio. Raleigh &amp; Durham.</p>
+  <p class="caption">Compare 5+ local quotes free. Link in bio.</p>
   <div class="dots"><i></i><i></i><i></i><i></i><i class="on"></i></div>
 </section>
 

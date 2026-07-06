@@ -21,38 +21,43 @@
   <rect width="1024" height="1024" fill="#1C1E25"/>
   <circle cx="512" cy="512" r="424" fill="none" stroke="#EBB83C" stroke-width="18"/>
 
-  <!-- duck mascot, drawn in a 700x1000 box, scaled and centered -->
-  <g transform="translate(326,94) scale(0.52)">
-    <!-- feet, behind the body -->
-    <g fill="#EF9330" stroke="#1C1E25" stroke-width="13" stroke-linejoin="round">
-      <path d="M 245 885 Q 205 975 300 970 Q 355 965 390 935 Q 372 883 315 878 Z"/>
-      <path d="M 415 883 Q 390 972 480 965 Q 528 958 555 928 Q 538 880 490 876 Z"/>
+  <!-- duck mascot, built from clean geometric shapes; the outline filter
+       dilates the union silhouette so the whole duck gets one uniform border -->
+  <defs>
+    <filter id="outline" x="-10%" y="-10%" width="120%" height="120%">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="15" result="dil"/>
+      <feFlood flood-color="#1C1E25"/>
+      <feComposite in2="dil" operator="in" result="edge"/>
+      <feMerge>
+        <feMergeNode in="edge"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g transform="translate(328,93) scale(0.5)">
+    <g filter="url(#outline)">
+      <!-- feet -->
+      <path fill="#EF9330" d="M 250 890 Q 215 975 305 968 Q 360 962 392 934 Q 375 885 318 880 Z"/>
+      <path fill="#EF9330" d="M 425 885 Q 400 972 490 962 Q 535 955 560 926 Q 545 882 495 878 Z"/>
+      <!-- tail flick -->
+      <path fill="#FADD5F" d="M 540 810 C 605 775 650 725 665 680 C 688 745 672 810 625 845 C 600 862 565 852 540 830 Z"/>
+      <!-- body, neck, head -->
+      <ellipse cx="360" cy="660" rx="230" ry="240" fill="#FADD5F"/>
+      <ellipse cx="340" cy="385" rx="118" ry="130" fill="#FADD5F"/>
+      <circle cx="320" cy="200" r="150" fill="#FADD5F"/>
     </g>
-    <!-- body and head silhouette -->
-    <path fill="#FADD5F" stroke="#1C1E25" stroke-width="16" stroke-linejoin="round" d="M 300 65
-      C 390 65 455 135 462 225
-      C 466 285 440 335 400 362
-      C 495 400 560 480 572 570
-      C 610 545 650 532 665 545
-      C 668 600 645 640 615 658
-      C 625 800 530 895 395 895
-      C 260 895 165 825 152 705
-      C 143 620 175 550 245 515
-      C 222 470 214 425 220 385
-      C 185 355 152 310 145 245
-      C 148 130 212 65 300 65 Z"/>
     <!-- wing -->
-    <ellipse cx="330" cy="655" rx="108" ry="80" transform="rotate(-24 330 655)"
+    <ellipse cx="335" cy="665" rx="112" ry="84" transform="rotate(-22 335 665)"
       fill="#F2C94C" stroke="#1C1E25" stroke-width="13"/>
     <!-- bill, two lobes -->
     <path fill="#EF9330" stroke="#1C1E25" stroke-width="13" stroke-linejoin="round"
-      d="M 220 285 C 150 262 55 278 38 322 C 30 355 80 372 135 372 C 175 372 210 360 220 340 Z"/>
+      d="M 240 245 C 165 222 65 238 48 284 C 40 318 92 336 148 336 C 190 336 228 322 240 300 Z"/>
     <path fill="#EF9330" stroke="#1C1E25" stroke-width="13" stroke-linejoin="round"
-      d="M 214 348 C 172 370 110 375 78 360 C 90 388 140 402 184 390 C 206 383 216 366 214 350 Z"/>
+      d="M 232 312 C 188 335 122 340 88 324 C 100 354 152 369 198 356 C 222 349 234 330 232 314 Z"/>
     <!-- eye -->
-    <circle cx="262" cy="210" r="48" fill="#FFFFFF" stroke="#1C1E25" stroke-width="11"/>
-    <circle cx="248" cy="220" r="22" fill="#1C1E25"/>
-    <circle cx="257" cy="205" r="8" fill="#FFFFFF"/>
+    <circle cx="280" cy="165" r="48" fill="#FFFFFF" stroke="#1C1E25" stroke-width="11"/>
+    <circle cx="266" cy="175" r="22" fill="#1C1E25"/>
+    <circle cx="275" cy="160" r="8" fill="#FFFFFF"/>
   </g>
 
   <!-- curved lettering along the bottom -->

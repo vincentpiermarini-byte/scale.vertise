@@ -1,7 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/survey", "destination": "/survey.html" },
-    { "source": "/sign-up", "destination": "/sign-up.html" },
-    { "source": "/care-homes", "destination": "/sign-up.html" }
-  ]
+  "rewrites": []
 }

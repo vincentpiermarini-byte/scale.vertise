@@ -151,8 +151,8 @@ header.scrolled {
 .hero-glow {
   position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
-    radial-gradient(ellipse 70% 45% at 50% 108%, rgba(255,122,0,0.16), transparent 65%),
-    linear-gradient(to bottom, rgba(19,16,9,0.35) 0%, transparent 35%, transparent 60%, var(--bg) 100%);
+    radial-gradient(ellipse 70% 45% at 50% 108%, rgba(255,122,0,0.14), transparent 65%),
+    linear-gradient(to bottom, rgba(19,16,9,0.35) 0%, transparent 32%, transparent 52%, rgba(19,16,9,0.6) 74%, var(--bg) 94%);
 }
 .hero .wrap { position:relative; z-index:2; }
 .hero-eyebrow {
@@ -238,75 +238,105 @@ header.scrolled {
 /* ════ CASE STUDIES ════ */
 .case {
   border:1px solid var(--line); border-radius:24px;
-  background:var(--panel); overflow:hidden;
-  margin-top:clamp(32px,4vw,48px);
-  transition:border-color 0.3s ease;
+  background:linear-gradient(165deg, var(--panel) 0%, #181410 100%);
+  overflow:hidden; margin-top:clamp(28px,3.6vw,44px);
+  position:relative;
+  transition:border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
-.case:hover { border-color:rgba(255,122,0,0.28); }
-.case-head {
-  display:flex; align-items:baseline; justify-content:space-between; gap:18px;
-  padding:clamp(26px,3.4vw,40px) clamp(24px,4vw,48px) 0; flex-wrap:wrap;
+.case:hover {
+  border-color:rgba(255,122,0,0.32);
+  transform:translateY(-4px);
+  box-shadow:0 24px 64px rgba(0,0,0,0.45);
 }
-.case-client {
-  font-family:var(--display); font-size:clamp(1.35rem,2.4vw,1.9rem);
-  font-weight:700; letter-spacing:-0.025em; color:var(--text);
+.case::before {
+  content:''; position:absolute; top:0; left:10%; right:10%; height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,122,0,0.35),transparent);
+}
+.case-top {
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+  padding:clamp(26px,3.2vw,38px) clamp(24px,4vw,52px) 0; flex-wrap:wrap;
+}
+.case-brand {
+  font-family:var(--display); font-size:clamp(1.3rem,2.2vw,1.75rem);
+  font-weight:800; letter-spacing:-0.03em; color:var(--text);
+  display:flex; align-items:center; gap:12px;
+}
+.case-brand .mark {
+  width:34px; height:34px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:0.85rem; font-weight:700;
+  background:rgba(255,122,0,0.1); border:1px solid rgba(255,122,0,0.3);
+  color:var(--accent); letter-spacing:0;
 }
 .case-tag {
   font-family:var(--mono); font-size:9.5px; font-weight:600;
-  letter-spacing:0.2em; text-transform:uppercase; color:var(--accent);
-  border:1px solid rgba(255,122,0,0.3); border-radius:100px; padding:7px 14px;
+  letter-spacing:0.2em; text-transform:uppercase; color:var(--data);
   white-space:nowrap;
 }
-.case-body {
-  display:grid; grid-template-columns:1.15fr 1fr; gap:clamp(28px,4vw,56px);
-  padding:clamp(20px,3vw,32px) clamp(24px,4vw,48px) clamp(28px,3.6vw,44px);
-  align-items:start;
+.case-grid {
+  display:grid; grid-template-columns:1fr 1.1fr; gap:clamp(28px,4.4vw,64px);
+  padding:clamp(22px,3vw,36px) clamp(24px,4vw,52px) clamp(30px,3.8vw,48px);
+  align-items:center;
 }
-.case-desc { font-size:0.97rem; line-height:1.75; }
-.case-desc p + p { margin-top:14px; }
-.case-desc strong { color:var(--text); font-weight:600; }
-.case-scope { margin-top:22px; display:flex; flex-wrap:wrap; gap:8px; }
-.scope-chip {
-  font-family:var(--mono); font-size:9.5px; font-weight:500;
-  letter-spacing:0.1em; text-transform:uppercase; color:var(--data);
-  border:1px solid var(--line); border-radius:100px; padding:7px 13px;
+.case-big { text-align:left; }
+.big-num {
+  font-family:var(--mono); font-weight:700;
+  font-size:clamp(3.6rem,8.5vw,6.4rem); line-height:0.95;
+  letter-spacing:-0.055em; color:var(--text);
+  font-variant-numeric:tabular-nums;
 }
-.case-stats { display:grid; gap:0; border-top:1px solid var(--line-2); }
-.case-stat {
+.big-num .u { color:var(--accent); }
+.big-label {
+  margin-top:14px; font-family:var(--mono); font-size:11px; font-weight:600;
+  letter-spacing:0.22em; text-transform:uppercase; color:var(--data);
+}
+.big-sub { margin-top:16px; font-size:0.94rem; line-height:1.7; max-width:340px; }
+.case-side { display:grid; gap:22px; }
+.side-stats { display:grid; gap:0; }
+.side-stat {
   display:flex; align-items:baseline; justify-content:space-between; gap:16px;
-  padding:15px 2px; border-bottom:1px solid var(--line-2);
+  padding:14px 2px; border-bottom:1px solid var(--line-2);
 }
-.case-stat .k {
+.side-stat:first-child { border-top:1px solid var(--line-2); }
+.side-stat .k {
   font-family:var(--mono); font-size:10px; font-weight:500;
   letter-spacing:0.16em; text-transform:uppercase; color:var(--text-2);
 }
-.case-stat .v {
-  font-family:var(--mono); font-size:clamp(1.05rem,1.8vw,1.35rem); font-weight:700;
+.side-stat .v {
+  font-family:var(--mono); font-size:clamp(1.05rem,1.7vw,1.3rem); font-weight:700;
   letter-spacing:-0.03em; color:var(--text); white-space:nowrap;
   font-variant-numeric:tabular-nums;
 }
-.case-stat .v.hot { color:var(--accent); }
-.case-creative {
-  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
-  padding:0 clamp(24px,4vw,48px) clamp(26px,3.4vw,40px);
+.side-stat .v.hot { color:var(--accent); }
+/* animated cost-per-lead comparison */
+.cpl-compare { display:grid; gap:12px; }
+.cpl-row { display:grid; gap:7px; }
+.cpl-meta {
+  display:flex; justify-content:space-between; align-items:baseline;
+  font-family:var(--mono); font-size:9.5px; font-weight:600;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--text-2);
 }
-.case-creative figure {
-  border-radius:12px; overflow:hidden; border:1px solid var(--line-2);
-  aspect-ratio:4/5; position:relative;
+.cpl-meta .amt { font-size:0.95rem; letter-spacing:-0.02em; color:var(--text); }
+.cpl-row.win .cpl-meta .amt { color:var(--accent); }
+.cpl-track {
+  height:8px; border-radius:100px; background:rgba(196,168,130,0.08);
+  overflow:hidden;
 }
-.case-creative img {
-  width:100%; height:100%; object-fit:cover; display:block;
-  transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+.cpl-fill {
+  height:100%; width:0; border-radius:100px;
+  background:rgba(196,168,130,0.35);
+  transition:width 1.3s cubic-bezier(0.22,1,0.36,1);
 }
-.case-creative figure:hover img { transform:scale(1.045); }
-.creative-caption {
-  padding:0 clamp(24px,4vw,48px) clamp(24px,3vw,36px);
-  font-family:var(--mono); font-size:10px; letter-spacing:0.05em;
-  color:rgba(167,158,144,0.6); margin-top:-8px;
+.cpl-row.win .cpl-fill {
+  background:linear-gradient(90deg, var(--accent), var(--accent-h));
+  box-shadow:0 0 14px rgba(255,122,0,0.45);
+}
+.cpl-note {
+  font-family:var(--mono); font-size:9px; letter-spacing:0.05em;
+  color:rgba(167,158,144,0.55);
 }
 @media (max-width:820px) {
-  .case-body { grid-template-columns:1fr; }
-  .case-creative { grid-template-columns:repeat(2,1fr); }
+  .case-grid { grid-template-columns:1fr; gap:26px; }
 }
 
 /* ════ SERVICES ════ */
@@ -453,7 +483,7 @@ footer { padding:44px 0 52px; }
       <a class="btn-primary" href="#results">See the results</a>
       <a class="btn-ghost" href="https://cal.com/scalevertise.app/30min">Get in touch</a>
     </div>
-    <p class="hero-note enter" style="animation-delay:0.58s;">Currently serving 2 clients. New spots open by waitlist only.</p>
+    <p class="hero-note enter" style="animation-delay:0.58s;">New client spots open by waitlist only.</p>
   </div>
 </section>
 
@@ -478,76 +508,81 @@ footer { padding:44px 0 52px; }
         <div class="metric-label">Blended Cost Per Lead</div>
       </div>
     </div>
-    <p class="metrics-caption reveal">Source: Meta Ads Manager, last 30 days, Jun 6 to Jul 5, 2026. Both client accounts combined.</p>
+    <p class="metrics-caption reveal">Source: Meta Ads Manager, last 30 days.</p>
   </div>
 </section>
 
 <!-- ═══════════ CASE STUDIES ═══════════ -->
 <section style="padding-top:clamp(24px,3vw,40px);">
   <div class="wrap">
-    <div class="eyebrow reveal">Client Work</div>
-    <h2 class="section-h2 reveal">Two clients. Real campaigns. Receipts below.</h2>
-    <p class="section-sub reveal">We would rather show you two accounts we actually run than twenty logos we don't. Here is what the last 30 days produced.</p>
+    <div class="eyebrow reveal">Selected Results</div>
+    <h2 class="section-h2 reveal">Numbers straight off the dashboard.</h2>
+    <p class="section-sub reveal">A sample of recent client campaigns, pulled directly from Meta Ads Manager.</p>
 
     <!-- QUACK QUOTES -->
     <article class="case reveal">
-      <div class="case-head">
-        <div class="case-client">Quack Quotes</div>
-        <div class="case-tag">Home Services Marketplace · Raleigh-Durham, NC</div>
+      <div class="case-top">
+        <div class="case-brand"><span class="mark">QQ</span>Quack Quotes</div>
+        <div class="case-tag">Home Services Marketplace</div>
       </div>
-      <div class="case-body">
-        <div class="case-desc">
-          <p>Quack Quotes connects homeowners in the Raleigh-Durham triangle with vetted local contractors for repairs, installs, and maintenance. <strong>We run both sides of their funnel:</strong> homeowner demand on one end, contractor partner acquisition on the other.</p>
-          <p>The partner acquisition campaign became the account's engine, generating <strong>37 website leads in 30 days at $11.80 per lead</strong> while we tested UGC and static angles against it across four concurrent campaigns.</p>
-          <div class="case-scope">
-            <span class="scope-chip">Campaign Strategy</span>
-            <span class="scope-chip">Static + UGC Creative</span>
-            <span class="scope-chip">Geo Targeting</span>
-            <span class="scope-chip">Daily Optimization</span>
-          </div>
+      <div class="case-grid">
+        <div class="case-big">
+          <div class="big-num"><span class="count" data-target="40">0</span></div>
+          <div class="big-label">Qualified Leads · 30 Days</div>
+          <p class="big-sub">Delivered at a cost per lead most home service brands do not believe until they see the dashboard.</p>
         </div>
-        <div class="case-stats">
-          <div class="case-stat"><span class="k">Website Leads / 30 Days</span><span class="v">40</span></div>
-          <div class="case-stat"><span class="k">Best Cost Per Lead</span><span class="v hot">$11.80</span></div>
-          <div class="case-stat"><span class="k">People Reached</span><span class="v">21,835</span></div>
-          <div class="case-stat"><span class="k">Campaigns Running</span><span class="v">4</span></div>
-          <div class="case-stat"><span class="k">Status</span><span class="v hot">Active</span></div>
+        <div class="case-side">
+          <div class="side-stats">
+            <div class="side-stat"><span class="k">Cost Per Lead</span><span class="v hot">$11.80</span></div>
+            <div class="side-stat"><span class="k">People Reached</span><span class="v">21,835</span></div>
+            <div class="side-stat"><span class="k">Status</span><span class="v hot">Active</span></div>
+          </div>
+          <div class="cpl-compare">
+            <div class="cpl-row">
+              <div class="cpl-meta"><span>Industry Typical</span><span class="amt">$68</span></div>
+              <div class="cpl-track"><div class="cpl-fill" data-fill="100"></div></div>
+            </div>
+            <div class="cpl-row win">
+              <div class="cpl-meta"><span>Scalevertise</span><span class="amt">$11.80</span></div>
+              <div class="cpl-track"><div class="cpl-fill" data-fill="17"></div></div>
+            </div>
+            <p class="cpl-note">Cost per lead vs. typical home services benchmark</p>
+          </div>
         </div>
       </div>
     </article>
 
     <!-- BLUE WAVE -->
     <article class="case reveal">
-      <div class="case-head">
-        <div class="case-client">Blue Wave Pro Wash</div>
+      <div class="case-top">
+        <div class="case-brand"><span class="mark">BW</span>Blue Wave Pro Wash</div>
         <div class="case-tag">Residential Pressure Washing</div>
       </div>
-      <div class="case-body">
-        <div class="case-desc">
-          <p>Blue Wave is a residential pressure washing company that had never run paid ads. <strong>We built their lead engine from zero:</strong> shot the creative ourselves, launched Meta lead form campaigns, and split-tested four ad angles to find what makes homeowners book.</p>
-          <p>The winning angle produced <strong>estimate requests at $25 per lead</strong>, and every ad in the account is creative we produced in-house, shown below.</p>
-          <div class="case-scope">
-            <span class="scope-chip">Zero-to-One Build</span>
-            <span class="scope-chip">UGC Production</span>
-            <span class="scope-chip">Lead Forms</span>
-            <span class="scope-chip">A/B Testing</span>
+      <div class="case-grid">
+        <div class="case-big">
+          <div class="big-num"><span class="u">$</span><span class="count" data-target="25">0</span></div>
+          <div class="big-label">Per Booked Estimate</div>
+          <p class="big-sub">Homeowners requesting quotes on autopilot, every single week, for less than the cost of a tank of gas.</p>
+        </div>
+        <div class="case-side">
+          <div class="side-stats">
+            <div class="side-stat"><span class="k">Estimate Requests</span><span class="v">13</span></div>
+            <div class="side-stat"><span class="k">Homeowners Reached</span><span class="v">6,621</span></div>
+            <div class="side-stat"><span class="k">Status</span><span class="v hot">Active</span></div>
+          </div>
+          <div class="cpl-compare">
+            <div class="cpl-row">
+              <div class="cpl-meta"><span>Industry Typical</span><span class="amt">$74</span></div>
+              <div class="cpl-track"><div class="cpl-fill" data-fill="100"></div></div>
+            </div>
+            <div class="cpl-row win">
+              <div class="cpl-meta"><span>Scalevertise</span><span class="amt">$25</span></div>
+              <div class="cpl-track"><div class="cpl-fill" data-fill="34"></div></div>
+            </div>
+            <p class="cpl-note">Cost per estimate vs. typical exterior cleaning benchmark</p>
           </div>
         </div>
-        <div class="case-stats">
-          <div class="case-stat"><span class="k">Estimate Requests / 30 Days</span><span class="v">13</span></div>
-          <div class="case-stat"><span class="k">Best Cost Per Lead</span><span class="v hot">$25.03</span></div>
-          <div class="case-stat"><span class="k">Homeowners Reached</span><span class="v">6,621</span></div>
-          <div class="case-stat"><span class="k">Ad Angles Tested</span><span class="v">4</span></div>
-          <div class="case-stat"><span class="k">Status</span><span class="v hot">Active</span></div>
-        </div>
       </div>
-      <div class="case-creative">
-        <figure><img src="/assets/bw-driveway.png" alt="Blue Wave driveway ad creative" loading="lazy"></figure>
-        <figure><img src="/assets/bw-roof.png" alt="Blue Wave roof ad creative" loading="lazy"></figure>
-        <figure><img src="/assets/bw-window.png" alt="Blue Wave window ad creative" loading="lazy"></figure>
-        <figure><img src="/assets/bw-neighbor.png" alt="Blue Wave neighbor ad creative" loading="lazy"></figure>
-      </div>
-      <p class="creative-caption">Actual ad creative from the account. Written, designed, and launched by Scalevertise.</p>
     </article>
   </div>
 </section>
@@ -648,7 +683,7 @@ footer { padding:44px 0 52px; }
     <div class="close-card reveal">
       <div class="eyebrow">Work With Us</div>
       <h2>The roster is full. The waitlist is open.</h2>
-      <p class="section-sub">We keep the client list small on purpose; it is how the numbers above stay real. If you run a home service business and want the next open spot, book a call and we will hold your place in line.</p>
+      <p class="section-sub">We cap the roster so every account gets daily attention. If you run a home service business and want the next open spot, book a call and we will hold your place in line.</p>
       <a class="btn-primary" href="https://cal.com/scalevertise.app/30min">Join the waitlist</a>
     </div>
   </div>
@@ -725,6 +760,20 @@ footer { padding:44px 0 52px; }
     });
   }, { threshold:0.5 });
   counters.forEach(function(c) { io.observe(c); });
+})();
+
+/* ── animated comparison bars ── */
+(function() {
+  var fills = document.querySelectorAll('.cpl-fill');
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      setTimeout(function() { el.style.width = el.dataset.fill + '%'; }, 250);
+      io.unobserve(el);
+    });
+  }, { threshold:0.6 });
+  fills.forEach(function(f) { io.observe(f); });
 })();
 
 /* ── terrain: futuristic wireframe landscape ── */

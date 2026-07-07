@@ -29,12 +29,13 @@
   .kick { position:absolute; top:520px; width:100%; text-align:center;
           font-size:30px; letter-spacing:.3em; opacity:0; }
 
-  /* beat 1: hook, scale pops */
+  /* beat 1: hook, scale pops. vertical rhythm computed from real line-height
+     boxes (font-size * 1.15) with a 26px gap between lines, block centered. */
   .pop { position:absolute; width:100%; text-align:center; color:#F5FAF5; transform:scale(.2); opacity:0; }
-  #p0 { top:600px;  font-size:236px; }
-  #p1 { top:868px;  font-size:112px; }
-  #p2 { top:1010px; font-size:112px; }
-  #p3 { top:1160px; font-size:184px; color:#A8DCF5; }
+  #p0 { top:554px;  font-size:236px; line-height:1.15; }
+  #p1 { top:850px;  font-size:112px; line-height:1.15; }
+  #p2 { top:1004px; font-size:112px; line-height:1.15; }
+  #p3 { top:1157px; font-size:184px; line-height:1.15; color:#A8DCF5; }
 
   /* beat 2: word stagger */
   #words { position:absolute; top:760px; left:90px; width:900px; text-align:center;
@@ -64,9 +65,9 @@
              font-size:38px; color:rgba(20,89,42,.65); opacity:0; }
 
   /* beat 5: price count */
-  #price { position:absolute; top:790px; width:100%; text-align:center; color:#F5FAF5;
-           font-size:330px; letter-spacing:-.02em; }
-  #permo { position:absolute; top:1160px; width:100%; text-align:center; color:#A8DCF5; font-size:66px; opacity:0; }
+  #price { position:absolute; top:800px; width:100%; text-align:center; color:#F5FAF5;
+           font-size:330px; line-height:1; letter-spacing:-.02em; }
+  #permo { position:absolute; top:1180px; width:100%; text-align:center; color:#A8DCF5; font-size:66px; opacity:0; }
   .sub5 { position:absolute; width:100%; text-align:center; color:#F5FAF5; font-size:74px; opacity:0; }
   #s5a { top:1300px; }
   #s5b { top:1408px; }
@@ -86,6 +87,15 @@
   #flash { position:absolute; inset:0; background:#fff; opacity:0; z-index:60; }
   #panel { position:absolute; left:0; width:1080px; height:1920px; background:#2E9BD6;
            top:1920px; z-index:55; }
+
+  /* persistent brand chip, reads on every background, corner mark like the
+     rest of the series */
+  #brand { position:absolute; top:64px; left:64px; z-index:70; opacity:0;
+           display:flex; align-items:center; gap:12px;
+           padding:11px 22px 11px 15px; border-radius:32px; background:rgba(10,20,14,.28); }
+  #brand svg { width:25px; height:23px; display:block; }
+  #brand span { font-family:'Helvetica Neue',Arial,sans-serif; font-weight:700;
+                font-size:18px; letter-spacing:.14em; color:#F5FAF5; }
 </style>
 </head>
 <body>
@@ -148,6 +158,16 @@
   <div id="vig"></div>
   <div id="panel"></div>
   <div id="flash"></div>
+
+  <div id="brand">
+    <svg viewBox="0 0 160 150">
+      <ellipse cx="42"  cy="38" rx="19" ry="26" fill="#F5FAF5" transform="rotate(-18 42 38)"/>
+      <ellipse cx="80"  cy="26" rx="19" ry="27" fill="#F5FAF5"/>
+      <ellipse cx="118" cy="38" rx="19" ry="26" fill="#F5FAF5" transform="rotate(18 118 38)"/>
+      <path d="M80 62 C110 62 132 84 132 106 C132 128 112 140 80 140 C48 140 28 128 28 106 C28 84 50 62 80 62 Z" fill="#F5FAF5"/>
+    </svg>
+    <span>PETSCOOP &amp; SANITIZE</span>
+  </div>
 </div>
 
 <script>
@@ -222,6 +242,12 @@
     // b6 content on top of circle
     $('b6c').style.opacity = String(t >= 18550 ? 1 : 0);
 
+    // persistent brand chip: fades in with the rest of the chrome, fades out
+    // just before the end-card circle takes over
+    var bch = outQuint(tw(t, 60, 340));
+    var bout = tw(t, 18150, 380);
+    $('brand').style.opacity = String(bch * (1 - bout));
+
     // living glow drift, always
     $('glow').style.left = (200 + 160*Math.sin(s*0.35)) + 'px';
     $('glow').style.top  = (300 + 220*Math.sin(s*0.22 + 1.4)) + 'px';
@@ -284,9 +310,13 @@
     $('pin').style.transform = 'translateY(' + lerp(-260,0,pd) + 'px)';
     var mr = inOut(tw(t, 12150, 620));
     $('masktext').style.clipPath = 'inset(-20% ' + (100 - 100*mr) + '% -20% 0)';
-    var tx = $('masktext');
-    var barx = 90 + (900 * mr);
-    $('maskbar').style.left = barx + 'px';
+    // measure the real rendered text box once (font metrics vary), then track
+    // the bar to the actual clip edge instead of a guessed pixel offset
+    if (!window._mtRect) window._mtRect = $('masktext').getBoundingClientRect();
+    var mtr = window._mtRect;
+    $('maskbar').style.top = (mtr.top - 12) + 'px';
+    $('maskbar').style.height = (mtr.height + 24) + 'px';
+    $('maskbar').style.left = (mtr.left + mtr.width * mr - 28) + 'px';
     $('maskbar').style.opacity = String(mr > 0 && mr < 0.995 ? 1 : 0);
     var s4 = tw(t, 13050, 350);
     var el4 = $('b4').querySelector('.sub');
@@ -298,7 +328,7 @@
     $('b5').querySelector('.kick').style.opacity = String(k5);
     var n = 0;
     for (var i2 = 0; i2 < TICKS.length; i2++) if (t >= TICKS[i2]) n = i2;
-    var val = Math.round(85 * n / (TICKS.length - 1));
+    var val = Math.round(79 * n / (TICKS.length - 1));
     $('price').textContent = '$' + val;
     var settle = spring(tw(t, TICKS[TICKS.length-1], 500), 0.35);
     var pre = clamp(tw(t, 14400, 200)*1.4, 0, 1);

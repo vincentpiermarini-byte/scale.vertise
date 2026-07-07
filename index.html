@@ -889,72 +889,89 @@ footer { padding:52px 0 64px; }
   build('chartBW', 13, 8.1, 'gradBW');
 })();
 
-/* ── constellation: triangle particles forming a rising comet ── */
+/* ── constellation: 3D particle brain that bursts open on scroll ── */
 (function() {
   var canvas = document.getElementById('constellation');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var W, H, dpr, parts = [];
+  var W, H, dpr;
 
-  var PALETTE = ['#FF7A00', '#ffb829', '#8052ff', '#15846e', '#4E9CFF', '#E357C2'];
+  /* Dala-weighted spectrum: amber and white dominate, violet/teal/orange support */
+  var PALETTE = [
+    '#ffb829', '#ffb829', '#ffffff', '#ffffff', '#8052ff',
+    '#FF7A00', '#15846e', '#4E9CFF', '#E357C2', '#c9c9c9'
+  ];
 
   function hash(a, b) {
     var s = Math.sin(a * 127.1 + b * 311.7) * 43758.5453;
     return s - Math.floor(s);
   }
-  function gauss(seed) {
-    return (hash(seed, 1) + hash(seed, 2) + hash(seed, 3) - 1.5) / 1.5;
-  }
 
-  function buildParticles() {
-    parts = [];
-    var N = 950;
-    for (var i = 0; i < N; i++) {
-      /* rising comet: dense tail lower-left, arrowhead upper-right */
-      var u = Math.pow(hash(i, 11), 0.75);            /* position along curve */
-      var cx = 0.10 + u * 0.78;
-      var cy = 0.86 - Math.pow(u, 1.35) * 0.68;       /* exponential-ish climb */
-      var spread = 0.16 * (1 - u * 0.72);             /* tail wide, tip tight */
-      var px = cx + gauss(i * 3.1) * spread;
-      var py = cy + gauss(i * 7.7) * spread;
+  /* ── build brain point cloud on 3D surfaces ── */
+  var parts = [];
+  (function build() {
+    var N = 2200, i = 0, tries = 0;
+    while (i < N && tries < N * 30) {
+      tries++;
+      /* random direction on unit sphere */
+      var u = hash(tries, 1) * 2 - 1;
+      var phi = hash(tries, 2) * Math.PI * 2;
+      var sq = Math.sqrt(1 - u * u);
+      var dx = sq * Math.cos(phi), dy = u, dz = sq * Math.sin(phi);
+
+      var x, y, z, region = hash(tries, 3);
+      if (region < 0.80) {
+        /* cranium: ellipsoid, slightly taller in front (+x = face side) */
+        var bulge = 1 + 0.12 * Math.max(0, dx) * Math.max(0, dy);
+        x = dx * 1.18 * bulge; y = dy * 0.78 * bulge; z = dz * 0.70;
+        /* carve the hemisphere groove along the top */
+        if (Math.abs(z) < 0.05 && y > 0.15) continue;
+        /* flatten underside where cerebellum/stem attach */
+        if (y < -0.42 && x < 0.15) continue;
+      } else if (region < 0.95) {
+        /* cerebellum: smaller ellipsoid tucked low at the back */
+        x = -0.52 + dx * 0.34; y = -0.52 + dy * 0.26; z = dz * 0.30;
+      } else {
+        /* brainstem: short angled column */
+        var h2 = hash(tries, 4);
+        x = -0.18 - h2 * 0.14 + dx * 0.09;
+        y = -0.62 - h2 * 0.30;
+        z = dz * 0.09;
+      }
+
+      /* explosion direction: outward from center, normalized */
+      var mag = Math.sqrt(x * x + y * y + z * z) || 1;
       parts.push({
-        x: px, y: py,
-        r: 1.6 + hash(i, 5) * 3.2,
+        x: x, y: y, z: z,
+        ex: x / mag, ey: y / mag, ez: z / mag,
+        boost: 0.7 + hash(i, 7) * 1.6,        /* per-particle burst distance */
+        r: 1.5 + hash(i, 5) * 2.6,
         c: PALETTE[Math.floor(hash(i, 9) * PALETTE.length)],
-        tw: hash(i, 13) * Math.PI * 2,               /* twinkle phase */
-        sp: 0.4 + hash(i, 17) * 0.9,                 /* twinkle speed */
+        tw: hash(i, 13) * Math.PI * 2,
+        sp: 0.5 + hash(i, 17) * 1.1,
         rot: hash(i, 21) * Math.PI * 2,
-        drift: 0.0015 + hash(i, 25) * 0.002
+        spin: (hash(i, 23) - 0.5) * 2.4       /* tumble while exploding */
       });
+      i++;
     }
-    /* arrowhead cluster at the tip */
-    for (var j = 0; j < 70; j++) {
-      var a = hash(j, 31) * Math.PI * 2;
-      var rr = Math.pow(hash(j, 37), 0.6) * 0.055;
+    /* ambient drifters around the brain */
+    for (var k = 0; k < 70; k++) {
+      var a = hash(k, 31) * Math.PI * 2, b = hash(k, 37) * Math.PI - Math.PI / 2;
+      var rr = 1.5 + hash(k, 41) * 1.3;
       parts.push({
-        x: 0.88 + Math.cos(a) * rr, y: 0.18 + Math.sin(a) * rr * 1.2,
-        r: 2 + hash(j, 41) * 3.4,
-        c: PALETTE[Math.floor(hash(j, 43) * PALETTE.length)],
-        tw: hash(j, 47) * Math.PI * 2,
-        sp: 0.6 + hash(j, 53) * 1.1,
-        rot: hash(j, 59) * Math.PI * 2,
-        drift: 0.002
+        x: Math.cos(a) * Math.cos(b) * rr, y: Math.sin(b) * rr, z: Math.sin(a) * Math.cos(b) * rr,
+        ex: 0, ey: 0, ez: 0, boost: 0,
+        r: 1.4 + hash(k, 43) * 2.4,
+        c: PALETTE[Math.floor(hash(k, 47) * PALETTE.length)],
+        tw: hash(k, 53) * Math.PI * 2,
+        sp: 0.3 + hash(k, 59) * 0.6,
+        rot: hash(k, 61) * Math.PI * 2,
+        spin: (hash(k, 67) - 0.5) * 0.8,
+        ambient: true
       });
     }
-    /* ambient scatter around the whole canvas */
-    for (var k = 0; k < 60; k++) {
-      parts.push({
-        x: hash(k, 61), y: hash(k, 67),
-        r: 1.2 + hash(k, 71) * 2,
-        c: PALETTE[Math.floor(hash(k, 73) * PALETTE.length)],
-        tw: hash(k, 79) * Math.PI * 2,
-        sp: 0.3 + hash(k, 83) * 0.6,
-        rot: hash(k, 89) * Math.PI * 2,
-        drift: 0.001, ambient: true
-      });
-    }
-  }
+  })();
 
   function resize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -964,7 +981,18 @@ footer { padding:52px 0 64px; }
   }
   window.addEventListener('resize', resize);
   resize();
-  buildParticles();
+
+  /* scroll drives the burst: 0 = assembled brain, 1 = fully scattered */
+  var explode = 0, explodeTarget = 0;
+  function onScroll() {
+    var hero = canvas.closest('.hero') || document.body;
+    var range = Math.max(hero.offsetHeight * 0.85, 1);
+    var p = Math.min(1, Math.max(0, window.scrollY / range));
+    /* ease-in so the brain holds together at first, then bursts */
+    explodeTarget = p * p * (3 - 2 * p);
+  }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
 
   var t = 0;
 
@@ -972,29 +1000,55 @@ footer { padding:52px 0 64px; }
     ctx.beginPath();
     for (var v = 0; v < 3; v++) {
       var a = rot + v * (Math.PI * 2 / 3);
-      var vx = x + Math.cos(a) * r;
-      var vy = y + Math.sin(a) * r;
-      if (v === 0) ctx.moveTo(vx, vy); else ctx.lineTo(vx, vy);
+      ctx[v === 0 ? 'moveTo' : 'lineTo'](x + Math.cos(a) * r, y + Math.sin(a) * r);
     }
     ctx.closePath();
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
+    explode += (explodeTarget - explode) * 0.07;
+
+    var rotY = t * 0.22 + explode * 2.2;   /* slow spin, extra kick while bursting */
+    var tilt = -0.28;
+    var cy2 = Math.cos(tilt), sy2 = Math.sin(tilt);
+    var cR = Math.cos(rotY), sR = Math.sin(rotY);
+    var scale = Math.min(W, H) * 0.40;
+    var cx0 = W * 0.5, cy0 = H * 0.48;
+
     for (var i = 0; i < parts.length; i++) {
       var p = parts[i];
+
+      /* burst displacement along outward normal */
+      var e = p.ambient ? 0 : explode * p.boost * 2.4;
+      var x = p.x + p.ex * e;
+      var y = p.y + p.ey * e;
+      var z = p.z + p.ez * e;
+
+      /* rotate Y then tilt X */
+      var rx = x * cR + z * sR;
+      var rz = -x * sR + z * cR;
+      var ry = y * cy2 - rz * sy2;
+      rz = y * sy2 + rz * cy2;
+
+      var persp = 1 / (1 + rz * 0.28);
+      var sx = cx0 + rx * scale * persp;
+      var sy = cy0 - ry * scale * persp;
+
       var wob = Math.sin(t * p.sp + p.tw);
-      var alpha = p.ambient ? 0.14 + 0.14 * wob : 0.35 + 0.45 * wob;
-      if (alpha < 0.06) continue;
-      var px = p.x * W + Math.sin(t * 0.4 + p.tw) * 4;
-      var py = p.y * H + Math.cos(t * 0.35 + p.tw * 1.3) * 4;
-      ctx.globalAlpha = Math.max(0, Math.min(1, alpha));
+      var depth = 0.55 + 0.45 * Math.min(1, Math.max(0, (0.9 - rz)));
+      var alpha = (p.ambient ? 0.10 + 0.14 * wob : (0.30 + 0.42 * wob) * depth);
+      alpha *= (1 - explode * 0.55);           /* fade as it scatters */
+      if (alpha < 0.05) continue;
+
+      ctx.globalAlpha = Math.min(1, Math.max(0, alpha));
       ctx.strokeStyle = p.c;
-      ctx.lineWidth = 1.1;
-      tri(px, py, p.r, p.rot + t * p.drift * 60);
+      ctx.lineWidth = 1;
+      tri(sx, sy, p.r * persp, p.rot + t * 0.3 + explode * p.spin * 6);
       ctx.stroke();
     }
     ctx.globalAlpha = 1;
+
     if (!reduced) {
       t += 0.016;
       requestAnimationFrame(draw);

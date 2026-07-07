@@ -177,18 +177,18 @@ header.scrolled {
 .hero-spacer { min-height:1px; }
 @media (max-width:880px) {
   .hero .wrap { grid-template-columns:1fr; }
-  .hero { min-height:100svh; padding-top:0; padding-bottom:52px; align-items:flex-end; }
+  /* minimal mobile stage: headline top, brain center, CTA bottom */
+  .hero { min-height:100svh; padding-top:104px; padding-bottom:0; align-items:flex-start; }
   .hero-spacer { display:none; }
-  /* text rises over a soft white fade so the brain reads as a
-     full-bleed backdrop instead of a stacked block */
-  .hero-copy { position:relative; padding-top:26px; }
-  .hero-copy::before {
-    content:''; position:absolute; left:-28px; right:-28px; top:-70px; bottom:-60px;
-    background:linear-gradient(to top, #fff 82%, rgba(255,255,255,0));
-    z-index:-1; pointer-events:none;
+  .hero-copy { text-align:center; }
+  .hero-copy .label { margin-bottom:16px; }
+  .hero-copy h1 { margin-bottom:0; }
+  .hero-sub, .hero-note { display:none; }
+  .label { font-size:11px; letter-spacing:0.14em; }
+  .hero-ctas {
+    position:absolute; left:24px; right:24px; bottom:44px;
+    margin-top:0; justify-content:center;
   }
-  .label { font-size:12px; letter-spacing:0.12em; }
-  .hero-ctas { margin-top:30px; }
 }
 
 /* ════ METRICS ════ */
@@ -394,9 +394,9 @@ footer { padding:52px 0 64px; }
     <div class="hero-copy">
       <span class="label enter" style="animation-delay:0.1s;">Performance Marketing · Home Services</span>
       <h1 class="display h-display enter" style="animation-delay:0.22s;">We turn ad spend into <span class="hl">booked jobs.</span></h1>
-      <p class="body-copy enter" style="animation-delay:0.36s;">
-        Scalevertise plans, shoots, and runs Meta ad campaigns for home service businesses.
-        <strong>Every number on this page comes straight out of Ads Manager.</strong>
+      <p class="body-copy hero-sub enter" style="animation-delay:0.36s;">
+        Meta ad campaigns for home service businesses.
+        <strong>Real numbers, straight out of Ads Manager.</strong>
       </p>
       <div class="hero-ctas enter" style="animation-delay:0.5s;">
         <a class="btn-pill" href="#results">See the results</a>
@@ -1065,9 +1065,9 @@ footer { padding:52px 0 64px; }
     var tilt = -0.16 + Math.sin(t * 0.33) * 0.05;
     var cy2 = Math.cos(tilt), sy2 = Math.sin(tilt);
     var cR = Math.cos(rotY), sR = Math.sin(rotY);
-    var scale = Math.min(W, H) * (mobile ? 0.42 : 0.36) * flight;
+    var scale = Math.min(W, H) * (mobile ? 0.40 : 0.36) * flight;
     var cx0 = mobile ? W * 0.5 : W * 0.70;
-    var cy0 = (mobile ? H * 0.33 : H * 0.46) - Math.min(scrollUnits, 1) * H * 0.10;
+    var cy0 = (mobile ? H * 0.56 : H * 0.46) - Math.min(scrollUnits, 1) * H * 0.10;
 
     /* after the burst the field breathes across the whole viewport */
     var spread = burst;
@@ -1105,7 +1105,7 @@ footer { padding:52px 0 64px; }
       var wob = Math.sin(t * p.sp + p.tw);
       var depth = 0.55 + 0.45 * Math.min(1, Math.max(0, (0.9 - rz)));
       var assembledA = p.ambient ? 0.12 + 0.12 * wob : (0.34 + 0.38 * wob) * depth * (p.shade || 1);
-      var scatteredA = 0.07 + 0.08 * wob;
+      var scatteredA = mobile ? 0.03 + 0.03 * wob : 0.07 + 0.08 * wob;
       var alpha = assembledA * (1 - spread) + scatteredA * spread;
       if (alpha < 0.045) continue;
 

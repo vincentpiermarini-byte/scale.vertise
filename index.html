@@ -157,7 +157,21 @@ header.scrolled {
 .hero-copy h1 { margin-bottom:30px; }
 .hero-copy h1 .hl { color:var(--accent-t); }
 .hero-copy .body-copy { max-width:480px; }
-.hero-ctas { display:flex; align-items:center; gap:24px; margin-top:42px; flex-wrap:wrap; }
+/* minimal scroll cue replaces the hero CTA button */
+.hero-cue {
+  display:inline-flex; align-items:center; gap:9px; margin-top:44px;
+  font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--ash); text-decoration:none;
+  transition:color 0.25s ease;
+}
+.hero-cue:hover { color:var(--ink); }
+.hero-cue svg { animation:cueBob 2.2s ease-in-out infinite; }
+@keyframes cueBob {
+  0%,100% { transform:translateY(0); opacity:0.7; }
+  50%     { transform:translateY(4px); opacity:1; }
+}
+@media (prefers-reduced-motion:reduce) { .hero-cue svg { animation:none; } }
+/* filled pill retained for the closing waitlist CTA */
 .btn-pill {
   display:inline-flex; align-items:center; gap:10px;
   background:var(--accent); color:#fff;
@@ -166,14 +180,6 @@ header.scrolled {
   transition:transform 0.2s cubic-bezier(0.22,1,0.36,1), filter 0.2s;
 }
 .btn-pill:hover { transform:translateY(-2px); filter:brightness(1.06); }
-.link-ghost {
-  font-size:14px; font-weight:600; letter-spacing:0.025em; text-transform:uppercase;
-  color:var(--ash); text-decoration:none;
-  border-bottom:1px solid rgba(111,107,102,0.4); padding-bottom:3px;
-  transition:color 0.2s, border-color 0.2s;
-}
-.link-ghost:hover { color:var(--ink); border-color:var(--ink); }
-.hero-note { margin-top:26px; font-family:var(--mono); font-size:11px; letter-spacing:0.05em; color:var(--ash); }
 .hero-spacer { min-height:1px; }
 @media (max-width:880px) {
   .hero .wrap { grid-template-columns:1fr; }
@@ -183,10 +189,10 @@ header.scrolled {
   .hero-copy { text-align:center; }
   .hero-copy .label { margin-bottom:16px; }
   .hero-copy h1 { margin-bottom:0; }
-  .hero-sub, .hero-note { display:none; }
+  .hero-sub { display:none; }
   .label { font-size:11px; letter-spacing:0.14em; }
-  .hero-ctas {
-    position:absolute; left:24px; right:24px; bottom:44px;
+  .hero-cue {
+    position:absolute; left:0; right:0; bottom:40px;
     margin-top:0; justify-content:center;
   }
 }
@@ -398,11 +404,10 @@ footer { padding:52px 0 64px; }
         Meta ad campaigns for home service businesses.
         <strong>Real numbers, straight out of Ads Manager.</strong>
       </p>
-      <div class="hero-ctas enter" style="animation-delay:0.5s;">
-        <a class="btn-pill" href="#results">See the results</a>
-        <a class="link-ghost" href="https://cal.com/scalevertise.app/30min">Get in touch</a>
-      </div>
-      <p class="hero-note enter" style="animation-delay:0.62s;">New client spots open by waitlist only.</p>
+      <a class="hero-cue enter" href="#results" style="animation-delay:0.5s;">
+        <span>See the results</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
     </div>
     <div class="hero-spacer"></div>
   </div>

@@ -177,8 +177,18 @@ header.scrolled {
 .hero-spacer { min-height:1px; }
 @media (max-width:880px) {
   .hero .wrap { grid-template-columns:1fr; }
-  .hero { padding-top:48svh; padding-bottom:60px; align-items:flex-start; }
+  .hero { min-height:100svh; padding-top:0; padding-bottom:52px; align-items:flex-end; }
   .hero-spacer { display:none; }
+  /* text rises over a soft white fade so the brain reads as a
+     full-bleed backdrop instead of a stacked block */
+  .hero-copy { position:relative; padding-top:26px; }
+  .hero-copy::before {
+    content:''; position:absolute; left:-28px; right:-28px; top:-70px; bottom:-60px;
+    background:linear-gradient(to top, #fff 82%, rgba(255,255,255,0));
+    z-index:-1; pointer-events:none;
+  }
+  .label { font-size:12px; letter-spacing:0.12em; }
+  .hero-ctas { margin-top:30px; }
 }
 
 /* ════ METRICS ════ */
@@ -913,54 +923,76 @@ footer { padding:52px 0 64px; }
     return s - Math.floor(s);
   }
 
-  /* ── brain anatomy: cerebrum + temporal lobes + cerebellum + stem,
-     with cortical fold striping and a hemisphere gap ── */
+  /* ── brain built from a true side-profile silhouette (facing right),
+     filled with a particle shell and etched with fold gaps ── */
+  var PROFILE = [
+    /* back of head, up over the crown, down the forehead */
+    [-1.06, 0.06], [-1.02, 0.38], [-0.86, 0.64], [-0.60, 0.82],
+    [-0.28, 0.94], [ 0.08, 0.98], [ 0.42, 0.92], [ 0.72, 0.76],
+    [ 0.94, 0.52], [ 1.06, 0.24], [ 1.08, 0.00],
+    /* front underside curving back: frontal base, temporal lobe */
+    [ 1.00,-0.20], [ 0.80,-0.34], [ 0.58,-0.36], [ 0.46,-0.50],
+    [ 0.22,-0.60], [-0.06,-0.62], [-0.28,-0.52],
+    /* notch between temporal lobe and cerebellum */
+    [-0.38,-0.36],
+    /* cerebellum: rounded lobe low at the back */
+    [-0.48,-0.44], [-0.66,-0.58], [-0.88,-0.56], [-1.00,-0.40],
+    [-1.05,-0.18]
+  ];
+  function inProfile(x, y) {
+    var inside = false;
+    for (var a = 0, b = PROFILE.length - 1; a < PROFILE.length; b = a++) {
+      var xi = PROFILE[a][0], yi = PROFILE[a][1];
+      var xj = PROFILE[b][0], yj = PROFILE[b][1];
+      if ((yi > y) !== (yj > y) &&
+          x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+
   var parts = [];
   (function build() {
-    var N = 2400, i = 0, tries = 0;
-    while (i < N && tries < N * 40) {
+    var N = 2600, i = 0, tries = 0;
+    while (i < N && tries < N * 50) {
       tries++;
-      var u = hash(tries, 1) * 2 - 1;
-      var phi = hash(tries, 2) * Math.PI * 2;
-      var sq = Math.sqrt(1 - u * u);
-      var dx = sq * Math.cos(phi), dy = u, dz = sq * Math.sin(phi);
+      var x = (hash(tries, 1) * 2 - 1) * 1.12;
+      var y = (hash(tries, 2) * 2 - 1) * 1.05;
+      var isStem = false;
 
-      var x, y, z, region = hash(tries, 3);
-      if (region < 0.62) {
-        /* cerebrum: long ellipsoid, front (+x) slightly higher */
-        var lift = 1 + 0.10 * Math.max(0, dx) * Math.max(0, dy);
-        x = dx * 1.25 * lift; y = dy * 0.85 * lift; z = dz * 0.80;
-        /* cortical folds: radial striping = gyri */
-        var fold = 1 + 0.05 * Math.sin(Math.atan2(y, x) * 9 + z * 7);
-        x *= fold; y *= fold; z *= fold;
-        /* hemisphere gap along the top midline */
-        if (Math.abs(z) < 0.06 && y > 0.05) continue;
-        /* flatten the underside; temporal lobes fill it below */
-        if (y < -0.30) continue;
-      } else if (region < 0.82) {
-        /* temporal lobes: two lower side lobes */
-        var side = hash(tries, 8) < 0.5 ? -1 : 1;
-        x = 0.15 + dx * 0.62; y = -0.42 + dy * 0.26; z = side * 0.38 + dz * 0.26;
-        if (x < -0.55) continue;
-      } else if (region < 0.95) {
-        /* cerebellum: ribbed ball tucked low at the back */
-        x = -0.78 + dx * 0.34; y = -0.48 + dy * 0.28; z = dz * 0.34;
-        var rib = 1 + 0.06 * Math.sin(y * 26);
-        x *= rib; z *= rib;
-      } else {
-        /* brainstem: short angled column */
-        var h2 = hash(tries, 4);
-        x = -0.40 - h2 * 0.16 + dx * 0.10;
-        y = -0.62 - h2 * 0.32;
-        z = dz * 0.10;
+      if (!inProfile(x, y)) {
+        /* small chance the point belongs to the brainstem instead */
+        if (hash(tries, 6) < 0.03) {
+          var h2 = hash(tries, 4);
+          x = -0.22 - h2 * 0.18 + (hash(tries, 5) - 0.5) * 0.14;
+          y = -0.58 - h2 * 0.34;
+          isStem = true;
+        } else continue;
       }
+
+      /* folds: wavy bands across the cortex render dimmer, reading as gyri
+         without carving holes in the mass */
+      var foldDim = 1;
+      if (!isStem && y > -0.35) {
+        var fold = Math.sin(x * 6.5 + Math.sin(y * 4.0 + x) * 1.8 + y * 3.2);
+        if (fold > 0.72) foldDim = 0.30;
+      }
+
+      /* rim detection: points near the silhouette edge get a bright boost */
+      var edge = !inProfile(x * 1.07, y * 1.07) || !inProfile(x * 0.93 + 0.001, y);
+      if (isStem) edge = false;
+
+      /* depth: shell-biased so the surface is denser than the core */
+      var zsign = hash(tries, 7) < 0.5 ? -1 : 1;
+      var thick = isStem ? 0.10 : 0.34 * (1 - 0.35 * Math.abs(x) / 1.1);
+      var z = zsign * thick * Math.pow(hash(tries, 8), 0.35);
 
       var mag = Math.sqrt(x * x + y * y + z * z) || 1;
       parts.push({
+        shade: (edge ? 1.5 : 0.62 + 0.55 * Math.abs(z) / (thick || 1)) * foldDim,
         x: x, y: y, z: z,
         ex: x / mag, ey: y / mag, ez: z / mag,
         boost: 0.7 + hash(i, 7) * 1.8,
-        r: 1.5 + hash(i, 5) * 2.7,
+        r: 1.4 + hash(i, 5) * 2.6,
         c: PALETTE[Math.floor(hash(i, 9) * PALETTE.length)],
         tw: hash(i, 13) * Math.PI * 2,
         sp: 0.5 + hash(i, 17) * 1.1,
@@ -1027,13 +1059,15 @@ footer { padding:52px 0 64px; }
     var mobile = W < 880;
     /* fly-in: brain grows slightly as you begin to scroll, then bursts */
     var flight = 1 + Math.min(scrollUnits, 1) * 0.5;
-    var rotY = t * 0.20 + burst * 2.0;
-    var tilt = -0.26;
+    /* gentle sway keeps the brain silhouette readable at all times;
+       the burst adds a spin kick as it flies apart */
+    var rotY = Math.sin(t * 0.45) * 0.26 + burst * 2.0;
+    var tilt = -0.16 + Math.sin(t * 0.33) * 0.05;
     var cy2 = Math.cos(tilt), sy2 = Math.sin(tilt);
     var cR = Math.cos(rotY), sR = Math.sin(rotY);
-    var scale = Math.min(W, H) * (mobile ? 0.30 : 0.34) * flight;
+    var scale = Math.min(W, H) * (mobile ? 0.42 : 0.36) * flight;
     var cx0 = mobile ? W * 0.5 : W * 0.70;
-    var cy0 = (mobile ? H * 0.26 : H * 0.46) - Math.min(scrollUnits, 1) * H * 0.10;
+    var cy0 = (mobile ? H * 0.33 : H * 0.46) - Math.min(scrollUnits, 1) * H * 0.10;
 
     /* after the burst the field breathes across the whole viewport */
     var spread = burst;
@@ -1070,7 +1104,7 @@ footer { padding:52px 0 64px; }
 
       var wob = Math.sin(t * p.sp + p.tw);
       var depth = 0.55 + 0.45 * Math.min(1, Math.max(0, (0.9 - rz)));
-      var assembledA = p.ambient ? 0.12 + 0.12 * wob : (0.32 + 0.40 * wob) * depth;
+      var assembledA = p.ambient ? 0.12 + 0.12 * wob : (0.34 + 0.38 * wob) * depth * (p.shade || 1);
       var scatteredA = 0.07 + 0.08 * wob;
       var alpha = assembledA * (1 - spread) + scatteredA * spread;
       if (alpha < 0.045) continue;

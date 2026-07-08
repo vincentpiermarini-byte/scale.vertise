@@ -37,17 +37,20 @@
   #p2 { top:1004px; font-size:112px; line-height:1.15; }
   #p3 { top:1157px; font-size:184px; line-height:1.15; color:#A8DCF5; }
 
-  /* beat 2: word stagger */
-  #words { position:absolute; top:760px; left:90px; width:900px; text-align:center;
-           font-size:96px; line-height:1.22; color:#14592A; }
-  #words span { display:inline-block; opacity:0; margin:0 14px; }
-  #words .em { color:#1B7A38; }
+  /* beat 2: masked line rises, left-aligned editorial stack. each line lives
+     in an overflow-hidden clip box and rises from below its own baseline. */
+  #b2 .kick { text-align:left; padding-left:96px; }
+  #lines { position:absolute; top:700px; left:96px; }
+  .lclip { overflow:hidden; height:112px; }
+  .lclip div { font-size:96px; line-height:112px; color:#14592A; white-space:nowrap;
+               transform:translateY(120%); }
+  .lclip .em2 { color:#1B7A38; }
 
   /* beat 3: morph */
-  #b3 .head { position:absolute; top:640px; width:100%; text-align:center; font-size:92px; color:#fff; opacity:0; }
+  #b3 .head { position:absolute; top:648px; width:100%; text-align:center; font-size:76px; color:#fff; opacity:0; }
   .morph { position:absolute; top:900px; width:100%; text-align:center; color:#fff; }
-  #m0 { font-size:120px; opacity:.85; }
-  #m1 { font-size:148px; opacity:0; }
+  #m0 { font-size:120px; line-height:1.1; white-space:nowrap; opacity:.85; }
+  #m1 { font-size:126px; line-height:1.1; white-space:nowrap; opacity:0; }
   #b3 .foot { position:absolute; top:1200px; width:100%; text-align:center;
               font-family:'Helvetica Neue',Arial,sans-serif; font-weight:400;
               font-size:38px; color:rgba(255,255,255,.85); opacity:0; }
@@ -56,7 +59,7 @@
   /* beat 4: mask reveal */
   #pin { position:absolute; left:50%; top:700px; margin-left:-34px; opacity:0; }
   #maskwrap { position:absolute; top:880px; width:100%; text-align:center; }
-  #masktext { display:inline-block; font-size:110px; color:#14592A;
+  #masktext { display:inline-block; font-size:94px; color:#14592A;
               clip-path:inset(-20% 100% -20% 0); }
   #maskbar { position:absolute; top:872px; height:150px; width:56px; border-radius:28px;
              background:#1B7A38; opacity:0; z-index:36; }
@@ -72,15 +75,14 @@
   #s5a { top:1300px; }
   #s5b { top:1408px; }
 
-  /* beat 6: end card */
+  /* beat 6: end card, wordmark only (no logo art) */
   #circ { position:absolute; left:540px; top:960px; width:2400px; height:2400px; margin:-1200px 0 0 -1200px;
           border-radius:50%; background:#124D26; transform:scale(0); z-index:30; }
   #b6c { position:absolute; inset:0; z-index:32; }
   .wm { position:absolute; width:100%; text-align:center; color:#F5FAF5; opacity:0; }
-  #wm0 { top:830px; font-size:132px; }
-  #wm1 { top:990px; font-size:132px; }
-  #paw { position:absolute; left:50%; top:600px; margin-left:-80px; transform:scale(0); }
-  #b6c .sub { position:absolute; top:1360px; width:100%; text-align:center;
+  #wm0 { top:790px; font-size:132px; }
+  #wm1 { top:950px; font-size:132px; }
+  #b6c .sub { position:absolute; top:1290px; width:100%; text-align:center;
               font-family:'Helvetica Neue',Arial,sans-serif; font-weight:400;
               font-size:40px; color:rgba(245,250,245,.75); opacity:0; }
 
@@ -88,14 +90,16 @@
   #panel { position:absolute; left:0; width:1080px; height:1920px; background:#2E9BD6;
            top:1920px; z-index:55; }
 
-  /* persistent brand chip, reads on every background, corner mark like the
-     rest of the series */
+  /* persistent brand chip, text only, reads on every background */
   #brand { position:absolute; top:64px; left:64px; z-index:70; opacity:0;
-           display:flex; align-items:center; gap:12px;
-           padding:11px 22px 11px 15px; border-radius:32px; background:rgba(10,20,14,.28); }
-  #brand svg { width:25px; height:23px; display:block; }
+           display:inline-block; padding:13px 24px; border-radius:32px;
+           background:rgba(10,20,14,.28); }
   #brand span { font-family:'Helvetica Neue',Arial,sans-serif; font-weight:700;
                 font-size:18px; letter-spacing:.14em; color:#F5FAF5; }
+
+  /* film grain: tiled SVG noise, nudged every frame */
+  #grain { position:absolute; inset:-320px; z-index:58; pointer-events:none; opacity:.05;
+           background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); }
 </style>
 </head>
 <body>
@@ -110,7 +114,12 @@
 
   <section class="beat" id="b2">
     <div class="kick" style="color:#1B7A38;">THE SERVICE</div>
-    <div id="words"></div>
+    <div id="lines">
+      <div class="lclip"><div>Every week,</div></div>
+      <div class="lclip"><div>we clear</div></div>
+      <div class="lclip"><div class="em2">every pile</div></div>
+      <div class="lclip"><div>from your yard.</div></div>
+    </div>
   </section>
 
   <section class="beat" id="b3">
@@ -143,12 +152,6 @@
   <div id="circ"></div>
   <section class="beat" id="b6"></section>
   <div id="b6c" style="opacity:0">
-    <svg id="paw" width="160" height="150" viewBox="0 0 160 150">
-      <ellipse cx="42"  cy="38" rx="19" ry="26" fill="#2E9BD6" transform="rotate(-18 42 38)"/>
-      <ellipse cx="80"  cy="26" rx="19" ry="27" fill="#2E9BD6"/>
-      <ellipse cx="118" cy="38" rx="19" ry="26" fill="#2E9BD6" transform="rotate(18 118 38)"/>
-      <path d="M80 62 C110 62 132 84 132 106 C132 128 112 140 80 140 C48 140 28 128 28 106 C28 84 50 62 80 62 Z" fill="#2E9BD6"/>
-    </svg>
     <div class="wm" id="wm0">PetScoop</div>
     <div class="wm" id="wm1">&amp; Sanitize</div>
     <div class="sub">Follow for more &nbsp;&middot;&nbsp; DM to sign up</div>
@@ -156,16 +159,11 @@
 
   <div id="glow"></div>
   <div id="vig"></div>
+  <div id="grain"></div>
   <div id="panel"></div>
   <div id="flash"></div>
 
   <div id="brand">
-    <svg viewBox="0 0 160 150">
-      <ellipse cx="42"  cy="38" rx="19" ry="26" fill="#F5FAF5" transform="rotate(-18 42 38)"/>
-      <ellipse cx="80"  cy="26" rx="19" ry="27" fill="#F5FAF5"/>
-      <ellipse cx="118" cy="38" rx="19" ry="26" fill="#F5FAF5" transform="rotate(18 118 38)"/>
-      <path d="M80 62 C110 62 132 84 132 106 C132 128 112 140 80 140 C48 140 28 128 28 106 C28 84 50 62 80 62 Z" fill="#F5FAF5"/>
-    </svg>
     <span>PETSCOOP &amp; SANITIZE</span>
   </div>
 </div>
@@ -187,12 +185,10 @@
     return 1 - Math.exp(-z * w * p) * Math.cos(w * (1 - z * 0.4) * p * Math.PI);
   };
 
-  // beat 2 words
-  var W2 = ['Every','week,','we','clear','<span class="em">every</span>','<span class="em">pile</span>','from','your','yard.'];
-  $('words').innerHTML = W2.map(function (w) { return '<span>' + w.replace('<span class="em">','').replace('</span>','') + '</span>'; }).join(' ');
-  var wEls = Array.prototype.slice.call($('words').children);
-  // recolor emphasis words
-  wEls[4].style.color = '#1B7A38'; wEls[5].style.color = '#1B7A38';
+  // beat 2 line elements (the risers inside each clip box)
+  var LINES = Array.prototype.map.call(
+    document.querySelectorAll('#lines .lclip > div'), function (el) { return el; });
+  var outExpo = function (p){ return p >= 1 ? 1 : 1 - Math.pow(2, -10 * p); };
 
   // mist particles for beat 3
   var mist = [];
@@ -220,27 +216,32 @@
     // b1: zoom-through exit 3250-3550
     var zt = tw(t, 3250, 300);
     $('b1').style.opacity = String(t < 3550 ? (1 - zt) : 0);
-    $('b1').style.transform = 'scale(' + (1 + 0.8*inOut(zt)) + ')';
+    $('b1').style.transform = 'scale(' + (1 + 0.03*tw(t,0,3250) + 0.8*inOut(zt)) + ')';
     // b2 under b1 from 3250; exits when panel covers (7300)
     $('b2').style.opacity = String(t >= 3250 && t < 7350 ? 1 : 0);
+    $('b2').style.transform = 'scale(' + (1 + 0.028*tw(t, 3250, 4100)) + ')';
     // panel wipe: covers 7050-7350, uncovers 7350-7700
     var pc = tw(t, 7050, 300), pu = tw(t, 7350, 350);
     $('panel').style.top = (t < 7350 ? lerp(1920, 0, inOut(pc)) : lerp(0, -1920, inOut(pu))) + 'px';
     $('panel').style.opacity = String(t > 7000 && t < 7750 ? 1 : 0);
     // b3 from 7350 (revealed by panel), hard cut out at 11200
     $('b3').style.opacity = String(t >= 7350 && t < 11200 ? 1 : 0);
+    $('b3').style.transform = 'scale(' + (1 + 0.028*tw(t, 7350, 3850)) + ')';
     // b4: 11200 (cut in), flash exit at 14100-14350
     $('b4').style.opacity = String(t >= 11200 && t < 14250 ? 1 : 0);
+    $('b4').style.transform = 'scale(' + (1 + 0.028*tw(t, 11200, 3050)) + ')';
     var fl = t >= 14080 ? tw(t, 14080, 130) : 0;
     var fl2 = t >= 14210 ? tw(t, 14210, 200) : 0;
     $('flash').style.opacity = String(t >= 14080 && t < 14420 ? 0.9*(fl - fl2*fl) * (1-fl2) + (fl>=1?0:0) : 0);
     // b5: 14200 in, circle close covers from 18150
     $('b5').style.opacity = String(t >= 14200 && t < 18700 ? 1 : 0);
+    $('b5').style.transform = 'scale(' + (1 + 0.028*tw(t, 14200, 4300)) + ')';
     var cc = tw(t, 18150, 450);
     $('circ').style.transform = 'scale(' + inOut(cc) + ')';
     $('circ').style.opacity = String(t >= 18150 ? 1 : 0);
     // b6 content on top of circle
     $('b6c').style.opacity = String(t >= 18550 ? 1 : 0);
+    $('b6c').style.transform = 'scale(' + (1 + 0.02*tw(t, 18550, 3950)) + ')';
 
     // persistent brand chip: fades in with the rest of the chrome, fades out
     // just before the end-card circle takes over
@@ -252,6 +253,10 @@
     $('glow').style.left = (200 + 160*Math.sin(s*0.35)) + 'px';
     $('glow').style.top  = (300 + 220*Math.sin(s*0.22 + 1.4)) + 'px';
 
+    // film grain jitters to a new tile offset every frame
+    var gf = Math.floor(t/33);
+    $('grain').style.transform = 'translate(' + (-((gf*97)%300)) + 'px,' + (-((gf*61)%300)) + 'px)';
+
     // ---- beat 1: scale pops ----
     [[300,'p0',0.32],[760,'p1',0.26],[1120,'p2',0.26],[1560,'p3',0.36]].forEach(function (pp) {
       var p = tw(t, pp[0], 620);
@@ -260,18 +265,14 @@
       el.style.transform = 'scale(' + (0.2 + 0.8*spring(p, pp[2])) + ')';
     });
 
-    // ---- beat 2: word stagger ----
-    var k2 = tw(t, B2[0]+150, 350);
-    $('b2').querySelector('.kick').style.opacity = String(k2);
-    wEls.forEach(function (el, i) {
-      var t0 = B2[0] + 480 + i*95;
-      var p = tw(t, t0, 560 + (i%3)*70);
-      var sp = spring(p, 0.28);
-      var dir = i%3;
-      var dx = dir===0 ? -90 : dir===1 ? 90 : 0;
-      var dy = dir===2 ? 80 : 0;
-      el.style.opacity = String(clamp(p*3,0,1));
-      el.style.transform = 'translate(' + lerp(dx,0,sp) + 'px,' + lerp(dy,0,sp) + 'px)';
+    // ---- beat 2: masked line rises ----
+    var k2 = outQuint(tw(t, B2[0]+150, 350));
+    var k2el = $('b2').querySelector('.kick');
+    k2el.style.opacity = String(k2);
+    k2el.style.transform = 'translateY(' + lerp(16,0,k2) + 'px)';
+    LINES.forEach(function (el, i) {
+      var p = outExpo(tw(t, 3900 + i*130, 720));
+      el.style.transform = 'translateY(' + lerp(120,0,p) + '%)';
     });
 
     // ---- beat 3: morph plus mist ----
@@ -351,9 +352,7 @@
       el6.style.filter = 'blur(' + (16*(1-p)) + 'px)';
       el6.style.letterSpacing = lerp(0.09, 0.005, p) + 'em';
     });
-    var pw = spring(tw(t, 19900, 600), 0.42);
-    $('paw').style.transform = 'scale(' + pw + ')';
-    var s6 = tw(t, 20350, 400);
+    var s6 = tw(t, 19850, 400);
     var el7 = $('b6c').querySelector('.sub');
     el7.style.opacity = String(s6);
     el7.style.transform = 'translateY(' + lerp(18,0,outQuint(s6)) + 'px)';
@@ -361,6 +360,10 @@
 
   window.seek(0);
 })();
+</script>
+
+<script>
+(function(){var s=null;function loop(ts){if(s===null)s=ts;var t=(ts-s)%22500;window.seek(t);requestAnimationFrame(loop);}requestAnimationFrame(loop);})();
 </script>
 </body>
 </html>

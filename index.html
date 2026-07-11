@@ -933,22 +933,29 @@ footer { padding:52px 0 64px; }
     return s - Math.floor(s);
   }
 
-  /* ── hammer silhouette (upright: head on top, handle below),
-     filled with a particle shell and tilted at build time ── */
+  /* ── claw hammer silhouette traced from the reference icon:
+     striking face upper-left, claw arching down the right,
+     slender handle sweeping to the lower-left ── */
   var PROFILE = [
-    /* head: rounded block with a striking face left and claw hint right */
-    [-0.70, 0.54], [-0.76, 0.72], [-0.70, 0.92], [-0.40, 1.00],
-    [ 0.20, 1.00], [ 0.56, 0.96], [ 0.72, 0.84],
-    /* claw dip at the back of the head */
-    [ 0.60, 0.72], [ 0.70, 0.58], [ 0.54, 0.50],
-    /* neck into the handle, down the right side */
-    [ 0.15, 0.48], [ 0.13, 0.40], [ 0.14, -0.92],
-    /* rounded butt of the handle */
-    [ 0.08, -1.02], [-0.08, -1.02], [-0.14, -0.92],
-    /* up the left side of the handle to the head */
-    [-0.13, 0.40], [-0.15, 0.48]
+    /* striking face, top-left */
+    [-0.34, 0.80],
+    /* over the top of the head, into the claw arch */
+    [ 0.02, 0.86], [ 0.36, 0.74], [ 0.62, 0.53],
+    /* claw sweeping down and hooking */
+    [ 0.77, 0.31], [ 0.81, 0.12], [ 0.69, 0.01],
+    [ 0.59, 0.09], [ 0.65, 0.21],
+    /* back up along the UNDERSIDE of the head band, keeping the
+       gap between claw and handle open like the reference icon */
+    [ 0.52, 0.30], [ 0.38, 0.44], [ 0.18, 0.50],
+    /* neck where the head meets the handle */
+    [ 0.06, 0.30],
+    /* handle: right edge down to the rounded butt */
+    [-0.55, -0.55], [-0.68, -0.74], [-0.83, -0.72], [-0.88, -0.56],
+    /* handle: left edge back up under the head */
+    [-0.22, 0.16], [-0.34, 0.34],
+    /* underside and left edge of the striking face */
+    [-0.43, 0.44], [-0.41, 0.62]
   ];
-  var TILT_A = -0.55, TC = Math.cos(TILT_A), TS = Math.sin(TILT_A);
   function inProfile(x, y) {
     var inside = false;
     for (var a = 0, b = PROFILE.length - 1; a < PROFILE.length; b = a++) {
@@ -965,22 +972,18 @@ footer { padding:52px 0 64px; }
     var N = 2400, i = 0, tries = 0;
     while (i < N && tries < N * 50) {
       tries++;
-      var x = (hash(tries, 1) * 2 - 1) * 0.85;
-      var y = (hash(tries, 2) * 2 - 1) * 1.1;
+      var x = -0.95 + hash(tries, 1) * 1.85;
+      var y = -0.85 + hash(tries, 2) * 1.75;
       if (!inProfile(x, y)) continue;
 
       /* rim detection: points near the silhouette edge get a bright boost */
-      var edge = !inProfile(x * 1.07, y * 1.07) || !inProfile(x * 0.93 + 0.001, y);
+      var edge = !inProfile(x + 0.045, y) || !inProfile(x - 0.045, y) ||
+                 !inProfile(x, y + 0.045) || !inProfile(x, y - 0.045);
 
       /* depth: shell-biased; the head is chunkier than the handle */
       var zsign = hash(tries, 7) < 0.5 ? -1 : 1;
-      var thick = y > 0.45 ? 0.30 : 0.13;
+      var thick = (y > 0.0 && x > -0.5) ? 0.26 : 0.12;
       var z = zsign * thick * Math.pow(hash(tries, 8), 0.35);
-
-      /* tilt the whole tool for a dynamic diagonal stance */
-      var xr = x * TC - y * TS;
-      var yr = x * TS + y * TC;
-      x = xr; y = yr * 0.92;
 
       var mag = Math.sqrt(x * x + y * y + z * z) || 1;
       parts.push({

@@ -400,7 +400,7 @@ footer { padding:52px 0 64px; }
   <div class="wrap">
     <div class="hero-copy">
       <span class="label enter" style="animation-delay:0.1s;">Performance Marketing · Home Services</span>
-      <h1 class="display h-display enter" style="animation-delay:0.22s;">The brain behind your <span class="hl">booked calendar.</span></h1>
+      <h1 class="display h-display enter" style="animation-delay:0.22s;">Built to <span class="hl">book jobs.</span></h1>
       <p class="body-copy hero-sub enter" style="animation-delay:0.36s;">
         A done-for-you ad system for home service businesses.
         <strong>Real numbers, straight out of Ads Manager.</strong>
@@ -933,22 +933,22 @@ footer { padding:52px 0 64px; }
     return s - Math.floor(s);
   }
 
-  /* ── brain built from a true side-profile silhouette (facing right),
-     filled with a particle shell and etched with fold gaps ── */
+  /* ── hammer silhouette (upright: head on top, handle below),
+     filled with a particle shell and tilted at build time ── */
   var PROFILE = [
-    /* back of head, up over the crown, down the forehead */
-    [-1.06, 0.06], [-1.02, 0.38], [-0.86, 0.64], [-0.60, 0.82],
-    [-0.28, 0.94], [ 0.08, 0.98], [ 0.42, 0.92], [ 0.72, 0.76],
-    [ 0.94, 0.52], [ 1.06, 0.24], [ 1.08, 0.00],
-    /* front underside curving back: frontal base, temporal lobe */
-    [ 1.00,-0.20], [ 0.80,-0.34], [ 0.58,-0.36], [ 0.46,-0.50],
-    [ 0.22,-0.60], [-0.06,-0.62], [-0.28,-0.52],
-    /* notch between temporal lobe and cerebellum */
-    [-0.38,-0.36],
-    /* cerebellum: rounded lobe low at the back */
-    [-0.48,-0.44], [-0.66,-0.58], [-0.88,-0.56], [-1.00,-0.40],
-    [-1.05,-0.18]
+    /* head: rounded block with a striking face left and claw hint right */
+    [-0.70, 0.54], [-0.76, 0.72], [-0.70, 0.92], [-0.40, 1.00],
+    [ 0.20, 1.00], [ 0.56, 0.96], [ 0.72, 0.84],
+    /* claw dip at the back of the head */
+    [ 0.60, 0.72], [ 0.70, 0.58], [ 0.54, 0.50],
+    /* neck into the handle, down the right side */
+    [ 0.15, 0.48], [ 0.13, 0.40], [ 0.14, -0.92],
+    /* rounded butt of the handle */
+    [ 0.08, -1.02], [-0.08, -1.02], [-0.14, -0.92],
+    /* up the left side of the handle to the head */
+    [-0.13, 0.40], [-0.15, 0.48]
   ];
+  var TILT_A = -0.55, TC = Math.cos(TILT_A), TS = Math.sin(TILT_A);
   function inProfile(x, y) {
     var inside = false;
     for (var a = 0, b = PROFILE.length - 1; a < PROFILE.length; b = a++) {
@@ -962,43 +962,29 @@ footer { padding:52px 0 64px; }
 
   var parts = [];
   (function build() {
-    var N = 2600, i = 0, tries = 0;
+    var N = 2400, i = 0, tries = 0;
     while (i < N && tries < N * 50) {
       tries++;
-      var x = (hash(tries, 1) * 2 - 1) * 1.12;
-      var y = (hash(tries, 2) * 2 - 1) * 1.05;
-      var isStem = false;
-
-      if (!inProfile(x, y)) {
-        /* small chance the point belongs to the brainstem instead */
-        if (hash(tries, 6) < 0.03) {
-          var h2 = hash(tries, 4);
-          x = -0.22 - h2 * 0.18 + (hash(tries, 5) - 0.5) * 0.14;
-          y = -0.58 - h2 * 0.34;
-          isStem = true;
-        } else continue;
-      }
-
-      /* folds: wavy bands across the cortex render dimmer, reading as gyri
-         without carving holes in the mass */
-      var foldDim = 1;
-      if (!isStem && y > -0.35) {
-        var fold = Math.sin(x * 6.5 + Math.sin(y * 4.0 + x) * 1.8 + y * 3.2);
-        if (fold > 0.72) foldDim = 0.30;
-      }
+      var x = (hash(tries, 1) * 2 - 1) * 0.85;
+      var y = (hash(tries, 2) * 2 - 1) * 1.1;
+      if (!inProfile(x, y)) continue;
 
       /* rim detection: points near the silhouette edge get a bright boost */
       var edge = !inProfile(x * 1.07, y * 1.07) || !inProfile(x * 0.93 + 0.001, y);
-      if (isStem) edge = false;
 
-      /* depth: shell-biased so the surface is denser than the core */
+      /* depth: shell-biased; the head is chunkier than the handle */
       var zsign = hash(tries, 7) < 0.5 ? -1 : 1;
-      var thick = isStem ? 0.10 : 0.34 * (1 - 0.35 * Math.abs(x) / 1.1);
+      var thick = y > 0.45 ? 0.30 : 0.13;
       var z = zsign * thick * Math.pow(hash(tries, 8), 0.35);
+
+      /* tilt the whole tool for a dynamic diagonal stance */
+      var xr = x * TC - y * TS;
+      var yr = x * TS + y * TC;
+      x = xr; y = yr * 0.92;
 
       var mag = Math.sqrt(x * x + y * y + z * z) || 1;
       parts.push({
-        shade: (edge ? 1.5 : 0.62 + 0.55 * Math.abs(z) / (thick || 1)) * foldDim,
+        shade: edge ? 1.5 : 0.62 + 0.55 * Math.abs(z) / (thick || 1),
         x: x, y: y, z: z,
         ex: x / mag, ey: y / mag, ez: z / mag,
         boost: 0.7 + hash(i, 7) * 1.8,
@@ -1097,7 +1083,7 @@ footer { padding:52px 0 64px; }
     var cR = Math.cos(rotY), sR = Math.sin(rotY);
     var scale = Math.min(W, H) * (mobile ? 0.40 : 0.36) * flight;
     var cx0 = mobile ? W * 0.5 : W * 0.70;
-    var cy0 = (mobile ? H * 0.56 : H * 0.46) - Math.min(scrollUnits, 1) * H * 0.12;
+    var cy0 = (mobile ? H * 0.58 : H * 0.48) - Math.min(scrollUnits, 1) * H * 0.12;
     var brainVis = 1 - Math.min(1, spread * 1.15);   /* fully faded by full burst */
     if (brainVis > 0.001) {
       for (var i = 0; i < parts.length; i++) {

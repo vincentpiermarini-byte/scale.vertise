@@ -228,6 +228,12 @@ header.scrolled {
 .case-row.flip .case-copy { order:2; }
 .case-row.flip .case-visual { order:1; }
 .case-copy .label { display:block; margin-bottom:20px; }
+.case-brand-row { display:flex; align-items:center; gap:14px; margin-bottom:22px; }
+.case-brand-row .logo {
+  width:52px; height:52px; border-radius:50%; object-fit:cover; flex-shrink:0;
+  box-shadow:0 2px 10px rgba(20,20,20,0.14);
+}
+.case-brand-row .label { margin-bottom:0; }
 .case-copy .big-num {
   font-weight:400; letter-spacing:-0.04em; line-height:0.95; color:var(--ink);
   font-size:clamp(4rem,10vw,8rem); font-variant-numeric:tabular-nums;
@@ -417,10 +423,10 @@ footer { padding:52px 0 64px; }
 <!-- ═══════════ METRICS ═══════════ -->
 <section id="results" style="padding-top:clamp(60px,7vw,100px);">
   <div class="wrap">
-    <span class="label rv" style="display:block;margin-bottom:44px;">Last 30 Days</span>
+    <span class="label rv" style="display:block;margin-bottom:44px;">The Numbers</span>
     <div class="metrics">
       <div class="metric rv">
-        <div class="metric-num"><span class="count" data-target="53">0</span></div>
+        <div class="metric-num"><span class="count" data-target="65">0</span></div>
         <div class="metric-label">Leads Generated</div>
       </div>
       <div class="metric rv">
@@ -428,15 +434,15 @@ footer { padding:52px 0 64px; }
         <div class="metric-label">Lowest Cost / Lead</div>
       </div>
       <div class="metric rv">
-        <div class="metric-num"><span class="count" data-target="28.4" data-decimals="1">0</span>K</div>
+        <div class="metric-num"><span class="count" data-target="30.3" data-decimals="1">0</span>K</div>
         <div class="metric-label">Homeowners Reached</div>
       </div>
       <div class="metric rv">
-        <div class="metric-num"><span class="u">$</span><span class="count" data-target="23">0</span></div>
+        <div class="metric-num"><span class="u">$</span><span class="count" data-target="22">0</span></div>
         <div class="metric-label">Blended Cost / Lead</div>
       </div>
     </div>
-    <p class="metrics-caption rv">Source: Meta Ads Manager, last 30 days.</p>
+    <p class="metrics-caption rv">Source: Meta Ads Manager, across client accounts.</p>
   </div>
 </section>
 
@@ -449,10 +455,13 @@ footer { padding:52px 0 64px; }
     <!-- QUACK QUOTES -->
     <div class="case-row">
       <div class="case-copy rv-l">
-        <span class="label">Quack Quotes · Marketplace</span>
+        <div class="case-brand-row">
+          <img class="logo" src="/assets/logo-qq.png" alt="Quack Quotes logo">
+          <span class="label">Quack Quotes · Marketplace</span>
+        </div>
         <div class="big-num"><span class="count" data-target="40">0</span></div>
         <div class="big-label">Qualified Leads · 30 Days</div>
-        <p class="body-copy">Delivered at a cost per lead most home service brands do not believe until they see the dashboard.</p>
+        <p class="body-copy">Quack Quotes connects Triangle homeowners with vetted local contractors. We run both sides of their funnel, homeowner demand and contractor acquisition, at a cost per lead most brands do not believe until they see the dashboard.</p>
         <div class="side-stats">
           <div class="side-stat"><div class="v hot">$11.80</div><div class="k">Cost / Lead</div></div>
           <div class="side-stat"><div class="v">21,835</div><div class="k">Reached</div></div>
@@ -489,12 +498,15 @@ footer { padding:52px 0 64px; }
     <!-- BLUE WAVE -->
     <div class="case-row flip">
       <div class="case-copy rv-r">
-        <span class="label">Blue Wave Pro Wash · Pressure Washing</span>
-        <div class="big-num"><span class="u">$</span><span class="count" data-target="25">0</span></div>
-        <div class="big-label">Per Booked Estimate</div>
-        <p class="body-copy">Homeowners requesting quotes on autopilot, every single week, for less than the cost of a tank of gas.</p>
+        <div class="case-brand-row">
+          <img class="logo" src="/assets/logo-bluewave.png" alt="Blue Wave Pro Wash logo">
+          <span class="label">Blue Wave Pro Wash · Pressure Washing</span>
+        </div>
+        <div class="big-num"><span class="count" data-target="21">0</span></div>
+        <div class="big-label">Qualified Leads</div>
+        <p class="body-copy">Blue Wave had never run a paid ad before us. We built the campaigns and shot the creative, and now homeowners request estimates every single week, on autopilot.</p>
         <div class="side-stats">
-          <div class="side-stat"><div class="v">13</div><div class="k">Estimates</div></div>
+          <div class="side-stat"><div class="v hot">$25</div><div class="k">Cost / Lead</div></div>
           <div class="side-stat"><div class="v">6,621</div><div class="k">Reached</div></div>
           <div class="side-stat"><div class="v hot">Active</div><div class="k">Status</div></div>
         </div>
@@ -502,9 +514,9 @@ footer { padding:52px 0 64px; }
       <div class="case-visual rv-l">
         <div class="chart-title">
           <span class="t">Cumulative Estimate Requests</span>
-          <span class="r">30-day window</span>
+          <span class="r">campaign to date</span>
         </div>
-        <svg class="linechart" id="chartBW" viewBox="0 0 560 240" role="img" aria-label="Cumulative estimate requests over 30 days, ending at 13">
+        <svg class="linechart" id="chartBW" viewBox="0 0 560 240" role="img" aria-label="Cumulative estimate requests, ending at 21">
           <defs>
             <linearGradient id="gradBW" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#F07000" stop-opacity="0.18"/>
@@ -522,6 +534,48 @@ footer { padding:52px 0 64px; }
             <div class="cpl-track"><div class="cpl-fill" data-fill="34"></div></div>
           </div>
           <p class="cpl-note">Cost per estimate vs. typical exterior cleaning benchmark</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PET SCOOP & SANITIZE -->
+    <div class="case-row">
+      <div class="case-copy rv-l">
+        <div class="case-brand-row">
+          <img class="logo" src="/assets/logo-petscoop.png" alt="Pet Scoop and Sanitize logo">
+          <span class="label">Pet Scoop &amp; Sanitize · Pet Waste Removal</span>
+        </div>
+        <div class="big-num"><span class="u">$</span><span class="count" data-target="17.77" data-decimals="2">0</span></div>
+        <div class="big-label">Cost Per Lead</div>
+        <p class="body-copy">A weekly pet waste scooping and yard sanitizing service covering Raleigh, Cary, and Apex. We took them from zero paid presence to a live lead engine on a fifteen dollar daily budget.</p>
+        <div class="side-stats">
+          <div class="side-stat"><div class="v">1,887</div><div class="k">Reached</div></div>
+          <div class="side-stat"><div class="v">3,095</div><div class="k">Impressions</div></div>
+          <div class="side-stat"><div class="v hot">Active</div><div class="k">Status</div></div>
+        </div>
+      </div>
+      <div class="case-visual rv-r">
+        <div class="chart-title">
+          <span class="t">Lead Efficiency</span>
+          <span class="r">campaign to date</span>
+        </div>
+        <div class="cpl-compare" style="margin-top:8px;">
+          <div class="cpl-row">
+            <div class="cpl-meta"><span>Industry Typical</span><span class="amt">$42</span></div>
+            <div class="cpl-track"><div class="cpl-fill" data-fill="100"></div></div>
+          </div>
+          <div class="cpl-row win">
+            <div class="cpl-meta"><span>Scalevertise</span><span class="amt">$17.77</span></div>
+            <div class="cpl-track"><div class="cpl-fill" data-fill="42"></div></div>
+          </div>
+          <p class="cpl-note">Cost per lead vs. typical local service benchmark</p>
+        </div>
+        <div class="cpl-compare" style="margin-top:30px;">
+          <div class="cpl-row">
+            <div class="cpl-meta"><span>Daily Budget</span><span class="amt">$15</span></div>
+            <div class="cpl-track"><div class="cpl-fill win" data-fill="18" style="background:#C9C4BC;"></div></div>
+          </div>
+          <p class="cpl-note">Lean spend, dialed targeting: proof the system works at any budget</p>
         </div>
       </div>
     </div>
@@ -906,7 +960,7 @@ footer { padding:52px 0 64px; }
   }
 
   build('chartQQ', 40, 3.7, 'gradQQ');
-  build('chartBW', 13, 8.1, 'gradBW');
+  build('chartBW', 21, 8.1, 'gradBW');
 })();
 
 /* ══════════════════════════════════════════════════════════════

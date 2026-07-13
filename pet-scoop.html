@@ -395,6 +395,7 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
     <div class="card">
       <h3>Data</h3>
       <div class="d" id="dataInfo"></div>
+      <button class="btn-line" onclick="openImport()">Import list (paste)</button>
       <button class="btn-line" onclick="exportCsv()">Export leads (CSV)</button>
     </div>
 
@@ -437,6 +438,17 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
     <label style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub);margin:12px 0 6px;">Phone</label>
     <input id="addPhone" type="tel" inputmode="tel" placeholder="(919) 555-0134">
     <button class="btn-solid" onclick="addLead()">Add to pipeline</button>
+  </div>
+</div>
+
+<!-- import sheet -->
+<div class="overlay" id="ovImport" onclick="if(event.target===this)closeOv('ovImport')">
+  <div class="sheet">
+    <h3>Import list</h3>
+    <div style="font-size:0.82rem;color:var(--sub);margin-bottom:10px;">One lead per line — name then phone. Any format works:<br>
+      <span class="mono" style="font-size:0.74rem;">Josh 19195003625</span></div>
+    <textarea id="importBox" rows="7" style="font-family:var(--mono);font-size:0.82rem;line-height:1.6;" placeholder="Josh 9195003625&#10;Carol Dillon 2523401230"></textarea>
+    <button class="btn-solid" onclick="doImport()">Import all</button>
   </div>
 </div>
 
@@ -602,6 +614,31 @@ function addLead() {
   var l = { id: uid(), name: n, phone: p, source: 'Manual', status: 'New', notes: '', created: Date.now(), updated: Date.now() };
   leads.push(l); save(); push(l); render();
   closeOv('ovAdd'); toast('Added ' + n);
+}
+
+function openImport() {
+  document.getElementById('importBox').value = '';
+  document.getElementById('ovImport').classList.add('on');
+}
+function doImport() {
+  var text = document.getElementById('importBox').value;
+  var lines = text.split(/\n+/).map(function(s){ return s.trim(); }).filter(Boolean);
+  var added = 0, skipped = 0, base = Date.now();
+  lines.forEach(function(line, idx){
+    /* split into name + trailing phone (with or without +, spaces, dashes) */
+    var m = line.match(/^(.*?)[\s+]*(\+?\d[\d\s\-().]{6,})$/);
+    if (!m) { skipped++; return; }
+    var name = m[1].replace(/[+\s]+$/, '').trim() || 'Lead';
+    var phone = m[2].trim();
+    var pd = digits(phone);
+    if (leads.some(function(l){ return digits(l.phone) === pd; })) { skipped++; return; }
+    var l = { id: uid(), name: name, phone: phone, source: 'Import', status: 'New', notes: '',
+              created: base - idx * 1000, updated: Date.now() };
+    leads.push(l); push(l); added++;
+  });
+  if (added) { save(); render(); }
+  closeOv('ovImport');
+  toast('Imported ' + added + (skipped ? ' · ' + skipped + ' skipped' : ''));
 }
 
 /* ══════════════════════════════════════════════════

@@ -353,32 +353,33 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 
     <div class="card">
       <h3>Sync <span id="syncState" style="font-weight:600;color:var(--sub);font-size:0.78rem;"></span></h3>
-      <div class="d">Connect a free Google Apps Script so Meta leads flow in automatically through Zapier, and your statuses back up to a Google Sheet.</div>
-      <label>Web app URL</label>
-      <input id="cfgSyncUrl" placeholder="https://script.google.com/macros/s/…/exec">
+      <div class="d">Leads flow in from Zapier straight to your own site. No Google, no spreadsheet. Enter the same secret token you set in Vercel.</div>
       <label>Secret token</label>
-      <input id="cfgSyncToken" placeholder="pick any long random string">
-      <button class="btn-solid" onclick="saveSync()">Save &amp; test connection</button>
+      <input id="cfgSyncToken" placeholder="the same secret you put in Vercel">
+      <div class="row2">
+        <button class="btn-line" onclick="saveSync()">Save &amp; connect</button>
+        <button class="btn-line" onclick="testLead()">Send test lead</button>
+      </div>
 
       <details>
-        <summary>Setup guide (one time, ~5 min)</summary>
+        <summary>Setup guide (one time, ~4 min)</summary>
         <ol class="steps">
-          <li>Go to <b>script.google.com</b> → New project. Delete the sample code, paste the script below, and set <b>TOKEN</b> at the top to your secret.</li>
-          <li><b>Deploy → New deployment → Web app.</b> Execute as: <b>Me</b>. Who has access: <b>Anyone</b>. Copy the web app URL.</li>
-          <li>Paste the URL + your secret above and hit <b>Save &amp; test</b>.</li>
-          <li>In <b>Zapier</b>: trigger = <b>Facebook Lead Ads → New Lead</b> (your Pet Scoop page + form). Action = <b>Webhooks by Zapier → POST</b>.<br>
-            URL: your web app URL · Payload type: <b>json</b><br>
-            Data fields:<br>
-            <span class="mono">token</span> = your secret<br>
+          <li><b>Turn on the database.</b> In <b>Vercel</b> → your <b>scale.vertise</b> project → <b>Storage</b> tab → <b>Create Database</b> → <b>KV</b> (Upstash Redis) → <b>Connect</b> to this project. That's it, no other setup.</li>
+          <li><b>Set your secret.</b> Vercel → <b>Settings → Environment Variables</b> → add<br>
+            Name: <span class="mono">LEAD_TOKEN</span> &nbsp; Value: <b>any long password you invent</b> → Save. Then <b>Redeploy</b> (Deployments tab → ⋯ → Redeploy).</li>
+          <li><b>Connect this app.</b> Paste that same password in the box above → <b>Save &amp; connect</b>. Tap <b>Send test lead</b> — a "Test Lead" should pop into your Leads tab within a couple seconds. Delete it after.</li>
+          <li><b>Point Zapier here.</b> Trigger = <b>Facebook Lead Ads → New Lead</b> (your Pet Scoop page + form). Action = <b>Webhooks by Zapier → POST</b>:<br>
+            URL: <span class="mono" id="apiUrl">https://scalevertise.app/api/leads</span> <button class="btn-line" style="display:inline-block;width:auto;padding:4px 10px;margin:4px 0 0;min-height:0;font-size:0.72rem;" onclick="copyText('apiUrl')">copy</button><br>
+            Payload Type: <b>Json</b><br>
+            Data:<br>
+            <span class="mono">token</span> = your password<br>
             <span class="mono">action</span> = newlead<br>
-            <span class="mono">name</span> = Full Name (or First Name)<br>
+            <span class="mono">name</span> = First Name<br>
             <span class="mono">phone</span> = Phone Number<br>
             <span class="mono">source</span> = Ad Name<br>
             <span class="mono">created</span> = Created Time</li>
-          <li>Turn the Zap on. Done: every Meta lead lands here in under a minute, and this app refreshes itself every 20 seconds.</li>
+          <li><b>Publish the Zap.</b> Done. Every Meta lead lands here in under a minute, this app refreshes every 20 seconds, and duplicates by phone number are ignored automatically.</li>
         </ol>
-        <label>Apps Script (tap to copy)</label>
-        <textarea class="codebox" id="gsCode" readonly onclick="copyGs()"></textarea>
       </details>
     </div>
 
@@ -673,7 +674,8 @@ function renderStats() {
    SYNC · Google Apps Script bridge
    app ⇄ (GET/POST) ⇄ Apps Script ⇄ Google Sheet ⇐ Zapier ⇐ Meta
    ══════════════════════════════════════════════════ */
-function syncReady() { return cfg.syncUrl && cfg.syncToken; }
+var API = '/api/leads';   /* same-origin endpoint on scalevertise.app */
+function syncReady() { return !!cfg.syncToken; }
 function setSyncUi(ok, label) {
   document.getElementById('syncDot').className = 'sync-dot' + (ok ? ' on' : '');
   document.getElementById('syncLabel').textContent = label;
@@ -681,7 +683,7 @@ function setSyncUi(ok, label) {
 }
 function pull() {
   if (!syncReady()) return;
-  fetch(cfg.syncUrl + '?token=' + encodeURIComponent(cfg.syncToken))
+  fetch(API + '?token=' + encodeURIComponent(cfg.syncToken))
     .then(function(r){ return r.json(); })
     .then(function(data){
       if (!data || !data.ok) throw 0;
@@ -708,17 +710,17 @@ function pull() {
 }
 function push(l) {
   if (!syncReady()) return;
-  fetch(cfg.syncUrl, {
+  fetch(API, {
     method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: cfg.syncToken, action: 'upsert', lead: l })
   }).catch(function(){});
 }
 function pushDelete(id) {
   if (!syncReady()) return;
-  fetch(cfg.syncUrl, {
+  fetch(API, {
     method: 'POST',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token: cfg.syncToken, action: 'delete', id: id })
   }).catch(function(){});
 }
@@ -732,11 +734,9 @@ function fillSettings() {
   document.getElementById('cfgTemplate').value = cfg.template;
   document.getElementById('cfgPrice').value = cfg.price;
   document.getElementById('cfgSpend').value = cfg.spend;
-  document.getElementById('cfgSyncUrl').value = cfg.syncUrl;
   document.getElementById('cfgSyncToken').value = cfg.syncToken;
   document.getElementById('cfgPin').value = cfg.pin;
-  document.getElementById('dataInfo').textContent = leads.length + ' leads stored on this device' + (syncReady() ? ' + Google Sheet.' : '.');
-  document.getElementById('gsCode').value = GS_CODE;
+  document.getElementById('dataInfo').textContent = leads.length + ' leads' + (syncReady() ? ' synced to your site.' : ' stored on this device.');
 }
 function saveCfgBasics() {
   cfg.template = document.getElementById('cfgTemplate').value;
@@ -745,11 +745,22 @@ function saveCfgBasics() {
   saveCfg(); render(); toast('Saved');
 }
 function saveSync() {
-  cfg.syncUrl = document.getElementById('cfgSyncUrl').value.trim();
   cfg.syncToken = document.getElementById('cfgSyncToken').value.trim();
   saveCfg();
   if (syncReady()) { toast('Testing connection…'); pull(); }
   else setSyncUi(false, 'Local only');
+}
+function testLead() {
+  if (!syncReady()) { toast('Enter your token first'); return; }
+  fetch(API, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: cfg.syncToken, action: 'newlead', name: 'Test Lead', phone: '9195550100', source: 'Test' })
+  }).then(function(r){ return r.json(); }).then(function(d){
+    if (d && d.ok) { toast('Test lead sent 🎉'); setTimeout(pull, 900); }
+    else if (d && d.error === 'no_database') toast('Connect KV database in Vercel');
+    else if (d && d.error === 'bad_token') toast('Token does not match Vercel');
+    else toast('Not connected yet');
+  }).catch(function(){ toast('Could not reach the API'); });
 }
 function savePin() {
   cfg.pin = document.getElementById('cfgPin').value.trim();
@@ -766,14 +777,15 @@ function exportCsv() {
   a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(head + rows);
   a.download = 'petscoop-leads.csv'; a.click();
 }
-function copyGs() {
-  var t = document.getElementById('gsCode');
-  t.select(); document.execCommand('copy');
-  navigator.clipboard && navigator.clipboard.writeText(t.value);
-  toast('Script copied');
+function copyText(id) {
+  var t = document.getElementById(id);
+  var v = t.value !== undefined ? t.value : t.textContent;
+  if (navigator.clipboard) navigator.clipboard.writeText(v);
+  else { t.select && t.select(); document.execCommand('copy'); }
+  toast('Copied');
 }
 
-/* the complete backend, shipped inside the app */
+/* unused legacy backend (kept out of the UI) */
 var GS_CODE = [
 '/* PET SCOOP LEAD SYNC  · paste into script.google.com, set TOKEN, deploy as Web App (Execute as: Me / Access: Anyone) */',
 'var TOKEN = "CHANGE-ME-to-your-secret";',

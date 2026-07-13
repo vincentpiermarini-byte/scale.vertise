@@ -327,6 +327,28 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
       <div class="bars-labels"><span id="barL0"></span><span>today</span></div>
     </div>
   </div>
+
+  <div class="sec-title" style="padding-top:22px;">Ad Performance
+    <span id="adUpdated" style="font-size:0.7rem;font-weight:600;color:var(--faint);letter-spacing:0;text-transform:none;"></span>
+  </div>
+  <div id="adEmpty" class="empty" style="display:none;"><b>No ad numbers yet</b>Add them in Settings → Ad numbers (takes 15 seconds).</div>
+  <div class="stat-grid" id="adGrid">
+    <div class="stat"><div class="v green" id="aCac">–</div><div class="k">Cost to Get a Customer</div><div class="hint" id="aCacHint">acquisition cost (CAC)</div></div>
+    <div class="stat"><div class="v blue" id="aPayback">–</div><div class="k">Payback</div><div class="hint">weeks to earn CAC back</div></div>
+    <div class="stat wide" style="background:linear-gradient(135deg,#153a2f,#12332b);color:#EAF5EF;">
+      <div class="v" id="aRoas" style="color:#7FE0B0;">–</div>
+      <div class="k" style="color:#9FD8C2;">12-Month Return on Ad Spend</div>
+      <div class="hint" id="aRoasHint" style="color:#7FB79E;">what $1 of ad spend becomes in a year</div>
+    </div>
+    <div class="stat"><div class="v" id="aSpend">$0</div><div class="k">Spend · 30 Days</div></div>
+    <div class="stat"><div class="v" id="aCpl">–</div><div class="k">Meta Cost / Lead</div><div class="hint" id="aCplHint"></div></div>
+    <div class="stat"><div class="v" id="aFreq">–</div><div class="k">Frequency</div><div class="hint" id="aFreqHint">avg times each person saw it</div></div>
+    <div class="stat"><div class="v" id="aCpm">–</div><div class="k">CPM</div><div class="hint">cost per 1,000 views</div></div>
+    <div class="stat wide" id="aMatch" style="display:none;">
+      <div class="v" id="aMatchV" style="font-size:1.05rem;"></div>
+      <div class="k" id="aMatchK"></div>
+    </div>
+  </div>
 </section>
 
 <!-- ═══════ SETTINGS ═══════ -->
@@ -342,13 +364,22 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
     </div>
 
     <div class="card">
-      <h3>Business numbers</h3>
-      <div class="d">Used for revenue and cost-per-lead math.</div>
+      <h3>Ad numbers</h3>
+      <div class="d">Copy these from Meta Ads Manager (last 30 days) once a week. Powers the Ad Performance tab — CAC, payback, ROAS. Shared across both phones.</div>
       <div class="row2">
-        <div><label>Price / customer / mo</label><input id="cfgPrice" type="number" inputmode="decimal" placeholder="79"></div>
-        <div><label>Ad spend this month</label><input id="cfgSpend" type="number" inputmode="decimal" placeholder="0"></div>
+        <div><label>Price / customer / mo</label><input id="adPrice" type="number" inputmode="decimal" placeholder="79"></div>
+        <div><label>Ad spend (30d)</label><input id="adSpend" type="number" inputmode="decimal" placeholder="0"></div>
       </div>
-      <button class="btn-solid" onclick="saveCfgBasics()">Save</button>
+      <div class="row2">
+        <div><label>Reach</label><input id="adReach" type="number" inputmode="numeric" placeholder="0"></div>
+        <div><label>Impressions</label><input id="adImpr" type="number" inputmode="numeric" placeholder="0"></div>
+      </div>
+      <div class="row2">
+        <div><label>Frequency</label><input id="adFreq" type="number" inputmode="decimal" placeholder="auto"></div>
+        <div><label>Leads (Meta)</label><input id="adMetaLeads" type="number" inputmode="numeric" placeholder="0"></div>
+      </div>
+      <button class="btn-solid" onclick="saveAdNums()">Save ad numbers</button>
+      <div class="d" style="margin:12px 0 0;font-size:0.74rem;">Leave a box blank to skip it. Frequency auto-calculates from reach + impressions if left blank.</div>
     </div>
 
     <div class="card">
@@ -458,7 +489,7 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 /* ══════════════════════════════════════════════════
    STATE
    ══════════════════════════════════════════════════ */
-var LS_LEADS = 'ps_leads_v1', LS_CFG = 'ps_cfg_v1';
+var LS_LEADS = 'ps_leads_v1', LS_CFG = 'ps_cfg_v1', LS_AD = 'ps_ad_v1';
 var STATUSES = ['New','Texted','Booked','Customer','Lost'];
 var SW = { New:'#2F6FAE', Texted:'#9A6A15', Booked:'#5B4A9E', Customer:'#3E7C3A', Lost:'#B3453E' };
 
@@ -467,11 +498,14 @@ var cfg = load(LS_CFG, {
   template: "Hey {name}, it's Vincent from PetScoop & Sanitize. Saw you were interested in our weekly service.\n\nWe're a local business run by a couple of NC State students who do weekly pet waste yard cleanups. Basically we come by each week, scoop your whole yard, and spray it down for odor.\n\nGoing to give you a call shortly, so watch out.",
   price: 79, spend: 0, syncUrl: '', syncToken: '', pin: ''
 });
+/* ad numbers — synced across phones via /api/adstats */
+var ad = load(LS_AD, { price: cfg.price || 79, spend: 0, reach: 0, impressions: 0, frequency: 0, metaLeads: 0, updated: 0 });
 var filter = 'All', activeId = null, unlocked = false;
 
 function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? d : v; } catch(e) { return d; } }
 function save() { localStorage.setItem(LS_LEADS, JSON.stringify(leads)); }
 function saveCfg() { localStorage.setItem(LS_CFG, JSON.stringify(cfg)); }
+function saveAd() { localStorage.setItem(LS_AD, JSON.stringify(ad)); }
 
 /* ══════════════════════════════════════════════════
    HELPERS
@@ -544,7 +578,7 @@ function renderStrip() {
   var c = counts();
   document.getElementById('stNew').textContent = c.New;
   document.getElementById('stCust').textContent = c.Customer;
-  document.getElementById('stMrr').textContent = '$' + (c.Customer * (Number(cfg.price)||0)).toLocaleString();
+  document.getElementById('stMrr').textContent = '$' + (c.Customer * (Number(ad.price || cfg.price)||0)).toLocaleString();
 }
 
 /* ══════════════════════════════════════════════════
@@ -662,14 +696,14 @@ function renderStats() {
   var now = Date.now(), mo = now - 30*86400000;
   var l30 = leads.filter(function(l){ return l.created >= mo; });
   var cust = leads.filter(function(l){ return l.status === 'Customer'; }).length;
-  var price = Number(cfg.price)||0, spend = Number(cfg.spend)||0;
+  var price = Number(ad.price || cfg.price)||0, spend = Number(ad.spend)||0;
 
   document.getElementById('kMrr').textContent = '$' + (cust*price).toLocaleString();
   document.getElementById('kMrrHint').textContent = cust + ' × $' + price + '/mo';
   document.getElementById('kCust').textContent = cust;
   document.getElementById('kLeads').textContent = l30.length;
   document.getElementById('kCpl').textContent = (spend > 0 && l30.length) ? '$' + (spend/l30.length).toFixed(2) : '–';
-  document.getElementById('kCplHint').textContent = spend > 0 ? '$' + spend + ' spend ÷ ' + l30.length + ' leads' : 'set ad spend in Settings';
+  document.getElementById('kCplHint').textContent = spend > 0 ? '$' + spend + ' spend ÷ ' + l30.length + ' leads' : 'add ad numbers in Settings';
 
   var resp = leads.filter(function(l){ return l.firstTextedAt && l.created; })
                   .map(function(l){ return l.firstTextedAt - l.created; });
@@ -707,6 +741,83 @@ function renderStats() {
   }).join('');
   var d = new Date(days[0]);
   document.getElementById('barL0').textContent = (d.getMonth()+1) + '/' + d.getDate();
+
+  renderAdPerf(l30, cust, price, now);
+}
+
+function renderAdPerf(l30, custTotal, price, now) {
+  var spend = Number(ad.spend) || 0;
+  var reach = Number(ad.reach) || 0;
+  var impr = Number(ad.impressions) || 0;
+  var freq = Number(ad.frequency) || (reach ? impr / reach : 0);
+  var metaLeads = Number(ad.metaLeads) || 0;
+  var has = spend > 0 || impr > 0 || metaLeads > 0;
+
+  document.getElementById('adEmpty').style.display = has ? 'none' : 'block';
+  document.getElementById('adGrid').style.display = has ? 'grid' : 'none';
+  document.getElementById('adUpdated').textContent = ad.updated ? '· updated ' + ago(ad.updated) : '';
+  if (!has) return;
+
+  var g = function(id){ return document.getElementById(id); };
+  var money = function(n, dec){ return '$' + Number(n).toLocaleString(undefined, {minimumFractionDigits:dec||0, maximumFractionDigits:dec||0}); };
+
+  /* new customers in the last 30 days (became Customer, by updated stamp) */
+  var newCust = leads.filter(function(l){ return l.status === 'Customer' && (l.updated||l.created) >= (now - 30*86400000); }).length;
+  var custForCac = newCust || custTotal;   /* fall back to total if none tagged recently */
+
+  var cac = custForCac ? spend / custForCac : null;
+  g('aCac').textContent = cac === null ? '–' : money(cac, 0);
+  g('aCacHint').textContent = custForCac ? spend > 0 ? money(spend) + ' ÷ ' + custForCac + ' customer' + (custForCac>1?'s':'') : 'add spend' : 'no customers yet';
+
+  /* payback in weeks: CAC / weekly value (price per month ÷ 4.33) */
+  var weekly = price / 4.33;
+  g('aPayback').textContent = (cac && weekly) ? (cac/weekly).toFixed(1).replace(/\.0$/,'') + ' wk' : '–';
+
+  /* 12-month ROAS per customer: yearly value ÷ CAC */
+  var roas = cac ? (price * 12) / cac : null;
+  g('aRoas').textContent = roas === null ? '–' : roas.toFixed(1) + '×';
+  g('aRoasHint').textContent = roas === null ? 'add spend + customers' : money(price*12) + ' / year per customer ÷ ' + money(cac) + ' to acquire';
+
+  g('aSpend').textContent = money(spend, spend % 1 ? 2 : 0);
+
+  var metaCpl = metaLeads ? spend / metaLeads : (l30.length ? spend / l30.length : null);
+  g('aCpl').textContent = metaCpl === null ? '–' : money(metaCpl, 2);
+  g('aCplHint').textContent = metaLeads ? metaLeads + ' Meta leads' : (l30.length ? 'using CRM leads' : '');
+
+  g('aFreq').textContent = freq ? freq.toFixed(1) : '–';
+  if (freq >= 3.5) {
+    g('aFreq').style.color = 'var(--red)';
+    g('aFreqHint').innerHTML = '⚠︎ high — refresh the creative';
+    g('aFreqHint').style.color = 'var(--red)';
+  } else {
+    g('aFreq').style.color = 'var(--ink)';
+    g('aFreqHint').textContent = 'avg times each person saw it';
+    g('aFreqHint').style.color = 'var(--faint)';
+  }
+
+  var cpm = impr ? spend / impr * 1000 : null;
+  g('aCpm').textContent = cpm === null ? '–' : money(cpm, 2);
+
+  /* Meta-leads vs CRM-leads mismatch alert */
+  var matchEl = g('aMatch');
+  if (metaLeads && l30.length) {
+    var gap = metaLeads - l30.length;
+    if (Math.abs(gap) >= 2) {
+      matchEl.style.display = 'block';
+      matchEl.style.background = 'var(--amber-bg)';
+      g('aMatchV').textContent = 'Meta says ' + metaLeads + ' leads · your pipeline has ' + l30.length;
+      g('aMatchV').style.color = 'var(--amber)';
+      g('aMatchK').textContent = gap > 0 ? gap + ' lead' + (gap>1?'s':'') + ' may be leaking — check the Zap' : 'pipeline ahead of Meta window, fine';
+    } else {
+      matchEl.style.display = 'block';
+      matchEl.style.background = 'var(--green-bg)';
+      g('aMatchV').textContent = '✓ Meta ' + metaLeads + ' · pipeline ' + l30.length + ' — matched';
+      g('aMatchV').style.color = 'var(--green)';
+      g('aMatchK').textContent = 'every Meta lead is landing in your pipeline';
+    }
+  } else {
+    matchEl.style.display = 'none';
+  }
 }
 
 /* ══════════════════════════════════════════════════
@@ -769,25 +880,58 @@ function pushDelete(id) {
     body: JSON.stringify({ token: tok(), action: 'delete', id: id })
   }).catch(function(){});
 }
-setInterval(function(){ if (!document.hidden) pull(); }, 15000);
-document.addEventListener('visibilitychange', function(){ if (!document.hidden) pull(); });
+/* ad numbers sync */
+var AD_API = '/api/adstats';
+function pullAd() {
+  fetch(AD_API + '?token=' + encodeURIComponent(tok()))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.ok && d.stats && (d.stats.updated || 0) > (ad.updated || 0)) {
+        ad = Object.assign(ad, d.stats); saveAd();
+        if (document.getElementById('scr-stats').classList.contains('on')) renderStats();
+      }
+    }).catch(function(){});
+}
+function pushAd() {
+  fetch(AD_API, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: tok(), stats: ad })
+  }).catch(function(){});
+}
+function syncAll() { if (!document.hidden) { pull(); pullAd(); } }
+setInterval(syncAll, 15000);
+document.addEventListener('visibilitychange', function(){ if (!document.hidden) syncAll(); });
 
 /* ══════════════════════════════════════════════════
    SETTINGS
    ══════════════════════════════════════════════════ */
 function fillSettings() {
   document.getElementById('cfgTemplate').value = cfg.template;
-  document.getElementById('cfgPrice').value = cfg.price;
-  document.getElementById('cfgSpend').value = cfg.spend;
+  document.getElementById('adPrice').value = ad.price || '';
+  document.getElementById('adSpend').value = ad.spend || '';
+  document.getElementById('adReach').value = ad.reach || '';
+  document.getElementById('adImpr').value = ad.impressions || '';
+  document.getElementById('adFreq').value = ad.frequency || '';
+  document.getElementById('adMetaLeads').value = ad.metaLeads || '';
   document.getElementById('cfgSyncToken').value = cfg.syncToken;
   document.getElementById('cfgPin').value = cfg.pin;
   document.getElementById('dataInfo').textContent = leads.length + ' leads on your site, shared live across phones.';
 }
 function saveCfgBasics() {
   cfg.template = document.getElementById('cfgTemplate').value;
-  cfg.price = Number(document.getElementById('cfgPrice').value) || 0;
-  cfg.spend = Number(document.getElementById('cfgSpend').value) || 0;
   saveCfg(); render(); toast('Saved');
+}
+function num(id) { var v = document.getElementById(id).value.trim(); return v === '' ? 0 : (Number(v) || 0); }
+function saveAdNums() {
+  ad.price = num('adPrice') || 79;
+  ad.spend = num('adSpend');
+  ad.reach = num('adReach');
+  ad.impressions = num('adImpr');
+  ad.frequency = num('adFreq');
+  ad.metaLeads = num('adMetaLeads');
+  ad.updated = Date.now();
+  cfg.price = ad.price; saveCfg();   /* keep revenue math in sync */
+  saveAd(); pushAd(); renderStats(); toast('Ad numbers saved');
 }
 function saveSync() {
   cfg.syncToken = document.getElementById('cfgSyncToken').value.trim();
@@ -919,7 +1063,7 @@ function render() { renderChips(); renderList(); renderStrip(); }
     document.getElementById('gate').classList.add('on');
   }
   render();
-  setSyncUi(false, 'Connecting…'); pull();
+  setSyncUi(false, 'Connecting…'); pull(); pullAd();
   /* refresh relative times every minute */
   setInterval(function(){ if (!document.hidden) renderList(); }, 60000);
 })();

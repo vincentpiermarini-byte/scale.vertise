@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1919445055416768');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F7F8F6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Pet Scoop Leads">
+<link rel="apple-touch-icon" href="/assets/logo-petscoop.png">
+<title>Pet Scoop · Lead Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   PET SCOOP & SANITIZE · LEAD PIPELINE
+   Light, minimal, thumb-first. Navy ink / sky blue / lawn green.
+   ============================================================ */
+:root {
+  --bg:     #F7F8F6;
+  --card:   #FFFFFF;
+  --ink:    #142433;
+  --sub:    #5B6B79;
+  --faint:  #93A1AD;
+  --line:   #E5E9EB;
+  --blue:   #2F6FAE;   /* primary action */
+  --blue-d: #24578A;
+  --green:  #3E7C3A;   /* money, success */
+  --green-bg:#E8F2E6;
+  --red:    #B3453E;
+  --red-bg: #F7ECEB;
+  --new-bg: #E7F0F9;
+  --amber:  #9A6A15;
+  --amber-bg:#F7F0DF;
+  --font:   'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:   'JetBrains Mono', monospace;
+  --rad:    16px;
+  --shadow: 0 1px 2px rgba(20,36,51,0.05), 0 6px 20px rgba(20,36,51,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { background:var(--bg); }
+body {
+  font-family:var(--font); background:var(--bg); color:var(--ink);
+  font-size:16px; line-height:1.45; -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(84px + env(safe-area-inset-bottom));
+  max-width:640px; margin:0 auto;
+}
+button { font-family:var(--font); border:none; cursor:pointer; background:none; }
+input, textarea, select {
+  font-family:var(--font); font-size:16px; color:var(--ink);
+  background:var(--card); border:1.5px solid var(--line); border-radius:12px;
+  padding:13px 14px; width:100%; outline:none;
+}
+input:focus, textarea:focus { border-color:var(--blue); }
+::placeholder { color:var(--faint); }
+
+/* ── header ── */
+.top {
+  display:flex; align-items:center; gap:12px;
+  padding:calc(14px + env(safe-area-inset-top)) 18px 14px;
+}
+.top img { width:40px; height:40px; border-radius:50%; }
+.top .t1 { font-weight:800; font-size:1.02rem; letter-spacing:-0.02em; }
+.top .t2 { font-size:0.72rem; color:var(--sub); font-weight:500; margin-top:1px; display:flex; align-items:center; gap:6px; }
+.sync-dot { width:7px; height:7px; border-radius:50%; background:#C8CFD5; display:inline-block; }
+.sync-dot.on { background:var(--green); }
+
+/* ── stat strip (top of leads screen) ── */
+.strip {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  padding:2px 18px 14px;
+}
+.strip .s {
+  background:var(--card); border-radius:14px; padding:12px 12px 10px;
+  box-shadow:var(--shadow);
+}
+.strip .v { font-weight:800; font-size:1.28rem; letter-spacing:-0.03em; font-variant-numeric:tabular-nums; }
+.strip .v.green { color:var(--green); }
+.strip .k { font-size:0.64rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub); margin-top:2px; }
+
+/* ── filter chips ── */
+.chips {
+  display:flex; gap:8px; overflow-x:auto; padding:2px 18px 12px;
+  scrollbar-width:none;
+}
+.chips::-webkit-scrollbar { display:none; }
+.chip {
+  flex-shrink:0; padding:8px 14px; border-radius:100px;
+  background:var(--card); color:var(--sub); font-weight:600; font-size:0.82rem;
+  border:1.5px solid var(--line);
+}
+.chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
+.chip .n { opacity:0.65; font-weight:700; margin-left:4px; font-variant-numeric:tabular-nums; }
+
+/* ── lead cards ── */
+.list { padding:0 18px; display:grid; gap:12px; }
+.lead {
+  background:var(--card); border-radius:var(--rad); box-shadow:var(--shadow);
+  padding:16px 16px 14px; position:relative;
+}
+.lead.new::before {
+  content:''; position:absolute; left:0; top:14px; bottom:14px; width:4px;
+  border-radius:0 4px 4px 0; background:var(--blue);
+}
+.lead-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.lead-name { font-weight:800; font-size:1.12rem; letter-spacing:-0.02em; }
+.lead-meta { font-size:0.78rem; color:var(--sub); margin-top:2px; }
+.lead-meta .dot { margin:0 5px; color:var(--faint); }
+.pill {
+  flex-shrink:0; font-size:0.7rem; font-weight:700; letter-spacing:0.05em;
+  padding:6px 12px; border-radius:100px; text-transform:uppercase;
+}
+.pill.New      { background:var(--new-bg); color:var(--blue-d); }
+.pill.Texted   { background:var(--amber-bg); color:var(--amber); }
+.pill.Booked   { background:#EDE9F7; color:#5B4A9E; }
+.pill.Customer { background:var(--green-bg); color:var(--green); }
+.pill.Lost     { background:var(--red-bg); color:var(--red); }
+.lead-notes { font-size:0.84rem; color:var(--sub); margin-top:8px; white-space:pre-wrap; }
+.lead-actions { display:grid; grid-template-columns:1fr 1.6fr 52px; gap:9px; margin-top:13px; }
+.btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  min-height:48px; border-radius:13px; font-weight:700; font-size:0.95rem;
+  transition:transform 0.12s ease, filter 0.12s ease;
+}
+.btn:active { transform:scale(0.97); }
+.btn-call { background:#EFF2F1; color:var(--ink); }
+.btn-text { background:var(--blue); color:#fff; }
+.btn-more { background:#EFF2F1; color:var(--sub); font-size:1.2rem; }
+.empty { text-align:center; color:var(--sub); padding:56px 30px; font-size:0.95rem; }
+.empty b { display:block; font-size:1.05rem; color:var(--ink); margin-bottom:6px; }
+
+/* ── FAB ── */
+.fab {
+  position:fixed; right:18px; bottom:calc(96px + env(safe-area-inset-bottom));
+  width:56px; height:56px; border-radius:50%;
+  background:var(--ink); color:#fff; font-size:1.7rem; font-weight:400;
+  box-shadow:0 8px 24px rgba(20,36,51,0.3);
+  display:flex; align-items:center; justify-content:center;
+  z-index:30;
+}
+
+/* ── tab bar ── */
+.tabs {
+  position:fixed; left:0; right:0; bottom:0; z-index:40;
+  max-width:640px; margin:0 auto;
+  background:rgba(255,255,255,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  display:grid; grid-template-columns:repeat(3,1fr);
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+}
+.tab {
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  padding:8px 0 6px; border-radius:12px; color:var(--faint);
+  font-size:0.68rem; font-weight:700; letter-spacing:0.04em;
+}
+.tab svg { width:22px; height:22px; }
+.tab.on { color:var(--ink); }
+
+/* ── screens ── */
+.screen { display:none; }
+.screen.on { display:block; }
+.sec-title { padding:6px 18px 12px; font-weight:800; font-size:1.35rem; letter-spacing:-0.03em; }
+
+/* ── stats screen ── */
+.stat-grid { padding:0 18px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.stat {
+  background:var(--card); border-radius:var(--rad); box-shadow:var(--shadow);
+  padding:16px;
+}
+.stat.wide { grid-column:1 / -1; }
+.stat .v { font-weight:800; font-size:1.7rem; letter-spacing:-0.03em; font-variant-numeric:tabular-nums; }
+.stat .v.green { color:var(--green); }
+.stat .v.blue { color:var(--blue); }
+.stat .k { font-size:0.68rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub); margin-top:3px; }
+.stat .hint { font-size:0.72rem; color:var(--faint); margin-top:6px; }
+.funnel { display:grid; gap:9px; margin-top:12px; }
+.f-row { display:grid; grid-template-columns:74px 1fr 44px; align-items:center; gap:10px; }
+.f-row .fk { font-size:0.74rem; font-weight:600; color:var(--sub); }
+.f-track { height:10px; border-radius:100px; background:#EDF0F1; overflow:hidden; }
+.f-fill { height:100%; border-radius:100px; background:var(--blue); transition:width 0.8s cubic-bezier(0.22,1,0.36,1); }
+.f-row:last-child .f-fill { background:var(--green); }
+.f-row .fv { font-size:0.78rem; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }
+.bars { display:flex; align-items:flex-end; gap:4px; height:90px; margin-top:14px; }
+.bar { flex:1; background:#DCE7F1; border-radius:4px 4px 0 0; min-height:3px; position:relative; }
+.bar.hot { background:var(--blue); }
+.bars-labels { display:flex; justify-content:space-between; font-size:0.64rem; color:var(--faint); margin-top:6px; }
+
+/* ── settings ── */
+.set { padding:0 18px; display:grid; gap:14px; }
+.card {
+  background:var(--card); border-radius:var(--rad); box-shadow:var(--shadow);
+  padding:18px;
+}
+.card h3 { font-size:0.95rem; font-weight:800; letter-spacing:-0.01em; margin-bottom:4px; }
+.card .d { font-size:0.8rem; color:var(--sub); margin-bottom:12px; }
+.card label { display:block; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--sub); margin:12px 0 6px; }
+.row2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.btn-line {
+  width:100%; min-height:46px; border-radius:12px; font-weight:700; font-size:0.9rem;
+  background:#EFF2F1; color:var(--ink); margin-top:12px;
+}
+.btn-solid {
+  width:100%; min-height:46px; border-radius:12px; font-weight:700; font-size:0.9rem;
+  background:var(--ink); color:#fff; margin-top:12px;
+}
+.steps { font-size:0.84rem; color:var(--sub); line-height:1.6; }
+.steps li { margin:8px 0 8px 18px; }
+.steps b { color:var(--ink); }
+.codebox {
+  font-family:var(--mono); font-size:0.68rem; line-height:1.5;
+  background:#F2F4F3; border:1.5px solid var(--line); border-radius:12px;
+  padding:12px; height:150px; width:100%; resize:vertical; color:#31424f;
+}
+details { margin-top:12px; }
+summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d); }
+.mono { font-family:var(--mono); font-size:0.78rem; }
+
+/* ── sheet / modal ── */
+.overlay {
+  position:fixed; inset:0; background:rgba(20,36,51,0.4); z-index:60;
+  display:none; align-items:flex-end; justify-content:center;
+}
+.overlay.on { display:flex; }
+.sheet {
+  background:var(--card); border-radius:22px 22px 0 0; width:100%; max-width:640px;
+  padding:20px 20px calc(24px + env(safe-area-inset-bottom));
+  animation:up 0.28s cubic-bezier(0.22,1,0.36,1);
+}
+@keyframes up { from { transform:translateY(60px); opacity:0; } to { transform:none; opacity:1; } }
+.sheet h3 { font-size:1.1rem; font-weight:800; margin-bottom:14px; letter-spacing:-0.02em; }
+.opt {
+  display:flex; align-items:center; gap:12px; width:100%;
+  padding:14px 12px; border-radius:12px; font-weight:600; font-size:0.98rem;
+  color:var(--ink); text-align:left;
+}
+.opt:active { background:#F1F4F3; }
+.opt .sw { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+
+/* ── toast ── */
+.toast {
+  position:fixed; left:50%; transform:translateX(-50%) translateY(20px);
+  bottom:calc(100px + env(safe-area-inset-bottom)); z-index:80;
+  background:var(--ink); color:#fff; font-weight:600; font-size:0.86rem;
+  padding:12px 20px; border-radius:100px; opacity:0; pointer-events:none;
+  transition:opacity 0.25s, transform 0.25s; white-space:nowrap;
+}
+.toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* ── PIN gate ── */
+.gate {
+  position:fixed; inset:0; z-index:100; background:var(--bg);
+  display:none; flex-direction:column; align-items:center; justify-content:center; gap:18px;
+  padding:24px;
+}
+.gate.on { display:flex; }
+.gate img { width:76px; height:76px; border-radius:50%; }
+.gate h2 { font-size:1.15rem; font-weight:800; letter-spacing:-0.02em; }
+.gate input { max-width:200px; text-align:center; font-size:1.4rem; letter-spacing:0.4em; font-weight:700; }
+.gate button { background:var(--ink); color:#fff; padding:13px 34px; border-radius:100px; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- PIN gate -->
+<div class="gate" id="gate">
+  <img src="/assets/logo-petscoop.png" alt="">
+  <h2 id="gateTitle">Enter PIN</h2>
+  <input id="gatePin" type="password" inputmode="numeric" maxlength="6" placeholder="••••">
+  <button onclick="gateGo()">Unlock</button>
+</div>
+
+<header class="top">
+  <img src="/assets/logo-petscoop.png" alt="Pet Scoop">
+  <div>
+    <div class="t1">Pet Scoop &amp; Sanitize</div>
+    <div class="t2"><span class="sync-dot" id="syncDot"></span><span id="syncLabel">Local only</span></div>
+  </div>
+</header>
+
+<!-- ═══════ LEADS ═══════ -->
+<section class="screen on" id="scr-leads">
+  <div class="strip">
+    <div class="s"><div class="v" id="stNew">0</div><div class="k">New</div></div>
+    <div class="s"><div class="v" id="stCust">0</div><div class="k">Customers</div></div>
+    <div class="s"><div class="v green" id="stMrr">$0</div><div class="k">Monthly Rev</div></div>
+  </div>
+  <div class="chips" id="chips"></div>
+  <div class="list" id="list"></div>
+</section>
+
+<!-- ═══════ STATS ═══════ -->
+<section class="screen" id="scr-stats">
+  <div class="sec-title">Numbers</div>
+  <div class="stat-grid">
+    <div class="stat"><div class="v green" id="kMrr">$0</div><div class="k">Monthly Revenue</div><div class="hint" id="kMrrHint"></div></div>
+    <div class="stat"><div class="v" id="kCust">0</div><div class="k">Active Customers</div></div>
+    <div class="stat"><div class="v" id="kLeads">0</div><div class="k">Leads · 30 Days</div></div>
+    <div class="stat"><div class="v" id="kCpl">–</div><div class="k">Cost / Lead</div><div class="hint" id="kCplHint"></div></div>
+    <div class="stat"><div class="v blue" id="kResp">–</div><div class="k">Median Response</div><div class="hint">lead in → first text</div></div>
+    <div class="stat"><div class="v" id="kClose">–</div><div class="k">Lead → Customer</div></div>
+
+    <div class="stat wide">
+      <div class="k" style="margin:0 0 2px;">Funnel · Last 30 Days</div>
+      <div class="funnel" id="funnel"></div>
+    </div>
+
+    <div class="stat wide">
+      <div class="k" style="margin:0 0 2px;">Leads · Last 14 Days</div>
+      <div class="bars" id="bars"></div>
+      <div class="bars-labels"><span id="barL0"></span><span>today</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SETTINGS ═══════ -->
+<section class="screen" id="scr-set">
+  <div class="sec-title">Settings</div>
+  <div class="set">
+
+    <div class="card">
+      <h3>First-text template</h3>
+      <div class="d">What opens in Messages when you tap Text. <span class="mono">{name}</span> becomes their first name.</div>
+      <textarea id="cfgTemplate" rows="4"></textarea>
+      <button class="btn-solid" onclick="saveCfgBasics()">Save</button>
+    </div>
+
+    <div class="card">
+      <h3>Business numbers</h3>
+      <div class="d">Used for revenue and cost-per-lead math.</div>
+      <div class="row2">
+        <div><label>Price / customer / mo</label><input id="cfgPrice" type="number" inputmode="decimal" placeholder="79"></div>
+        <div><label>Ad spend this month</label><input id="cfgSpend" type="number" inputmode="decimal" placeholder="0"></div>
+      </div>
+      <button class="btn-solid" onclick="saveCfgBasics()">Save</button>
+    </div>
+
+    <div class="card">
+      <h3>Sync <span id="syncState" style="font-weight:600;color:var(--sub);font-size:0.78rem;"></span></h3>
+      <div class="d">Connect a free Google Apps Script so Meta leads flow in automatically through Zapier, and your statuses back up to a Google Sheet.</div>
+      <label>Web app URL</label>
+      <input id="cfgSyncUrl" placeholder="https://script.google.com/macros/s/…/exec">
+      <label>Secret token</label>
+      <input id="cfgSyncToken" placeholder="pick any long random string">
+      <button class="btn-solid" onclick="saveSync()">Save &amp; test connection</button>
+
+      <details>
+        <summary>Setup guide (one time, ~5 min)</summary>
+        <ol class="steps">
+          <li>Go to <b>script.google.com</b> → New project. Delete the sample code, paste the script below, and set <b>TOKEN</b> at the top to your secret.</li>
+          <li><b>Deploy → New deployment → Web app.</b> Execute as: <b>Me</b>. Who has access: <b>Anyone</b>. Copy the web app URL.</li>
+          <li>Paste the URL + your secret above and hit <b>Save &amp; test</b>.</li>
+          <li>In <b>Zapier</b>: trigger = <b>Facebook Lead Ads → New Lead</b> (your Pet Scoop page + form). Action = <b>Webhooks by Zapier → POST</b>.<br>
+            URL: your web app URL · Payload type: <b>json</b><br>
+            Data fields:<br>
+            <span class="mono">token</span> = your secret<br>
+            <span class="mono">action</span> = newlead<br>
+            <span class="mono">name</span> = Full Name (or First Name)<br>
+            <span class="mono">phone</span> = Phone Number<br>
+            <span class="mono">source</span> = Ad Name<br>
+            <span class="mono">created</span> = Created Time</li>
+          <li>Turn the Zap on. Done: every Meta lead lands here in under a minute, and this app refreshes itself every 20 seconds.</li>
+        </ol>
+        <label>Apps Script (tap to copy)</label>
+        <textarea class="codebox" id="gsCode" readonly onclick="copyGs()"></textarea>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>App lock</h3>
+      <div class="d">A PIN asked once per device. Leave blank to disable.</div>
+      <input id="cfgPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 digits">
+      <button class="btn-solid" onclick="savePin()">Save PIN</button>
+    </div>
+
+    <div class="card">
+      <h3>Data</h3>
+      <div class="d" id="dataInfo"></div>
+      <button class="btn-line" onclick="exportCsv()">Export leads (CSV)</button>
+    </div>
+
+  </div>
+</section>
+
+<button class="fab" id="fab" onclick="openAdd()">+</button>
+
+<nav class="tabs">
+  <button class="tab on" data-scr="leads" onclick="go('leads')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>
+    Leads
+  </button>
+  <button class="tab" data-scr="stats" onclick="go('stats')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+    Stats
+  </button>
+  <button class="tab" data-scr="set" onclick="go('set')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    Settings
+  </button>
+</nav>
+
+<!-- status sheet -->
+<div class="overlay" id="ovStatus" onclick="if(event.target===this)closeOv('ovStatus')">
+  <div class="sheet">
+    <h3 id="stName">Update</h3>
+    <div id="stOpts"></div>
+    <button class="opt" onclick="editNotes()"><span class="sw" style="background:#C8CFD5;"></span>Add / edit notes</button>
+    <button class="opt" style="color:var(--red);" onclick="delLead()"><span class="sw" style="background:var(--red);"></span>Delete lead</button>
+  </div>
+</div>
+
+<!-- add lead sheet -->
+<div class="overlay" id="ovAdd" onclick="if(event.target===this)closeOv('ovAdd')">
+  <div class="sheet">
+    <h3>Add lead</h3>
+    <label style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub);margin:4px 0 6px;">First name</label>
+    <input id="addName" placeholder="Sarah">
+    <label style="display:block;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--sub);margin:12px 0 6px;">Phone</label>
+    <input id="addPhone" type="tel" inputmode="tel" placeholder="(919) 555-0134">
+    <button class="btn-solid" onclick="addLead()">Add to pipeline</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   STATE
+   ══════════════════════════════════════════════════ */
+var LS_LEADS = 'ps_leads_v1', LS_CFG = 'ps_cfg_v1';
+var STATUSES = ['New','Texted','Booked','Customer','Lost'];
+var SW = { New:'#2F6FAE', Texted:'#9A6A15', Booked:'#5B4A9E', Customer:'#3E7C3A', Lost:'#B3453E' };
+
+var leads = load(LS_LEADS, []);
+var cfg = load(LS_CFG, {
+  template: "Hey {name}! It's Vincent with Pet Scoop & Sanitize. Saw you were interested in our weekly dog-waste cleanup. How many pups do you have?",
+  price: 79, spend: 0, syncUrl: '', syncToken: '', pin: ''
+});
+var filter = 'All', activeId = null, unlocked = false;
+
+function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? d : v; } catch(e) { return d; } }
+function save() { localStorage.setItem(LS_LEADS, JSON.stringify(leads)); }
+function saveCfg() { localStorage.setItem(LS_CFG, JSON.stringify(cfg)); }
+
+/* ══════════════════════════════════════════════════
+   HELPERS
+   ══════════════════════════════════════════════════ */
+function digits(p) { return String(p || '').replace(/[^\d+]/g, ''); }
+function fmtPhone(p) {
+  var d = digits(p).replace(/^\+?1/, '');
+  if (d.length === 10) return '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+  return p;
+}
+function firstName(n) { return String(n || '').trim().split(/\s+/)[0] || 'there'; }
+function ago(ts) {
+  var s = Math.max(0, (Date.now() - ts) / 1000);
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  return Math.floor(s/86400) + 'd ago';
+}
+function toast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('on'); }, 2200);
+}
+function uid() { return 'L' + Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+
+/* ══════════════════════════════════════════════════
+   RENDER · LEADS
+   ══════════════════════════════════════════════════ */
+function counts() {
+  var c = { All: leads.length };
+  STATUSES.forEach(function(s){ c[s] = leads.filter(function(l){ return l.status === s; }).length; });
+  return c;
+}
+function renderChips() {
+  var c = counts();
+  document.getElementById('chips').innerHTML = ['All'].concat(STATUSES).map(function(s){
+    return '<button class="chip' + (filter===s?' on':'') + '" onclick="setFilter(\'' + s + '\')">' + s + '<span class="n">' + c[s] + '</span></button>';
+  }).join('');
+}
+function setFilter(s) { filter = s; render(); }
+
+function renderList() {
+  var rows = leads.slice().sort(function(a,b){ return b.created - a.created; });
+  if (filter !== 'All') rows = rows.filter(function(l){ return l.status === filter; });
+  var el = document.getElementById('list');
+  if (!rows.length) {
+    el.innerHTML = '<div class="empty"><b>' + (leads.length ? 'Nothing here' : 'No leads yet') + '</b>' +
+      (leads.length ? 'No leads with this status.' : 'Connect sync in Settings, or add one with the + button.') + '</div>';
+    return;
+  }
+  el.innerHTML = rows.map(function(l){
+    return '<div class="lead' + (l.status==='New' ? ' new' : '') + '">' +
+      '<div class="lead-head"><div>' +
+        '<div class="lead-name">' + esc(l.name) + '</div>' +
+        '<div class="lead-meta">' + fmtPhone(l.phone) + '<span class="dot">·</span>' + ago(l.created) +
+          (l.source ? '<span class="dot">·</span>' + esc(l.source) : '') + '</div>' +
+      '</div>' +
+      '<button class="pill ' + l.status + '" onclick="openStatus(\'' + l.id + '\')">' + l.status + '</button></div>' +
+      (l.notes ? '<div class="lead-notes">' + esc(l.notes) + '</div>' : '') +
+      '<div class="lead-actions">' +
+        '<a class="btn btn-call" href="tel:' + digits(l.phone) + '">Call</a>' +
+        '<button class="btn btn-text" onclick="doText(\'' + l.id + '\')">Text ' + esc(firstName(l.name)) + '</button>' +
+        '<button class="btn btn-more" onclick="openStatus(\'' + l.id + '\')">⋯</button>' +
+      '</div></div>';
+  }).join('');
+}
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+function renderStrip() {
+  var c = counts();
+  document.getElementById('stNew').textContent = c.New;
+  document.getElementById('stCust').textContent = c.Customer;
+  document.getElementById('stMrr').textContent = '$' + (c.Customer * (Number(cfg.price)||0)).toLocaleString();
+}
+
+/* ══════════════════════════════════════════════════
+   ACTIONS
+   ══════════════════════════════════════════════════ */
+function doText(id) {
+  var l = leads.find(function(x){ return x.id === id; });
+  if (!l) return;
+  var body = (cfg.template || '').replace(/\{name\}/g, firstName(l.name));
+  var sep = /iPhone|iPad|Macintosh/.test(navigator.userAgent) ? '&' : '?';
+  if (l.status === 'New') {
+    l.status = 'Texted';
+    l.firstTextedAt = l.firstTextedAt || Date.now();
+    l.updated = Date.now();
+    save(); push(l); render();
+  }
+  window.location.href = 'sms:' + digits(l.phone) + sep + 'body=' + encodeURIComponent(body);
+}
+
+function openStatus(id) {
+  activeId = id;
+  var l = leads.find(function(x){ return x.id === id; });
+  document.getElementById('stName').textContent = l.name;
+  document.getElementById('stOpts').innerHTML = STATUSES.map(function(s){
+    return '<button class="opt" onclick="setStatus(\'' + s + '\')"><span class="sw" style="background:' + SW[s] + ';"></span>' + s +
+      (l.status === s ? ' <span style="margin-left:auto;color:var(--faint);font-size:0.8rem;">current</span>' : '') + '</button>';
+  }).join('');
+  document.getElementById('ovStatus').classList.add('on');
+}
+function setStatus(s) {
+  var l = leads.find(function(x){ return x.id === activeId; });
+  if (l) {
+    l.status = s;
+    if (s === 'Texted') l.firstTextedAt = l.firstTextedAt || Date.now();
+    l.updated = Date.now();
+    save(); push(l); render();
+    toast(l.name + ' → ' + s);
+  }
+  closeOv('ovStatus');
+}
+function editNotes() {
+  var l = leads.find(function(x){ return x.id === activeId; });
+  if (!l) return;
+  var n = prompt('Notes for ' + l.name + '\n(address, dogs, gate code, price quoted…)', l.notes || '');
+  if (n !== null) { l.notes = n.trim(); l.updated = Date.now(); save(); push(l); render(); }
+  closeOv('ovStatus');
+}
+function delLead() {
+  var l = leads.find(function(x){ return x.id === activeId; });
+  if (l && confirm('Delete ' + l.name + '? This can\'t be undone.')) {
+    leads = leads.filter(function(x){ return x.id !== activeId; });
+    save(); pushDelete(activeId); render();
+  }
+  closeOv('ovStatus');
+}
+function closeOv(id) { document.getElementById(id).classList.remove('on'); }
+
+function openAdd() {
+  document.getElementById('addName').value = '';
+  document.getElementById('addPhone').value = '';
+  document.getElementById('ovAdd').classList.add('on');
+}
+function addLead() {
+  var n = document.getElementById('addName').value.trim();
+  var p = document.getElementById('addPhone').value.trim();
+  if (!n || !p) { toast('Need a name and phone'); return; }
+  var l = { id: uid(), name: n, phone: p, source: 'Manual', status: 'New', notes: '', created: Date.now(), updated: Date.now() };
+  leads.push(l); save(); push(l); render();
+  closeOv('ovAdd'); toast('Added ' + n);
+}
+
+/* ══════════════════════════════════════════════════
+   STATS
+   ══════════════════════════════════════════════════ */
+function median(arr) {
+  if (!arr.length) return null;
+  var a = arr.slice().sort(function(x,y){ return x-y; });
+  var m = Math.floor(a.length/2);
+  return a.length % 2 ? a[m] : (a[m-1]+a[m])/2;
+}
+function fmtDur(ms) {
+  if (ms === null) return '–';
+  var m = ms/60000;
+  if (m < 1) return '<1m';
+  if (m < 60) return Math.round(m) + 'm';
+  if (m < 1440) return (m/60).toFixed(1).replace(/\.0$/,'') + 'h';
+  return Math.round(m/1440) + 'd';
+}
+function renderStats() {
+  var now = Date.now(), mo = now - 30*86400000;
+  var l30 = leads.filter(function(l){ return l.created >= mo; });
+  var cust = leads.filter(function(l){ return l.status === 'Customer'; }).length;
+  var price = Number(cfg.price)||0, spend = Number(cfg.spend)||0;
+
+  document.getElementById('kMrr').textContent = '$' + (cust*price).toLocaleString();
+  document.getElementById('kMrrHint').textContent = cust + ' × $' + price + '/mo';
+  document.getElementById('kCust').textContent = cust;
+  document.getElementById('kLeads').textContent = l30.length;
+  document.getElementById('kCpl').textContent = (spend > 0 && l30.length) ? '$' + (spend/l30.length).toFixed(2) : '–';
+  document.getElementById('kCplHint').textContent = spend > 0 ? '$' + spend + ' spend ÷ ' + l30.length + ' leads' : 'set ad spend in Settings';
+
+  var resp = leads.filter(function(l){ return l.firstTextedAt && l.created; })
+                  .map(function(l){ return l.firstTextedAt - l.created; });
+  document.getElementById('kResp').textContent = fmtDur(median(resp));
+
+  var closable = leads.filter(function(l){ return l.status !== 'New' && l.status !== 'Texted'; }).length;
+  var total = leads.length;
+  document.getElementById('kClose').textContent = total ? Math.round(cust/total*100) + '%' : '–';
+
+  /* funnel: 30d */
+  var f = [
+    ['Leads',    l30.length],
+    ['Texted',   l30.filter(function(l){ return l.firstTextedAt || ['Texted','Booked','Customer'].indexOf(l.status) >= 0; }).length],
+    ['Booked',   l30.filter(function(l){ return ['Booked','Customer'].indexOf(l.status) >= 0; }).length],
+    ['Customer', l30.filter(function(l){ return l.status === 'Customer'; }).length]
+  ];
+  var max = Math.max(f[0][1], 1);
+  document.getElementById('funnel').innerHTML = f.map(function(r){
+    return '<div class="f-row"><span class="fk">' + r[0] + '</span>' +
+      '<div class="f-track"><div class="f-fill" style="width:' + (r[1]/max*100) + '%;"></div></div>' +
+      '<span class="fv">' + r[1] + '</span></div>';
+  }).join('');
+
+  /* 14-day bars */
+  var days = [], counts14 = [];
+  for (var i = 13; i >= 0; i--) {
+    var d0 = new Date(); d0.setHours(0,0,0,0); d0 = d0.getTime() - i*86400000;
+    var d1 = d0 + 86400000;
+    counts14.push(leads.filter(function(l){ return l.created >= d0 && l.created < d1; }).length);
+    days.push(d0);
+  }
+  var bmax = Math.max.apply(null, counts14.concat([1]));
+  document.getElementById('bars').innerHTML = counts14.map(function(c, idx){
+    return '<div class="bar' + (idx === 13 ? ' hot' : '') + '" style="height:' + Math.max(3, c/bmax*100) + '%;" title="' + c + '"></div>';
+  }).join('');
+  var d = new Date(days[0]);
+  document.getElementById('barL0').textContent = (d.getMonth()+1) + '/' + d.getDate();
+}
+
+/* ══════════════════════════════════════════════════
+   SYNC · Google Apps Script bridge
+   app ⇄ (GET/POST) ⇄ Apps Script ⇄ Google Sheet ⇐ Zapier ⇐ Meta
+   ══════════════════════════════════════════════════ */
+function syncReady() { return cfg.syncUrl && cfg.syncToken; }
+function setSyncUi(ok, label) {
+  document.getElementById('syncDot').className = 'sync-dot' + (ok ? ' on' : '');
+  document.getElementById('syncLabel').textContent = label;
+  document.getElementById('syncState').textContent = ok ? '· connected' : '';
+}
+function pull() {
+  if (!syncReady()) return;
+  fetch(cfg.syncUrl + '?token=' + encodeURIComponent(cfg.syncToken))
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data || !data.ok) throw 0;
+      var changed = false, newest = null;
+      (data.leads || []).forEach(function(r){
+        var mine = leads.find(function(x){ return x.id === r.id; });
+        if (!mine) {
+          leads.push(r); changed = true;
+          if (r.status === 'New') newest = r;
+        } else if ((r.updated||0) > (mine.updated||0)) {
+          Object.assign(mine, r); changed = true;
+        }
+      });
+      /* remove leads deleted remotely */
+      var ids = {}; (data.leads||[]).forEach(function(r){ ids[r.id]=1; });
+      var before = leads.length;
+      leads = leads.filter(function(l){ return ids[l.id] || (l._localOnly && !syncReady()); });
+      if (leads.length !== before) changed = true;
+      if (changed) { save(); render(); }
+      if (newest) toast('New lead: ' + newest.name + ' 🎉');
+      setSyncUi(true, 'Synced ' + new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}));
+    })
+    .catch(function(){ setSyncUi(false, 'Sync error — check Settings'); });
+}
+function push(l) {
+  if (!syncReady()) return;
+  fetch(cfg.syncUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ token: cfg.syncToken, action: 'upsert', lead: l })
+  }).catch(function(){});
+}
+function pushDelete(id) {
+  if (!syncReady()) return;
+  fetch(cfg.syncUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ token: cfg.syncToken, action: 'delete', id: id })
+  }).catch(function(){});
+}
+setInterval(function(){ if (!document.hidden) pull(); }, 20000);
+document.addEventListener('visibilitychange', function(){ if (!document.hidden) pull(); });
+
+/* ══════════════════════════════════════════════════
+   SETTINGS
+   ══════════════════════════════════════════════════ */
+function fillSettings() {
+  document.getElementById('cfgTemplate').value = cfg.template;
+  document.getElementById('cfgPrice').value = cfg.price;
+  document.getElementById('cfgSpend').value = cfg.spend;
+  document.getElementById('cfgSyncUrl').value = cfg.syncUrl;
+  document.getElementById('cfgSyncToken').value = cfg.syncToken;
+  document.getElementById('cfgPin').value = cfg.pin;
+  document.getElementById('dataInfo').textContent = leads.length + ' leads stored on this device' + (syncReady() ? ' + Google Sheet.' : '.');
+  document.getElementById('gsCode').value = GS_CODE;
+}
+function saveCfgBasics() {
+  cfg.template = document.getElementById('cfgTemplate').value;
+  cfg.price = Number(document.getElementById('cfgPrice').value) || 0;
+  cfg.spend = Number(document.getElementById('cfgSpend').value) || 0;
+  saveCfg(); render(); toast('Saved');
+}
+function saveSync() {
+  cfg.syncUrl = document.getElementById('cfgSyncUrl').value.trim();
+  cfg.syncToken = document.getElementById('cfgSyncToken').value.trim();
+  saveCfg();
+  if (syncReady()) { toast('Testing connection…'); pull(); }
+  else setSyncUi(false, 'Local only');
+}
+function savePin() {
+  cfg.pin = document.getElementById('cfgPin').value.trim();
+  saveCfg(); toast(cfg.pin ? 'PIN set' : 'PIN removed');
+}
+function exportCsv() {
+  var head = 'name,phone,status,source,created,first_texted,notes\n';
+  var rows = leads.map(function(l){
+    return [l.name, fmtPhone(l.phone), l.status, l.source||'', new Date(l.created).toISOString(),
+            l.firstTextedAt ? new Date(l.firstTextedAt).toISOString() : '',
+            '"' + String(l.notes||'').replace(/"/g,'""') + '"'].join(',');
+  }).join('\n');
+  var a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(head + rows);
+  a.download = 'petscoop-leads.csv'; a.click();
+}
+function copyGs() {
+  var t = document.getElementById('gsCode');
+  t.select(); document.execCommand('copy');
+  navigator.clipboard && navigator.clipboard.writeText(t.value);
+  toast('Script copied');
+}
+
+/* the complete backend, shipped inside the app */
+var GS_CODE = [
+'/* PET SCOOP LEAD SYNC  · paste into script.google.com, set TOKEN, deploy as Web App (Execute as: Me / Access: Anyone) */',
+'var TOKEN = "CHANGE-ME-to-your-secret";',
+'',
+'function sheet_() {',
+'  var props = PropertiesService.getScriptProperties();',
+'  var id = props.getProperty("sheetId");',
+'  var ss = id ? SpreadsheetApp.openById(id) : SpreadsheetApp.create("Pet Scoop Leads");',
+'  if (!id) props.setProperty("sheetId", ss.getId());',
+'  var sh = ss.getSheets()[0];',
+'  if (sh.getLastRow() === 0) sh.appendRow(["id","name","phone","source","status","notes","created","firstTextedAt","updated"]);',
+'  return sh;',
+'}',
+'function rows_(sh) {',
+'  var v = sh.getDataRange().getValues(); v.shift();',
+'  return v.map(function(r,i){ return { row:i+2, id:r[0], name:r[1], phone:String(r[2]), source:r[3], status:r[4]||"New", notes:r[5]||"", created:Number(r[6])||0, firstTextedAt:Number(r[7])||null, updated:Number(r[8])||0 }; });',
+'}',
+'function doGet(e) {',
+'  if (!e || !e.parameter || e.parameter.token !== TOKEN) return json_({ok:false});',
+'  var leads = rows_(sheet_()).map(function(r){ delete r.row; return r; });',
+'  return json_({ok:true, leads:leads});',
+'}',
+'function doPost(e) {',
+'  var lock = LockService.getScriptLock(); lock.waitLock(10000);',
+'  try {',
+'    var b = JSON.parse(e.postData.contents || "{}");',
+'    if (b.token !== TOKEN) return json_({ok:false});',
+'    var sh = sheet_(), all = rows_(sh);',
+'    if (b.action === "newlead") {',
+'      var ph = String(b.phone||"").replace(/[^\\d+]/g,"");',
+'      if (all.some(function(r){ return r.phone.replace(/[^\\d+]/g,"") === ph; })) return json_({ok:true, dup:true});',
+'      var created = b.created ? new Date(b.created).getTime() : Date.now();',
+'      if (!created || isNaN(created)) created = Date.now();',
+'      sh.appendRow(["L"+Date.now().toString(36)+Math.floor(Math.random()*1e4), String(b.name||"Lead").split(" ")[0], b.phone||"", b.source||"Meta Ad", "New", "", created, "", Date.now()]);',
+'      return json_({ok:true});',
+'    }',
+'    if (b.action === "upsert" && b.lead) {',
+'      var L = b.lead, hit = all.filter(function(r){ return r.id === L.id; })[0];',
+'      var vals = [L.id, L.name, L.phone, L.source||"", L.status, L.notes||"", L.created, L.firstTextedAt||"", L.updated||Date.now()];',
+'      if (hit) sh.getRange(hit.row, 1, 1, 9).setValues([vals]);',
+'      else sh.appendRow(vals);',
+'      return json_({ok:true});',
+'    }',
+'    if (b.action === "delete" && b.id) {',
+'      var hit2 = all.filter(function(r){ return r.id === b.id; })[0];',
+'      if (hit2) sh.deleteRow(hit2.row);',
+'      return json_({ok:true});',
+'    }',
+'    return json_({ok:false});',
+'  } finally { lock.releaseLock(); }',
+'}',
+'function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }'
+].join('\n');
+
+/* ══════════════════════════════════════════════════
+   NAV + GATE + BOOT
+   ══════════════════════════════════════════════════ */
+function go(s) {
+  ['leads','stats','set'].forEach(function(k){
+    document.getElementById('scr-' + k).classList.toggle('on', k === s);
+  });
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.classList.toggle('on', t.dataset.scr === s);
+  });
+  document.getElementById('fab').style.display = (s === 'leads') ? 'flex' : 'none';
+  if (s === 'stats') renderStats();
+  if (s === 'set') fillSettings();
+}
+
+function gateGo() {
+  var v = document.getElementById('gatePin').value;
+  if (v === cfg.pin) {
+    unlocked = true;
+    sessionStorage.setItem('ps_unlocked', '1');
+    document.getElementById('gate').classList.remove('on');
+  } else {
+    document.getElementById('gatePin').value = '';
+    document.getElementById('gateTitle').textContent = 'Wrong PIN, try again';
+  }
+}
+document.getElementById('gatePin').addEventListener('keydown', function(e){ if (e.key === 'Enter') gateGo(); });
+
+function render() { renderChips(); renderList(); renderStrip(); }
+
+(function boot() {
+  if (cfg.pin && sessionStorage.getItem('ps_unlocked') !== '1') {
+    document.getElementById('gate').classList.add('on');
+  }
+  render();
+  if (syncReady()) { setSyncUi(true, 'Connecting…'); pull(); }
+  else setSyncUi(false, 'Local only');
+  /* refresh relative times every minute */
+  setInterval(function(){ if (!document.hidden) renderList(); }, 60000);
+})();
+</script>
+</body>
+</html>

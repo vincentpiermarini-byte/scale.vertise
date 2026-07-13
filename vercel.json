@@ -1,3 +1,6 @@
 {
-  "rewrites": []
+  "rewrites": [
+    { "source": "/pet-scoop", "destination": "/pet-scoop.html" },
+    { "source": "/petscoop", "destination": "/pet-scoop.html" }
+  ]
 }

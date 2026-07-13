@@ -37,11 +37,12 @@ export default async function handler(req, res) {
   if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
     return res.status(200).json({ ok: false, error: 'no_database', hint: 'Connect a KV database to this project in Vercel.' });
   }
-  const SECRET = process.env.LEAD_TOKEN;
+  // Custom lock optional; a baked default lets sharing work with zero setup.
+  const SECRET = process.env.LEAD_TOKEN || 'petscoop-live-7Kq2mZ9fLxW4';
 
   const body = typeof req.body === 'string' ? safe(req.body) : (req.body || {});
   const token = req.method === 'GET' ? (req.query.token || '') : (body.token || '');
-  if (!SECRET || token !== SECRET) return res.status(401).json({ ok: false, error: 'bad_token' });
+  if (token !== SECRET) return res.status(200).json({ ok: false, error: 'bad_token' });
 
   try {
     if (req.method === 'GET') {

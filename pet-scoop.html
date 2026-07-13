@@ -353,34 +353,36 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 
     <div class="card">
       <h3>Sync <span id="syncState" style="font-weight:600;color:var(--sub);font-size:0.78rem;"></span></h3>
-      <div class="d">Leads flow in from Zapier straight to your own site. No Google, no spreadsheet. Enter the same secret token you set in Vercel.</div>
-      <label>Secret token</label>
-      <input id="cfgSyncToken" placeholder="the same secret you put in Vercel">
-      <div class="row2">
-        <button class="btn-line" onclick="saveSync()">Save &amp; connect</button>
-        <button class="btn-line" onclick="testLead()">Send test lead</button>
-      </div>
+      <div class="d">Every phone that opens this link shares the same live pipeline automatically. Nothing to configure here. Your partner just opens <span class="mono">scalevertise.app/pet-scoop</span> and sees your leads.</div>
+      <button class="btn-line" onclick="testLead()">Send test lead</button>
 
       <details>
-        <summary>Setup guide (one time, ~4 min)</summary>
+        <summary>One-time database switch (you only)</summary>
         <ol class="steps">
-          <li><b>Turn on the database.</b> In <b>Vercel</b> → your <b>scale.vertise</b> project → <b>Storage</b> tab → <b>Create Database</b> → <b>KV</b> (Upstash Redis) → <b>Connect</b> to this project. That's it, no other setup.</li>
-          <li><b>Set your secret.</b> Vercel → <b>Settings → Environment Variables</b> → add<br>
-            Name: <span class="mono">LEAD_TOKEN</span> &nbsp; Value: <b>any long password you invent</b> → Save. Then <b>Redeploy</b> (Deployments tab → ⋯ → Redeploy).</li>
-          <li><b>Connect this app.</b> Paste that same password in the box above → <b>Save &amp; connect</b>. Tap <b>Send test lead</b> — a "Test Lead" should pop into your Leads tab within a couple seconds. Delete it after.</li>
-          <li><b>Point Zapier here.</b> Trigger = <b>Facebook Lead Ads → New Lead</b> (your Pet Scoop page + form). Action = <b>Webhooks by Zapier → POST</b>:<br>
-            URL: <span class="mono" id="apiUrl">https://scalevertise.app/api/leads</span> <button class="btn-line" style="display:inline-block;width:auto;padding:4px 10px;margin:4px 0 0;min-height:0;font-size:0.72rem;" onclick="copyText('apiUrl')">copy</button><br>
-            Payload Type: <b>Json</b><br>
-            Data:<br>
-            <span class="mono">token</span> = your password<br>
+          <li><b>Turn on the database.</b> In <b>Vercel</b> → your <b>scale.vertise</b> project → <b>Storage</b> tab → <b>Create Database</b> → <b>KV</b> (Upstash Redis) → <b>Connect</b> to this project → then <b>Redeploy</b> (Deployments → ⋯ → Redeploy). That's the whole setup.</li>
+          <li>Tap <b>Send test lead</b> above — a "Test Lead" pops into your Leads tab within a couple seconds. Delete it after. That means it's live for both phones.</li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>Zapier → Meta leads (advanced)</summary>
+        <ol class="steps">
+          <li>Trigger = <b>Facebook Lead Ads → New Lead</b> (your Pet Scoop page + form). Action = <b>Webhooks by Zapier → POST</b>:</li>
+          <li>URL: <span class="mono" id="apiUrl">https://scalevertise.app/api/leads</span> <button class="btn-line" style="display:inline-block;width:auto;padding:4px 10px;margin:4px 0 0;min-height:0;font-size:0.72rem;" onclick="copyText('apiUrl')">copy</button></li>
+          <li>Payload Type: <b>Json</b> · Data:<br>
+            <span class="mono">token</span> = <span class="mono" id="zapTok">petscoop-live-7Kq2mZ9fLxW4</span> <button class="btn-line" style="display:inline-block;width:auto;padding:4px 10px;margin:4px 0 0;min-height:0;font-size:0.72rem;" onclick="copyText('zapTok')">copy</button><br>
             <span class="mono">action</span> = newlead<br>
             <span class="mono">name</span> = First Name<br>
             <span class="mono">phone</span> = Phone Number<br>
             <span class="mono">source</span> = Ad Name<br>
             <span class="mono">created</span> = Created Time</li>
-          <li><b>Publish the Zap.</b> Done. Every Meta lead lands here in under a minute, this app refreshes every 20 seconds, and duplicates by phone number are ignored automatically.</li>
+          <li>Publish the Zap. Every Meta lead lands here in under a minute, deduped by phone.</li>
         </ol>
       </details>
+
+      <label style="margin-top:14px;">Custom lock (optional)</label>
+      <input id="cfgSyncToken" placeholder="leave blank unless locking it down">
+      <button class="btn-line" onclick="saveSync()">Save custom token</button>
     </div>
 
     <div class="card">
@@ -671,22 +673,31 @@ function renderStats() {
 }
 
 /* ══════════════════════════════════════════════════
-   SYNC · Google Apps Script bridge
-   app ⇄ (GET/POST) ⇄ Apps Script ⇄ Google Sheet ⇐ Zapier ⇐ Meta
+   SYNC · every phone talks to the same /api/leads store.
+   A default token ships baked in so sharing needs ZERO setup on
+   any phone — open the link and you're synced. (Set a custom token
+   in Settings only if you want to lock it down.)
    ══════════════════════════════════════════════════ */
-var API = '/api/leads';   /* same-origin endpoint on scalevertise.app */
-function syncReady() { return !!cfg.syncToken; }
+var API = '/api/leads';
+var DEFAULT_TOKEN = 'petscoop-live-7Kq2mZ9fLxW4';
+function tok() { return cfg.syncToken || DEFAULT_TOKEN; }
+function syncReady() { return true; }   /* always have an effective token */
 function setSyncUi(ok, label) {
   document.getElementById('syncDot').className = 'sync-dot' + (ok ? ' on' : '');
   document.getElementById('syncLabel').textContent = label;
   document.getElementById('syncState').textContent = ok ? '· connected' : '';
 }
 function pull() {
-  if (!syncReady()) return;
-  fetch(API + '?token=' + encodeURIComponent(cfg.syncToken))
+  fetch(API + '?token=' + encodeURIComponent(tok()))
     .then(function(r){ return r.json(); })
     .then(function(data){
-      if (!data || !data.ok) throw 0;
+      if (!data) throw 0;
+      if (!data.ok) {
+        if (data.error === 'no_database') setSyncUi(false, 'Turn on the database in Vercel');
+        else if (data.error === 'bad_token') setSyncUi(false, 'Token mismatch');
+        else setSyncUi(false, 'Not synced yet');
+        return;
+      }
       var changed = false, newest = null;
       (data.leads || []).forEach(function(r){
         var mine = leads.find(function(x){ return x.id === r.id; });
@@ -697,34 +708,31 @@ function pull() {
           Object.assign(mine, r); changed = true;
         }
       });
-      /* remove leads deleted remotely */
       var ids = {}; (data.leads||[]).forEach(function(r){ ids[r.id]=1; });
       var before = leads.length;
-      leads = leads.filter(function(l){ return ids[l.id] || (l._localOnly && !syncReady()); });
+      leads = leads.filter(function(l){ return ids[l.id]; });
       if (leads.length !== before) changed = true;
       if (changed) { save(); render(); }
       if (newest) toast('New lead: ' + newest.name + ' 🎉');
-      setSyncUi(true, 'Synced ' + new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}));
+      setSyncUi(true, 'Live · synced ' + new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}));
     })
-    .catch(function(){ setSyncUi(false, 'Sync error — check Settings'); });
+    .catch(function(){ setSyncUi(false, 'Offline'); });
 }
 function push(l) {
-  if (!syncReady()) return;
   fetch(API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: cfg.syncToken, action: 'upsert', lead: l })
+    body: JSON.stringify({ token: tok(), action: 'upsert', lead: l })
   }).catch(function(){});
 }
 function pushDelete(id) {
-  if (!syncReady()) return;
   fetch(API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ token: cfg.syncToken, action: 'delete', id: id })
+    body: JSON.stringify({ token: tok(), action: 'delete', id: id })
   }).catch(function(){});
 }
-setInterval(function(){ if (!document.hidden) pull(); }, 20000);
+setInterval(function(){ if (!document.hidden) pull(); }, 15000);
 document.addEventListener('visibilitychange', function(){ if (!document.hidden) pull(); });
 
 /* ══════════════════════════════════════════════════
@@ -736,7 +744,7 @@ function fillSettings() {
   document.getElementById('cfgSpend').value = cfg.spend;
   document.getElementById('cfgSyncToken').value = cfg.syncToken;
   document.getElementById('cfgPin').value = cfg.pin;
-  document.getElementById('dataInfo').textContent = leads.length + ' leads' + (syncReady() ? ' synced to your site.' : ' stored on this device.');
+  document.getElementById('dataInfo').textContent = leads.length + ' leads on your site, shared live across phones.';
 }
 function saveCfgBasics() {
   cfg.template = document.getElementById('cfgTemplate').value;
@@ -747,8 +755,7 @@ function saveCfgBasics() {
 function saveSync() {
   cfg.syncToken = document.getElementById('cfgSyncToken').value.trim();
   saveCfg();
-  if (syncReady()) { toast('Testing connection…'); pull(); }
-  else setSyncUi(false, 'Local only');
+  toast('Saved'); pull();
 }
 function testLead() {
   if (!syncReady()) { toast('Enter your token first'); return; }
@@ -875,8 +882,7 @@ function render() { renderChips(); renderList(); renderStrip(); }
     document.getElementById('gate').classList.add('on');
   }
   render();
-  if (syncReady()) { setSyncUi(true, 'Connecting…'); pull(); }
-  else setSyncUi(false, 'Local only');
+  setSyncUi(false, 'Connecting…'); pull();
   /* refresh relative times every minute */
   setInterval(function(){ if (!document.hidden) renderList(); }, 60000);
 })();

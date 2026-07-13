@@ -331,7 +331,7 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
   <div class="sec-title" style="padding-top:22px;">Ad Performance
     <span id="adUpdated" style="font-size:0.7rem;font-weight:600;color:var(--faint);letter-spacing:0;text-transform:none;"></span>
   </div>
-  <div id="adEmpty" class="empty" style="display:none;"><b>No ad numbers yet</b>Add them in Settings → Ad numbers (takes 15 seconds).</div>
+  <div id="adEmpty" class="empty" style="display:none;"><b>Not connected to Meta yet</b>Do the one-time connect in Settings → Ad analytics, and spend, CAC, ROAS, and frequency fill in automatically.</div>
   <div class="stat-grid" id="adGrid">
     <div class="stat"><div class="v green" id="aCac">–</div><div class="k">Cost to Get a Customer</div><div class="hint" id="aCacHint">acquisition cost (CAC)</div></div>
     <div class="stat"><div class="v blue" id="aPayback">–</div><div class="k">Payback</div><div class="hint">weeks to earn CAC back</div></div>
@@ -364,23 +364,12 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
     </div>
 
     <div class="card">
-      <h3>Ad numbers</h3>
-      <div class="d" id="adAutoNote" style="display:none;background:var(--green-bg);color:var(--green);padding:10px 12px;border-radius:10px;font-weight:600;">Auto-updating from Meta ✓ — these refresh themselves every few hours. Only set Price below; leave the rest alone.</div>
-      <div class="d">Copy these from Meta Ads Manager (last 30 days) once a week, or connect Meta auto-sync below and never touch them again. Shared across both phones.</div>
-      <div class="row2">
-        <div><label>Price / customer / mo</label><input id="adPrice" type="number" inputmode="decimal" placeholder="79"></div>
-        <div><label>Ad spend (30d)</label><input id="adSpend" type="number" inputmode="decimal" placeholder="0"></div>
-      </div>
-      <div class="row2">
-        <div><label>Reach</label><input id="adReach" type="number" inputmode="numeric" placeholder="0"></div>
-        <div><label>Impressions</label><input id="adImpr" type="number" inputmode="numeric" placeholder="0"></div>
-      </div>
-      <div class="row2">
-        <div><label>Frequency</label><input id="adFreq" type="number" inputmode="decimal" placeholder="auto"></div>
-        <div><label>Leads (Meta)</label><input id="adMetaLeads" type="number" inputmode="numeric" placeholder="0"></div>
-      </div>
-      <button class="btn-solid" onclick="saveAdNums()">Save ad numbers</button>
-      <div class="d" style="margin:12px 0 0;font-size:0.74rem;">Leave a box blank to skip it. Frequency auto-calculates from reach + impressions if left blank.</div>
+      <h3>Ad analytics</h3>
+      <div class="d" id="adAutoNote" style="display:none;background:var(--green-bg);color:var(--green);padding:10px 12px;border-radius:10px;font-weight:600;">Auto-updating from Meta ✓ — spend, reach, frequency, and leads refresh themselves every few hours.</div>
+      <div class="d">Ad numbers pull straight from Meta automatically once connected below. Nothing to type, ever.</div>
+      <label>Price / customer / mo</label>
+      <input id="adPrice" type="number" inputmode="decimal" placeholder="79">
+      <button class="btn-solid" onclick="saveAdNums()">Save price</button>
 
       <details>
         <summary>Connect Meta auto-sync (one time, ~15 min)</summary>
@@ -720,7 +709,7 @@ function renderStats() {
   document.getElementById('kCust').textContent = cust;
   document.getElementById('kLeads').textContent = l30.length;
   document.getElementById('kCpl').textContent = (spend > 0 && l30.length) ? '$' + (spend/l30.length).toFixed(2) : '–';
-  document.getElementById('kCplHint').textContent = spend > 0 ? '$' + spend + ' spend ÷ ' + l30.length + ' leads' : 'add ad numbers in Settings';
+  document.getElementById('kCplHint').textContent = spend > 0 ? '$' + spend + ' spend ÷ ' + l30.length + ' leads' : 'connect Meta in Settings';
 
   var resp = leads.filter(function(l){ return l.firstTextedAt && l.created; })
                   .map(function(l){ return l.firstTextedAt - l.created; });
@@ -930,11 +919,6 @@ document.addEventListener('visibilitychange', function(){ if (!document.hidden) 
 function fillSettings() {
   document.getElementById('cfgTemplate').value = cfg.template;
   document.getElementById('adPrice').value = ad.price || '';
-  document.getElementById('adSpend').value = ad.spend || '';
-  document.getElementById('adReach').value = ad.reach || '';
-  document.getElementById('adImpr').value = ad.impressions || '';
-  document.getElementById('adFreq').value = ad.frequency || '';
-  document.getElementById('adMetaLeads').value = ad.metaLeads || '';
   document.getElementById('cfgSyncToken').value = cfg.syncToken;
   document.getElementById('cfgPin').value = cfg.pin;
   document.getElementById('dataInfo').textContent = leads.length + ' leads on your site, shared live across phones.';
@@ -946,14 +930,9 @@ function saveCfgBasics() {
 function num(id) { var v = document.getElementById(id).value.trim(); return v === '' ? 0 : (Number(v) || 0); }
 function saveAdNums() {
   ad.price = num('adPrice') || 79;
-  ad.spend = num('adSpend');
-  ad.reach = num('adReach');
-  ad.impressions = num('adImpr');
-  ad.frequency = num('adFreq');
-  ad.metaLeads = num('adMetaLeads');
   ad.updated = Date.now();
   cfg.price = ad.price; saveCfg();   /* keep revenue math in sync */
-  saveAd(); pushAd(); renderStats(); toast('Ad numbers saved');
+  saveAd(); pushAd(); renderStats(); toast('Price saved');
 }
 function saveSync() {
   cfg.syncToken = document.getElementById('cfgSyncToken').value.trim();

@@ -39,7 +39,43 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === 'GET') {
-      return res.status(200).json({ ok: true, stats: await getStats() });
+      let stats = await getStats();
+      /* ── auto-refresh from Meta Marketing API when configured ──
+         Set META_TOKEN (system-user token, ads_read) and
+         META_AD_ACCOUNT (like act_1234567890) in Vercel env.
+         Refreshes lazily when data is older than 6h, or force
+         with ?refresh=1. */
+      const MT = process.env.META_TOKEN, MA = process.env.META_AD_ACCOUNT;
+      const stale = !stats.metaFetched || (Date.now() - stats.metaFetched) > 6 * 3600 * 1000;
+      if (MT && MA && (stale || req.query.refresh === '1')) {
+        try {
+          const acct = MA.startsWith('act_') ? MA : 'act_' + MA;
+          const url = 'https://graph.facebook.com/v21.0/' + acct + '/insights' +
+            '?fields=spend,reach,impressions,frequency,actions' +
+            '&date_preset=last_30d&access_token=' + encodeURIComponent(MT);
+          const r = await fetch(url);
+          const j = await r.json();
+          const row = j && j.data && j.data[0];
+          if (row) {
+            stats.spend = Number(row.spend) || 0;
+            stats.reach = Number(row.reach) || 0;
+            stats.impressions = Number(row.impressions) || 0;
+            stats.frequency = Number(row.frequency) || 0;
+            const leadAction = (row.actions || []).find(a =>
+              a.action_type === 'lead' ||
+              a.action_type === 'leadgen_grouped' ||
+              a.action_type === 'onsite_conversion.lead_grouped');
+            if (leadAction) stats.metaLeads = Number(leadAction.value) || 0;
+            stats.metaFetched = Date.now();
+            stats.updated = Date.now();
+            stats.auto = true;
+            await setStats(stats);
+          } else if (j && j.error) {
+            stats.metaError = j.error.message || 'meta_error';
+          }
+        } catch (e) { /* keep serving cached numbers */ }
+      }
+      return res.status(200).json({ ok: true, stats, auto: !!(MT && MA) });
     }
     const cur = await getStats();
     // accept either { stats:{...} } or flat fields for Zapier convenience

@@ -365,7 +365,8 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 
     <div class="card">
       <h3>Ad numbers</h3>
-      <div class="d">Copy these from Meta Ads Manager (last 30 days) once a week. Powers the Ad Performance tab — CAC, payback, ROAS. Shared across both phones.</div>
+      <div class="d" id="adAutoNote" style="display:none;background:var(--green-bg);color:var(--green);padding:10px 12px;border-radius:10px;font-weight:600;">Auto-updating from Meta ✓ — these refresh themselves every few hours. Only set Price below; leave the rest alone.</div>
+      <div class="d">Copy these from Meta Ads Manager (last 30 days) once a week, or connect Meta auto-sync below and never touch them again. Shared across both phones.</div>
       <div class="row2">
         <div><label>Price / customer / mo</label><input id="adPrice" type="number" inputmode="decimal" placeholder="79"></div>
         <div><label>Ad spend (30d)</label><input id="adSpend" type="number" inputmode="decimal" placeholder="0"></div>
@@ -380,6 +381,22 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
       </div>
       <button class="btn-solid" onclick="saveAdNums()">Save ad numbers</button>
       <div class="d" style="margin:12px 0 0;font-size:0.74rem;">Leave a box blank to skip it. Frequency auto-calculates from reach + impressions if left blank.</div>
+
+      <details>
+        <summary>Connect Meta auto-sync (one time, ~15 min)</summary>
+        <ol class="steps">
+          <li><b>Create a Meta app.</b> Go to <b>developers.facebook.com</b> → My Apps → Create App → type <b>Business</b> → name it "PetScoop Sync" → link your Business portfolio.</li>
+          <li><b>Make a system user.</b> Go to <b>business.facebook.com/settings</b> → Users → <b>System users</b> → Add → name "petscoop-bot", role Admin.</li>
+          <li><b>Give it your ad account.</b> On the system user → <b>Assign assets</b> → Ad accounts → pick your PetScoop ad account → enable <b>View performance</b>.</li>
+          <li><b>Generate the token.</b> On the system user → <b>Generate token</b> → pick the "PetScoop Sync" app → expiration <b>Never</b> → permission <b>ads_read</b> → Generate. Copy the long token somewhere safe.</li>
+          <li><b>Get your ad account ID.</b> In Ads Manager the URL has <span class="mono">act=1234567890</span>, or Business Settings → Ad accounts shows the ID.</li>
+          <li><b>Add two Vercel env vars</b> (scale.vertise project → Settings → Environment Variables):<br>
+            <span class="mono">META_TOKEN</span> = the token from step 4<br>
+            <span class="mono">META_AD_ACCOUNT</span> = <span class="mono">act_</span> + your ID (e.g. <span class="mono">act_1234567890</span>)<br>
+            Then <b>Redeploy</b> (Deployments → ⋯ → Redeploy).</li>
+          <li>Reopen this app. A green "Auto-updating from Meta ✓" banner appears above, and spend, reach, impressions, frequency, and Meta leads refresh themselves every few hours. Done forever.</li>
+        </ol>
+      </details>
     </div>
 
     <div class="card">
@@ -882,14 +899,19 @@ function pushDelete(id) {
 }
 /* ad numbers sync */
 var AD_API = '/api/adstats';
+var adAuto = false;
 function pullAd() {
   fetch(AD_API + '?token=' + encodeURIComponent(tok()))
     .then(function(r){ return r.json(); })
     .then(function(d){
-      if (d && d.ok && d.stats && (d.stats.updated || 0) > (ad.updated || 0)) {
+      if (!d || !d.ok) return;
+      adAuto = !!d.auto;
+      if (d.stats && (d.stats.updated || 0) > (ad.updated || 0)) {
         ad = Object.assign(ad, d.stats); saveAd();
         if (document.getElementById('scr-stats').classList.contains('on')) renderStats();
       }
+      var note = document.getElementById('adAutoNote');
+      if (note) note.style.display = adAuto ? 'block' : 'none';
     }).catch(function(){});
 }
 function pushAd() {

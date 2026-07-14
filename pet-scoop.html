@@ -82,69 +82,93 @@ input:focus, textarea:focus { border-color:var(--blue); }
 .sync-dot { width:7px; height:7px; border-radius:50%; background:#C8CFD5; display:inline-block; }
 .sync-dot.on { background:var(--green); }
 
-/* ── stat strip (top of leads screen) ── */
-.strip {
-  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
-  padding:2px 18px 14px;
+/* ── pulse line (replaces stat boxes + chips) ── */
+.pulse {
+  display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+  padding:0 18px 14px;
 }
-.strip .s {
-  background:var(--card); border-radius:14px; padding:12px 12px 10px;
-  box-shadow:var(--shadow);
-}
-.strip .v { font-weight:800; font-size:1.28rem; letter-spacing:-0.03em; font-variant-numeric:tabular-nums; }
-.strip .v.green { color:var(--green); }
-.strip .k { font-size:0.64rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--sub); margin-top:2px; }
+.pulse .p1 { font-weight:800; font-size:1.3rem; letter-spacing:-0.03em; }
+.pulse .p1 .att { color:var(--blue); }
+.pulse .p1 .ok { color:var(--sub); font-weight:600; font-size:0.95rem; }
+.pulse .p2 { font-weight:800; font-size:1rem; color:var(--green); font-variant-numeric:tabular-nums; white-space:nowrap; }
+.pulse .p2 small { font-weight:600; color:var(--sub); font-size:0.68rem; letter-spacing:0.04em; }
 
-/* ── filter chips ── */
-.chips {
-  display:flex; gap:8px; overflow-x:auto; padding:2px 18px 12px;
-  scrollbar-width:none;
+/* ── queue sections ── */
+.list { padding:0 18px; }
+.qhead {
+  display:flex; align-items:baseline; gap:8px;
+  margin:20px 0 9px; font-size:0.68rem; font-weight:800;
+  letter-spacing:0.12em; text-transform:uppercase; color:var(--sub);
 }
-.chips::-webkit-scrollbar { display:none; }
-.chip {
-  flex-shrink:0; padding:8px 14px; border-radius:100px;
-  background:var(--card); color:var(--sub); font-weight:600; font-size:0.82rem;
-  border:1.5px solid var(--line);
-}
-.chip.on { background:var(--ink); color:#fff; border-color:var(--ink); }
-.chip .n { opacity:0.65; font-weight:700; margin-left:4px; font-variant-numeric:tabular-nums; }
+.qhead:first-child { margin-top:2px; }
+.qhead .qn { color:var(--faint); font-weight:700; }
+.qhead .qdot { width:7px; height:7px; border-radius:50%; }
+.qgroup { display:grid; gap:9px; }
 
-/* ── lead cards ── */
-.list { padding:0 18px; display:grid; gap:12px; }
-.lead {
-  background:var(--card); border-radius:var(--rad); box-shadow:var(--shadow);
-  padding:16px 16px 14px; position:relative;
+/* hot card: only for leads that need texting NOW */
+.hot {
+  background:var(--card); border:1px solid var(--line); border-radius:16px;
+  padding:14px 14px 12px; position:relative; overflow:hidden;
+  box-shadow:0 1px 2px rgba(20,36,51,0.04);
 }
-.lead.new::before {
-  content:''; position:absolute; left:0; top:14px; bottom:14px; width:4px;
-  border-radius:0 4px 4px 0; background:var(--blue);
-}
-.lead-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-.lead-name { font-weight:800; font-size:1.12rem; letter-spacing:-0.02em; }
-.lead-meta { font-size:0.78rem; color:var(--sub); margin-top:2px; }
-.lead-meta .dot { margin:0 5px; color:var(--faint); }
-.pill {
-  flex-shrink:0; font-size:0.7rem; font-weight:700; letter-spacing:0.05em;
-  padding:6px 12px; border-radius:100px; text-transform:uppercase;
-}
-.pill.New      { background:var(--new-bg); color:var(--blue-d); }
-.pill.Texted   { background:var(--amber-bg); color:var(--amber); }
-.pill.Booked   { background:#EDE9F7; color:#5B4A9E; }
-.pill.Customer { background:var(--green-bg); color:var(--green); }
-.pill.Lost     { background:var(--red-bg); color:var(--red); }
-.lead-notes { font-size:0.84rem; color:var(--sub); margin-top:8px; white-space:pre-wrap; }
-.lead-actions { display:grid; grid-template-columns:1fr 1.6fr 52px; gap:9px; margin-top:13px; }
+.hot::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--blue); }
+.hot .hrow { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+.hot .hname { font-weight:800; font-size:1.08rem; letter-spacing:-0.02em; }
+.hot .htime { font-size:0.74rem; font-weight:700; color:var(--blue); white-space:nowrap; }
+.hot .hmeta { font-size:0.78rem; color:var(--sub); margin-top:1px; }
+.hot .hacts { display:grid; grid-template-columns:52px 1fr; gap:8px; margin-top:11px; }
 .btn {
   display:flex; align-items:center; justify-content:center; gap:8px;
-  min-height:48px; border-radius:13px; font-weight:700; font-size:0.95rem;
-  transition:transform 0.12s ease, filter 0.12s ease;
+  min-height:44px; border-radius:12px; font-weight:700; font-size:0.92rem;
+  transition:transform 0.12s ease;
 }
 .btn:active { transform:scale(0.97); }
 .btn-call { background:#EFF2F1; color:var(--ink); }
 .btn-text { background:var(--blue); color:#fff; }
-.btn-more { background:#EFF2F1; color:var(--sub); font-size:1.2rem; }
-.empty { text-align:center; color:var(--sub); padding:56px 30px; font-size:0.95rem; }
+
+/* quiet row: everything that doesn't need a button in its face */
+.row {
+  display:flex; align-items:center; gap:12px; width:100%; text-align:left;
+  background:var(--card); border:1px solid var(--line); border-radius:14px;
+  padding:12px 14px;
+}
+.row:active { background:#F4F6F5; }
+.row .rmain { flex:1; min-width:0; }
+.row .rname { font-weight:700; font-size:0.98rem; letter-spacing:-0.01em; }
+.row .rsub { font-size:0.74rem; color:var(--sub); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row .nudge {
+  font-size:0.66rem; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--amber); background:var(--amber-bg); padding:4px 9px; border-radius:100px;
+  white-space:nowrap;
+}
+.row .rico {
+  width:38px; height:38px; border-radius:10px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:#EFF2F1; color:var(--ink);
+}
+.row .rico.b { background:var(--new-bg); color:var(--blue-d); }
+.row .chev { color:var(--faint); flex-shrink:0; }
+
+/* roster (customers) + archive (lost) */
+.fold {
+  display:flex; align-items:center; justify-content:space-between; width:100%;
+  padding:13px 14px; background:transparent; border:1px dashed var(--line);
+  border-radius:14px; color:var(--sub); font-weight:700; font-size:0.85rem;
+}
+.fold .fc { color:var(--faint); font-weight:700; }
+.roster .row { border-style:solid; }
+.archive-link {
+  display:block; width:100%; text-align:center; padding:16px 0 4px;
+  color:var(--faint); font-weight:700; font-size:0.78rem;
+  letter-spacing:0.06em; text-transform:uppercase;
+}
+.empty { text-align:center; color:var(--sub); padding:48px 30px 20px; font-size:0.95rem; }
 .empty b { display:block; font-size:1.05rem; color:var(--ink); margin-bottom:6px; }
+.allclear {
+  text-align:center; padding:22px 20px; border:1px dashed var(--line);
+  border-radius:16px; color:var(--sub); font-size:0.88rem;
+}
+.allclear b { color:var(--green); display:block; font-size:1rem; margin-bottom:2px; }
 
 /* ── FAB ── */
 .fab {
@@ -296,12 +320,10 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 
 <!-- ═══════ LEADS ═══════ -->
 <section class="screen on" id="scr-leads">
-  <div class="strip">
-    <div class="s"><div class="v" id="stNew">0</div><div class="k">New</div></div>
-    <div class="s"><div class="v" id="stCust">0</div><div class="k">Customers</div></div>
-    <div class="s"><div class="v green" id="stMrr">$0</div><div class="k">Monthly Rev</div></div>
+  <div class="pulse">
+    <div class="p1" id="pulseLeft">All caught up</div>
+    <div class="p2" id="pulseRight">$0 <small>/MO</small></div>
   </div>
-  <div class="chips" id="chips"></div>
   <div class="list" id="list"></div>
 </section>
 
@@ -545,46 +567,125 @@ function counts() {
   STATUSES.forEach(function(s){ c[s] = leads.filter(function(l){ return l.status === s; }).length; });
   return c;
 }
-function renderChips() {
-  var c = counts();
-  document.getElementById('chips').innerHTML = ['All'].concat(STATUSES).map(function(s){
-    return '<button class="chip' + (filter===s?' on':'') + '" onclick="setFilter(\'' + s + '\')">' + s + '<span class="n">' + c[s] + '</span></button>';
-  }).join('');
-}
-function setFilter(s) { filter = s; render(); }
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
+var showCustomers = false, showLost = false;
+function toggleCustomers() { showCustomers = !showCustomers; renderList(); }
+function toggleLost() { showLost = !showLost; renderList(); }
+
+/* the home screen is a priority queue, not a filtered list:
+   Text now → Waiting on reply → Booked → Customers (folded) → Lost (link) */
 function renderList() {
-  var rows = leads.slice().sort(function(a,b){ return b.created - a.created; });
-  if (filter !== 'All') rows = rows.filter(function(l){ return l.status === filter; });
   var el = document.getElementById('list');
-  if (!rows.length) {
-    el.innerHTML = '<div class="empty"><b>' + (leads.length ? 'Nothing here' : 'No leads yet') + '</b>' +
-      (leads.length ? 'No leads with this status.' : 'Connect sync in Settings, or add one with the + button.') + '</div>';
+  if (!leads.length) {
+    el.innerHTML = '<div class="empty"><b>No leads yet</b>New Meta leads land here automatically. Add one manually with the + button.</div>';
     return;
   }
-  el.innerHTML = rows.map(function(l){
-    return '<div class="lead' + (l.status==='New' ? ' new' : '') + '">' +
-      '<div class="lead-head"><div>' +
-        '<div class="lead-name">' + esc(l.name) + '</div>' +
-        '<div class="lead-meta">' + fmtPhone(l.phone) + '<span class="dot">·</span>' + ago(l.created) +
-          (l.source ? '<span class="dot">·</span>' + esc(l.source) : '') + '</div>' +
-      '</div>' +
-      '<button class="pill ' + l.status + '" onclick="openStatus(\'' + l.id + '\')">' + l.status + '</button></div>' +
-      (l.notes ? '<div class="lead-notes">' + esc(l.notes) + '</div>' : '') +
-      '<div class="lead-actions">' +
-        '<a class="btn btn-call" href="tel:' + digits(l.phone) + '">Call</a>' +
-        '<button class="btn btn-text" onclick="doText(\'' + l.id + '\')">Text ' + esc(firstName(l.name)) + '</button>' +
-        '<button class="btn btn-more" onclick="openStatus(\'' + l.id + '\')">⋯</button>' +
-      '</div></div>';
-  }).join('');
+  var by = function(s){ return leads.filter(function(l){ return l.status === s; }); };
+  var hotQ = by('New').sort(function(a,b){ return a.created - b.created; });          /* oldest waiting first */
+  var waitQ = by('Texted').sort(function(a,b){ return (a.firstTextedAt||a.created) - (b.firstTextedAt||b.created); });
+  var bookQ = by('Booked').sort(function(a,b){ return b.updated - a.updated; });
+  var custQ = by('Customer').sort(function(a,b){ return b.updated - a.updated; });
+  var lostQ = by('Lost').sort(function(a,b){ return b.updated - a.updated; });
+  var html = '';
+
+  /* ── TEXT NOW ── */
+  if (hotQ.length) {
+    html += qhead('Text now', hotQ.length, 'var(--blue)');
+    html += '<div class="qgroup">' + hotQ.map(function(l){
+      return '<div class="hot">' +
+        '<div class="hrow"><span class="hname">' + esc(l.name) + '</span>' +
+        '<span class="htime">waiting ' + ago(l.created).replace(' ago','') + '</span></div>' +
+        '<div class="hmeta">' + fmtPhone(l.phone) + (l.source && l.source !== 'Manual' ? ' · ' + esc(l.source) : '') + '</div>' +
+        '<div class="hacts">' +
+          '<a class="btn btn-call" href="tel:' + digits(l.phone) + '" aria-label="Call">' + icoPhone() + '</a>' +
+          '<button class="btn btn-text" onclick="doText(\'' + l.id + '\')">Text ' + esc(firstName(l.name)) + '</button>' +
+        '</div></div>';
+    }).join('') + '</div>';
+  } else {
+    html += '<div class="allclear"><b>✓ Inbox clear</b>Every new lead has been texted.</div>';
+  }
+
+  /* ── WAITING ON REPLY ── */
+  if (waitQ.length) {
+    html += qhead('Waiting on reply', waitQ.length, 'var(--amber)');
+    html += '<div class="qgroup">' + waitQ.map(function(l){
+      var since = l.firstTextedAt || l.created;
+      var hrs = (Date.now() - since) / 3600000;
+      var nudge = hrs >= 24 ? '<span class="nudge">follow up</span>' : '';
+      return rowBtn(l, 'texted ' + ago(since), nudge, true);
+    }).join('') + '</div>';
+  }
+
+  /* ── BOOKED ── */
+  if (bookQ.length) {
+    html += qhead('Booked', bookQ.length, '#5B4A9E');
+    html += '<div class="qgroup">' + bookQ.map(function(l){
+      return rowBtn(l, fmtPhone(l.phone) + (l.notes ? ' · ' + esc(l.notes) : ''), '', false);
+    }).join('') + '</div>';
+  }
+
+  /* ── CUSTOMERS (folded) ── */
+  if (custQ.length) {
+    html += qhead('Customers', custQ.length, 'var(--green)');
+    if (showCustomers) {
+      html += '<div class="qgroup roster">' + custQ.map(function(l){
+        return rowBtn(l, fmtPhone(l.phone) + (l.notes ? ' · ' + esc(l.notes) : ''), '', false);
+      }).join('') +
+      '<button class="fold" onclick="toggleCustomers()">Hide<span class="fc">▲</span></button></div>';
+    } else {
+      html += '<button class="fold" onclick="toggleCustomers()">' +
+        esc(custQ.map(function(l){ return l.name; }).slice(0,3).join(', ')) +
+        (custQ.length > 3 ? ' +' + (custQ.length - 3) : '') +
+        '<span class="fc">▼</span></button>';
+    }
+  }
+
+  /* ── LOST (out of sight) ── */
+  if (lostQ.length) {
+    if (showLost) {
+      html += qhead('Lost', lostQ.length, 'var(--red)');
+      html += '<div class="qgroup">' + lostQ.map(function(l){
+        return rowBtn(l, fmtPhone(l.phone) + (l.notes ? ' · ' + esc(l.notes) : ''), '', false);
+      }).join('') + '</div>' +
+      '<button class="archive-link" onclick="toggleLost()">Hide lost</button>';
+    } else {
+      html += '<button class="archive-link" onclick="toggleLost()">View lost (' + lostQ.length + ')</button>';
+    }
+  }
+
+  el.innerHTML = html;
 }
-function esc(s) { return String(s ?? '').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function qhead(t, n, color) {
+  return '<div class="qhead"><span class="qdot" style="background:' + color + ';"></span>' + t + '<span class="qn">' + n + '</span></div>';
+}
+/* quiet row: tap anywhere → action sheet; one small contextual icon */
+function rowBtn(l, sub, badge, withText) {
+  return '<button class="row" onclick="openStatus(\'' + l.id + '\')">' +
+    '<div class="rmain"><div class="rname">' + esc(l.name) + '</div>' +
+    '<div class="rsub">' + sub + '</div></div>' + badge +
+    (withText
+      ? '<span class="rico b" onclick="event.stopPropagation();doText(\'' + l.id + '\')">' + icoMsg() + '</span>'
+      : '') +
+    '<span class="chev">' + icoChev() + '</span></button>';
+}
+function icoPhone() { return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>'; }
+function icoMsg() { return '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>'; }
+function icoChev() { return '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>'; }
 
 function renderStrip() {
   var c = counts();
-  document.getElementById('stNew').textContent = c.New;
-  document.getElementById('stCust').textContent = c.Customer;
-  document.getElementById('stMrr').textContent = '$' + (c.Customer * (Number(ad.price || cfg.price)||0)).toLocaleString();
+  var need = c.New;
+  var fu = leads.filter(function(l){
+    return l.status === 'Texted' && (Date.now() - (l.firstTextedAt || l.created)) >= 24*3600000;
+  }).length;
+  var left;
+  if (need) left = '<span class="att">' + need + ' to text</span>' + (fu ? ' <span class="ok">· ' + fu + ' follow-up' + (fu>1?'s':'') + '</span>' : '');
+  else if (fu) left = '<span class="att">' + fu + ' follow-up' + (fu>1?'s':'') + '</span>';
+  else left = '<span class="ok">All caught up ✓</span>';
+  document.getElementById('pulseLeft').innerHTML = left;
+  var mrr = c.Customer * (Number(ad.price || cfg.price) || 0);
+  document.getElementById('pulseRight').innerHTML = '$' + mrr.toLocaleString() + ' <small>/MO · ' + c.Customer + ' CUST</small>';
 }
 
 /* ══════════════════════════════════════════════════
@@ -607,8 +708,13 @@ function doText(id) {
 function openStatus(id) {
   activeId = id;
   var l = leads.find(function(x){ return x.id === id; });
-  document.getElementById('stName').textContent = l.name;
-  document.getElementById('stOpts').innerHTML = STATUSES.map(function(s){
+  document.getElementById('stName').textContent = l.name + '  ·  ' + fmtPhone(l.phone);
+  var acts =
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:14px;">' +
+      '<a class="btn btn-call" href="tel:' + digits(l.phone) + '">' + icoPhone() + ' Call</a>' +
+      '<button class="btn btn-text" onclick="closeOv(\'ovStatus\');doText(\'' + l.id + '\')">' + icoMsg() + ' Text</button>' +
+    '</div>';
+  document.getElementById('stOpts').innerHTML = acts + STATUSES.map(function(s){
     return '<button class="opt" onclick="setStatus(\'' + s + '\')"><span class="sw" style="background:' + SW[s] + ';"></span>' + s +
       (l.status === s ? ' <span style="margin-left:auto;color:var(--faint);font-size:0.8rem;">current</span>' : '') + '</button>';
   }).join('');
@@ -1057,7 +1163,7 @@ function gateGo() {
 }
 document.getElementById('gatePin').addEventListener('keydown', function(e){ if (e.key === 'Enter') gateGo(); });
 
-function render() { renderChips(); renderList(); renderStrip(); }
+function render() { renderList(); renderStrip(); }
 
 (function boot() {
   if (cfg.pin && sessionStorage.getItem('ps_unlocked') !== '1') {

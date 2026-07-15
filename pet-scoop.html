@@ -310,27 +310,39 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
 }
 .toast.on { opacity:1; transform:translateX(-50%) translateY(0); }
 
-/* ── PIN gate ── */
+/* ── password gate ── */
 .gate {
   position:fixed; inset:0; z-index:100; background:var(--bg);
-  display:none; flex-direction:column; align-items:center; justify-content:center; gap:18px;
-  padding:24px;
+  display:none; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+  padding:28px;
 }
 .gate.on { display:flex; }
-.gate img { width:76px; height:76px; border-radius:50%; }
-.gate h2 { font-size:1.15rem; font-weight:800; letter-spacing:-0.02em; }
-.gate input { max-width:200px; text-align:center; font-size:1.4rem; letter-spacing:0.4em; font-weight:700; }
-.gate button { background:var(--ink); color:#fff; padding:13px 34px; border-radius:100px; font-weight:700; }
+.gate img { width:72px; height:72px; border-radius:50%; margin-bottom:2px; }
+.gate h2 { font-size:1.18rem; font-weight:800; letter-spacing:-0.02em; }
+.gate .gsub { font-size:0.82rem; color:var(--sub); margin-top:-8px; }
+.gate input {
+  max-width:300px; width:100%; text-align:center; font-size:1.05rem; font-weight:600;
+}
+.gate .remember {
+  display:flex; align-items:center; gap:9px; font-size:0.9rem; font-weight:600;
+  color:var(--sub); cursor:pointer; user-select:none;
+}
+.gate .remember input { width:20px; height:20px; accent-color:var(--blue); max-width:20px; }
+.gate button { background:var(--ink); color:#fff; padding:14px 40px; border-radius:100px; font-weight:700; width:100%; max-width:300px; }
+.gate .gerr { color:var(--red); font-size:0.84rem; font-weight:600; min-height:1em; }
 </style>
 </head>
 <body>
 
-<!-- PIN gate -->
+<!-- password gate -->
 <div class="gate" id="gate">
   <img src="/assets/logo-petscoop.png" alt="">
-  <h2 id="gateTitle">Enter PIN</h2>
-  <input id="gatePin" type="password" inputmode="numeric" maxlength="6" placeholder="••••">
+  <h2>Pet Scoop &amp; Sanitize</h2>
+  <div class="gsub">Enter the password to continue</div>
+  <input id="gatePin" type="password" autocomplete="current-password" placeholder="Password">
+  <label class="remember"><input type="checkbox" id="gateRemember"> Remember me on this device</label>
   <button onclick="gateGo()">Unlock</button>
+  <div class="gerr" id="gateErr"></div>
 </div>
 
 <header class="top">
@@ -483,10 +495,9 @@ summary { font-weight:700; font-size:0.86rem; cursor:pointer; color:var(--blue-d
     </div>
 
     <div class="card">
-      <h3>App lock</h3>
-      <div class="d">A PIN asked once per device. Leave blank to disable.</div>
-      <input id="cfgPin" type="password" inputmode="numeric" maxlength="6" placeholder="4–6 digits">
-      <button class="btn-solid" onclick="savePin()">Save PIN</button>
+      <h3>Sign out</h3>
+      <div class="d">Locks this device — the password will be required again to get back in.</div>
+      <button class="btn-line" onclick="signOut()">Lock &amp; sign out</button>
     </div>
 
     <div class="card">
@@ -1064,7 +1075,6 @@ function fillSettings() {
   document.getElementById('cfgTemplate').value = cfg.template;
   document.getElementById('adPrice').value = ad.price || '';
   document.getElementById('cfgSyncToken').value = cfg.syncToken;
-  document.getElementById('cfgPin').value = cfg.pin;
   document.getElementById('dataInfo').textContent = leads.length + ' leads on your site, shared live across phones.';
 }
 function saveCfgBasics() {
@@ -1095,9 +1105,10 @@ function testLead() {
     else toast('Not connected yet');
   }).catch(function(){ toast('Could not reach the API'); });
 }
-function savePin() {
-  cfg.pin = document.getElementById('cfgPin').value.trim();
-  saveCfg(); toast(cfg.pin ? 'PIN set' : 'PIN removed');
+function signOut() {
+  localStorage.removeItem('ps_auth');
+  sessionStorage.removeItem('ps_auth');
+  location.reload();
 }
 function exportCsv() {
   var head = 'name,phone,status,source,created,first_texted,notes\n';
@@ -1188,15 +1199,20 @@ function go(s) {
   if (s === 'set') fillSettings();
 }
 
+var APP_PASSWORD = 'Rootbeer2Redskins!';
+function isUnlocked() {
+  return localStorage.getItem('ps_auth') === '1' || sessionStorage.getItem('ps_auth') === '1';
+}
 function gateGo() {
   var v = document.getElementById('gatePin').value;
-  if (v === cfg.pin) {
-    unlocked = true;
-    sessionStorage.setItem('ps_unlocked', '1');
+  if (v === APP_PASSWORD) {
+    if (document.getElementById('gateRemember').checked) localStorage.setItem('ps_auth', '1');
+    else sessionStorage.setItem('ps_auth', '1');
     document.getElementById('gate').classList.remove('on');
+    document.getElementById('gateErr').textContent = '';
   } else {
     document.getElementById('gatePin').value = '';
-    document.getElementById('gateTitle').textContent = 'Wrong PIN, try again';
+    document.getElementById('gateErr').textContent = 'Wrong password, try again';
   }
 }
 document.getElementById('gatePin').addEventListener('keydown', function(e){ if (e.key === 'Enter') gateGo(); });
@@ -1204,7 +1220,7 @@ document.getElementById('gatePin').addEventListener('keydown', function(e){ if (
 function render() { renderList(); renderStrip(); }
 
 (function boot() {
-  if (cfg.pin && sessionStorage.getItem('ps_unlocked') !== '1') {
+  if (!isUnlocked()) {
     document.getElementById('gate').classList.add('on');
   }
   render();

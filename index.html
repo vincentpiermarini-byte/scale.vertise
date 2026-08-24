@@ -426,7 +426,7 @@ footer { padding:52px 0 64px; }
     <span class="label rv" style="display:block;margin-bottom:44px;">The Numbers</span>
     <div class="metrics">
       <div class="metric rv">
-        <div class="metric-num"><span class="count" data-target="65">0</span></div>
+        <div class="metric-num"><span class="count" data-target="73">0</span></div>
         <div class="metric-label">Leads Generated</div>
       </div>
       <div class="metric rv">
@@ -434,7 +434,7 @@ footer { padding:52px 0 64px; }
         <div class="metric-label">Lowest Cost / Lead</div>
       </div>
       <div class="metric rv">
-        <div class="metric-num"><span class="count" data-target="30.3" data-decimals="1">0</span>K</div>
+        <div class="metric-num"><span class="count" data-target="33.9" data-decimals="1">0</span>K</div>
         <div class="metric-label">Homeowners Reached</div>
       </div>
       <div class="metric rv">
@@ -450,7 +450,7 @@ footer { padding:52px 0 64px; }
 <section style="padding-top:clamp(30px,4vw,60px);">
   <div class="wrap">
     <span class="label rv" style="display:block;margin-bottom:20px;">Case Studies</span>
-    <h2 class="display h-lg rv">Three campaigns<br>we're proud of.</h2>
+    <h2 class="display h-lg rv">Campaigns<br>we're proud of.</h2>
     <p class="body-copy rv" style="margin-top:20px;max-width:460px;">A few favorites from the accounts we run. Every number pulled straight from Meta Ads Manager.</p>
 
     <!-- QUACK QUOTES -->
@@ -577,6 +577,49 @@ footer { padding:52px 0 64px; }
             <div class="cpl-track"><div class="cpl-fill win" data-fill="18" style="background:#C9C4BC;"></div></div>
           </div>
           <p class="cpl-note">Lean spend, dialed targeting: proof the system works at any budget</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESSURE WASHING PRIDE -->
+    <div class="case-row flip">
+      <div class="case-copy rv-r">
+        <div class="case-brand-row">
+          <img class="logo" src="/assets/logo-pwp.png" alt="Pressure Washing Pride of Durham logo">
+          <span class="label">Pressure Washing Pride · Durham</span>
+        </div>
+        <div class="big-num"><span class="u">$</span><span class="count" data-target="36">0</span></div>
+        <div class="big-label">Per Estimate Request</div>
+        <p class="body-copy">Durham's Pressure Washing Pride had never run a paid ad. On a lean twenty dollar daily budget, homeowners now request estimates at less than half the going rate, and a single driveway job covers a week of ad spend.</p>
+        <div class="side-stats">
+          <div class="side-stat"><div class="v">6,044</div><div class="k">Impressions</div></div>
+          <div class="side-stat"><div class="v">3,604</div><div class="k">Reached</div></div>
+          <div class="side-stat"><div class="v hot">$20/day</div><div class="k">Budget</div></div>
+        </div>
+      </div>
+      <div class="case-visual rv-l">
+        <div class="chart-title">
+          <span class="t">Cumulative Estimate Requests</span>
+          <span class="r">campaign to date</span>
+        </div>
+        <svg class="linechart" id="chartPWP" viewBox="0 0 560 240" role="img" aria-label="Cumulative estimate requests, ending at 8">
+          <defs>
+            <linearGradient id="gradPWP" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F07000" stop-opacity="0.18"/>
+              <stop offset="100%" stop-color="#F07000" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="cpl-compare">
+          <div class="cpl-row">
+            <div class="cpl-meta"><span>Industry Typical</span><span class="amt">$74</span></div>
+            <div class="cpl-track"><div class="cpl-fill" data-fill="100"></div></div>
+          </div>
+          <div class="cpl-row win">
+            <div class="cpl-meta"><span>Scalevertise</span><span class="amt">$36</span></div>
+            <div class="cpl-track"><div class="cpl-fill" data-fill="49"></div></div>
+          </div>
+          <p class="cpl-note">Cost per estimate vs. typical exterior cleaning benchmark</p>
         </div>
       </div>
     </div>
@@ -962,6 +1005,7 @@ footer { padding:52px 0 64px; }
 
   build('chartQQ', 40, 3.7, 'gradQQ');
   build('chartBW', 21, 8.1, 'gradBW');
+  build('chartPWP', 8, 5.3, 'gradPWP');
 })();
 
 /* ══════════════════════════════════════════════════════════════

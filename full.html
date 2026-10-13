@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1919445055416768');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1919445055416768&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#FFFFFF">
+<title>Scalevertise | Currently at Capacity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+<style>
+:root { --ink:#141414; --silver:#4b4844; --ash:#6f6b66; --amber:#B45309; --accent:#F07000; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; }
+body {
+  font-family:'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background:#fff; color:var(--silver); -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:32px 24px; font-weight:300;
+}
+.mark { width:64px; height:64px; margin-bottom:36px; opacity:0; animation:rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.05s forwards; }
+.label {
+  font-size:13px; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--amber);
+  opacity:0; animation:rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
+}
+h1 {
+  font-weight:400; letter-spacing:-0.04em; line-height:1.05; color:var(--ink);
+  font-size:clamp(2.6rem,7vw,5rem); margin:20px 0 22px; text-wrap:balance;
+  opacity:0; animation:rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.25s forwards;
+}
+p {
+  font-size:18px; line-height:1.65; max-width:460px;
+  opacity:0; animation:rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s forwards;
+}
+.back {
+  display:inline-flex; margin-top:40px; text-decoration:none;
+  background:var(--accent); color:#fff; font-weight:600; font-size:14px;
+  letter-spacing:0.025em; text-transform:uppercase; padding:16px 30px; border-radius:24px;
+  transition:transform 0.2s cubic-bezier(0.22,1,0.36,1), filter 0.2s;
+  opacity:0; animation:rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.45s forwards;
+}
+.back:hover { transform:translateY(-2px); filter:brightness(1.06); }
+@keyframes rise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .mark,.label,h1,p,.back { opacity:1; animation:none; } }
+</style>
+</head>
+<body>
+  <img class="mark" src="/assets/sv-logo.png" alt="Scalevertise">
+  <div class="label">Currently at capacity</div>
+  <h1>We're full<br>right now.</h1>
+  <p>Scalevertise is not taking on any new clients at the moment. Every account we run gets daily attention, and our roster is full.</p>
+  <a class="back" href="/">Back to site</a>
+</body>
+</html>
